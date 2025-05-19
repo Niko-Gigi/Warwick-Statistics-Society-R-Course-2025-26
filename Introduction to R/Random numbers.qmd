@@ -1,0 +1,160 @@
+---
+title: "Random numbers"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+Inbuilt into R, there are many functions focused on statistical distributions. These are all stored in the 'stats' package, which is loaded in by default in R. However, for practise, (and to ensure everything will work), we will load in the package directly.
+
+```{r}
+###| Loading in stats package
+library(stats)
+```
+
+We will begin by looking at generating a uniform number before doing on to look at continuous and discrete random variables.
+
+# Random uniform numbers
+
+To generate a random number, we are going to use the uniform distribution. Let $X\sim \text{Uniform}[a,b]$. Then, the probability mass function of X is
+
+$$
+f(x) = \begin{cases}
+\frac{1}{b-a} & \text{for } a\leq x\leq b, \\
+0 & \text{for } x<a \text{ or } x>b
+\end{cases}
+$$
+
+We are going to use the inbuilt R functions to generate a random number, x, in the interval $[a,b]$ and find the probability we generated x.
+
+For simplicity, we will demonstrate this with 2 uniform random variables: $X\sim \text{Uniform}[0,1]$ and $Y\sim \text{Uniform}[1,5]$.
+
+```{r}
+###| Generate a random number, x
+x <- runif(n = 1, min = 0, max = 1)
+x
+
+###| Probability we generated x
+prob_x <- punif(x, min = 0, max = 1)
+prob_x
+
+###| Generate a random number, y
+y <- runif(n = 1, min = 1, max = 5)
+y
+
+###| Probability we generated y
+prob_y <- punif(y, min = 1, max = 5)
+prob_y
+```
+
+We can also find the value, $x$, that corresponds to the probability $P(X\leq x) = a$.
+
+```{r}
+###| a = 0.5, X ~ Uniform[0,1]
+qunif(0.5, min = 0, max = 1)
+
+###| a = 0.5, X ~ Uniform[0,5]
+qunif(0.5, min = 0, max = 5)
+
+###| a = 0.75, X ~ Uniform[0,5]
+qunif(0.75, min = 0, max = 5)
+```
+
+We can also find the density of values $x$ and $y$.
+
+```{r}
+###| Density of x, X ~ Uniform[0,1]
+x <- runif(n = 1, min = 0, max = 1)
+dunif(x, min = 0,max = 1)
+
+###| Density of y, Y ~ Uniform[1,5]
+y <- runif(n = 1, min = 1, max = 5)
+dunif(y, min = 1,max = 5)
+```
+
+Up until now, we have only generated 1 number at a time. However, we can generate several numbers at once by changing the \$n = \$ argument. However, this only works for the 'runif()' function!
+
+```{r}
+###| Multiple values at once
+runif(n = 5, min = 0, max = 1)
+runif(n = 3, min = -1, max = 1)
+```
+
+# Binomial distribution
+
+Now, suppose we want to sample from a binomial distribution, i.e. we want to generate a random number so that the probability $X=x$ is the same as the probability $Y=x$, where $Y \sim \text{Binomial}(m,p)$. We do this using 'rbinom()', 'dbinom()', 'pbinom()' and 'qbinom()'. Note that $n$ refers to the number of samples while size refers to the number of trials!
+
+```{r}
+###| Generate a random value from X ~ Binom(m = 5, p = 0.2)
+x <- rbinom(n=1, size = 5, prob = 0.2)
+x
+
+###| Probability generated x
+prob_x <- pbinom(x, size = 5, prob = 0.2)
+prob_x
+
+###| f(x), density of x
+density_x <- dbinom(x, size = 5, prob = 0.2)
+density_x
+
+###| Quantile of 0.75
+qbinom(p = 0.75, size = 5, prob = 0.2)
+```
+
+# Check your understanding - Normal and Poisson distribution
+
+In the above sections, we have gone over how to sample from Uniform and Binomial distribution. To check your understanding, try the following:
+
+<div>
+
+-   Sample 5 values from a Poisson distribution with rate $\lambda = 5$ and find the probability and density of each value. Return this as a dataframe.
+    -   Hint: type ?rpois into the command line or into the help section.
+-   Sample 5 values from a Normal distribution with mean 0 and variance 4. Find the density of each value, to 3 significant figures.
+    -   Hint: type ?rnorm and ?round into the command line or into the help section.
+
+</div>
+
+```{r}
+#| code-fold: true
+###| Generate and store 5 values from Poisson
+sample <- rpois(n = 5, lambda = 5)
+sample
+
+###| Find probability, density and quantile
+df <- data.frame("sample" = sample,
+                 "prob" = rep(NA,length(sample)),
+                 "density" = rep(NA,length(sample)))
+
+
+for (i in 1:length(sample)) {
+  df$prob[i] <- ppois(df$sample[i], lambda = 5)
+  df$density[i] <- dpois(df$sample[i], lambda = 5)
+}
+
+df
+```
+
+```{r}
+#| code-fold: true
+###| Generate Normal distribution
+norm <- rnorm(n = 5, mean = 0, sd = 2)
+norm
+
+###| Find density of each variable
+for (i in 1:length(norm)){
+  print(paste(round(norm[i],3)," has density ", round(dnorm(norm[i],mean = 0, sd = 2),3)))
+}
+
+# Alternatively, we can do this in one step without the loop as dnorm() 
+# allows vector input
+dnorm(norm, mean=0,sd=2) 
+```

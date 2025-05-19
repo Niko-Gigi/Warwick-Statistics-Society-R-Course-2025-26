@@ -1,0 +1,192 @@
+---
+title: "cars dataset"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+A key step when first reviewing a dataset is to determine the variables and the important properties of each variable. For categorical data, this may be finding the names of the different categories and the count of each category (the number of elements). For continuous data, this may be finding the minimum, maximum, mean and median values. 
+
+This page will go through some practical examples using the inbuilt `mtcars` dataset. 
+
+# Step 1 - History of the dataset
+
+Normally, when given a dataset, we are also given key information about it. This may include the names of the variables, their units and the important variables. 
+
+In this case, as it is an inbuilt R dataset, we can find more information using the `?mtcars` command.
+
+```{r}
+###| More information about the dataset
+?mtcars
+```
+
+From the help box, we can learn the following:
+
+:::{}
+* The data originates from the 1974 Motor Trend US Magazine and comprises fuel consumption and 10 aspects of automobile design and the performance for 32 automobiles. All models are from 1973 and 1974. 
+* There are 32 observations and each has 11 numeric variables. 
+:::
+
+The 11 variables are:
+
+| Variable name  | Meaning and units  |
+|--------|--------|
+| mpg  | Miles per US gallon |
+| cyl | Number of cylinders |
+| disp | Displacement in cubic inches |
+| hp | Gross horsepower | 
+| wt | Weight in 1000 lbs |
+| sqec | 1/4 mile time |
+| vs | Engine - 0 if V-shaped and 1 if straight |
+| am | Transmission - 0 if automatic and 1 if manual |
+| gear | Number of forward gears |
+| carb | Number of carburetors |
+
+: Variable names {.hover}
+
+# Step 2 - Investigating the dataset
+
+Let us load in the data, find the dimensions and the names of the variables. 
+
+```{r}
+###| Loading and saving data
+cars_data <- mtcars
+
+###| Dimension of the dataset
+dim(cars_data)
+
+###| Names of variables
+names(cars_data)
+```
+
+From the `dim()` function, we learn there are 32 rows (observations) and 11 columns. From the `names()` function, we learn the columns are named: "mpg", "cyl", "disp", "hp", "drat", "wt", "qsec", "vs",   "am", "gear" and "carb".
+
+We can get important statistics about each column using the `summary()` function.
+
+```{r}
+###| summary function
+summary(cars_data)
+```
+
+While it is very useful to have the minimum, first quantile, median, third quantile, maximum and mean, it does not always make sense given the variables. 
+
+# Step 3 - Cleaning data 
+
+It is important that the data is appropriately treated.
+
+## `vs` and `am` variables
+
+In the above summary output, we observe that a mean is given for the `vs` and `am` variables. However, from the history about the dataset, we know that these variables can only take values $0$ and $1$. Thus, it would be better for these values to be treated as factors. 
+
+There are several ways to do this. I give the first example using base R. The second uses the `dplyr` package, a very handy package for data manipulation. 
+
+```{r}
+###| Factoring using base R
+cars_data$am <- factor(cars_data$am)
+cars_data$vs <- factor(cars_data$vs)
+
+###| Summary
+summary(cars_data)
+```
+
+```{r}
+###| Package requirement
+# install.packages("dplyr")
+library(dplyr)
+
+###| Save the dataset
+cars_dplyr <- mtcars
+
+###| Factoring variables
+cars_dplyr <- cars_dplyr %>%
+  mutate(vs = factor(vs),
+         am = factor(am))
+
+###| Summary of only vs and am columns
+summary(cars_data[,c(8,9)])
+```
+
+
+## Observation names
+
+We can find the names of each row using the `rownames()` command. 
+
+```{r}
+###| Row/observation names
+rownames(cars_data)
+```
+Looking at the list, we can see some cars are made by the same manufacturer. It may be important to consider this in future analysis. So, let us create a new variable, `manufacturer`, that will account for this.
+
+```{r}
+###| New variable
+cars_data$manufacturer <- factor(rownames(cars_data))
+
+###| Grouping the manufacturers
+levels(cars_data$manufacturer) <- list(AMC = "AMC Javelin", 
+                                       Cadillac = "Cadillac Fleetwood" ,
+                                       Camaro = "Camaro Z28", 
+                                       Datsum = "Datsun 710",
+                                       Dodge = "Dodge Challenger",
+                                       Duster = "Duster 360",
+                                       Ferrari = "Ferrari Dino",
+                                       Fiat = c("Fiat 128","Fiat X1-9"),
+                                       Ford = "Ford Pantera L",
+                                       Honda = "Honda Civic",
+                                       Hornet = c("Hornet 4 Drive","Hornet Sportabout"),
+                                       Lincoln = "Lincoln Continental",
+                                       Chrysler = "Chrysler Imperial",
+                                       Lotus = "Lotus Europa",
+                                       Maserati = "Maserati Bora",
+                                       Mazda = c("Mazda RX4","Mazda RX4 Wag"),
+                                       Merc = c("Merc 230","Merc 240D","Merc 280",
+                                                "Merc 280C","Merc 450SE","Merc 450SL",
+                                                "Merc 450SLC"),
+                                       Pontiac = "Pontiac Firebird",
+                                       Porsche = "Porsche 914-2",
+                                       Toyota = c("Toyota Corolla","Toyota Corona"),
+                                       Valiant = "Valiant",
+                                       Volvo = "Volvo 142E")
+
+###| Checking output
+cars_data$manufacturer
+```
+
+Now we have a variable that lists manufacturers. We can check the categories using the `levels()` command. 
+
+```{r}
+###| Levels()
+levels(cars_data$manufacturer)
+```
+## Should it be categorical or continuous?
+
+There a few clear cut instances in the cars dataset where the variables should be categorical. We have addressed these: `vm`, `am` and `manufacturer`. However, there are instances where it is less clear. 
+
+For example, consider the cylinders variable. In our data, we have observations with 3 distinct categories: 4, 6 and 8. (We can find this with `unique()` function.)
+
+```{r}
+###| Cylinders
+unique(cars_data$cyl)
+```
+
+Thus, we could argue we should treat cylinders as categorical data. However, treating cylinders as categorical removes the ability to treat this as a single variable. As one variable, we could test how increasing the number of cylinders impacts performance.
+
+When we come to modelling, we should test models with cylinders treated as a continuous and a categorical variable. 
+
+# Next step - Exploratory Data Analsysis
+
+Now that we know about our dataset and have done an initial check of the data, we can move on to the next step - Explanatory Data Analysis (EDA).
+
+An exact definition of EDA is hard to pin down. However, the [IBM](https://www.ibm.com/topics/exploratory-data-analysis) gives an idea of what EDA is: 
+
+> Exploratory data analysis (EDA) is used by data scientists to analyze and investigate data sets and summarize their main characteristics, often employing data visualization methods.
+
+In the rest of this section, I will cover some examples of EDA. Namely, we will review addressing missing data, creating summary tables and graphics. 

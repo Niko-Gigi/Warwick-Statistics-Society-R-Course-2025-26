@@ -1,0 +1,32 @@
+---
+title: "Introduction"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+This section will begin by introducing a linear model, the key assumptions we must make to fit such a model and model diagnostics. 
+
+Specifically, the pages cover the following:
+
+:::{}
+* What is a linear model?
+  + Model assumptions, with extra notes on linearity
+  + Principle of parsimony
+* A continuous data example
+  + Using `lm()` and `anova()`
+* A categorical data example
+  + Intercepts and reference terms
+  + Interaction terms
+* Check your understanding by fitting various models on the `data.csv` and `coursework.csv` files. 
+
+:::

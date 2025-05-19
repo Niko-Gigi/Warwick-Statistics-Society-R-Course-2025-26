@@ -1,0 +1,17 @@
+---
+title: "Loading in data"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+NEED TO WRITE UP HOW TO DO THIS.

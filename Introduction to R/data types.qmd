@@ -1,0 +1,123 @@
+---
+title: "Data types"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+Before we start coding in R, we need to be familiar with how R stores data - i.e. we need to review the data types in R. The following table states the 6 data types and what they store.
+
+| Data type name  | Stores  |
+|--------|--------|
+| Logical or Boolean  | TRUE or FALSE    |
+| Numeric   | a real number, including decimal values    |
+| Integer | an integer number (i.e. no decimal values)    |
+| Complex | an imaginary value |
+| Character | character or string values, for example a letter 'A', typically surrounded by `''` or `""`  |
+| Raw | raw bytes (0 or 1s) |
+
+: Data types {.hover}
+
+:::{.callout-note}
+Numeric and integer are different data types! When inputting data, any integer value will be stored as a numeric data type unless we add an `L` to the end. For example, `5` will be stored as a numeric data type but `5L` will be stored as a integer. 
+:::
+
+# What data type is this variable?
+
+We can check what data type a variable is using `class()`. Alternatively, we can confirm if a variable is an integer, logical or a character using `is.integer()`, `is.logical()` and `is.character()` respectively.
+
+```{r}
+###| Character
+character <- "a banana"
+
+class(character)
+is.character(character)
+
+###| Numeric v integer
+number <- 5
+integer <- as.integer(5)
+
+class(number)
+is.integer(number)
+
+class(integer)
+is.integer(integer)
+
+###| Decimal value
+decimal <- 0.5
+
+class(decimal)
+is.integer(decimal)
+
+###| Logical value
+is.logical(TRUE)
+is.logical(FALSE)
+```
+
+# Coercion (changing data type)
+
+We can force a variable to switch data type using `as.numeric()`, `as.logical()`, `as.character()` and `as.integer()`.
+
+```{r}
+###| Coercing a boolean variable
+as.numeric(TRUE)
+as.numeric(FALSE)
+as.character(TRUE)
+as.character(FALSE)
+```
+
+```{r}
+###| Coercing a character variable
+as.numeric("a") # this will produce an error!
+```
+
+```{r}
+###| Coercing a character variable
+as.character("a")
+
+###| Coercing a numeric variable
+as.numeric(2) 
+as.character(2)
+
+###| Coercing to a logic variable
+as.logical(1)
+as.logical(0)
+
+as.logical("TRUE")
+as.logical("FALSE")
+```
+
+# Check your understanding
+
+Identify the following variable's data type with and without using R: 
+
+:::{} 
+* a = 2025 
+* b = "3.14" 
+* c = pi 
+* d = TRUE 
+* e = c(1,0) 
+* f = 2022L 
+
+:::
+
+```{r}
+#| code-fold: true
+
+###| Answers
+class(2025)
+class("3.14")
+class(pi)
+class(TRUE)
+class(c(1,0))
+class(2022L)
+```

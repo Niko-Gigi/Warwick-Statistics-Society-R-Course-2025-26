@@ -1,0 +1,97 @@
+---
+title: "Warwick Statistics Society R Course 2024-2025"
+author: 
+  name: Maria-Louiza Van den Bergh
+  email: maria-louiza.van-den-bergh@warwick.ac.uk
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+# Welcome!
+
+R is a very popular coding language, primarily used by statisticians around the world. As such, it is important for new statisticians (or those who will require substantial statistics in their degrees/jobs) to get to grips with the language. This website and the attached [Github](https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025) aim to cover the key steps from first lines of code after you have installed R, to how to fit linear models and perform Explanatory Data Analysis (EDA).
+
+This Github was created for the Warwick Statistics Society's R course. It  accompanies the 2 core Warwick R modules: ST117 Introduction to Statistical Modelling and ST221 Linear Statistical Modelling. While I (Maria-Louiza) have compiled this Github, it builds off of the work by previous R course coordinators: Neel Shah, Mia Carla Chapman, and Viresh Shah.
+
+If you find any corrections, or believe a section would benefit from more explanations, please do reach out and email me [^1].
+
+[^1]: My University of Warwick email is: maria-louiza.van-den-bergh@warwick.ac.uk. 
+
+![QR code for website](QR-website.png)
+
+# Navigating the website
+
+At the top, there are several important pages. 
+
+On the left, it is possible to jump to the relevant page. These are grouped by section: 
+
+:::{}
+* Welcome
+* Introduction to R
+* Linear modelling
+* Exploratory data analysis (EDA)
+
+:::
+
+On the right, there is a table of contents for each page. On the top, I have pulled out crucial tabs that cover downloading R, some quick references guides and the databases used.  
+
+# Structure of a page
+
+Each page begins with a short paragraph that indicates what will be covered by the page. There are then several sections that cover theory and code examples. 
+
+Key functions appear in purple text like this `function()`. Longer passages of code appear inside grey boxes with comments denoted using `###|` and `#`. (The triple `###|` typically denotes a heading; the single `#` adds additional information.)
+
+For some code examples, you are able to scroll left and right to see the entire code (this is typically for comments). The output may also be cut off on the side and require scrolling. The code can be hidden or shown by clicking on the triangle ($\triangleright$). By default, all code examples are shown and any code answers are hidden. 
+
+The entire code can be copied to the clipboard using the icon in the right corner. Please note that the ` ```{r} ` and ` ``` ` are used to create code chunks. These are not needed in an R Script or if the code is being copied into an already existing code chunk in an R Markdown or Quarto document. 
+
+```{r}
+###| Example code chunk
+x <- 7
+y <- 10
+x + y # comment example
+```
+
+Finally, there will be several 'Check you understanding' areas. Answers to these questions (and the code used to produce them) are available just below the questions. However, I strongly recommend you attempt to answer them before reviewing the solutions! 
+
+# Sections
+
+There are several sections and pages to this website. The following is a general overview of each section and the pages included.
+
+:::{}
+
+* **Welcome** - This page. 
+* **Introduction to R** - This section covers how R stores data, variables, control structures and basic plots. 
+  + Introduction - *Reviews what material is covered by this section*.
+  + Data types - *The different values R can recognise*.
+  + Data structures - *How R stores data*.
+  + Variables - *How to store your own data with a callable name. *
+  + Operators - *The building blocks of code, operators allow you to do basic arithmetic, compare values and check if something is true.*
+  + Control structures - *if, else, for and while loops.*
+  + Custom functions - *How to create a custom function to reduce repetitive code.*
+  + Random numbers - *Generate a random number in R and find the probability it was generated using a particular statistical distribution.*
+  + Figures - *Use base R to plot scatter plots, box plots, histograms and line graphs. *
+* **Modelling** - This section covers how to plot a linear model and check diagnostic plots. 
+  + What is a linear model? - *A linear model explains or predicts the relationship between variables. There are 4 key assumptions that must be met.*
+  + Fitting a model with continuous data - *Examples of fitting a linear model with integer and real number data.*
+  + Fitting a model with categorical data - *Examples of fitting a linear model with categorical data on the agriculture dataset, with and without intercept terms.*
+  + Model diagnostics - *Linear models must fit the 4 key assumptions. This is how we check they do.*
+  + Check your understanding - *Fit linear models on two datasets.*
+* **Exploratory data analysis** - This section covers a few different ways to get insights about a dataset. 
+  + cars dataset - *A simple example covering investigating and cleaning the inbuilt `mtcars` dataset.*
+  + dplyr: summary tables - *Examples of using the `dplyr` package's `summarise()` function on the `mtcars` dataset.*
+:::
+
+The necessary data for this website can be found in the `Datasets` folder ([link](https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025)). There is guidance in the relevant pages on how to load in data. 
+
+Please note that **future pages** aim to include: model selection; time series modelling; generalised linear modelling; exploratory data analysis; using the `ggplot2` package to produce figures; and using the `kableExtra` and `dplyr` packages to produce tables. Time permitting, these will be created for the 2024/25 R course and aim to go alongside ST404 Applied Statistical Modelling and provide additional support for ST346 Generalised Linear Models.

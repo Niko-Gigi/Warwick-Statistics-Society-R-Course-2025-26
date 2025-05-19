@@ -1,0 +1,162 @@
+---
+title: "Fitting a model with categorical data"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+Thus far, we have fit models with continuous data. However, we will often encounter variables that have a finite number of categories (i.e. categorical variables). We can either assign a reference category (treatment coding) or have no intercept term.
+
+# Set up
+
+To explore categorical data, let us look at the agriculture dataset.
+
+```{r}
+###| Load in the data
+agriculture <- read.csv("~/Documents/GitHub/Warwick Statistics Society R Course 2024-2025/Data/agriculture.csv")
+
+###| First 6 rows
+head(agriculture)
+```
+
+In this dataset, there are 4 variables: Variety, Block, SIZE and YIELD. From the first 6 rows, we see that Variety is a categorical variable with categories at least A-F. However, as we can only see 1 for Block, it is unclear what type of variable it is. Instead, let us look at the summary of the dataset, using the `summary()` function.
+
+```{r}
+###| Dataset summary
+summary(agriculture)
+```
+
+From this, we see that SIZE is a continuous variable from 19 to 261 and YIELD is a continuous variable from 19 to 261. (Exploring this further, we note that the size and yield observations are the same for every entry.) We also see that Block takes values from 1 to 8 and Variety is always a character. However, we do not know what values Variety takes.
+
+To fix this, we will alter the data using the `factor()` command.
+
+```{r}
+###| Factor command
+agriculture$Variety <- factor(agriculture$Variety)
+
+###| First 6 rows
+head(agriculture)
+
+###| Summary
+summary(agriculture)
+```
+
+Now, the Variety column is treated as a categorical variable, rather than as characters/strings. If we look at the new summary of the data, we observe that there are 6 categories (A-F) and each category has 8 observations.
+
+# Fitting a model
+
+Now, let's fit a model that uses Variety and Block to predict SIZE. That is, we fit a model of the following from: 
+
+\begin{align}
+SIZE_i = & \alpha \times \mathbb{I}{(\text{oberservation i has Variety A})} + \beta \times \mathbb{I}{(\text{oberservation i has Variety B})} \\ & + \gamma \times \mathbb{I}{(\text{oberservation i has Variety C})} + \delta \times \mathbb{I}{(\text{oberservation i has Variety D})} \\ & + \epsilon \times \mathbb{I}{(\text{oberservation i has Variety E})} + \zeta \times \mathbb{I}{(\text{oberservation i has Variety F})} \\ & + \eta \times Block_i + \hat{\epsilon}_i,
+\end{align} 
+
+where $\hat{\epsilon}_i$ is the error of the ith observation.
+
+```{r}
+###| SIZE ~ Variety + Block
+m1 <- lm(SIZE ~ 0 + Variety + Block, data = agriculture) # Set intercept to 0
+
+###| Output
+m1
+```
+
+Reading off of the output, we obtain the following model:
+
+\begin{align}
+SIZE_i = &57.6 \times \mathbb{I}{(\text{oberservation i has Variety A})} + 62.9 \times \mathbb{I}{(\text{oberservation i has Variety B})} \\ & + 69.6 \times \mathbb{I}{(\text{oberservation i has Variety C})} + 89.5 \times \mathbb{I}{(\text{oberservation i has Variety D})} \\ & + 73.5 \times \mathbb{I}{(\text{oberservation i has Variety E})} + 79.9 \times \mathbb{I}{(\text{oberservation i has Variety F})} \\ & + 9.1 \times Block_i + \hat{\epsilon}_i.
+\end{align}
+
+We interpret the Block variable as before: holding every other variable constant, a 1 unit increase in the Block is expected to result in a 9.1 unit increase in SIZE.
+
+:::{.callout-important}
+However, we cannot interpret the categorical variable, Variety, in the same way. Instead, we will compare what happens as we change category. 
+:::
+
+For example,
+
+<div>
+
+-   For a Variety A observation, and holding Block constant, we expect the SIZE to be 5.3 units smaller than if it was Variety B.
+-   For a Variety F observation, and holding Block constant, we expect the SIZE to be 22.3 units larger than if it was Variety A.
+
+</div>
+
+# Refrence categories
+
+Using no intercept (by adding the 0 term in the `lm()` command), we can compare across categories easily. However, suppose we want to **compare everything to category A**. Instead of finding the estimates and then subtracting them, we can ask R to do this directly by setting up reference categories using `relevel()`. 
+
+Now, our model looks like:
+
+```{=tex}
+\begin{align}
+SIZE_i = & \tilde{\alpha} + \tilde{\beta} \times \mathbb{I}{(\text{oberservation i has Variety B})} \\ & + \tilde{\gamma} \times \mathbb{I}{(\text{oberservation i has Variety C})} + \tilde{\delta} \times \mathbb{I}{(\text{oberservation i has Variety D})} \\ & + \tilde{\epsilon} \times \mathbb{I}{(\text{oberservation i has Variety E})} + \tilde{\zeta} \times \mathbb{I}{(\text{oberservation i has Variety F})} \\ & + \tilde{\eta} \times Block_i + \hat{\epsilon}_i,
+\end{align}
+```
+
+We code this up as follows: 
+
+```{r}
+###| Setting Category A as the reference category
+agriculture$Variety <- relevel(agriculture$Variety, ref = "A")
+
+###| New model
+m2 <- lm(SIZE ~ Variety + Block, data = agriculture) # no specified intercept!
+
+###| Output
+m2
+```
+
+Now, our model is: \begin{align}
+SIZE_i = &57.6 + 5.3 \times \mathbb{I}{(\text{oberservation i has Variety B})} \\ & + 12 \times \mathbb{I}{(\text{oberservation i has Variety C})} + 31.9 \times \mathbb{I}{(\text{oberservation i has Variety D})} \\ & + 15.7 \times \mathbb{I}{(\text{oberservation i has Variety E})} + 22.3 \times \mathbb{I}{(\text{oberservation i has Variety F})} \\ & + 9.1 \times Block_i + \hat{\epsilon}_i.
+\end{align}
+
+Both of these models are equivalent! They are reparametrisations of each other, with $\alpha = \tilde{\alpha}$, $\beta = \tilde{\alpha} + \tilde{\beta}$, $\gamma = \tilde{\alpha} + \tilde{\gamma}$, ..., $\zeta = \tilde{\alpha} + \tilde{\zeta}$ and $\eta = \tilde{\eta}$. Based on the context, you should choose to include or not to include the intercept term. 
+
+# Interaction terms
+
+What effect does the Variety category have on the Block estimator? We explore this using interaction terms with a model of the form:
+
+\begin{align}
+SIZE_i = & \alpha + \beta \times \mathbb{I}{(\text{oberservation i has Variety B})} \\ & + ... + \zeta \times \mathbb{I}{(\text{oberservation i has Variety F})} \\ & + \eta \times Block_i + \\ & \tilde{\beta} \times \mathbb{I}{(\text{oberservation i has Variety B})} \times Block_i \\ & + ... + \tilde{\zeta} \times \mathbb{I}{(\text{oberservation i has Variety F})} \times Block_i \\ & \hat{\epsilon}_i,
+\end{align} where $\hat{\epsilon}_i$ is the error of the ith observation.
+
+```{r}
+###| Model with intercept terms
+m3 <- lm(SIZE ~ Variety + Block + Variety:Block, data = agriculture) 
+
+###| Output
+m3
+```
+
+We interpret the model as follows:
+
+<div>
+
+-   If the observation is Variety B and holding block constant, the SIZE will be 29.9 units smaller than if it was Variety A.\
+-   If the observation is Variety C and holding block constant, the SIZE will be 24.4 units smaller than if it was Variety A.\
+-   If the observation is Variety D and holding block constant, the SIZE will be 23.7 units smaller than if it was Variety A.\
+-   If the observation is Variety E and holding block constant, the SIZE will be 20.3 units smaller than if it was Variety A.\
+-   If the observation is Variety F and holding block constant, the SIZE will be 3.3 units larger than if it was Variety A.
+-   If the observation is Variety A, increasing block size by 1 will increase the SIZE by 2.3.
+-   If the observation is Variety B, increasing block size by 1 will increase the SIZE by 7.8.
+-   If the observation is Variety C, increasing block size by 1 will increase the SIZE by 8.1.
+-   If the observation is Variety D, increasing block size by 1 will increase the SIZE by 12.3.
+-   If the observation is Variety E, increasing block size by 1 will increase the SIZE by 8.0.
+-   If the observation is Variety F, increasing block size by 1 will increase the SIZE by 2.3.
+
+</div>
+
+
+:::{.callout-important}
+When using interaction terms, it is important to remember the principle of parsimony. If we decide to model the interaction between variable A and variable B, we must include both variables in the model. 
+:::

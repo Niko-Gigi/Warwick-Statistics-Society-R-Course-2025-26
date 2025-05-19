@@ -1,0 +1,41 @@
+---
+title: "Cheatsheets"
+author: 
+  name: Maria-Louiza Van den Bergh
+  email: maria-louiza.van-den-bergh@warwick.ac.uk
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+There is a lot to learn to create beautiful and informative reports using R. In this section, there are several cheatsheets that will hopefully make this learning curve a little easier. 
+
+(If the files are not loading, there also available on the GitHub under the `Cheatsheets` folder [link](https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025).)
+
+# Latex
+
+Latex is a language that allows for additional control over figures, tables and maths. The following is a cheatsheet created by Winston Chang, with the original version available [here](http://wch.github.io/latexsheet/). 
+
+![](Cheatsheets/latex.pdf){fig-alt="Latex cheat sheet, A4." width=90% height=500}
+
+# ggplot2
+
+A very popular package for figures is the `ggplot2` package. It can be installed and loaded with the following code (although it is included in the `tidyverse` package).
+
+```{r}
+###| ggplot2 package
+
+#install.packages("ggplot2")
+library(ggplot2)
+```
+
+![](Cheatsheets/ggplot2.pdf){fig-alt="ggplot2 sheet, A4." width=90% height=500}

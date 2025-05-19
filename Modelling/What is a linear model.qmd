@@ -1,0 +1,110 @@
+---
+title: "What is a linear model?"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+:::{.callout-important}
+A linear model aims predict or explain the relationship between a single outcome variable and one (or more) explanatory variables. It is the simplest form of a regression model.
+:::
+
+In this case, a variable is a quantifiable quantity. The observed data is a realisation of the variable, obtained by conducting tests (observations). Variables can be numerical (continuous or discrete) or categorical.
+
+The most basic linear model has a single response and explanatory variable. It is of the form:
+
+$$y_i = \alpha + \beta x_i + \epsilon_i,$$
+
+where $y_i$ is the ith observation of the response variable, $x_i$ is the ith observation of the explanatory variable, $\alpha$ is the intercept, $\beta$ is the gradient and $\epsilon_i$ is the error.
+
+:::{.callout-important}
+Regardless of whether we are fitting a model to predict or explain, our aim is to estimate the parameters.
+:::
+
+# Deterministic with error
+
+It is important to note that the relationship between explanatory and outcome variables is not deterministic - that is to say, knowing the values of the explanatory variables does not allow you to predict the outcome variable exactly. We can decompose the relationship into the deterministic/systemic component ($X\beta$) and random error ($\epsilon$):
+
+$$
+Y = X \beta + \epsilon,
+$$ 
+where $Y\in \mathbb{R}^{n\times 1}$ is the outcome/response variable, $X \in \mathbb{R}^{n\times p+1}$ is the design matrix, $\beta \in \mathbb{R}^{p+1 \times 1}$ is the parameter vector and $\epsilon \in \mathbb{R}^{n\times 1}$ is the vector of errors. 
+
+Here, we assume we have $n$ data points and $p$ explanatory variables. We have $p+1$ in the dimensions to account for the intercept term.
+
+# Assumptions
+
+To use a linear model, we need to make 4 key assumptions. We will see in later sections how we can relax some of these assumptions to fit a generalised linear model. However, for now, we must make sure our model meets these assumptions:
+
+<div>
+
+1.  **Linearity** - the systemic component is linear in parameters, that is, $$\mathbb{E}[Y] = \mathbb{E}[X\beta].$$ Note that the explanatory variables do not have to be linear. They can be polynomials, log and more!
+2.  **Homoscedasticity** - the errors must have constant variance, i.e. $$Var(\epsilon_1) = Var(\epsilon_2) = \; ... \; = Var(\epsilon_{n+1}) = \sigma^2.$$
+3.  The errors are **independent** of each other.
+4.  The errors are **normally distributed**, $$\epsilon_i \sim \text{Normal}(0,\sigma^2).$$
+
+</div>
+
+There are several things we should note about the response variable as a consequence of these assumptions.
+
+<div>
+
+-   It is univariate.
+-   It is continuous.
+-   It is stochastic (i.e. has a random element).
+-   It has equal variance.
+-   Responses from different observations are assumed to be uncorrelated. (We will revisit this for time series later.)
+
+</div>
+
+# Linearity assumption - can we have $x^2$?
+
+It is very important to be careful with the linearity assumption.
+
+Suppose we are given a dataset. Let $y_i$ denote the ith observation of the response variable. Let $x_{i1}$ denote the ith observation of the first explanatory variable and $x_{i2}$ denote the ith observation of the second explanatory variable.Let $\beta = (a,b,c)^{T}$.
+
+Then, which of the following are linear models - i.e. when does $\mathbb{E}[y_i] = \mathbb{E}[X_i\beta]$?
+
+<div>
+
+1.  $y_i = b x_{i1} + \epsilon_i$
+2.  $y_i = a + b x_{i1} + \epsilon_i$
+3.  $y_i = a + b^3 x_{i1} + c x_{i2} + \epsilon_i$
+4.  $y_i = a + b (x_{i1}-x_{i2})^2 + \epsilon_i$
+5.  $y_i = a + b x_{i1} + c \log(x_{i2}) + \epsilon_i$
+
+</div>
+
+In this case, all are linear models except for 3. This is because the parameters are not linear in point 3 as we have $b^3$!
+
+# Principle of parsimony - simplest is best
+
+After we have checked that our model meets the 4 key assumptions, we must decide what variables to include in our model. We need to balance accuracy and complexity.
+
+For example, a model with loads of explanatory variables may give more accurate predictions. However, the more parameters (explanatory variables) we have in a model, the higher the computational cost to fit a linear model.
+
+The principle of parsimony states that "given 2 models that behave similarly, we should pick the simpler model".
+
+The exact boundaries of 'similarly' are difficult to quantify. Model creation and selection is an art form, and something that requires practise to learn.
+
+:::{.callout-important}
+Important exceptions to the 'pick the simpler model' principle are the following:
+
+<div>
+
+1.  If $x^2$ appears in the model, $x$ must also appear. Similarly, if $x^3$ appears, $x$ and $x^2$ must also appear.
+2.  If there is an interaction term between explanatory variables $x_1$ and $x_2$, then $x_1$ and $x_2$ must also appear. (We will revisit this when we cover categorical data.)
+
+</div>
+:::
+
+More information about this principle can be found [here](https://statisticsbyjim.com/regression/parsimonious-model/).

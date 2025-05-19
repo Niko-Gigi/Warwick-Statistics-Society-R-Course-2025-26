@@ -1,0 +1,193 @@
+---
+title: "Operations"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+We will begin by familiarising ourselves with the operations in R, where
+
+> "an operator is a character, or characters, that determine what action is to be performed or considered",
+
+according to the [BBC Bitesize website](https://www.bbc.co.uk/bitesize/guides/znh6pbk/revision/9). These will form the base building blocks of everything we will do in the future. 
+
+We will start with arithmetic operators ($+$,$-$,$\times$,$\div$), then go to comparison operators ($=$,$\ne$,$\geq$,$\leq$) and finally logical operators (and, or).
+
+# Arithmetic operators
+
+The 4 base arithmetic operators are addition (`+`), subtraction (`-`), multiplication (`*`) and division (`/`). The following are some base examples of how these can be used.
+
+```{r}
+###| Addition
+3+10
+
+###| Subtraction
+6-2
+
+###| Multiplication
+5*15
+
+###| Division
+23/7
+```
+
+:::{.callout-note}
+It is important to note that R follows the traditional [BODMASS](https://thirdspacelearning.com/blog/what-is-bodmas/#:~:text=BODMAS%20is%20an%20acronym%20to,%2DAddition%2C%20S%2DSubtraction.) order of operations. As such, we can use brackets to control the order in which operations are performed. 
+:::
+
+```{r}
+###| BODMASS
+(1+7)/2
+1 + 7/2
+3*5+2/3
+3*(5+2)/3
+```
+
+We can also do exponents (to the power of) using `^` or `**`, and we can find the modulo using `%%` and `%/%`
+
+```{r}
+###| Exponents 
+5^2
+5**2
+
+4^(1/2)
+4**0.5
+```
+
+```{r}
+###| Modulo
+10 %% 2 # remainder of 10 divided by 2
+10 %% 4
+
+10 %/% 2 # how many times 2 goes into 10
+10 %/% 4
+```
+
+# Comparison operators
+
+Comparison operators compare 2 values to one another and will return TRUE or FALSE.
+
+The 2 operators that can be used for any data type are equal to `==` and not equal to `!=`. 
+
+We can also compare two numbers using less than `<`, less than or equal to `<=`, greater than `>`, and greater than or equal to `>=`.
+
+```{r}
+###| Equal to
+"a banana" == "a banana"
+"a banana" == "a fruit"
+
+7 == 5
+5 == 5
+
+###| Not wqual to
+"a banana" != "a banana"
+"a banana" != "a fruit"
+
+7 != 5
+5 != 5
+```
+
+```{r}
+###| Less than
+5 < 7 
+7 < 5
+5 < 5 # note that this will return FALSE!
+
+###| Greater than
+5 > 7 
+7 > 5
+5 > 5 # note that this will return FALSE!
+
+###| Less than or equal to
+5 <= 7 
+7 <= 5
+5 <= 5 # note that this will return TRUE!
+
+###| Greater than or equal to
+5 >= 7 
+7 >= 5
+5 >= 5 # note that this will return TRUE!
+```
+
+# Logical operators
+
+Logical operators allow us to combine things or negate something.
+
+If we want to find the *negative*, we use the `!` operator. For example, we may want to say something is not true. we do this with `!TRUE`. Or we may want to check if 5 is not less than 7, `!(5<7)`. 
+
+```{r}
+###| Negation of TRUE FALSE
+TRUE
+!(TRUE)
+
+FALSE
+!(TRUE)
+```
+
+```{r}
+###| Example of negation on relational operators
+5<7
+!(5<7)
+
+5==7
+!(5==7)
+```
+
+We can also combine operators using AND, `&`. For example, we may want to check that `5<7` and `10<12`. Alternatively, we may want to allow A or B to be true. We do this with `|`. 
+
+```{r}
+###| And on TRUE FALSE
+TRUE & TRUE
+FALSE & FALSE
+TRUE & FALSE
+
+###| And on relational operators example
+(7>5) & (10<12)
+(7<5) & (10>12)
+(7<5) & (10<12)
+```
+
+```{r}
+###| OR on TRUE FALSE
+TRUE | TRUE
+FALSE | FALSE
+TRUE | FALSE
+
+###| OR on relational operators example
+(7>5) | (10<12)
+(7<5) | (10>12)
+(7<5) | (10<12)
+```
+
+# Check your understanding
+
+The following are some extercises to test your understanding about operations.
+
+:::{}
+*   Use R to determine the area of a circle with diameter of 20cm.
+    +   Hint: `pi` is recognised in R.
+*   Calculate the cube root of 14 $\times$ 0.51.
+    +   Hint: think carefully about the order of operations.
+* Test the following statement in R: Not (4 squared is greater than or equal to 15, or (the sum of 7 and 10 is less than 16)).
+    +   Hint: the output should be FALSE.
+:::
+
+(The code is hidden to give you a chance to practise. However, if you toggle the `>`, example code will appear.)
+
+```{r}
+#| code-fold: true
+
+###| Answers
+(10^2)*pi
+(14 * 0.51)^(3)
+!( 4<=15 | 7+10 < 16)
+```

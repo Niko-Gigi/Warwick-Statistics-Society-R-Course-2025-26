@@ -1,0 +1,439 @@
+---
+title: "Data structures"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+Data structures are the ways in which data is stored. The following table indicates the main 5 ways.
+
+| Data structure name  | Stores  |
+|--------|--------|
+| Vectors  | 1 dimensional where all entries are all the same data type (i.e. homogeneous)  |
+|  List | 1 dimensional where entries can be different data types (i.e. heterogeneous)  |
+| Matrix  | 2 dimensional and is homogeneous  |
+| Data frame  | 2 dimensional and is heterogeneous  |
+| Array  | n dimensional and is homogeneous  |
+
+: Data structures {.hover}
+
+# Vectors
+
+A vector is a one-dimensional sequence of data elements of the same type. We create a vector using `c()`. 
+
+```{r}
+###| Examples of vectors
+c("S","T","A","T","S")
+c(1,2,3,4,5)
+c(1:5) # will output the same as before!
+c(1,2,"A")
+```
+
+:::{.callout-note}
+As we see in the last example, if we mix data types, the vector will default to storing all entries as characters!
+:::
+
+## Vectors: Arithmetic
+
+We can apply arithmetic to vectors. We can multiple, add and subtract vectors.
+
+```{r}
+###| Vector arithmetic
+x <- c(1,2,3)
+
+x + 3
+x * 3
+x * x
+```
+
+## Vectors: Sequences and repetition
+
+We can generate vectors using `seq()` and `rep()` to generate a sequence or repeat a value. 
+
+```{r}
+###| Sequence 1
+
+# by will create a vector where each subsequent value is 0.1 larger than the previous
+seq(from = 0, to = 1, by = 0.1) 
+
+# length.out will ensure 4 values are stored in the vector
+seq(from = 0, to = 1, length.out = 4) 
+```
+
+```{r}
+###| Sequence 2
+
+seq(from = 0, to = 10, by = 2.7) # note that 10 is not in this vector!
+
+seq(from = 0, to = 10, length.out = 4) 
+```
+
+```{r}
+###| Repeat
+rep(1,6)
+
+rep(1:3,each = 2) # will repeat each value twice
+
+rep(1:3,2) # will repeat the entire 1:3 twice
+
+rep(1:3,length.out=6) # will repeat 1:3 until it reaches the length.out
+
+rep(1:3,length.out=5) # note that this is only 5 long and so only has one 3!
+```
+
+## Vectors: Indexing
+
+You can extract data from a vector if you know it's index (for example, you can extract the 5th value of a vector) using `[]`. 
+
+We can extract 1 element at a time (see the first example) or we can extract multiple elements at once using vectors (see the second and third examples). We can also extract using a variable (fourth example).
+
+```{r}
+###| Indexing
+x <- c(1,2,3,4,5)
+
+x[3] # extracts the 3rd element
+x[1:3] # extracts elements 1, 2 and 3
+x[c(1,3,5)] # extracts elements 1, 3 and 5
+
+###| Indexing with a named vector
+y <- c(2,4)
+x[y] # extracts elements 2 and 4
+```
+
+You can change the values of a vector using indexes as well. 
+
+```{r}
+###| Changing an element
+x <- c(1,2,3,4,5)
+
+x[1] <- 7
+x
+```
+
+:::{.callout-note}
+The number of replacing values must match the number of replaced values, otherwise there is an error (see next example)!
+:::
+
+
+```{r}
+###| Mismatch in replacement length
+x[2] <- c(1,3)
+x # only the 1st element is used to replace the 2nd value
+```
+
+You can also remove an element from a vector using `[- ]`.
+
+```{r}
+###| Changing an element
+x <- c(1,2,3,4,5)
+x[-1] 
+```
+
+## Vectors: Check your understanding
+
+To practise sequences and repetition, do the following exercises. 
+
+:::{}
+* Create a vector from 0 to 100.
+*   Create a vector from 100 to 0.
+*   Create a vector containing all strictly positive even numbers up to and including 100.
+*   Create a vector containing 1 once, 2 twice and 3 thrice, in that order.
+
+:::
+
+```{r}
+#| code-fold: true
+
+###| Answers
+seq(from = 0, to = 100)
+seq(from = 100, to = 0)
+seq(from = 0, to = 100, by = 2)
+
+rep(1:3,1:3)
+```
+
+# Lists
+
+A list is a one-dimensional sequence of data of different types. Each element of a list can be of different dimensions and types. 
+
+We start a list using the `list()` command.
+
+:::{.callout-note}
+It is important to be careful with indexing for lists. As lists can contain multiple levels, we use `[[]]` for the first index and then `[]` for the second.
+:::
+
+```{r}
+###| Example list
+x <- list(c(1,2,3),
+          100,
+          c(TRUE,FALSE,TRUE),
+          list("a","b","c"))
+
+x[3] # Returns the 3rd element of the list
+x[[3]] # Returns the 3rd element of the list
+x[[3]][2] # Returns 2nd element of the 3rd element of the list
+x[3][2] # Empty!
+```
+We can also replace elements in a list and and elements to a list using `append()`. 
+
+```{r}
+###| Replacing 
+x <- list(c(1,2,3),
+          100,
+          c(TRUE,FALSE,TRUE),
+          list("a","b","c"))
+
+x[[2]] <- c(27,29)
+x
+```
+
+```{r}
+###| Append
+append(x, values = c("m","n"))
+```
+
+However, it is again important that we make these changes very carefully to avoid errors as there are 2 layers in indexing.
+
+:::{.callout-note}
+We can find the number of elements in the first level of the list using `length()` (i.e. how many different things are in the list). We can find the total number of elements within each first level element of the list using `lengths()`.
+:::
+
+```{r}
+###| Lengths of a list
+x <- list(c(1,2,3),
+          100,
+          c(TRUE,FALSE,TRUE),
+          list("a","b","c"))
+
+length(x)
+lengths(x)
+```
+
+# Matrix
+
+A matrix is a 2 dimensional storage of data of the same type. We create a matrix using the `matrix()` command. 
+
+```{r}
+###| Example matrix
+matrix(data = c(1:9), nrow = 3, ncol = 3)
+```
+
+:::{.callout-note}
+By default, a matrix is filled column-wise first, then row. Using `byrow=TRUE` inside the `matrix()` function will switch this to filling row-wise first.
+:::
+
+```{r}
+###| Example matrix
+matrix(data = c(1:9), nrow = 3, ncol = 3, byrow=TRUE)
+```
+
+:::{.callout-note}
+It is very important to ensure the number of columns and rows is correct!
+:::
+
+```{r}
+###| Errors in matrix 
+matrix(c(1,2,3), nrow = 1, ncol=2) 
+```
+
+As with vectors and lists, we can select only some elements of a matrix using indexing. 
+
+```{r}
+###| Matrix indexing
+x <- matrix(data = c(1:9), nrow = 3, ncol = 3)
+
+x[1,]
+x[1,2]
+x[6]
+```
+
+As with vectors, we can perform arithmetic operations of matrices, assuming that the dimensions are correct. Not that for matrix multiplication, we use `%\*%`.
+
+```{r}
+###| Matrix arithmetic
+x <- x <- matrix(data = c(1:9), nrow = 3, ncol = 3)
+
+x + 3
+x * 3
+x * x     # entry wise multiplication
+x %*% x   # matrix multiplication
+```
+
+# Dataframes
+
+A dataframe is a 2 dimensional storage of data of different types. It is always filled vertically - i.e. the first list or vector specified is the first column of the dataframe.
+
+Dataframes can have named columns, allowing us to have more control.
+
+```{r}
+###| Example dataframe
+df <- data.frame(name = c("Harry","Ron","Hermione"),
+                 age = c(17,18,19),
+                 smoker = c(FALSE,TRUE,FALSE))
+
+df
+
+###| Indexing a dataframe
+
+df[3,2]
+df[,"smoker"]
+df[1:2,"name"]
+df$smoker # we can use $ sign to pull named columns
+
+###| Named columns
+
+colnames(df)
+names(df)
+```
+
+# Array
+
+An array is an n-dimensional storage of data of the same type.
+
+```{r}
+###| Example array
+array(data = c(1:6),dim = c(2,2,2))
+array(data = c(1:12),dim = c(2,3,2))
+```
+
+# Check your understanding
+
+The following will test your understanding of all of the main data structures in R.
+
+Question 1
+
+<div>
+
+-   Create a `nums` vector which contains the numbers from 50 to 100 inclusive. Now create a new vector, `numsEven`, which indicates which elements are even using `nums`.
+
+</div>
+
+```{r}
+#| code-fold: true
+###| Answer
+
+nums <- c(50:100)
+nums
+
+numsEven <- nums[seq(from = 1, to = 51, by = 2)]
+numsEven
+```
+
+Question 2 :::{} \* Consider a gambler, with casino winnings from Monday to Friday defined as: + poker_vector \<- c(140,-50,20,-120,240) + roulette_vector \<- c(-24,-50,100,-350,10) + days_vector \<- c("Monday","Tuesday","Wednesday","Thursday","Friday") + names(poker_vector) \<- days_vector + names(roulette_vector) \<- days_vector \* Calculate the following statistics and print total_daily and total_week: + daily earnings: total_daily + total poker winnings: total_poker + total roulette winnings: total_roulette + total winnings overall: total_week :::
+
+```{r}
+#| code-fold: true
+###| Answer
+poker_vector <- c(140,-50,20,-120,240)
+roulette_vector <- c(-24,-50,100,-350,10)
+days_vector <- c("Monday","Tuesday","Wednesday","Thursday","Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+total_daily <- poker_vector + roulette_vector
+total_poker <- sum(poker_vector)
+total_roulette <- sum(roulette_vector)
+
+total_week <- total_poker + total_roulette
+total_week_2 <- sum(total_daily)
+
+total_daily
+total_week
+total_week_2
+```
+
+Question 3 :::{} \* The sum of squares of the first ten natural numbers is $385$. The square of the sum of the first ten natural numbers is $55^2 = 3025$. Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum of the first ten natural numbers is $3025 - 385 = 2640$. \* Write R code to check this. \* Find the difference between the sum of the squares of the first 100 natural numbers and the square of the sum of the first 100 natural numbers. :::
+
+```{r}
+#| code-fold: true
+###| Answer
+ten <- c(1:10)
+sum_of_squares_10 <- sum(ten^2)
+square_of_sums_10 <- sum(ten)^2
+
+difference_10 <- square_of_sums_10 - sum_of_squares_10
+difference_10
+
+hundred <- c(1:100)
+sum_of_squares <- sum(hundred^2)
+square_of_sums <- sum(hundred)^2
+
+difference <- square_of_sums - sum_of_squares
+difference
+```
+
+Question 4
+
+<div>
+
+-   The following vectors represent the box office numbers from the first three Star Wars movies. The first element for each vector corresponds to the US box office revenue and the second element represent the non-US box office revenue.
+    -   New_hope \<- c(460.998, 314.4)
+    -   Empire_strikes \<- c(290.475, 247.900)
+    -   Return_jedi \<- c(309.306, 165.8)
+-   Construct a matrix, `star_wars_matrix`, with one row for each movie. The first column should be the US revenue and the second the non-US revenue.
+-   Calculate the US and non-US revenue.
+-   Which movie generated the most revenue?
+
+</div>
+
+```{r}
+#| code-fold: true
+###| Answer
+New_hope <- c(460.998, 314.4)
+Empire_strikes <- c(290.475, 247.900)
+Return_jedi <- c(309.306, 165.8)
+
+star_wars_matrix <- matrix(data = c(New_hope, Empire_strikes,Return_jedi), ncol = 2, nrow = 3, byrow = TRUE)
+
+US_revenue <- sum(star_wars_matrix[,1])
+non_US_revenue <- sum(star_wars_matrix[,2])
+
+US_revenue
+non_US_revenue
+```
+
+Question 5
+
+<div>
+
+-   Define the following vectors
+    -   planets \<- c("Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune")
+    -   type \<- c("Terrestrial planet","Terrestrial planet","Terrestrial planet","Terrestrial planet","Gas giant","Gas giant","Gas giant","Gas giant")
+    -   diameter \<- c(0.382,0.949,1,0.532,11.209,9.449,4.007,3.883)
+    -   rings \<- c(FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE)
+-   Create a dataframe from these vectors
+-   The dataframe is unclear. Add the units to the diameter header.
+-   Print the information of the planets who have rings.
+-   Add additional column to indicate which planet has humans.
+
+</div>
+
+```{r}
+#| code-fold: true
+###| Answer
+planets <- c("Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune")
+type <- c("Terrestrial planet","Terrestrial planet","Terrestrial planet","Terrestrial planet","Gas giant","Gas giant","Gas giant","Gas giant")
+diameter <- c(0.382,0.949,1,0.532,11.209,9.449,4.007,3.883)
+rings <- c(FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE)
+
+df <- data.frame("planets" = planets,
+                 "type" = type,
+                 "diameter" = diameter,
+                 "rings" = rings)
+
+names(df$diameter) <- "diameter, as a fraction of Earth's"
+
+df[which(df$type == "Gas giant"),]
+
+df$humans <- c(0,0,1,0,0,0,0,0)
+```
+

@@ -1,0 +1,119 @@
+---
+title: "Custom functions"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+A function is a piece of code written to carry out a specific task. It can take in inputs and may return one or more values.
+
+The 3 main components are:
+
+<div>
+
+-   The formals(): the list of arguments/inputs of the function
+-   The body(): the code in the function
+-   The environment(): the map of the location of the function's variable
+
+</div>
+
+A function follows the following general structure:
+
+<div>
+
+-   function_name \<- function(arguments) {function body}
+
+</div>
+
+Custom functions are used to incorporate sets of instructions that you want to use repeatedly, or that are easier to store so they can be called when needed.
+
+Functions are created using function() and are stored as R objects. They can also be passed to other functions as arguments (as input) and can be nested (functions can be inside other functions).
+
+```{r}
+###| Function example 1
+add <- function(x,y){
+  x + y
+}
+
+add(2,4)
+
+###| Function example 2
+square <- function(x){
+  x^2
+}
+
+square(7)
+```
+
+# Check your understanding
+
+Write functions that do the following things:
+
+<div>
+
+-   Create a function which returns integer division of x by y and the remainder
+-   Create a function which finds the area and circumference of a circle given a radius r.
+-   Create a function that calculates the factorial of some number n.
+    -   Hint: make sure that n is an integer!
+
+</div>
+
+```{r}
+#| code-fold: true
+###| Answer
+
+modulus <- function(x,y) {
+  remainder <- x %% y
+  multiple <- x %/% y
+  print(paste("x modulo y is", multiple, "with remainder", remainder))
+}
+
+modulus(6,3)
+```
+
+```{r}
+#| code-fold: true
+###| Answer
+
+circle <- function(r){
+  area <- r^2 * pi
+  circumference <- 2*r*pi
+  print(paste("Area is",area, "and the circumference is",circumference))
+}
+
+circle(5)
+```
+
+```{r}
+#| code-fold: true
+###| Answer
+
+factorial <- function(x) {
+  
+  if (x%%1 == 0) {
+    
+    factorial <- 1
+    
+    while (x >= 1) {
+      factorial <- factorial * x
+      x <- x - 1
+    }
+    
+    print(factorial)
+  } else {
+    print(paste(x," is not a positive integer"))
+  }
+}
+
+factorial(2) 
+```
+

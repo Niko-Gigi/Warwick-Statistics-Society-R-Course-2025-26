@@ -1,0 +1,40 @@
+---
+title: "Using R"
+author: 
+  name: Maria-Louiza Van den Bergh
+  email: maria-louiza.van-den-bergh@warwick.ac.uk
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+# Accessing R
+
+Please ensure that you have access to R. This can be a local version on your computer ([Warwick download link](https://anorien.csc.warwick.ac.uk/CRAN/)) or [online](https://noteable.edina.ac.uk). 
+
+If you have a local version, it is also worth downloading an IDE (integrated development envrionment). I personally use [RStudio](https://posit.co/download/rstudio-desktop/).
+
+# Creating a new document
+
+There are many possible files that you can create in R. The simplest is to create an R script. This allows you to write code, run code and produce output. You can also annotate your code through comments by writing `#` and then adding any relevant text. 
+
+Alternatively, you can create an R Markdown file. This combines chunks of R code with normal text. Thus, you can create lovely reports that blend code output (e.g. figures and tables) with analysis. RStudio has created a detailed guide available [here](https://rmarkdown.rstudio.com/articles_intro.html) on how to use an R Markdown file.
+
+# R Studio and R Markdown
+
+The following are two cheatsheets produced by R Studio on using their software. 
+
+(If the files are not loading, there also available on the GitHub under the `Cheatsheets` folder [link](https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025).)
+
+![](Cheatsheets/R Studio Cheat Sheet.pdf){fig-alt="R studio sheet, A4." width=90% height=500}
+
+![](Cheatsheets/RMarkdown.pdf){fig-alt="R Markdown sheet, A4." width=90% height=500}

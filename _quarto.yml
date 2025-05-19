@@ -1,0 +1,57 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Warwick Statistics Society R Course 2024-2025"
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - text: Welcome
+        href: index.qmd
+      - section: "Introduction to R"
+        contents: 
+          - Introduction to R/introduction to r.qmd
+          - Introduction to R/data types.qmd
+          - Introduction to R/data structures.qmd
+          - Introduction to R/operators.qmd
+          - Introduction to R/variables.qmd
+          - Introduction to R/control structures.qmd
+          - Introduction to R/functions.qmd
+          - Introduction to R/Random numbers.qmd
+          - Introduction to R/figures.qmd
+      - section: "Linear modelling"
+        contents: 
+          - Modelling/Linear modelling intro.qmd
+          - Modelling/What is a linear model.qmd
+          - Modelling/Continuous data.qmd
+          - Modelling/Categorical data.qmd
+          - Modelling/Diagnostics.qmd
+          - Modelling/Check your understanding.qmd
+      - section: "Exploratory data analysis"
+        contents: 
+          - EDA/Cars dataset.qmd
+          - EDA/summary tables.qmd
+  navbar:
+      left:
+        - href: index.qmd
+          text: Home
+        - href: about.qmd
+          text: Using R
+        - href: cheatsheets.qmd
+          text: Cheatsheets
+        - href: Data/Raw data.qmd
+          text: Data
+      tools:
+         - icon: github
+           href: https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025
+        
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+

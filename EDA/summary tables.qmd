@@ -1,0 +1,165 @@
+---
+title: "dplyr: summary tables"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+We begin by loading in the cars dataset we used on the previous page (the code required is available below if needed). Please note that we want to use the version that has the manufacturers included! 
+
+```{r}
+#| code-fold: true
+
+###| Code to create the dataset used in previous pages
+cars_data <- mtcars
+
+cars_data$am <- factor(cars_data$am)
+cars_data$vs <- factor(cars_data$vs)
+
+cars_data$manufacturer <- factor(rownames(cars_data))
+levels(cars_data$manufacturer) <- list(AMC = "AMC Javelin", 
+                                       Cadillac = "Cadillac Fleetwood" ,
+                                       Camaro = "Camaro Z28", 
+                                       Datsum = "Datsun 710",
+                                       Dodge = "Dodge Challenger",
+                                       Duster = "Duster 360",
+                                       Ferrari = "Ferrari Dino",
+                                       Fiat = c("Fiat 128","Fiat X1-9"),
+                                       Ford = "Ford Pantera L",
+                                       Honda = "Honda Civic",
+                                       Hornet = c("Hornet 4 Drive","Hornet Sportabout"),
+                                       Lincoln = "Lincoln Continental",
+                                       Chrysler = "Chrysler Imperial",
+                                       Lotus = "Lotus Europa",
+                                       Maserati = "Maserati Bora",
+                                       Mazda = c("Mazda RX4","Mazda RX4 Wag"),
+                                       Merc = c("Merc 230","Merc 240D","Merc 280",
+                                                "Merc 280C","Merc 450SE","Merc 450SL",
+                                                "Merc 450SLC"),
+                                       Pontiac = "Pontiac Firebird",
+                                       Porsche = "Porsche 914-2",
+                                       Toyota = c("Toyota Corolla","Toyota Corona"),
+                                       Valiant = "Valiant",
+                                       Volvo = "Volvo 142E")
+```
+
+```{r}
+###| Checking the data is correct
+head(cars_data)
+```
+
+# A basic summary table
+
+To create a summary table, we could manually calculate every entry and then create a dataset of these values and then create the table. However, it is much quicker (and easier) to use the `summarise()` function that comes with the `dplyr` package. 
+
+:::{.callout-note}
+The `dplyr` package will be installed/active if you have tidyverse. Alternatively, you can directly install and activate the package with the following commands:
+
+```{r}
+#| warning: false # will remove output messages
+
+###| Package downloading and activating
+# install.packages("dplyr")
+library(dplyr)
+```
+
+If you are using RStudio, you can check which packages are installed using the bottom right window. 
+:::
+
+The following code gives some examples of how to extract various summary statistics using the `summarise()` command. 
+
+```{r}
+###| Basic summary table on continuous data
+cars_data %>%
+  summarise("Num. observations" = n(),
+            "Mean mpg" = mean(mpg),
+            "Range displacement" = max(disp)-min(disp),
+            "Median horsepower" = median(hp))
+```
+
+Things get more complicated for categorical factors. We may need to use the `length()`, `which()` and `unique()` functions to find our desired statistics. 
+
+```{r}
+###| Basic summary table on categorical data
+cars_data %>%
+  summarise("vs 1" = length(which(vs == 1)),
+            "am 0" = length(which(am == 0)),
+            "Num. manufacturers" = length(unique(manufacturer))
+  )
+```
+
+# Cylinder level exploration
+
+Recall that we identified 3 distinct cylinder levels (check using `unique(cars_data$cyl)`). To do this, we will use the `group_by()` function. 
+
+```{r}
+###| Basic summary table grouped by cylinders
+cars_data %>%
+  group_by(cyl) %>%
+  summarise("Num. observations" = n(),
+            "Mean mpg" = mean(mpg),
+            "Range displacement" = max(disp)-min(disp),
+            "Median horsepower" = median(hp),
+            "vs 1" = length(which(vs == 1)),
+            "am 0" = length(which(am == 0)),
+            "Num. manufacturers" = length(unique(manufacturer))
+  )
+```
+:::{.callout-important}
+It is important to note that this summary table had $3$ rows and not $1$! The statistics in each row correspond to the cars that had X number of cylinders. For example, of the $11$ cars with $4$ cylinders, the mean mpg was $26.6$, the displacement range $75.6$ etc... 
+:::
+
+When reading off this table, we can note a few things about the different types of cars:
+
+:::{}
+* Fewer cars had $6$ cylinders than $4$ or $8$. 
+* As the number of cylinders increased, the mean mpg decreased, the displacement range increased, and the median horsepower increased. 
+* No $8$ cylinder cars had `vs 1`. 
+* There is no clear pattern in the `am 0` or manufacturer identifiable from this table. 
+
+:::
+
+# Making the tables more readable
+
+Thus far, we have relied on the raw R output to read the tables. This is not ideal for reports or long periods of work. Instead, we can use the `kable()` function from the `kableExtra` package for neat tables. 
+
+```{r}
+###| Package
+# install.packages("kableExtra")
+library(kableExtra)
+
+###| Grouped summary table 
+summary <- cars_data %>%
+  group_by(cyl) %>%
+  summarise("Num. observations" = n(),
+            "Mean mpg" = mean(mpg),
+            "Range displacement" = max(disp)-min(disp),
+            "Median horsepower" = median(hp),
+            "vs 1" = length(which(vs == 1)),
+            "am 0" = length(which(am == 0)),
+            "Num. manufacturers" = length(unique(manufacturer))
+  )
+
+###| Output
+kable(summary)
+```
+
+We can continue to change various arguments of the `kable` function to get truly beautiful tables. An excellent site for this is LINK. A quick example of some commands are the following:
+
+```{r}
+###| Example kable extra
+kable(summary, booktabs = TRUE, 
+      col.names = c("Cylinders","Total","Mean MPG","Displacement range",
+                    "Median horsepower","Num vs 1","Num am 0",
+                    "Num unique manufacturers")) %>%
+  add_header_above(c(" " = 1, "Summary Statistics" = 7))
+```

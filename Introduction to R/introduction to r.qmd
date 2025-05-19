@@ -1,0 +1,33 @@
+---
+title: "Introduction"
+author: 
+  name: Maria-Louiza Van den Bergh
+  email: maria-louiza.van-den-bergh@warwick.ac.uk
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+These pages will cover will introduce some key theory about how R operates and the basic building blocks of coding. It ends with generating plots using inbuilt R commands.  
+
+This section covers: 
+
+:::{}
+
+* how R stores data/values (data types, data structures and variables), 
+* how to perform operations (arithmetic, comparison and logical), 
+* how to control the structure of your code (if, else, for and while), 
+* how to write your own functions, 
+* random numbers, and 
+* plotting graphs. 
+
+:::

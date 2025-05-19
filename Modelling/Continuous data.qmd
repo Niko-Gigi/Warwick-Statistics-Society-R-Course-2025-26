@@ -1,0 +1,186 @@
+---
+title: "Fitting a model with continuous data"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+Suppose we are contacted by a group of scientists who are conducting experiments on leaf burn times. They have provided us with the leaf dataset and want to know what the relationship between the elements in the soil and burn time.
+
+They tell us that the 'lburn' variable is the log of the leaf burn time. They also tell us that the 'Nitrogen', 'Chlorine' and 'Potassium' variables are the percentage of prevalant in soil.
+
+To answer their question, and find the relationship between the elements and burn time, we are going to fit a linear model on the leaf dataset. However, before we fit the model, it is important to review the dataset carefully.
+
+# A quick look at the data
+
+We can load in the data and inspect the first 6 rows as follows. 
+
+:::{.callout-note}
+The data can be found on the associated github [here](https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025/tree/main/Data). Please download this to your computer and save it to your documents. 
+
+You will need to change the location of the file path. You can find this by clicking the file and reading the pop up window. 
+:::
+
+(If you cannot load in the data, a version appears in the `Data` tab at the top of the website. You should be able to copy and paste that version into your R script and run it directly.)
+
+```{r}
+###| Loading in data
+leaf <- read.csv("~/Documents/GitHub/Warwick Statistics Society R Course 2024-2025/Data/leaf.csv")
+
+###| First 6 rows
+head(leaf)
+```
+
+# Set up
+
+From the previous section, we observe 4 variables: Nitrogen, Chlorine, Potassium and lburn. We note that all 4 are continuous (as we would expect given what we have been told).
+
+Now, we want to fit a linear model of the form: $$\text{lburn} = \alpha + \beta \times \text{Nitrogen}+ \gamma \times \text{Chlorine} + \delta \times \text{Potassium} + \epsilon.$$ Expressing this as a matrix, by reading off the first 2 rows of the dataframe,
+
+$$
+\begin{pmatrix} 0.34 \\ 0.11 \\ ... \end{pmatrix} = \begin{pmatrix} 1 & 3.05 & 1.45 & 5.67 \\ 1 & 4.22 & 1.35 & 4.86 \\ ... & ... & ... & ... \end{pmatrix} \times \begin{pmatrix} \alpha \\ \beta \\ \gamma \\ \delta \end{pmatrix} + \epsilon.
+$$
+
+Thus, our goal is to estimate the $\alpha$,$\beta$,$\gamma$ and $\delta$ that best captures the relationship between the response variable (lburn) and the explanatory variables (Nitrogen, Chlorine and Potassium).
+
+# Using 'lm()'
+
+In R, the command 'lm()' will fit a linear model for you. We will begin by fitting a model where we only use the Nitrogen soil percentage to predict the burn time. That is, we fit the following model:
+
+$$
+y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \epsilon_i,
+$$
+
+where $x_{i,\text{Nitrogen}}$ represents the Nitrogen percentage of the ith observation. We fit this using the `lm()` command with `lburn ~ Nitrogen` formula and setting the `data=leaf`. 
+
+```{r}
+###| lburn ~ nitrogen model
+m1 <- lm(lburn ~ Nitrogen, data = leaf) 
+
+###| output
+m1
+```
+
+From the output, we obtain an estimate for $\alpha = 2.6257$ and an estimate for $\beta = -0.5916$. We interpret this as follows:
+
+<div>
+
+* If there is no Nitrogen in the soil, the expected log leaf burn time is 2.6.
+* For every increase of 1% of Nitrogren in the soil, we expect a 0.6 decrease in the log leaf burn time. 
+  + (Alternatively, we expect the leaf burn time to decrease by $\exp(0.6)\approx 1.82.)
+
+</div>
+
+However, if we want to get more information about the model, we can use the `summary()` command on a model, rather than looking at the raw output.
+
+```{r}
+###| Summary output of a model
+summary(m1)
+```
+
+Now, the estimates of $\alpha$ and $\beta$ are reported in the Estimate column. The rest of the output consists of useful information about the performance of the model. A detailed blogpost of information was created by Felipe Rego and is available [here](https://feliperego.github.io/blog/2015/10/23/Interpreting-Model-Output-In-R). I have pulled out 2 key values that you need to be very comfortable with calculating and using:
+
+<div>
+
+* Pr(\>\|t\|) is the p-value after performing a hypothesis test. 
+  + The asterics (\*) indicate the significance. Depending on the context, different significance levels are suitable. In most cases $0.05$ is a 'good' level.
+* The $R^2$ and adjusted $R^2$ describe how much variance is accounted for by the model (the closer to 1 the better)
+
+</div>
+
+We can also get information using 'anova()'.
+
+```{r}
+###| Anova output
+anova(m1)
+```
+
+This no longer gives the $R^2$ values. However, it will perform consecutive hypothesis tests.
+
+# Using 'anova()'
+
+To explore anova further, let us fit a different linear model: $$
+y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \gamma x_{i,\text{Chlorine}}+ \epsilon_i.$$
+
+
+```{r}
+###| lburn ~ Nitrogen + Chlorine
+m2 <- lm(lburn ~ Nitrogen + Chlorine, data = leaf)
+
+###| anova on larger model
+anova(m2)
+```
+
+The first row of the anova output is: $$ Nitrogen \quad  1 \quad 3.4460 \quad 3.4460 \quad 38.9352 \quad 1.127e-06 \text{***}.$$
+
+The p-value $1.127e-06$ comes from a hypothesis test with null hypothsis $\beta = 0$. That is to say, we compare the following 2 models, one where $\beta =0$ and one where $\beta \neq 0$: 
+
+:::{} 
+1. $y_i = \alpha + \epsilon_i$ 
+2. $y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \epsilon_i$ 
+::: 
+
+As the p-value is $<0.05$, we say that there is sufficient evidence to reject the null hypothesis.
+
+The second row of the anova output is: $$Chlorine \quad  1 \quad 0.8538 \quad 0.8538 \quad 9.6473 \quad 0.004424 \text{**}.$$
+
+The p-value $0.004424$ comes from a hypothesis test with null hypothesis $\gamma = 0$. That is to say, we compare the following 2 models, one where $\beta =0$ and one where $\beta \neq 0$: 
+
+:::{} 
+1. $y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \epsilon_i$ 
+2. $y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \gamma x_{i,\text{Chlorine}} + \epsilon_i$ 
+::: 
+
+As the p-value is $<0.05$, we say that there is sufficient evidence to reject the null hypothesis.
+
+More information about interpreting anova can be found [here](https://bookdown.org/steve_midway/DAR/understanding-anova-in-r.html).
+
+# Fitting a model with all 3 explanatory variables
+
+Now that we have some familiarity with the outputs, let us fit the model with all possible terms (i.e. the fully saturated model). That is, we fit
+
+$$
+y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \gamma x_{i,\text{Chlorine}} + \delta x_{i,\text{Potassium}} + \epsilon_i.
+$$
+
+```{r}
+###| Saturated model
+m3 <- lm(lburn ~ Nitrogen + Chlorine + Potassium, data = leaf)
+
+###| Output
+m3
+```
+
+From fitting this model, we obtain estimates for $\alpha$,$\beta$,$\gamma$ and $\delta$. We interpret these as follows: 
+
+* For a leaf with no Nitrogen, Chlorine and Potassium in the soil, we expect the log burning time to be $1.8$. Thus, the burning time is $\exp(1.8)\approx 6$. 
+* Holding all other element concentrations, an increase of $1\%$ in Nitrogen concentration corresponds to a decrease of 0.5 in the log burning time. 
+* Holding all other element concentrations, an increase of $1\%$ in Chlorine concentration corresponds to a decrease of 0.4 in the log burning time. 
+* Holding all other element concentrations, an increase of $1\%$ in Potassium concentration corresponds to an increase of 0.2 in the log burning time.
+
+
+:::{.callout-important}
+It is very important that we state that the other explanatory variables are held constant when interpreting the estimates! The estimate only explains the relationship when that specific explanatory variable is altered.
+:::
+
+Now, we can consider if we need all of these variables in our model. We do this by using 'anova()'.
+
+```{r}
+###| Saturated model anova
+anova(m3)
+```
+
+In all 3 consecutive tests ($\beta=0$,$\gamma=0$ and $\delta=0$), we observe evidence to reject the null hypothesis. Thus, we keep all 3 variables and propose the following linear model to the scientists: 
+
+$$
+y_i = 1.8 -0.5 \; x_{i,\text{Nitrogen}} -0.4 \; x_{i,\text{Chlorine}} + 0.2 \; x_{i,\text{Potassium}} + \epsilon_i.
+$$

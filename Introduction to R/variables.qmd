@@ -1,0 +1,91 @@
+---
+title: "Variables"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+
+Thus far, we have covered some very important content. However, it is not in a practical, useable form. Instead of having to rewrite values each time, we want to be able to have the computer remember them (store them) so that we can recall them. We do this using variables.
+
+We can assign a value to a named variable using `=` or `-\>`. (Note that we use `=` for assigning variables and `==` for check if equal!) We can check what our variable is by outputting it.
+
+```{r}
+###| Assigning a variable
+x <- 5
+y = TRUE
+
+###| Outputting a variable
+x
+y
+```
+
+We can use all our previous operators on variables. The following are just some examples of how we can do this.
+
+```{r}
+###| Assigning variables
+a = 1
+b = 2
+c = 3
+d = 4
+e = 5
+
+###| Arithmetic operators
+d %% b
+c + d
+a * e - d
+
+###| Relational operators
+d < b
+c > d
+c == d
+
+###| Logical operators 
+(d < b) & (c > d)
+(d < b) | (c > d)
+!(d < b)
+```
+
+# Check your understanding
+
+The following are some extercises to test your understanding about variables.
+
+<div>
+
+-   Define variables called `velocity`, `time` and `acceleration` with 5, 10 and 9.8 respectively. Calculate the displacement.
+    -   Hint: $s = ut+0.5at^2$.
+-   Define variables `height` and `width` of a rectangle with initial values 5 and 10. Calculate the area of the rectangle.
+-   Extension: given $f(x)=\frac{1}{\sqrt{2\pi}}\exp{(-\frac{1}{2}x^2)}$, find $f(5)$.
+    -   Hint: look at sqrt() and exp().
+
+</div>
+
+```{r}
+#| code-fold: true
+
+###| Answers
+vecolity <- 5
+time <- 10
+acceleration <- 9.8
+displacement <- vecolity * time + 0.5 * acceleration * time^2
+displacement
+
+height <- 5
+width <- 10
+area <- height * width
+area
+
+###| Extension question
+x <- 5
+f_x <- 1/sqrt(2*pi)*exp(-0.5*x^2)
+f_x
+```
