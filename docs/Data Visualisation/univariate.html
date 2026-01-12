@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>univariate – Warwick Statistics Society R Course 2024-2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-bce83624dd429190d13db9bf62533269.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Warwick Statistics Society R Course 2024-2025</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Using R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cheatsheets.html"> 
+<span class="menu-text">Cheatsheets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Data/Raw data.html"> 
+<span class="menu-text">Data</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/introduction to r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/data types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/data structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Operations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/control structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Custom functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/Random numbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Random numbers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/figures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Figures</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Linear modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Continuous data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fitting a model with continuous data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Categorical data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fitting a model with categorical data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Diagnostics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model diagnostics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check your understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cars dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/summary tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">dplyr: summary tables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#simple-bar-chart" id="toc-simple-bar-chart" class="nav-link active" data-scroll-target="#simple-bar-chart">simple bar chart</a></li>
+  <li><a href="#plot-the-distribution-of-race" id="toc-plot-the-distribution-of-race" class="nav-link" data-scroll-target="#plot-the-distribution-of-race">plot the distribution of race</a></li>
+  <li><a href="#plot-the-distribution-of-race-with-modified-colors-and-labels" id="toc-plot-the-distribution-of-race-with-modified-colors-and-labels" class="nav-link" data-scroll-target="#plot-the-distribution-of-race-with-modified-colors-and-labels">plot the distribution of race with modified colors and labels</a></li>
+  <li><a href="#plot-the-distribution-as-percentages" id="toc-plot-the-distribution-as-percentages" class="nav-link" data-scroll-target="#plot-the-distribution-as-percentages">plot the distribution as percentages</a></li>
+  <li><a href="#calculate-number-of-participants-in-each-race-category" id="toc-calculate-number-of-participants-in-each-race-category" class="nav-link" data-scroll-target="#calculate-number-of-participants-in-each-race-category">calculate number of participants in each race category</a></li>
+  <li><a href="#plot-the-bars-in-ascending-order" id="toc-plot-the-bars-in-ascending-order" class="nav-link" data-scroll-target="#plot-the-bars-in-ascending-order">plot the bars in ascending order</a></li>
+  <li><a href="#plot-the-bars-with-numeric-labels" id="toc-plot-the-bars-with-numeric-labels" class="nav-link" data-scroll-target="#plot-the-bars-with-numeric-labels">plot the bars with numeric labels</a></li>
+  <li><a href="#plot-the-bars-as-percentages" id="toc-plot-the-bars-as-percentages" class="nav-link" data-scroll-target="#plot-the-bars-as-percentages">plot the bars as percentages,</a></li>
+  <li><a href="#in-decending-order-with-bar-labels" id="toc-in-decending-order-with-bar-labels" class="nav-link" data-scroll-target="#in-decending-order-with-bar-labels">in decending order with bar labels</a></li>
+  <li><a href="#basic-bar-chart-with-overlapping-labels" id="toc-basic-bar-chart-with-overlapping-labels" class="nav-link" data-scroll-target="#basic-bar-chart-with-overlapping-labels">basic bar chart with overlapping labels</a></li>
+  <li><a href="#horizontal-bar-chart" id="toc-horizontal-bar-chart" class="nav-link" data-scroll-target="#horizontal-bar-chart">horizontal bar chart</a></li>
+  <li><a href="#bar-chart-with-rotated-labels" id="toc-bar-chart-with-rotated-labels" class="nav-link" data-scroll-target="#bar-chart-with-rotated-labels">bar chart with rotated labels</a></li>
+  <li><a href="#bar-chart-with-staggered-labels" id="toc-bar-chart-with-staggered-labels" class="nav-link" data-scroll-target="#bar-chart-with-staggered-labels">bar chart with staggered labels</a></li>
+  <li><a href="#create-a-basic-ggplot2-pie-chart" id="toc-create-a-basic-ggplot2-pie-chart" class="nav-link" data-scroll-target="#create-a-basic-ggplot2-pie-chart">create a basic ggplot2 pie chart</a></li>
+  <li><a href="#create-a-pie-chart-with-slice-labels-within-figure" id="toc-create-a-pie-chart-with-slice-labels-within-figure" class="nav-link" data-scroll-target="#create-a-pie-chart-with-slice-labels-within-figure">create a pie chart with slice labels within figure</a></li>
+  <li><a href="#create-a-treemap-of-marriage-officials" id="toc-create-a-treemap-of-marriage-officials" class="nav-link" data-scroll-target="#create-a-treemap-of-marriage-officials">create a treemap of marriage officials</a></li>
+  <li><a href="#create-a-treemap-with-tile-labels" id="toc-create-a-treemap-with-tile-labels" class="nav-link" data-scroll-target="#create-a-treemap-with-tile-labels">create a treemap with tile labels</a></li>
+  <li><a href="#create-a-basic-waffle-chart" id="toc-create-a-basic-waffle-chart" class="nav-link" data-scroll-target="#create-a-basic-waffle-chart">create a basic waffle chart</a></li>
+  <li><a href="#create-a-customized-caption" id="toc-create-a-customized-caption" class="nav-link" data-scroll-target="#create-a-customized-caption">Create a customized caption</a></li>
+  <li><a href="#plot-the-age-distribution-using-a-histogram" id="toc-plot-the-age-distribution-using-a-histogram" class="nav-link" data-scroll-target="#plot-the-age-distribution-using-a-histogram">plot the age distribution using a histogram</a></li>
+  <li><a href="#plot-the-histogram-with-blue-bars-and-white-borders" id="toc-plot-the-histogram-with-blue-bars-and-white-borders" class="nav-link" data-scroll-target="#plot-the-histogram-with-blue-bars-and-white-borders">plot the histogram with blue bars and white borders</a></li>
+  <li><a href="#plot-the-histogram-with-20-bins" id="toc-plot-the-histogram-with-20-bins" class="nav-link" data-scroll-target="#plot-the-histogram-with-20-bins">plot the histogram with 20 bins</a></li>
+  <li><a href="#plot-the-histogram-with-a-binwidth-of-5" id="toc-plot-the-histogram-with-a-binwidth-of-5" class="nav-link" data-scroll-target="#plot-the-histogram-with-a-binwidth-of-5">plot the histogram with a binwidth of 5</a></li>
+  <li><a href="#plot-the-histogram-with-percentages-on-the-y-axis" id="toc-plot-the-histogram-with-percentages-on-the-y-axis" class="nav-link" data-scroll-target="#plot-the-histogram-with-percentages-on-the-y-axis">plot the histogram with percentages on the y-axis</a></li>
+  <li><a href="#create-a-kernel-density-plot-of-age" id="toc-create-a-kernel-density-plot-of-age" class="nav-link" data-scroll-target="#create-a-kernel-density-plot-of-age">Create a kernel density plot of age</a></li>
+  <li><a href="#create-a-kernel-density-plot-of-age-1" id="toc-create-a-kernel-density-plot-of-age-1" class="nav-link" data-scroll-target="#create-a-kernel-density-plot-of-age-1">Create a kernel density plot of age</a></li>
+  <li><a href="#default-bandwidth-for-the-age-variable" id="toc-default-bandwidth-for-the-age-variable" class="nav-link" data-scroll-target="#default-bandwidth-for-the-age-variable">default bandwidth for the age variable</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">[1] 5.181946</a></li>
+  </ul></li>
+  <li><a href="#create-a-kernel-density-plot-of-age-2" id="toc-create-a-kernel-density-plot-of-age-2" class="nav-link" data-scroll-target="#create-a-kernel-density-plot-of-age-2">Create a kernel density plot of age</a></li>
+  <li><a href="#plot-the-age-distribution-using-a-dotplot" id="toc-plot-the-age-distribution-using-a-dotplot" class="nav-link" data-scroll-target="#plot-the-age-distribution-using-a-dotplot">plot the age distribution using a dotplot</a></li>
+  <li><a href="#plot-ages-as-a-dot-plot-using" id="toc-plot-ages-as-a-dot-plot-using" class="nav-link" data-scroll-target="#plot-ages-as-a-dot-plot-using">Plot ages as a dot plot using</a></li>
+  <li><a href="#gold-dots-with-black-borders" id="toc-gold-dots-with-black-borders" class="nav-link" data-scroll-target="#gold-dots-with-black-borders">gold dots with black borders</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<p>Chapter 4 Univariate Graphs</p>
+<p>The first step in any comprehensive data analysis is to explore each import variable in turn. Univariate graphs plot the distribution of data from a single variable. The variable can be categorical (e.g., race, sex, political affiliation) or quantitative (e.g., age, weight, income).</p>
+<p>The dataset Marriage contains the marriage records of 98 individuals in Mobile County, Alabama (see Appendix A.5). We’ll explore the distribution of three variables from this dataset - the age and race of the wedding participants, and the occupation of the wedding officials. 4.1 Categorical</p>
+<p>The race of the participants and the occupation of the officials are both categorical variables.The distribution of a single categorical variable is typically plotted with a bar chart, a pie chart, or (less commonly) a tree map or waffle chart. 4.1.1 Bar chart</p>
+<p>In Figure 4.1, a bar chart is used to display the distribution of wedding participants by race.</p>
+<section id="simple-bar-chart" class="level1">
+<h1>simple bar chart</h1>
+<p>library(ggplot2) data(Marriage, package = “mosaicData”)</p>
+</section>
+<section id="plot-the-distribution-of-race" class="level1">
+<h1>plot the distribution of race</h1>
+<p>ggplot(Marriage, aes(x = race)) + geom_bar()</p>
+<p>Simple barchart</p>
+<p>Figure 4.1: Simple barchart</p>
+<p>The majority of participants are white, followed by black, with very few Hispanics or American Indians.</p>
+<p>You can modify the bar fill and border colors, plot labels, and title by adding options to the geom_bar function. In ggplot2, the fill parameter is used to specify the color of areas such as bars, rectangles, and polygons. The color parameter specifies the color objects that technically do not have an area, such as points, lines, and borders.</p>
+</section>
+<section id="plot-the-distribution-of-race-with-modified-colors-and-labels" class="level1">
+<h1>plot the distribution of race with modified colors and labels</h1>
+<p>ggplot(Marriage, aes(x=race)) + geom_bar(fill = “cornflowerblue”, color=“black”) + labs(x = “Race”, y = “Frequency”, title = “Participants by race”)</p>
+<p>Barchart with modified colors, labels, and title</p>
+<p>Figure 4.2: Barchart with modified colors, labels, and title 4.1.1.1 Percents</p>
+<p>Bars can represent percents rather than counts. For bar charts, the code aes(x=race) is actually a shortcut for aes(x = race, y = after_stat(count)), where count is a special variable representing the frequency within each category. You can use this to calculate percentages, by specifying y variable explicitly.</p>
+</section>
+<section id="plot-the-distribution-as-percentages" class="level1">
+<h1>plot the distribution as percentages</h1>
+<p>ggplot(Marriage, aes(x = race, y = after_stat(count/sum(count)))) + geom_bar() + labs(x = “Race”, y = “Percent”, title = “Participants by race”) + scale_y_continuous(labels = scales::percent)</p>
+<p>Barchart with percentages</p>
+<p>Figure 4.3: Barchart with percentages</p>
+<p>In the code above, the scales package is used to add % symbols to the y-axis labels. 4.1.1.2 Sorting categories</p>
+<p>It is often helpful to sort the bars by frequency. In the code below, the frequencies are calculated explicitly. Then the reorder function is used to sort the categories by the frequency. The option stat=“identity” tells the plotting function not to calculate counts, because they are supplied directly.</p>
+</section>
+<section id="calculate-number-of-participants-in-each-race-category" class="level1">
+<h1>calculate number of participants in each race category</h1>
+<p>library(dplyr) plotdata &lt;- Marriage %&gt;% count(race)</p>
+<p>The resulting dataset is give below. Table 4.1: plotdata race n American Indian 1 Black 22 Hispanic 1 White 74</p>
+<p>This new dataset is then used to create the graph.</p>
+</section>
+<section id="plot-the-bars-in-ascending-order" class="level1">
+<h1>plot the bars in ascending order</h1>
+<p>ggplot(plotdata, aes(x = reorder(race, n), y = n)) + geom_bar(stat=“identity”) + labs(x = “Race”, y = “Frequency”, title = “Participants by race”)</p>
+<p>Sorted bar chart</p>
+<p>Figure 4.4: Sorted bar chart</p>
+<p>The graph bars are sorted in ascending order. Use reorder(race, -n) to sort in descending order. 4.1.1.3 Labeling bars</p>
+<p>Finally, you may want to label each bar with its numerical value.</p>
+</section>
+<section id="plot-the-bars-with-numeric-labels" class="level1">
+<h1>plot the bars with numeric labels</h1>
+<p>ggplot(plotdata, aes(x = race, y = n)) + geom_bar(stat=“identity”) + geom_text(aes(label = n), vjust=-0.5) + labs(x = “Race”, y = “Frequency”, title = “Participants by race”)</p>
+<p>Bar chart with numeric labels</p>
+<p>Figure 4.5: Bar chart with numeric labels</p>
+<p>Here geom_text adds the labels, and vjust controls vertical justification. See Annotations (Section 11.7) for more details.</p>
+<p>Putting these ideas together, you can create a graph like the one below. The minus sign in reorder(race, -pct) is used to order the bars in descending order.</p>
+<p>library(dplyr) library(scales) plotdata &lt;- Marriage %&gt;% count(race) %&gt;% mutate(pct = n / sum(n), pctlabel = paste0(round(pct*100), “%”))</p>
+</section>
+<section id="plot-the-bars-as-percentages" class="level1">
+<h1>plot the bars as percentages,</h1>
+</section>
+<section id="in-decending-order-with-bar-labels" class="level1">
+<h1>in decending order with bar labels</h1>
+<p>ggplot(plotdata, aes(x = reorder(race, -pct), y = pct)) + geom_bar(stat=“identity”, fill=“indianred3”, color=“black”) + geom_text(aes(label = pctlabel), vjust=-0.25) + scale_y_continuous(labels = percent) + labs(x = “Race”, y = “Percent”, title = “Participants by race”)</p>
+<p>Sorted bar chart with percent labels</p>
+<p>Figure 4.6: Sorted bar chart with percent labels 4.1.1.4 Overlapping labels</p>
+<p>Category labels may overlap if (1) there are many categories or (2) the labels are long. Consider the distribution of marriage officials.</p>
+</section>
+<section id="basic-bar-chart-with-overlapping-labels" class="level1">
+<h1>basic bar chart with overlapping labels</h1>
+<p>ggplot(Marriage, aes(x=officialTitle)) + geom_bar() + labs(x = “Officiate”, y = “Frequency”, title = “Marriages by officiate”)</p>
+<p>Barchart with problematic labels</p>
+<p>Figure 4.7: Barchart with problematic labels</p>
+<p>In this case, you can flip the x and y axes with the coord_flip function.</p>
+</section>
+<section id="horizontal-bar-chart" class="level1">
+<h1>horizontal bar chart</h1>
+<p>ggplot(Marriage, aes(x = officialTitle)) + geom_bar() + labs(x = ““, y =”Frequency”, title = “Marriages by officiate”) + coord_flip()</p>
+<p>Horizontal barchart</p>
+<p>Figure 4.8: Horizontal barchart</p>
+<p>Alternatively, you can rotate the axis labels.</p>
+</section>
+<section id="bar-chart-with-rotated-labels" class="level1">
+<h1>bar chart with rotated labels</h1>
+<p>ggplot(Marriage, aes(x=officialTitle)) + geom_bar() + labs(x = ““, y =”Frequency”, title = “Marriages by officiate”) + theme(axis.text.x = element_text(angle = 45, hjust = 1))</p>
+<p>Barchart with rotated labels</p>
+<p>Figure 4.9: Barchart with rotated labels</p>
+<p>Finally, you can try staggering the labels. The trick is to add a newline to every other label.</p>
+</section>
+<section id="bar-chart-with-staggered-labels" class="level1">
+<h1>bar chart with staggered labels</h1>
+<p>lbls &lt;- paste0(c(““,”“), levels(Marriage$officialTitle)) ggplot(Marriage, aes(x=factor(officialTitle, labels = lbls))) + geom_bar() + labs(x =”“, y =”Frequency”, title = “Marriages by officiate”)</p>
+<p>Barchart with staggered labels</p>
+<p>Figure 4.10: Barchart with staggered labels</p>
+<p>In general, I recommend trying not to rotate axis labels. It places a greater cognitive demand on the end user (i.e., it is harder to read!). 4.1.2 Pie chart</p>
+<p>Pie charts are controversial in statistics. If your goal is to compare the frequency of categories, you are better off with bar charts (humans are better at judging the length of bars than the volume of pie slices). If your goal is compare each category with the the whole (e.g., what portion of participants are Hispanic compared to all participants), and the number of categories is small, then pie charts may work for you.</p>
+<p>Pie charts are easily created with ggpie function in the ggpie package. The format is ggpie(data, variable), where data is a data frame, and variable is the categorical variable to be plotted.</p>
+</section>
+<section id="create-a-basic-ggplot2-pie-chart" class="level1">
+<h1>create a basic ggplot2 pie chart</h1>
+<p>library(ggpie) ggpie(Marriage, race)</p>
+<p>Basic pie chart with legend</p>
+<p>Figure 4.11: Basic pie chart with legend</p>
+<p>The ggpie function has many option, as described in package homepage (http://rkabacoff.github.io/ggpie). For example to place the labels within the pie, set legend = FALSE. A title can be added with the title option.</p>
+</section>
+<section id="create-a-pie-chart-with-slice-labels-within-figure" class="level1">
+<h1>create a pie chart with slice labels within figure</h1>
+<p>ggpie(Marriage, race, legend = FALSE, title = “Participants by race”)</p>
+<p>Pie chart with percent labels</p>
+<p>Figure 4.12: Pie chart with percent labels</p>
+<p>The pie chart makes it easy to compare each slice with the whole. For example, roughly a quarter of the total participants are Black. 4.1.3 Tree map</p>
+<p>An alternative to a pie chart is a tree map. Unlike pie charts, it can handle categorical variables that have many levels.</p>
+<p>library(treemapify)</p>
+</section>
+<section id="create-a-treemap-of-marriage-officials" class="level1">
+<h1>create a treemap of marriage officials</h1>
+<p>plotdata &lt;- Marriage %&gt;% count(officialTitle)</p>
+<p>ggplot(plotdata, aes(fill = officialTitle, area = n)) + geom_treemap() + labs(title = “Marriages by officiate”)</p>
+<p>Basic treemap</p>
+<p>Figure 4.13: Basic treemap</p>
+<p>Here is a more useful version with labels.</p>
+</section>
+<section id="create-a-treemap-with-tile-labels" class="level1">
+<h1>create a treemap with tile labels</h1>
+<p>ggplot(plotdata, aes(fill = officialTitle, area = n, label = officialTitle)) + geom_treemap() + geom_treemap_text(colour = “white”, place = “centre”) + labs(title = “Marriages by officiate”) + theme(legend.position = “none”)</p>
+<p>Treemap with labels</p>
+<p>Figure 4.14: Treemap with labels</p>
+<p>The treemapify package offers many options for customization. See https://wilkox.org/treemapify/ for details. 4.1.4 Waffle chart</p>
+<p>A waffle chart, also known as a gridplot or square pie chart, represents observations as squares in a rectangular grid, where each cell represents a percentage of the whole. You can create a ggplot2 waffle chart using the geom_waffle function in the waffle package.</p>
+<p>Let’s create a waffle chart for the professions of wedding officiates. As with tree maps, start by summarizing the data into groups and counts.</p>
+<p>library(dplyr) plotdata &lt;- Marriage %&gt;% count(officialTitle)</p>
+<p>Next create the ggplot2 graph. Set fill to the grouping variable and values to the counts. Don’t specify an x and y.</p>
+<pre><code>Note: The na.rm parameter in the geom_waffle function indicates whether missing values should be deleted. At time of this writing, there is a bug in the function. The default for the na.rm parameter is NA, but it actually must be either TRUE or FALSE. Specifying one or the other eliminates the error.</code></pre>
+<p>The following code produces the default waffle plot.</p>
+</section>
+<section id="create-a-basic-waffle-chart" class="level1">
+<h1>create a basic waffle chart</h1>
+<p>library(waffle) ggplot(plotdata, aes(fill = officialTitle, values=n)) + geom_waffle(na.rm=TRUE)</p>
+<p>Basic waffle chart</p>
+<p>Figure 4.15: Basic waffle chart</p>
+<p>Next, we’ll customize the graph by</p>
+<pre><code>specifying the number of rows and cell sizes and setting borders around the cells to “white” (geom_waffle)
+change the color scheme to “Spectral” (scale_fill_brewer)
+assure that the cells are squares and not rectangles (coord_equal)
+simplify the theme (the theme functions)
+modify the title and add a caption with the scale (labs)</code></pre>
+</section>
+<section id="create-a-customized-caption" class="level1">
+<h1>Create a customized caption</h1>
+<p>cap &lt;- paste0(“1 square =”, ceiling(sum(plotdata$n)/100), ” case(s).”) library(waffle) ggplot(plotdata, aes(fill = officialTitle, values=n)) + geom_waffle(na.rm=TRUE, n_rows = 10, size = .4, color = “white”) + scale_fill_brewer(palette = “Spectral”) + coord_equal() + theme_minimal() + theme_enhance_waffle() + theme(legend.title = element_blank()) + labs(title = “Proportion of Wedding Officials”, caption = cap)</p>
+<p>Customized waffle chart</p>
+<p>Figure 4.16: Customized waffle chart</p>
+<p>While new to R, waffle charts are becoming increasingly popular. 4.2 Quantitative</p>
+<p>In the Marriage dataset, age is quantitative variable. The distribution of a single quantitative variable is typically plotted with a histogram, kernel density plot, or dot plot. 4.2.1 Histogram</p>
+<p>Histograms are the most common approach to visualizing a quantitative variable. In a histogram, the values of a variable are typically divided up into adjacent, equal width ranges (called bins), and the number of observations in each bin is plotted with a vertical bar.</p>
+<p>library(ggplot2)</p>
+</section>
+<section id="plot-the-age-distribution-using-a-histogram" class="level1">
+<h1>plot the age distribution using a histogram</h1>
+<p>ggplot(Marriage, aes(x = age)) + geom_histogram() + labs(title = “Participants by age”, x = “Age”)</p>
+<p>Basic histogram</p>
+<p>Figure 4.17: Basic histogram</p>
+<p>Most participants appear to be in their early 20’s with another group in their 40’s, and a much smaller group in their late sixties and early seventies. This would be a multimodal distribution.</p>
+<p>Histogram colors can be modified using two options</p>
+<pre><code>fill - fill color for the bars
+color - border color around the bars</code></pre>
+</section>
+<section id="plot-the-histogram-with-blue-bars-and-white-borders" class="level1">
+<h1>plot the histogram with blue bars and white borders</h1>
+<p>ggplot(Marriage, aes(x = age)) + geom_histogram(fill = “cornflowerblue”, color = “white”) + labs(title=“Participants by age”, x = “Age”)</p>
+<p>Histogram with specified fill and border colors</p>
+<p>Figure 4.18: Histogram with specified fill and border colors 4.2.1.1 Bins and bandwidths</p>
+<p>One of the most important histogram options is bins, which controls the number of bins into which the numeric variable is divided (i.e., the number of bars in the plot). The default is 30, but it is helpful to try smaller and larger numbers to get a better impression of the shape of the distribution.</p>
+</section>
+<section id="plot-the-histogram-with-20-bins" class="level1">
+<h1>plot the histogram with 20 bins</h1>
+<p>ggplot(Marriage, aes(x = age)) + geom_histogram(fill = “cornflowerblue”, color = “white”, bins = 20) + labs(title=“Participants by age”, subtitle = “number of bins = 20”, x = “Age”)</p>
+<p>Histogram with a specified number of bins</p>
+<p>Figure 4.19: Histogram with a specified number of bins</p>
+<p>Alternatively, you can specify the binwidth, the width of the bins represented by the bars.</p>
+</section>
+<section id="plot-the-histogram-with-a-binwidth-of-5" class="level1">
+<h1>plot the histogram with a binwidth of 5</h1>
+<p>ggplot(Marriage, aes(x = age)) + geom_histogram(fill = “cornflowerblue”, color = “white”, binwidth = 5) + labs(title=“Participants by age”, subtitle = “binwidth = 5 years”, x = “Age”)</p>
+<p>Histogram with specified a bin width</p>
+<p>Figure 4.20: Histogram with specified a bin width</p>
+<p>As with bar charts, the y-axis can represent counts or percent of the total.</p>
+</section>
+<section id="plot-the-histogram-with-percentages-on-the-y-axis" class="level1">
+<h1>plot the histogram with percentages on the y-axis</h1>
+<p>library(scales) ggplot(Marriage, aes(x = age, y= after_stat(count/sum(count)))) + geom_histogram(fill = “cornflowerblue”, color = “white”, binwidth = 5) + labs(title=“Participants by age”, y = “Percent”, x = “Age”) + scale_y_continuous(labels = percent)</p>
+<p>Histogram with percentages on the y-axis</p>
+<p>Figure 4.21: Histogram with percentages on the y-axis 4.2.2 Kernel Density plot</p>
+<p>An alternative to a histogram is the kernel density plot. Technically, kernel density estimation is a nonparametric method for estimating the probability density function of a continuous random variable (what??). Basically, we are trying to draw a smoothed histogram, where the area under the curve equals one.</p>
+</section>
+<section id="create-a-kernel-density-plot-of-age" class="level1">
+<h1>Create a kernel density plot of age</h1>
+<p>ggplot(Marriage, aes(x = age)) + geom_density() + labs(title = “Participants by age”)</p>
+<p>Basic kernel density plot</p>
+<p>Figure 4.22: Basic kernel density plot</p>
+<p>The graph shows the distribution of scores. For example, the proportion of cases between 20 and 40 years old would be represented by the area under the curve between 20 and 40 on the x-axis.</p>
+<p>As with previous charts, we can use fill and color to specify the fill and border colors.</p>
+</section>
+<section id="create-a-kernel-density-plot-of-age-1" class="level1">
+<h1>Create a kernel density plot of age</h1>
+<p>ggplot(Marriage, aes(x = age)) + geom_density(fill = “indianred3”) + labs(title = “Participants by age”)</p>
+<p>Kernel density plot with fill</p>
+<p>Figure 4.23: Kernel density plot with fill 4.2.2.1 Smoothing parameter</p>
+<p>The degree of smoothness is controlled by the bandwidth parameter bw. To find the default value for a particular variable, use the bw.nrd0 function. Values that are larger will result in more smoothing, while values that are smaller will produce less smoothing.</p>
+</section>
+<section id="default-bandwidth-for-the-age-variable" class="level1">
+<h1>default bandwidth for the age variable</h1>
+<p>bw.nrd0(Marriage$age)</p>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section">[1] 5.181946</h2>
+</section>
+</section>
+<section id="create-a-kernel-density-plot-of-age-2" class="level1">
+<h1>Create a kernel density plot of age</h1>
+<p>ggplot(Marriage, aes(x = age)) + geom_density(fill = “deepskyblue”, bw = 1) + labs(title = “Participants by age”, subtitle = “bandwidth = 1”)</p>
+<p>Kernel density plot with a specified bandwidth</p>
+<p>Figure 4.24: Kernel density plot with a specified bandwidth</p>
+<p>In this example, the default bandwidth for age is 5.18. Choosing a value of 1 resulted in less smoothing and more detail.</p>
+<p>Kernel density plots allow you to easily see which scores are most frequent and which are relatively rare. However it can be difficult to explain the meaning of the y-axis means to a non-statistician. (But it will make you look really smart at parties!) 4.2.3 Dot Chart</p>
+<p>Another alternative to the histogram is the dot chart. Again, the quantitative variable is divided into bins, but rather than summary bars, each observation is represented by a dot. By default, the width of a dot corresponds to the bin width, and dots are stacked, with each dot representing one observation. This works best when the number of observations is small (say, less than 150).</p>
+</section>
+<section id="plot-the-age-distribution-using-a-dotplot" class="level1">
+<h1>plot the age distribution using a dotplot</h1>
+<p>ggplot(Marriage, aes(x = age)) + geom_dotplot() + labs(title = “Participants by age”, y = “Proportion”, x = “Age”)</p>
+<p>Basic dotplot</p>
+<p>Figure 4.25: Basic dotplot</p>
+<p>The fill and color options can be used to specify the fill and border color of each dot respectively.</p>
+</section>
+<section id="plot-ages-as-a-dot-plot-using" class="level1">
+<h1>Plot ages as a dot plot using</h1>
+</section>
+<section id="gold-dots-with-black-borders" class="level1">
+<h1>gold dots with black borders</h1>
+<p>ggplot(Marriage, aes(x = age)) + geom_dotplot(fill = “gold”, color=“black”) + labs(title = “Participants by age”, y = “Proportion”, x = “Age”)</p>
+<p>Dotplot with a specified color scheme</p>
+<p>Figure 4.26: Dotplot with a specified color scheme</p>
+<p>There are many more options available. See ?geom_dotplot for details and examples.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

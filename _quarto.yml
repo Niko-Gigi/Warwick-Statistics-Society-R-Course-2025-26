@@ -10,6 +10,7 @@ website:
     contents:
       - text: Welcome
         href: index.qmd
+
       - section: "Introduction to R"
         contents: 
           - Introduction to R/introduction to r.qmd
@@ -21,6 +22,13 @@ website:
           - Introduction to R/functions.qmd
           - Introduction to R/Random numbers.qmd
           - Introduction to R/figures.qmd
+      - section: Mathematics to R
+        contents:
+          - Mathematics to Code/Mathematics to Code intro.qmd
+          - Mathematics to Code/Mathematics to Code intuit.qmd
+          - Mathematics to Code/Mathematics to Code Euclidean Example.qmd
+          - Mathematics to Code/Mathematics to Code MonteCarlo Example.qmd
+          - Mathematics to Code/Mathematics to Code NewtonRaph Example.qmd
       - section: "Linear modelling"
         contents: 
           - Modelling/Linear modelling intro.qmd
@@ -33,6 +41,25 @@ website:
         contents: 
           - EDA/Cars dataset.qmd
           - EDA/summary tables.qmd
+      - section: "Data Visualisation"
+        contents:
+          - Data Visualisation/introvisualisation.qmd
+          - Data Visualisation/importing data.qmd
+          - Data Visualisation/baseR and ggplot.qmd
+          - Data Visualisation/customising graphs.qmd
+          - Data Visualisation/univariate.qmd
+          - Data Visualisation/bivariate.qmd
+          - Data Visualisation/timegraph.qmd
+          - Data Visualisation/multivar.qmd
+          - Data Visualisation/othergraphs.qmd
+          - Data Visualisation/advice.qmd
+      - section: "Report Writing"
+        contents:
+          - Report Writing/reportintro.qmd
+          - Report Writing/structurereport.qmd
+          - Report Writing/stylereport.qmd
+          - Report Writing/useofaireport.qmd
+
   navbar:
       left:
         - href: index.qmd
@@ -45,7 +72,7 @@ website:
           text: Data
       tools:
          - icon: github
-           href: https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025
+           href: https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26
         
 format:
   html:
@@ -53,5 +80,7 @@ format:
     css: styles.css
     toc: true
 
+server:
+  shiny: true
 
 

@@ -1,0 +1,80 @@
+---
+title: "Newton–Raphson Method — Translating Math into Code"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+engine: knitr
+editor: visual
+---
+
+# Mathematical Intuition
+
+We want to find a root of (f(x)=0).\
+We use the tangent line at (x_n) to estimate a better guess:
+
+\[ x\_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}. \]
+
+Repeat until ( \|x\_{n+1} - x_n\| ) is small.
+
+------------------------------------------------------------------------
+
+# Math → Algorithm → Code Mapping
+
+| Math concept | R translation             |
+|--------------|---------------------------|
+| update rule  | `x_new <- x - f(x)/df(x)` |
+| derivative   | function `df(x)`          |
+| convergence  | `abs(x_new - x) < tol`    |
+
+------------------------------------------------------------------------
+
+```{mermaid}
+flowchart TD
+  Start([Start: choose x0, tol, max_iter])
+  Compute["x_next = x - f(x)/f'(x)"]
+  Check{|x_next - x| < tol?|}
+  Accept([Return x_next])
+  Update["x <- x_next"]
+  Start --> Compute --> Check
+  Check -- Yes --> Accept
+  Check -- No --> Update --> Compute
+```
+
+------------------------------------------------------------------------
+
+# Implementation in R
+
+```{r}
+newton <- function(f, df, x0, tol = 1e-10, max_iter = 100) {
+  x <- x0
+  for (i in 1:max_iter) {
+    fx <- f(x)
+    dfx <- df(x)
+    if (dfx == 0) stop("Derivative is zero; choose a new x0")
+    x_new <- x - fx / dfx
+    if (abs(x_new - x) < tol) return(x_new)
+    x <- x_new
+  }
+  stop("Did not converge")
+}
+
+# Examples
+f1 <- function(x) x^2 - 2
+df1 <- function(x) 2*x
+newton(f1, df1, x0 = 1)
+```
+
+------------------------------------------------------------------------
+
+# Reflection
+
+The Newton–Raphson method shows how an **iterative analytic idea** (tangent approximation) translates into a **computational fixed-point loop**.

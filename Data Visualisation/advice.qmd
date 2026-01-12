@@ -1,0 +1,298 @@
+---
+title: "Best Practices"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+engine: knitr
+editor: visual
+---
+
+In this section, we go through what makes a good data visualization. These come from the lecture material for ST231, ST237, ST346, and ST404.
+
+## Labeling
+
+Everything on your graph should be clearly labeled. In general, a graph contains:
+
+-   **title** — a clear short title letting the reader know what they’re looking at\
+    *Example:* Relationship between experience and wages by gender
+
+-   **caption** — a short description of the graph and, where necessary, the source of the data\
+    *Example*: A star plot showing the different characteristics of reviewed wines. Source: <https://www.kaggle.com/datasets/zynicide/wine-reviews/data>
+
+-   **axis labels** — clear labels for the x and y axes
+
+    -   short but descriptive
+    -   include units of measurement\
+        *Examples:*
+        -   Tree diameter (meters)
+        -   Survival time (days)
+        -   Patient age (years)
+
+-   **legend** — short informative title and labels
+
+    *Example:* You can do this with the `legend()` function in R before or after the `plot()` you with to add a legend to
+
+-   **lines and bars** — label any trend lines, annotation lines, and error bars
+
+Essentially, the reader should be able to understand your graph without having to wade through paragraphs of text. When in doubt, show your data visualization to someone unfamiliar with your assignment and ask them if anything is unclear.
+
+## Keep it Simple!
+
+In data science, the goal of data visualization is to communicate information. Anything that doesn’t support this goal should be reduced or eliminated entirely.
+
+-   **Chart Junk** — visual elements of charts that aren’t necessary to comprehend the information represented by the chart or that distract from this information.
+
+Let us now go through an example of chart junk.
+
+### Graph with chart junk
+
+```{r}
+# Import relevant libraries
+library(ggplot2)
+library(dplyr)
+
+# Setup of the dataframe for plotting use
+mpg_summary <- mtcars |>
+mutate(cyl = factor(cyl)) |>
+group_by(cyl) |>
+summarise(mean_mpg = mean(mpg))
+```
+
+```{r Graph with chart junk, fig.cap="Graph with chart junk from the mtcars dataset"}
+# LOTS of plotting elements from ggplot2, see the page about ggplot2 for more background on these
+ggplot(mpg_summary, aes(x = cyl, y = mean_mpg, fill = cyl)) +
+geom_col(color = "black", width = 0.8) +
+labs(
+title = "Different Mean Miles Per Gallon for Cars with Different Numbers of Cylinders",
+x = "Number of Cylinders",
+y = "Mean Miles Per Gallon",
+fill = "Cylinder Groups"
+) +
+theme(
+panel.background = element_rect(fill = "lightblue"),
+panel.border = element_rect(color = "darkblue", fill = NA, linewidth = 2),
+panel.grid.major = element_line(color = "black"),
+panel.grid.minor = element_line(color = "black"),
+plot.title = element_text(size = 16, face = "bold")
+)
+```
+
+If the goal is to compare the fuel efficiency of cars with different numbers of cylinders, much of this visualization is unnecessary and distracts from the task:
+
+-   Colored background and thick border draw attention away from the bars
+-   Heavy black grid lines dominate the data
+-   Color fill adds a legend but **doesn’t encode new information**
+-   Wordy title (“different”, “numbers of”) adds clutter
+-   The reader must constantly look back and forth between the bars and y-axis
+
+**QUESTION FOR THE READER**
+
+Let's now try to clean up. But before we do, how would **YOU** clean this up?
+
+### Graph with chart junk removed
+
+```{r Graph with chart junk removed, fig.cap="Graph with chart junk removed from the mtcars dataset"}
+# A better plot using ggplot2 again
+ggplot(mpg_summary, aes(x = cyl, y = mean_mpg)) +
+geom_col(fill = "grey70", width = 0.6) +
+geom_col(
+data = filter(mpg_summary, cyl == "8"),
+fill = "#D55E00",
+width = 0.6
+) +
+geom_text(
+aes(label = round(mean_mpg, 1)),
+vjust = -0.5,
+size = 4
+) +
+labs(
+title = "Average fuel efficiency by number of cylinders",
+y = "Miles per gallon",
+x = NULL
+) +
+theme_minimal() +
+theme(
+panel.grid.major.x = element_blank(),
+panel.grid.minor = element_blank()
+)
+```
+
+The chart junk has been removed. In addition:
+
+-   X-axis label removed (cylinder categories are obvious)
+-   Y-axis label made more informative
+-   the title has been simplified
+-   One bar (8 cylinders) highlighted to aid comparison
+-   Values added directly to bars, reducing reliance on the axis
+-   Grid lines softened or removed to avoid distraction
+
+I may or may not have gone a bit far leaving out the x-axis label. It’s a fine line, knowing when to stop simplifying.
+
+In general, you want to reduce chart junk to a minimum. In other words, more signal, less noise. At the end of the day, the data visualisation is an art specific to every data scientist, but there is good and bad art!
+
+## Color choice
+
+Color choice is about more than aesthetics. Choose colors that help convey the information contained in the plot.
+
+The article *How to Choose Colors for Data Visualizations* by Mike Yi\
+([link](https://chartio.com/learn/charts/how-to-choose-colors-data-visualization)) is a great place to start.
+
+Basically, think about selecting among sequential, diverging, and qualitative color schemes:
+
+-   **Sequential** — for plotting a quantitative variable that goes from low to high
+-   **Diverging** — for contrasting the extremes (low, medium, and high) of a quantitative variable
+-   **Qualitative** — for distinguishing among the levels of a categorical variable
+
+The article above can help you to choose among these schemes.
+
+Other things to keep in mind:
+
+-   Make sure that text is legible — avoid dark text on dark backgrounds, light text on light backgrounds, and colors that clash in a discordant fashion (i.e., they hurt to look at!)
+-   Avoid combinations of red and green — it can be difficult for a colorblind audience to distinguish these colors
+
+## y-Axis scaling
+
+This is a big one. You can make an effect seem massive or insignificant depending on how you scale a numeric y-axis.
+
+Consider the following example comparing the 9-month salaries of male and female assistant professors. The data come from the Academic Salaries dataset.
+
+```{r load-salary-data, message=FALSE, warning=FALSE}
+# More library imports
+library(carData)
+library(scales)
+library(patchwork)
+
+# Setup of the dataset to be used
+data(Salaries, package = "carData")
+
+df <- Salaries %>%
+  filter(rank == "AsstProf") %>%
+  group_by(sex) %>%
+  summarize(
+    n = n(),
+    mean = mean(salary),
+    sd = sd(salary),
+    se = sd / sqrt(n),
+    ci = qt(0.975, df = n - 1) * se
+  )
+
+df
+```
+
+Now let us plot the data:
+
+```{r}
+# Create a base plot
+p <- ggplot(df, aes(x = sex, y = mean, group = 1)) +
+  geom_point(size = 4) +
+  geom_line() +
+  labs(
+    title = "Mean salary differences by gender",
+    subtitle = "9-month academic salary, 2007–2008",
+    caption = paste(
+      "Source: Fox J. and Weisberg S. (2011)",
+      "An R Companion to Applied Regression,",
+      "Second Edition, Sage"
+    ),
+    x = "Gender",
+    y = "Salary"
+  ) +
+  scale_y_continuous(labels = scales::dollar)
+
+p
+```
+
+Great, now what if we plot the same data, but with the y-axis ranging from 77,000 to 82,000?
+
+```{r plot-narrow-y, fig.cap="Plot with limited range of Y"}
+# Using ggplot2's feature of "adding" and "subtracting" features!
+p + scale_y_continuous(limits = c(77000, 82000))
+```
+
+There now appears to be a very large gender difference! Now let us try to plot with the y-axis ranging from 0 to 125,000:
+
+```{r plot-wide-y, fig.cap="Plot with wider range of Y"}
+# Same as the above code snippet!
+p + scale_y_continuous(limits = c(0, 125000))
+```
+
+There doesn’t appear to be any gender difference! The goal of ethical data visualization is to represent findings with as little distortion as possible. This means choosing an appropriate range for the y-axis. Bar charts should almost always start at y = 0. For other charts, the limits really depend on subject matter knowledge of the expected range of values.
+
+### Plots with other scales
+
+Some data might look better if we plot them on a different y-axis scale! Let us look at the `airquality` dataset:
+
+```{r}
+# Setup of the new dataset we will be using
+ozone_summary <- airquality |>
+filter(!is.na(Ozone)) |>
+group_by(Month) |>
+summarise(
+mean = mean(Ozone),
+sd = sd(Ozone),
+n = n(),
+se = sd / sqrt(n),
+ci = qt(0.975, df = n - 1) * se
+)
+
+```
+
+```{r, fig.cap="Plot showing the difference between the normal and log scale"}
+# Using ggplot for the linear and log scale plots
+p_linear <- ggplot(ozone_summary, aes(x = factor(Month), y = mean)) +
+geom_col(fill = "grey70", width = 0.6) +
+geom_errorbar(
+aes(ymin = mean - ci, ymax = mean + ci),
+width = 0.1
+) +
+labs(
+title = "Mean ozone concentration by month",
+subtitle = "Linear scale: comparisons reflect absolute differences",
+x = NULL,
+y = "Ozone concentration"
+) +
+theme_minimal()
+
+p_log <- ggplot(ozone_summary, aes(x = factor(Month), y = mean)) +
+geom_col(fill = "grey70", width = 0.6) +
+geom_errorbar(
+aes(ymin = mean - ci, ymax = mean + ci),
+width = 0.1
+) +
+scale_y_log10() +
+labs(
+subtitle = "Log scale: equal distances represent equal ratios (percentage changes)",
+x = "Month",
+y = "Ozone concentration (log scale)"
+) +
+theme_minimal()
+
+# Combining the two plots into one through the patchwork package
+p_linear / p_log
+```
+
+The upper panel uses a linear scale, where visual differences correspond to absolute changes in ozone concentration. The lower panel uses a logarithmic scale, where equal distances represent equal ratios rather than equal differences. For this right-skewed data, the log scale facilitates comparison in relative terms and reduces the dominance of large values.
+
+## Further Resources
+
+If you would like to learn more about `ggplot2` there are several good sources included in the ggplot2 page!
+
+If you would like to learn more about data visualization in general, here are some useful resources:
+
+-   Scott Berinato’s Harvard Business Review article *Visualizations that really work* <https://hbr.org/2016/06/visualizations-that-really-work>
+-   Wall Street Journal’s guide to information graphics: *The dos and don’ts of presenting data, facts and figures* (Wong 2010)
+-   *A Practical Guide to Graphics Reporting: Information graphics for print, web & broadcast* (George-Palilonis 2017)
+-   *Beautiful Data: The stories behind elegant data solutions* (Hammerbacher and Jeff 2009)
+-   *The Truthful Art: Data, charts, and maps for communication* (Cairo 2016)
+-   The Information is Beautiful website: <https://informationisbeautiful.net>
+
+The best graphs are rarely created on the first attempt. Experiment until you have a visualization that clarifies the data and helps communicate a meaningful story. And have fun!

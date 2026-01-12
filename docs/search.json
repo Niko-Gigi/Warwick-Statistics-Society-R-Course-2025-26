@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Warwick Statistics Society R Course 2024-2025",
+    "title": "Warwick Statistics Society R Course 2025-2026",
     "section": "",
-    "text": "R is a very popular coding language, primarily used by statisticians around the world. As such, it is important for new statisticians (or those who will require substantial statistics in their degrees/jobs) to get to grips with the language. This website and the attached Github aim to cover the key steps from first lines of code after you have installed R, to how to fit linear models and perform Explanatory Data Analysis (EDA).\nThis Github was created for the Warwick Statistics Society’s R course. It accompanies the 2 core Warwick R modules: ST117 Introduction to Statistical Modelling and ST221 Linear Statistical Modelling. While I (Maria-Louiza) have compiled this Github, it builds off of the work by previous R course coordinators: Neel Shah, Mia Carla Chapman, and Viresh Shah.\nIf you find any corrections, or believe a section would benefit from more explanations, please do reach out and email me 1.\n\n\n\nQR code for website",
+    "text": "R is a very popular coding language, primarily used by statisticians around the world. As such, it is important for new statisticians (or those who will require substantial statistics in their degrees/jobs) to get to grips with the language. This website and the attached Github aim to cover the key steps from first lines of code after you have installed R, to how to fit linear models and perform Explanatory Data Analysis (EDA).\nThis Github was created for the Warwick Statistics Society’s R course. It accompanies the 2 core Warwick R modules: ST117 Introduction to Statistical Modelling and ST221 Linear Statistical Modelling. While I (Nikoloz) have revamped this R course, the foundational work was set by my predecessor, Maria-Louiza Van den Bergh, who originally compiled this Github. The course builds off of the work by previous R Course Coordinators: Neel Shah, Mia Carla Chapman, and Viresh Shah.\nIf you find any corrections, or believe a section would benefit from more explanations, please do reach out and email me 1.\n\n\n\nQR code for website",
     "crumbs": [
       "Home",
       "Welcome"
@@ -41,9 +41,9 @@
   {
     "objectID": "index.html#footnotes",
     "href": "index.html#footnotes",
-    "title": "Warwick Statistics Society R Course 2024-2025",
+    "title": "Warwick Statistics Society R Course 2025-2026",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nMy University of Warwick email is: maria-louiza.van-den-bergh@warwick.ac.uk.↩︎",
+    "text": "Footnotes\n\n\nMy University of Warwick email is: niko.gigiberia@warwick.ac.uk.↩︎",
     "crumbs": [
       "Home",
       "Welcome"
@@ -466,7 +466,7 @@
     "href": "cheatsheets.html",
     "title": "Cheatsheets",
     "section": "",
-    "text": "There is a lot to learn to create beautiful and informative reports using R. In this section, there are several cheatsheets that will hopefully make this learning curve a little easier.\n(If the files are not loading, there also available on the GitHub under the Cheatsheets folder link.)\n\nLatex\nLatex is a language that allows for additional control over figures, tables and maths. The following is a cheatsheet created by Winston Chang, with the original version available here.\n\n\n\nggplot2\nA very popular package for figures is the ggplot2 package. It can be installed and loaded with the following code (although it is included in the tidyverse package).\n\n\nCode\n```{r}\n###| ggplot2 package\n\n#install.packages(\"ggplot2\")\nlibrary(ggplot2)\n```"
+    "text": "There is a lot to learn to create beautiful and informative reports using R. In this section, there are several cheatsheets that will hopefully make this learning curve a little easier.\n(If the files are not loading, there also available on the GitHub under the Cheatsheets folder link.)\n\nLatex\nLatex is a language that allows for additional control over figures, tables and maths. The following is a cheatsheet created by Winston Chang, with the original version available here.\n\n\n\nggplot2\nA very popular package for figures is the ggplot2 package. It can be installed and loaded with the following code (although it is included in the tidyverse package).\n\n\nCode\n```{r}\n###| ggplot2 package\n\n#install.packages(\"ggplot2\")\nlibrary(ggplot2)\n```\n\n\nWarning: package 'ggplot2' was built under R version 4.4.3"
   },
   {
     "objectID": "Modelling/What is a linear model.html",
@@ -753,5 +753,1385 @@
     "title": "Data",
     "section": "coursework.csv",
     "text": "coursework.csv\n\n\nCode\n```{r}\n###| coursework data\ncoursework &lt;- data.frame(\"cw\" = c(5,5,10,12,14,16),\n                         \"exam\" = c(38,45,69,65,75,96))\n```"
+  },
+  {
+    "objectID": "Mathematics to Code/Mathematics to Code NewtonRaph Example.html",
+    "href": "Mathematics to Code/Mathematics to Code NewtonRaph Example.html",
+    "title": "Newton–Raphson Method — Translating Math into Code",
+    "section": "",
+    "text": "Mathematical Intuition\nWe want to find a root of (f(x)=0).\nWe use the tangent line at (x_n) to estimate a better guess:\n[ x_{n+1} = x_n - . ]\nRepeat until ( |x_{n+1} - x_n| ) is small.\n\n\n\nMath → Algorithm → Code Mapping\n\n\n\nMath concept\nR translation\n\n\n\n\nupdate rule\nx_new &lt;- x - f(x)/df(x)\n\n\nderivative\nfunction df(x)\n\n\nconvergence\nabs(x_new - x) &lt; tol\n\n\n\n\n\n\nCode\n```{mermaid}\nflowchart TD\n  Start([Start: choose x0, tol, max_iter])\n  Compute[\"x_next = x - f(x)/f'(x)\"]\n  Check{|x_next - x| &lt; tol?|}\n  Accept([Return x_next])\n  Update[\"x &lt;- x_next\"]\n  Start --&gt; Compute --&gt; Check\n  Check -- Yes --&gt; Accept\n  Check -- No --&gt; Update --&gt; Compute\n```\n\n\n\n\n\nflowchart TD\n  Start([Start: choose x0, tol, max_iter])\n  Compute[\"x_next = x - f(x)/f'(x)\"]\n  Check{|x_next - x| &lt; tol?|}\n  Accept([Return x_next])\n  Update[\"x &lt;- x_next\"]\n  Start --&gt; Compute --&gt; Check\n  Check -- Yes --&gt; Accept\n  Check -- No --&gt; Update --&gt; Compute\n\n\n\n\n\n\n\n\n\nImplementation in R\n\n\nCode\n```{r}\nnewton &lt;- function(f, df, x0, tol = 1e-10, max_iter = 100) {\n  x &lt;- x0\n  for (i in 1:max_iter) {\n    fx &lt;- f(x)\n    dfx &lt;- df(x)\n    if (dfx == 0) stop(\"Derivative is zero; choose a new x0\")\n    x_new &lt;- x - fx / dfx\n    if (abs(x_new - x) &lt; tol) return(x_new)\n    x &lt;- x_new\n  }\n  stop(\"Did not converge\")\n}\n\n# Examples\nf1 &lt;- function(x) x^2 - 2\ndf1 &lt;- function(x) 2*x\nnewton(f1, df1, x0 = 1)\n```\n\n\n[1] 1.414214\n\n\n\n\n\nReflection\nThe Newton–Raphson method shows how an iterative analytic idea (tangent approximation) translates into a computational fixed-point loop.",
+    "crumbs": [
+      "Home",
+      "Mathematics to R",
+      "Newton–Raphson Method — Translating Math into Code"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/advice.html",
+    "href": "Data Visualisation/advice.html",
+    "title": "Best Practices",
+    "section": "",
+    "text": "In this section, we go through what makes a good data visualization. These come from the lecture material for ST231, ST237, ST346, and ST404."
+  },
+  {
+    "objectID": "Data Visualisation/advice.html#labeling",
+    "href": "Data Visualisation/advice.html#labeling",
+    "title": "Best Practices",
+    "section": "Labeling",
+    "text": "Labeling\nEverything on your graph should be clearly labeled. In general, a graph contains:\n\ntitle — a clear short title letting the reader know what they’re looking at\nExample: Relationship between experience and wages by gender\ncaption — a short description of the graph and, where necessary, the source of the data\nExample: A star plot showing the different characteristics of reviewed wines. Source: https://www.kaggle.com/datasets/zynicide/wine-reviews/data\naxis labels — clear labels for the x and y axes\n\nshort but descriptive\ninclude units of measurement\nExamples:\n\nTree diameter (meters)\nSurvival time (days)\nPatient age (years)\n\n\nlegend — short informative title and labels\nExample: You can do this with the legend() function in R before or after the plot() you with to add a legend to\nlines and bars — label any trend lines, annotation lines, and error bars\n\nEssentially, the reader should be able to understand your graph without having to wade through paragraphs of text. When in doubt, show your data visualization to someone unfamiliar with your assignment and ask them if anything is unclear."
+  },
+  {
+    "objectID": "Data Visualisation/advice.html#keep-it-simple",
+    "href": "Data Visualisation/advice.html#keep-it-simple",
+    "title": "Best Practices",
+    "section": "Keep it Simple!",
+    "text": "Keep it Simple!\nIn data science, the goal of data visualization is to communicate information. Anything that doesn’t support this goal should be reduced or eliminated entirely.\n\nChart Junk — visual elements of charts that aren’t necessary to comprehend the information represented by the chart or that distract from this information.\n\nLet us now go through an example of chart junk.\n\nGraph with chart junk\n\n\nCode\n```{r}\n# Import relevant libraries\nlibrary(ggplot2)\n```\n\n\nWarning: package 'ggplot2' was built under R version 4.4.3\n\n\nCode\n```{r}\nlibrary(dplyr)\n```\n\n\nWarning: package 'dplyr' was built under R version 4.4.3\n\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nCode\n```{r}\n# Setup of the dataframe for plotting use\nmpg_summary &lt;- mtcars |&gt;\nmutate(cyl = factor(cyl)) |&gt;\ngroup_by(cyl) |&gt;\nsummarise(mean_mpg = mean(mpg))\n```\n\n\n\n\nCode\n```{r Graph with chart junk, fig.cap=\"Graph with chart junk from the mtcars dataset\"}\n# LOTS of plotting elements from ggplot2, see the page about ggplot2 for more background on these\nggplot(mpg_summary, aes(x = cyl, y = mean_mpg, fill = cyl)) +\ngeom_col(color = \"black\", width = 0.8) +\nlabs(\ntitle = \"Different Mean Miles Per Gallon for Cars with Different Numbers of Cylinders\",\nx = \"Number of Cylinders\",\ny = \"Mean Miles Per Gallon\",\nfill = \"Cylinder Groups\"\n) +\ntheme(\npanel.background = element_rect(fill = \"lightblue\"),\npanel.border = element_rect(color = \"darkblue\", fill = NA, linewidth = 2),\npanel.grid.major = element_line(color = \"black\"),\npanel.grid.minor = element_line(color = \"black\"),\nplot.title = element_text(size = 16, face = \"bold\")\n)\n```\n\n\n\n\n\nGraph with chart junk from the mtcars dataset\n\n\n\n\nIf the goal is to compare the fuel efficiency of cars with different numbers of cylinders, much of this visualization is unnecessary and distracts from the task:\n\nColored background and thick border draw attention away from the bars\nHeavy black grid lines dominate the data\nColor fill adds a legend but doesn’t encode new information\nWordy title (“different”, “numbers of”) adds clutter\nThe reader must constantly look back and forth between the bars and y-axis\n\nQUESTION FOR THE READER\nLet’s now try to clean up. But before we do, how would YOU clean this up?\n\n\nGraph with chart junk removed\n\n\nCode\n```{r Graph with chart junk removed, fig.cap=\"Graph with chart junk removed from the mtcars dataset\"}\n# A better plot using ggplot2 again\nggplot(mpg_summary, aes(x = cyl, y = mean_mpg)) +\ngeom_col(fill = \"grey70\", width = 0.6) +\ngeom_col(\ndata = filter(mpg_summary, cyl == \"8\"),\nfill = \"#D55E00\",\nwidth = 0.6\n) +\ngeom_text(\naes(label = round(mean_mpg, 1)),\nvjust = -0.5,\nsize = 4\n) +\nlabs(\ntitle = \"Average fuel efficiency by number of cylinders\",\ny = \"Miles per gallon\",\nx = NULL\n) +\ntheme_minimal() +\ntheme(\npanel.grid.major.x = element_blank(),\npanel.grid.minor = element_blank()\n)\n```\n\n\n\n\n\nGraph with chart junk removed from the mtcars dataset\n\n\n\n\nThe chart junk has been removed. In addition:\n\nX-axis label removed (cylinder categories are obvious)\nY-axis label made more informative\nthe title has been simplified\nOne bar (8 cylinders) highlighted to aid comparison\nValues added directly to bars, reducing reliance on the axis\nGrid lines softened or removed to avoid distraction\n\nI may or may not have gone a bit far leaving out the x-axis label. It’s a fine line, knowing when to stop simplifying.\nIn general, you want to reduce chart junk to a minimum. In other words, more signal, less noise. At the end of the day, the data visualisation is an art specific to every data scientist, but there is good and bad art!"
+  },
+  {
+    "objectID": "Data Visualisation/advice.html#color-choice",
+    "href": "Data Visualisation/advice.html#color-choice",
+    "title": "Best Practices",
+    "section": "Color choice",
+    "text": "Color choice\nColor choice is about more than aesthetics. Choose colors that help convey the information contained in the plot.\nThe article How to Choose Colors for Data Visualizations by Mike Yi\n(link) is a great place to start.\nBasically, think about selecting among sequential, diverging, and qualitative color schemes:\n\nSequential — for plotting a quantitative variable that goes from low to high\nDiverging — for contrasting the extremes (low, medium, and high) of a quantitative variable\nQualitative — for distinguishing among the levels of a categorical variable\n\nThe article above can help you to choose among these schemes.\nOther things to keep in mind:\n\nMake sure that text is legible — avoid dark text on dark backgrounds, light text on light backgrounds, and colors that clash in a discordant fashion (i.e., they hurt to look at!)\nAvoid combinations of red and green — it can be difficult for a colorblind audience to distinguish these colors"
+  },
+  {
+    "objectID": "Data Visualisation/advice.html#y-axis-scaling",
+    "href": "Data Visualisation/advice.html#y-axis-scaling",
+    "title": "Best Practices",
+    "section": "y-Axis scaling",
+    "text": "y-Axis scaling\nThis is a big one. You can make an effect seem massive or insignificant depending on how you scale a numeric y-axis.\nConsider the following example comparing the 9-month salaries of male and female assistant professors. The data come from the Academic Salaries dataset.\n\n\nCode\n```{r load-salary-data, message=FALSE, warning=FALSE}\n# More library imports\nlibrary(carData)\nlibrary(scales)\nlibrary(patchwork)\n\n# Setup of the dataset to be used\ndata(Salaries, package = \"carData\")\n\ndf &lt;- Salaries %&gt;%\n  filter(rank == \"AsstProf\") %&gt;%\n  group_by(sex) %&gt;%\n  summarize(\n    n = n(),\n    mean = mean(salary),\n    sd = sd(salary),\n    se = sd / sqrt(n),\n    ci = qt(0.975, df = n - 1) * se\n  )\n\ndf\n```\n\n\n# A tibble: 2 × 6\n  sex        n   mean    sd    se    ci\n  &lt;fct&gt;  &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Female    11 78050. 9372. 2826. 6296.\n2 Male      56 81311. 7901. 1056. 2116.\n\n\nNow let us plot the data:\n\n\nCode\n```{r}\n# Create a base plot\np &lt;- ggplot(df, aes(x = sex, y = mean, group = 1)) +\n  geom_point(size = 4) +\n  geom_line() +\n  labs(\n    title = \"Mean salary differences by gender\",\n    subtitle = \"9-month academic salary, 2007–2008\",\n    caption = paste(\n      \"Source: Fox J. and Weisberg S. (2011)\",\n      \"An R Companion to Applied Regression,\",\n      \"Second Edition, Sage\"\n    ),\n    x = \"Gender\",\n    y = \"Salary\"\n  ) +\n  scale_y_continuous(labels = scales::dollar)\n\np\n```\n\n\n\n\n\n\n\n\n\nGreat, now what if we plot the same data, but with the y-axis ranging from 77,000 to 82,000?\n\n\nCode\n```{r plot-narrow-y, fig.cap=\"Plot with limited range of Y\"}\n# Using ggplot2's feature of \"adding\" and \"subtracting\" features!\np + scale_y_continuous(limits = c(77000, 82000))\n```\n\n\nScale for y is already present.\nAdding another scale for y, which will replace the existing scale.\n\n\n\n\n\nPlot with limited range of Y\n\n\n\n\nThere now appears to be a very large gender difference! Now let us try to plot with the y-axis ranging from 0 to 125,000:\n\n\nCode\n```{r plot-wide-y, fig.cap=\"Plot with wider range of Y\"}\n# Same as the above code snippet!\np + scale_y_continuous(limits = c(0, 125000))\n```\n\n\nScale for y is already present.\nAdding another scale for y, which will replace the existing scale.\n\n\n\n\n\nPlot with wider range of Y\n\n\n\n\nThere doesn’t appear to be any gender difference! The goal of ethical data visualization is to represent findings with as little distortion as possible. This means choosing an appropriate range for the y-axis. Bar charts should almost always start at y = 0. For other charts, the limits really depend on subject matter knowledge of the expected range of values.\n\nPlots with other scales\nSome data might look better if we plot them on a different y-axis scale! Let us look at the airquality dataset:\n\n\nCode\n```{r}\n# Setup of the new dataset we will be using\nozone_summary &lt;- airquality |&gt;\nfilter(!is.na(Ozone)) |&gt;\ngroup_by(Month) |&gt;\nsummarise(\nmean = mean(Ozone),\nsd = sd(Ozone),\nn = n(),\nse = sd / sqrt(n),\nci = qt(0.975, df = n - 1) * se\n)\n```\n\n\n\n\nCode\n```{r, fig.cap=\"Plot showing the difference between the normal and log scale\"}\n# Using ggplot for the linear and log scale plots\np_linear &lt;- ggplot(ozone_summary, aes(x = factor(Month), y = mean)) +\ngeom_col(fill = \"grey70\", width = 0.6) +\ngeom_errorbar(\naes(ymin = mean - ci, ymax = mean + ci),\nwidth = 0.1\n) +\nlabs(\ntitle = \"Mean ozone concentration by month\",\nsubtitle = \"Linear scale: comparisons reflect absolute differences\",\nx = NULL,\ny = \"Ozone concentration\"\n) +\ntheme_minimal()\n\np_log &lt;- ggplot(ozone_summary, aes(x = factor(Month), y = mean)) +\ngeom_col(fill = \"grey70\", width = 0.6) +\ngeom_errorbar(\naes(ymin = mean - ci, ymax = mean + ci),\nwidth = 0.1\n) +\nscale_y_log10() +\nlabs(\nsubtitle = \"Log scale: equal distances represent equal ratios (percentage changes)\",\nx = \"Month\",\ny = \"Ozone concentration (log scale)\"\n) +\ntheme_minimal()\n\n# Combining the two plots into one through the patchwork package\np_linear / p_log\n```\n\n\n\n\n\nPlot showing the difference between the normal and log scale\n\n\n\n\nThe upper panel uses a linear scale, where visual differences correspond to absolute changes in ozone concentration. The lower panel uses a logarithmic scale, where equal distances represent equal ratios rather than equal differences. For this right-skewed data, the log scale facilitates comparison in relative terms and reduces the dominance of large values."
+  },
+  {
+    "objectID": "Data Visualisation/advice.html#further-resources",
+    "href": "Data Visualisation/advice.html#further-resources",
+    "title": "Best Practices",
+    "section": "Further Resources",
+    "text": "Further Resources\nIf you would like to learn more about ggplot2 there are several good sources included in the ggplot2 page!\nIf you would like to learn more about data visualization in general, here are some useful resources:\n\nScott Berinato’s Harvard Business Review article Visualizations that really work https://hbr.org/2016/06/visualizations-that-really-work\nWall Street Journal’s guide to information graphics: The dos and don’ts of presenting data, facts and figures (Wong 2010)\nA Practical Guide to Graphics Reporting: Information graphics for print, web & broadcast (George-Palilonis 2017)\nBeautiful Data: The stories behind elegant data solutions (Hammerbacher and Jeff 2009)\nThe Truthful Art: Data, charts, and maps for communication (Cairo 2016)\nThe Information is Beautiful website: https://informationisbeautiful.net\n\nThe best graphs are rarely created on the first attempt. Experiment until you have a visualization that clarifies the data and helps communicate a meaningful story. And have fun!"
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html",
+    "href": "Data Visualisation/baseR and ggplot.html",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "",
+    "text": "This section offers a primer on how the ggplot2 package operates. Unlike many other plotting systems, ggplot2 is based on the “Grammar of Graphics,” which allows you to build graphs layer by layer. We will construct a complex visualization starting from a blank canvas and adding elements—like data points, trend lines, and labels—one step at a time.\nLet’s dive in with an example.",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html",
+    "href": "Data Visualisation/importing data.html",
+    "title": "Data Import and Preparation in R",
+    "section": "",
+    "text": "Before you can visualize or analyze data, you need to get it into R and prepare it properly. This step is crucial—even the most sophisticated analysis will fail if your data isn’t prepared correctly. Think of it like preparing ingredients before cooking: skipping or rushing this step will affect everything that follows.\nIn this guide, we’ll learn how to import data from various file formats and clean it for analysis. We’ll use the palmerpenguins dataset for most examples, which contains measurements of penguins from Antarctica.",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Data Import and Preparation in R"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#text-and-csv-files",
+    "href": "Data Visualisation/importing data.html#text-and-csv-files",
+    "title": "cars dataset",
+    "section": "Text and CSV files",
+    "text": "Text and CSV files\nThe readr package provides functions for importing delimited text files into R data frames.\n\n\nCode\n```{r,  eval=FALSE}\nlibrary(readr)\n\n# import data from a comma delimited file\nSalaries &lt;- read_csv(\"salaries.csv\")\n\n# import data from a tab delimited file\nSalaries &lt;- read_tsv(\"salaries.txt\")\n```\n\n\nThese function assume that the first line of data contains the variable names, values are separated by commas or tabs respectively, and that missing data are represented by blanks. For example, the first few lines of the comma delimited file looks like this.\n“rank”,“discipline”,“yrs.since.phd”,“yrs.service”,“sex”,“salary” “Prof”,“B”,19,18,“Male”,139750 “Prof”,“B”,20,16,“Male”,173200 “AsstProf”,“B”,4,3,“Male”,79750 “Prof”,“B”,45,39,“Male”,115000 “Prof”,“B”,40,41,“Male”,141500 “AssocProf”,“B”,6,6,“Male”,97000\nOptions allow you to alter these assumptions. See the ?read_delim for more details. https://www.rdocumentation.org/packages/readr/versions/0.1.1/topics/read_delim"
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#other-file-types",
+    "href": "Data Visualisation/importing data.html#other-file-types",
+    "title": "cars dataset",
+    "section": "Other File Types",
+    "text": "Other File Types\nThe readxl package can import data from Excel workbooks. Both .xls and .xlsx formats are supported.\n\n\nCode\n```{r,  eval=FALSE}\nlibrary(readxl)\n\n# import data from an Excel workbook\nSalaries &lt;- read_excel(\"salaries.xlsx\", sheet=1)\n```\n\n\nSince workbooks can have more than one worksheet, you can specify the one you want with the sheet option. The default is sheet=1.\nThe haven package provides functions for importing data from a variety of statistical packages without needing to have the packages themselves installed on your machine.\n\n\nCode\n```{r,  eval=FALSE}\nlibrary(haven)\n\n# import data from Stata\nSalaries &lt;- read_dta(\"salaries.dta\")\n\n# import data from SPSS\nSalaries &lt;- read_sav(\"salaries.sav\")\n\n# import data from SAS\nSalaries &lt;- read_sas(\"salaries.sas7bdat\")\n```"
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#select-function",
+    "href": "Data Visualisation/importing data.html#select-function",
+    "title": "cars dataset",
+    "section": "select function",
+    "text": "select function\nThe select function allows you to limit your dataset to specified variables (columns).\n\n\nCode\n```{r}\nlibrary(dplyr)\n```\n\n\nWarning: package 'dplyr' was built under R version 4.4.3\n\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nCode\n```{r}\n# keep the variables name, height, and gender\nnewdata &lt;- select(starwars, name, height, gender)\n\nhead(newdata)\n\n# keep the variables name and all variables \n# between mass and species inclusive\nnewdata &lt;- select(starwars, name, mass:species)\n\nhead(newdata)\n\n# keep all variables except birth_year and gender\nnewdata &lt;- select(starwars, -birth_year, -gender)\n\nhead(newdata)\n```\n\n\n# A tibble: 6 × 3\n  name           height gender   \n  &lt;chr&gt;           &lt;int&gt; &lt;chr&gt;    \n1 Luke Skywalker    172 masculine\n2 C-3PO             167 masculine\n3 R2-D2              96 masculine\n4 Darth Vader       202 masculine\n5 Leia Organa       150 feminine \n6 Owen Lars         178 masculine\n# A tibble: 6 × 10\n  name    mass hair_color skin_color eye_color birth_year sex   gender homeworld\n  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    \n1 Luke …    77 blond      fair       blue            19   male  mascu… Tatooine \n2 C-3PO     75 &lt;NA&gt;       gold       yellow         112   none  mascu… Tatooine \n3 R2-D2     32 &lt;NA&gt;       white, bl… red             33   none  mascu… Naboo    \n4 Darth…   136 none       white      yellow          41.9 male  mascu… Tatooine \n5 Leia …    49 brown      light      brown           19   fema… femin… Alderaan \n6 Owen …   120 brown, gr… light      blue            52   male  mascu… Tatooine \n# ℹ 1 more variable: species &lt;chr&gt;\n# A tibble: 6 × 12\n  name      height  mass hair_color skin_color eye_color sex   homeworld species\n  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  \n1 Luke Sky…    172    77 blond      fair       blue      male  Tatooine  Human  \n2 C-3PO        167    75 &lt;NA&gt;       gold       yellow    none  Tatooine  Droid  \n3 R2-D2         96    32 &lt;NA&gt;       white, bl… red       none  Naboo     Droid  \n4 Darth Va…    202   136 none       white      yellow    male  Tatooine  Human  \n5 Leia Org…    150    49 brown      light      brown     fema… Alderaan  Human  \n6 Owen Lars    178   120 brown, gr… light      blue      male  Tatooine  Human  \n# ℹ 3 more variables: films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;"
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#selecting-observations",
+    "href": "Data Visualisation/importing data.html#selecting-observations",
+    "title": "cars dataset",
+    "section": "Selecting Observations",
+    "text": "Selecting Observations\nThe filter function allows you to limit your dataset to observations (rows) meeting a specific criteria. Multiple criteria can be combined with the & (AND) and | (OR) symbols.\n\n\nCode\n```{r}\n# select females\nnewdata &lt;- filter(starwars, \n                  sex == \"female\")\n\nhead(newdata)\n\n# select females that are from Alderaan\nnewdata &lt;- filter(starwars, \n                  sex == \"female\" & \n                  homeworld == \"Alderaan\")\n\nhead(newdata)\n\n# select individuals that are from Alderaan, Coruscant, or Endor\nnewdata &lt;- filter(starwars, \n                  homeworld == \"Alderaan\" | \n                  homeworld == \"Coruscant\" | \n                  homeworld == \"Endor\")\n\nhead(newdata)\n\n# this can be written more succinctly as\nnewdata &lt;- filter(starwars, \n                  homeworld %in% \n                    c(\"Alderaan\", \"Coruscant\", \"Endor\"))\n\nhead(newdata)\n```\n\n\n# A tibble: 6 × 14\n  name      height  mass hair_color skin_color eye_color birth_year sex   gender\n  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n1 Leia Org…    150    49 brown      light      brown             19 fema… femin…\n2 Beru Whi…    165    75 brown      light      blue              47 fema… femin…\n3 Mon Moth…    150    NA auburn     fair       blue              48 fema… femin…\n4 Padmé Am…    185    45 brown      light      brown             46 fema… femin…\n5 Shmi Sky…    163    NA black      fair       brown             72 fema… femin…\n6 Ayla Sec…    178    55 none       blue       hazel             48 fema… femin…\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n# A tibble: 1 × 14\n  name      height  mass hair_color skin_color eye_color birth_year sex   gender\n  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n1 Leia Org…    150    49 brown      light      brown             19 fema… femin…\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n# A tibble: 6 × 14\n  name      height  mass hair_color skin_color eye_color birth_year sex   gender\n  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n1 Leia Org…    150    49 brown      light      brown             19 fema… femin…\n2 Wicket S…     88    20 brown      brown      brown              8 male  mascu…\n3 Finis Va…    170    NA blond      fair       blue              91 male  mascu…\n4 Adi Gall…    184    50 none       dark       blue              NA fema… femin…\n5 Bail Pre…    191    NA black      tan        brown             67 male  mascu…\n6 Jocasta …    167    NA white      fair       blue              NA fema… femin…\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n# A tibble: 6 × 14\n  name      height  mass hair_color skin_color eye_color birth_year sex   gender\n  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n1 Leia Org…    150    49 brown      light      brown             19 fema… femin…\n2 Wicket S…     88    20 brown      brown      brown              8 male  mascu…\n3 Finis Va…    170    NA blond      fair       blue              91 male  mascu…\n4 Adi Gall…    184    50 none       dark       blue              NA fema… femin…\n5 Bail Pre…    191    NA black      tan        brown             67 male  mascu…\n6 Jocasta …    167    NA white      fair       blue              NA fema… femin…\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;"
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#creatingrecoding-variables",
+    "href": "Data Visualisation/importing data.html#creatingrecoding-variables",
+    "title": "cars dataset",
+    "section": "Creating/Recoding Variables",
+    "text": "Creating/Recoding Variables\nThe mutate function allows you to create new variables or transform existing ones.\n\n\nCode\n```{r}\n# convert height in centimeters to inches, \n# and mass in kilograms to pounds\nnewdata &lt;- mutate(starwars, \n                  height = height * 0.394,\n                  mass   = mass   * 2.205)\n```\n\n\nThe ifelse function (part of base R) can be used for recoding data. The format is ifelse(test, return if TRUE, return if FALSE).\n\n\nCode\n```{r}\n# if height is greater than 180 then heightcat = \"tall\", \n# otherwise heightcat = \"short\"\n\nnewdata &lt;- mutate(starwars, \n                  heightcat = ifelse(height &gt; 180, \n                                     \"tall\", \n                                     \"short\"))\n                  \n# convert any eye color that is not black, blue or brown, to other.\nnewdata &lt;- mutate(starwars, \n                  eye_color = ifelse(eye_color %in% \n                                     c(\"black\", \"blue\", \"brown\"),\n                                     eye_color,\n                                     \"other\"))\n                  \n# set heights greater than 200 or less than 75 to missing\nnewdata &lt;- mutate(starwars, \n                  height = ifelse(height &lt; 75 | height &gt; 200,\n                                     NA,\n                                     height))\n```\n\n\n2.2.4 Summarizing data\nThe summarize function can be used to reduce multiple values down to a single value (such as a mean). It is often used in conjunction with the by_group function, to calculate statistics by group. In the code below, the na.rm=TRUE option is used to drop missing values before calculating the means.\nlibrary(dplyr)"
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#a-tibble-1-2",
+    "href": "Data Visualisation/importing data.html#a-tibble-1-2",
+    "title": "cars dataset",
+    "section": "# A tibble: 1 × 2",
+    "text": "# A tibble: 1 × 2"
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#mean_ht-mean_mass",
+    "href": "Data Visualisation/importing data.html#mean_ht-mean_mass",
+    "title": "cars dataset",
+    "section": "mean_ht mean_mass",
+    "text": "mean_ht mean_mass"
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#section-1",
+    "href": "Data Visualisation/importing data.html#section-1",
+    "title": "cars dataset",
+    "section": "1 175. 97.3",
+    "text": "1 175. 97.3"
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#a-tibble-3-3",
+    "href": "Data Visualisation/importing data.html#a-tibble-3-3",
+    "title": "cars dataset",
+    "section": "# A tibble: 3 × 3",
+    "text": "# A tibble: 3 × 3"
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#gender-mean_ht-mean_wt",
+    "href": "Data Visualisation/importing data.html#gender-mean_ht-mean_wt",
+    "title": "cars dataset",
+    "section": "gender mean_ht mean_wt",
+    "text": "gender mean_ht mean_wt"
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#feminine-167.-54.7",
+    "href": "Data Visualisation/importing data.html#feminine-167.-54.7",
+    "title": "cars dataset",
+    "section": "1 feminine 167. 54.7",
+    "text": "1 feminine 167. 54.7"
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#masculine-177.-107.",
+    "href": "Data Visualisation/importing data.html#masculine-177.-107.",
+    "title": "cars dataset",
+    "section": "2 masculine 177. 107.",
+    "text": "2 masculine 177. 107."
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#section-3",
+    "href": "Data Visualisation/importing data.html#section-3",
+    "title": "cars dataset",
+    "section": "3  175 81",
+    "text": "3  175 81\nGraphs are often created from summarized data, rather than from the original observations. You will see several examples in Chapter 4. 2.2.5 Using pipes\nPackages like dplyr and tidyr allow you to write your code in a compact format using the pipe %&gt;% operator. Here is an example.\nlibrary(dplyr)"
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#data.frame-3-obs.-of-1-variable",
+    "href": "Data Visualisation/importing data.html#data.frame-3-obs.-of-1-variable",
+    "title": "cars dataset",
+    "section": "‘data.frame’: 3 obs. of 1 variable:",
+    "text": "‘data.frame’: 3 obs. of 1 variable:"
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#dob-chr-11101963-jan-23-91-1212001",
+    "href": "Data Visualisation/importing data.html#dob-chr-11101963-jan-23-91-1212001",
+    "title": "cars dataset",
+    "section": "$ dob: chr “11/10/1963” “Jan-23-91” “12:1:2001”",
+    "text": "$ dob: chr “11/10/1963” “Jan-23-91” “12:1:2001”\nThere are many ways to convert character variables to Date variables. One of they simplest is to use the functions provided in the lubridate package. These include ymd, dmy, and mdy for importing year-month-day, day-month-year, and month-day-year formats respectively.\nlibrary(lubridate) # convert dob from character to date df\\(dob &lt;- mdy(df\\)dob) str(df)"
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#data.frame-3-obs.-of-1-variable-1",
+    "href": "Data Visualisation/importing data.html#data.frame-3-obs.-of-1-variable-1",
+    "title": "cars dataset",
+    "section": "‘data.frame’: 3 obs. of 1 variable:",
+    "text": "‘data.frame’: 3 obs. of 1 variable:"
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#dob-date-format-1963-11-10-1991-01-23",
+    "href": "Data Visualisation/importing data.html#dob-date-format-1963-11-10-1991-01-23",
+    "title": "cars dataset",
+    "section": "$ dob: Date, format: “1963-11-10” “1991-01-23” …",
+    "text": "$ dob: Date, format: “1963-11-10” “1991-01-23” …\nThe values are recorded internally as the number of days since January 1, 1970. Now that the variable is a Date variable, you can perform date arithmetic (how old are they now), extract date elements (month, day, year), and reformat the values (e.g., October 11, 1963). Date variables are important for time-dependent graphs (Chapter 8). 2.2.7 Reshaping data\nSome graphs require the data to be in wide format, while some graphs require the data to be in long format. An example of wide data is given in Table 2.1. Table 2.1: Wide data id name sex height weight 01 Bill Male 70 180 02 Bob Male 72 195 03 Mary Female 62 130\nYou can convert a wide dataset to a long dataset (Table 2.2) using"
+  },
+  {
+    "objectID": "Report Writing/stylereport.html",
+    "href": "Report Writing/stylereport.html",
+    "title": "Warwick Statistics Society R Course 2024-2025",
+    "section": "",
+    "text": "4 Content Here are some guidelines. 1. The report must be self-contained: everything should either be stated ex- plicitly, be justified by a reference to some other source, or be common knowledge. In particular, the source of any data should be clearly indi- cated. 2. It is not usually sensible to describe everything that you did in detail. Indeed, if you modify your approach, there is no need to describe the earlier approach more than briefly. 5 Presentation Reports should be attractive and easy to find one’s way through. Hence, they should be neat, clean and tidy, and must be legible. It is advisable that you try to word-process the report– not a difficult thing to do on the School of Mathematics or other University PCs available to you using Word or Latex. 5.1 Figures, Plots, diagrams, etc. Tables, figures, graphs, and diagrams should be titled and numbered (and prefer- ably given a caption). Sections (which should have headings) and pages should 5 also be numbered. Headings should stand out (by being underlined or on a sepa- rate line, for example) and should never appear as the last line of a page. Think of a report as needing signposts, provided by the section numbers. Similarly, graphs need to be neatly drawn, carefully labelled and titled: scales should be chosen sensibly and the units indicated. Freehand graphs, carefully drawn, may be appropriate; a sketch graph with various amendments, and axes carelessly drawn, will never be. As far as possible, tables and diagrams should be placed in the text near to the passage referring to them. 5.2 Tables Tables need titles, numbering and captions, should be boxed in, and figures in columns should be aligned correctly, usually so that the decimal points fall in the same column. Rows and columns usually need labels or headings, and units must be stated in, or perhaps close to, the table. 5.3 Computer output Computer output needs some thought. For a student project, it may not be nec- essary to copy the results from the output so that they have the same appearance as the rest of the report; it should suffice if the output is edited appropriately first and then pasted onto the body of the report or otherwise attach it. A possibly helpful reference is Chapman & Mahon (1986). 6 Use of English It is very important that you think carefully about your use of English. The ob- ject of writing, as of speaking, is to communicate. Writing, in particular, requires very careful use of language, especially when abstract and difficult concepts (such as those involved in statistical modelling and analysis) are to be communicated. It is easy to read and understand English which is well written and follows the rules of good usage. However, as the quality of writing deteriorates, it becomes progressively more difficult for the reader to work out its intended meaning. Fi- nally it becomes impossible. While many project reports are written to a very high standard, many others contain much that is unintelligible. An obvious, and easily corrected, problem occurs when the author fails to use properly constructed sentences. (A good first test check here is to identify the verb in each sentence!) A much more insidious (and very frequent) problem occurs when the author un- consciously assumes that the reader is somehow following his/her quite unwritten train of thought. Thus the reader is presumed to know exactly what the author is talking about—for example, what variables are currently being considered, what is being held fixed, and what is being allowed to vary - when in fact none of this 6 has ever been stated. Attached to this document are some illustrative quotations, with commentary where appropriate, which have been taken from recent project reports. In most cases you will find that the sentences look just fine - until you try to decode the meaning. How should you attempt to improve the quality of your writing? It is important to understand that, like learning to drive, this is something you have to work at. No doubt an ability to write well comes more easily to some than to others, but everyone needs to put some effort into acquir- ing this skill, and anyone can improve if they do. Of course there are plenty of books on how to write well, but perhaps the most useful thing you can do is to read widely (books, articles in quality newspapers, etc ) and learn to observe how others write. 7 Style 1. Be brief and to the point and use shorter rather than longer words. Thus, ‘schools and colleges’ is to be preferred to ‘educational establishments’ if the two phrases are used with the same meaning. If you find that you are writing about something not relevant to your heading then either the material belongs elsewhere, possibly even to a new separate section, or you are rambling and the material should be omitted. 2. In general, try to avoid the use of the personal pronoun “I”, as it can get very irritating to the reader. Impersonal verbs and the passive form are usually to be preferred, e.g. “A regression analysis was carried out” instead of “I carried out a regression analysis”. 3. Use of tenses: A scientific report should be written in the present tense e.g ”The statistical analysis shows that……”, not ”The statistical analysis showed that…..”. You use the past tense only when describing events that occurred in the past e.g ”The data were collected in a study conducted by Royal Statistical Society……”. 4. Try to get your spelling correct! The main problem is knowing which words’ spelling you are shaky on. If in doubt, look up the word in a good dictionary (Oxford, Cassells, for example) or use a spell-checker. 5. Avoid using words inappropriately. For example, the similar-sounding words “tendency” and “trend” are not the same and cannot be used in- terchangeably. Do not use the word “significant” other than in a statistical sense. 6. If it is not too late, try to write grammatically: whole sentences, each with its main verb; no telegraphic style. Thus, the following is not acceptable. 7 “A standard analysis is possible. By regression.” Mathematical/Statistical writing follows the same grammar and syntax as ordinary English. 7. A common error: the word “data” is treated as if it were a singular noun instead of as a plural noun, which it is! (Data=plural of the singular noun datum.) The correct use of the word is “Data are …”. 8. A good style, which is a pleasure to read, is not something which comes naturally to mathematicians on the whole. Nevertheless, it is worth trying to aim for it. The only way to develop a good style is to read good books, practice writing and read critically what you have written. Gowers (1973) and Fowler (1983) (see references at the end) are useful books on grammar, punctuation and style."
+  },
+  {
+    "objectID": "Report Writing/reportintro.html",
+    "href": "Report Writing/reportintro.html",
+    "title": "Introduction to Report Writing",
+    "section": "",
+    "text": "“We have the duty of formulating, of summarizing, and of communicating our conclusions, in intelligible form, in recognition of the right of other free minds to utilize them in making their own decisions.”\n\nIn this section, we will be going though report writing techniques and conventions that will help in you ST117 final project, and the entirety of ST231. Specifically, the pages cover the following:\n\nStructuring your Report\n\n\nReporting descriptive statistics\n\n\nReporting numbers: how many decimal places?\n\n\nPresenting your data: tables and graphs\n\n\nStyling your Report\n\n\nUse of English\n\n\nProper use of Large Language, and other generative AI models\n\n\nPresenting the results of a statistical test 1 Summary 2 2 Introduction 2 3 Structure 2 3.1 Title . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3 3.2 Summary/Abstract . . . . . . . . . . . . . . . . . . . . . . . . . . 3 3.3 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3 3.4 Methods . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3 3.5 Results, conclusions and recommendations . . . . . . . . . . . . . 4 3.6 General discussion . . . . . . . . . . . . . . . . . . . . . . . . . . 4 3.7 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5 3.8 Appendix . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5 4 Content 5 5 Presentation 5 5.1 Figures, Plots, diagrams, etc. . . . . . . . . . . . . . . . . . . . . 5 5.2 Tables . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6 5.3 Computer output . . . . . . . . . . . . . . . . . . . . . . . . . . . 6 6 Use of English 6 7 Style 7 8 Detailed Preparation 8 9 Afterwards 8",
+    "crumbs": [
+      "Home",
+      "Report Writing",
+      "Introduction to Report Writing"
+    ]
+  },
+  {
+    "objectID": "Mathematics to Code/Mathematics to Code MonteCarlo Example.html",
+    "href": "Mathematics to Code/Mathematics to Code MonteCarlo Example.html",
+    "title": "Monte Carlo Approximation of π — Translating Math into Code",
+    "section": "",
+    "text": "Mathematical Intuition\nWe throw random points ((x,y)) uniformly in the square ([-1,1]^2).\nThe fraction inside the unit circle (x^2 + y^2 ) equals (/4):\n[ . ]\n\n\n\nMath → Algorithm → Code Mapping\n\n\n\nMath idea\nR translation\n\n\n\n\nsample (x, y)\nrunif(N, -1, 1)\n\n\nindicator (I_i)\n(x^2 + y^2 &lt;= 1)\n\n\nestimate\n4 * mean(I)\n\n\n\n\n\n\nCode\n```{mermaid}\nflowchart TD\n  A([Start: choose N])\n  B[Sample N points (x,y) in [-1,1]^2]\n  C{x^2 + y^2 &lt;= 1?}\n  D[Count proportion inside]\n  E[pi_hat = 4 * proportion]\n  F([Return pi_hat])\n  A --&gt; B --&gt; C --&gt; D --&gt; E --&gt; F\n```\n\n\n\n\n\nflowchart TD\n  A([Start: choose N])\n  B[Sample N points (x,y) in [-1,1]^2]\n  C{x^2 + y^2 &lt;= 1?}\n  D[Count proportion inside]\n  E[pi_hat = 4 * proportion]\n  F([Return pi_hat])\n  A --&gt; B --&gt; C --&gt; D --&gt; E --&gt; F\n\n\n\n\n\n\n\n\n\nImplementation in R\n\n\nCode\n```{r}\nset.seed(0)\n\nestimate_pi &lt;- function(N) {\n  x &lt;- runif(N, -1, 1)\n  y &lt;- runif(N, -1, 1)\n  inside &lt;- (x^2 + y^2) &lt;= 1\n  4 * mean(inside)\n}\n\nestimate_pi(10000)\n```\n\n\n[1] 3.12\n\n\n\n\n\nVisualization\n\n\nCode\n```{r}\nset.seed(1)\nN &lt;- 10000\nx &lt;- runif(N, -1, 1)\ny &lt;- runif(N, -1, 1)\ninside &lt;- (x^2 + y^2) &lt;= 1\n\nplot(x[inside], y[inside], col='skyblue', pch=16, cex=0.5,\n     xlab='x', ylab='y', asp=1,\n     main='Monte Carlo π Approximation',\n     xlim=c(-1,1), ylim=c(-1,1))\npoints(x[!inside], y[!inside], col='gray', pch=16, cex=0.5)\nsymbols(0, 0, circles=1, inches=FALSE, add=TRUE, lwd=2)\n```\n\n\n\n\n\n\n\n\n\n\n\n\nReflection\nMonte Carlo estimation translates a probabilistic argument into a simulation-based computation.",
+    "crumbs": [
+      "Home",
+      "Mathematics to R",
+      "Monte Carlo Approximation of π — Translating Math into Code"
+    ]
+  },
+  {
+    "objectID": "Mathematics to Code/Mathematics to Code intro.html",
+    "href": "Mathematics to Code/Mathematics to Code intro.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "“Mathematicians do not deal in objects, but in relations between objects; thus, they are free to replace some objects by others so lone as the relations remain unchanged. Content to them is irrelevant; they are interested in form only.”\n\nThis section goes through the process of transforming a mathematical problem into code. We will connect abstract ideas in mathematics to practical code, with focus on algorithmic thinking, problem decomposition, and structural clarity.\nSpecifically, the pages cover the following:\n\n\nIntuition\n\nAbstracting a problem into mathematics\nRe-writing a mathematics problem into code\n\nEuclidean Algorithm Example (Algebra Example)\nNewton-Raphson Method (Numerics and Analysis Example)\nMonte Carlo approximation of (Probability and Simulation Example)",
+    "crumbs": [
+      "Home",
+      "Mathematics to R",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/timegraph.html",
+    "href": "Data Visualisation/timegraph.html",
+    "title": "multivariate time series",
+    "section": "",
+    "text": "Chapter 8 Time-dependent graphs\nA graph can be a powerful vehicle for displaying change over time. The most common time-dependent graph is the time series line graph. Other options include the dumbbell charts and the slope graph. 8.1 Time series\nA time series is a set of quantitative values obtained at successive time points. The intervals between time points (e.g., hours, days, weeks, months, or years) are usually equal.\nConsider the Economics time series that come with the ggplot2 package. It contains US monthly economic data collected from January 1967 thru January 2015. Let’s plot the personal savings rate (psavert) over time. We can do this with a simple line plot.\nlibrary(ggplot2) ggplot(economics, aes(x = date, y = psavert)) + geom_line() + labs(title = “Personal Savings Rate”, x = “Date”, y = “Personal Savings Rate”)\nSimple time series\nFigure 8.1: Simple time series\nThe scale_x_date function can be used to reformat dates (see Section 2.2.6). In the graph below, tick marks appear every 5 years and dates are presented in MMM-YY format. Additionally, the time series line is given an off-red color and made thicker, a nonparametric trend line (loess, Section 5.2.1.1) and titles are added, and the theme is simplified.\nlibrary(ggplot2) library(scales) ggplot(economics, aes(x = date, y = psavert)) + geom_line(color = “indianred3”, size=1 ) + geom_smooth() + scale_x_date(date_breaks = ‘5 years’, labels = date_format(“%b-%y”)) + labs(title = “Personal Savings Rate”, subtitle = “1967 to 2015”, x = ““, y =”Personal Savings Rate”) + theme_minimal()\nSimple time series with modified date axis\nFigure 8.2: Simple time series with modified date axis\nWhen plotting time series, be sure that the date variable is class Date and not class character. See Section 2.2.6 for details.\nLet’s close this section with a multivariate time series (more than one series). We’ll compare closing prices for Apple and Meta from Jan 1, 2018 to July 31, 2023. The getSymbols function in the quantmod package is used to obtain the stock data from Yahoo Finance.\n\nmultivariate time series\n\n\none time install\n\n\ninstall.packages(“quantmod”)\nlibrary(quantmod) library(dplyr)\n\n\nget apple (AAPL) closing prices\napple &lt;- getSymbols(“AAPL”, return.class = “data.frame”, from=“2023-01-01”)\napple &lt;- AAPL %&gt;% mutate(Date = as.Date(row.names(.))) %&gt;% select(Date, AAPL.Close) %&gt;% rename(Close = AAPL.Close) %&gt;% mutate(Company = “Apple”)\n\n\nget Meta (META) closing prices\nmeta &lt;- getSymbols(“META”, return.class = “data.frame”, from=“2023-01-01”)\nmeta &lt;- META %&gt;% mutate(Date = as.Date(row.names(.))) %&gt;% select(Date, META.Close) %&gt;% rename(Close = META.Close) %&gt;% mutate(Company = “Meta”)\n\n\ncombine data for both companies\nmseries &lt;- rbind(apple, meta)\n\n\nplot data\nlibrary(ggplot2) ggplot(mseries, aes(x=Date, y= Close, color=Company)) + geom_line(size=1) + scale_x_date(date_breaks = ‘1 month’, labels = scales::date_format(“%b”)) + scale_y_continuous(limits = c(120, 280), breaks = seq(120, 280, 20), labels = scales::dollar) + labs(title = “NASDAQ Closing Prices”, subtitle = “Jan - June 2023”, caption = “source: Yahoo Finance”, y = “Closing Price”) + theme_minimal() + scale_color_brewer(palette = “Dark2”)\nMultivariate time series\nFigure 8.3: Multivariate time series\nYou can see the how the two stocks diverge after February. 8.2 Dummbbell charts\nDumbbell charts are useful for displaying change between two time points for several groups or observations. The geom_dumbbell function from the ggalt package is used.\nUsing the gapminder dataset let’s plot the change in life expectancy from 1952 to 2007 in the Americas. The dataset is in long format (Section 2.2.7). We will need to convert it to wide format in order to create the dumbbell plot\nlibrary(ggalt) library(tidyr) library(dplyr)\n\n\nload data\ndata(gapminder, package = “gapminder”)\n\n\nsubset data\nplotdata_long &lt;- filter(gapminder, continent == “Americas” & year %in% c(1952, 2007)) %&gt;% select(country, year, lifeExp)\n\n\nconvert data to wide format\nplotdata_wide &lt;- pivot_wider(plotdata_long, names_from = year, values_from = lifeExp) names(plotdata_wide) &lt;- c(“country”, “y1952”, “y2007”)\n\n\ncreate dumbbell plot\nggplot(plotdata_wide, aes(y = country, x = y1952, xend = y2007)) +\ngeom_dumbbell()\nSimple dumbbell chart\nFigure 8.4: Simple dumbbell chart\nThe graph will be easier to read if the countries are sorted and the points are sized and colored. In the next graph, we’ll sort by 1952 life expectancy, and modify the line and point size, color the points, add titles and labels, and simplify the theme.\n\n\ncreate dumbbell plot\nggplot(plotdata_wide, aes(y = reorder(country, y1952), x = y1952, xend = y2007)) +\ngeom_dumbbell(size = 1.2, size_x = 3, size_xend = 3, colour = “grey”, colour_x = “red”, colour_xend = “blue”) + theme_minimal() + labs(title = “Change in Life Expectancy”, subtitle = “1952 to 2007”, x = “Life Expectancy (years)”, y = ““)\nSorted, colored dumbbell chart\nFigure 8.5: Sorted, colored dumbbell chart\nIt is easier to discern patterns here. For example Haiti started with the lowest life expectancy in 1952 and still has the lowest in 2007. Paraguay started relatively high by has made few gains. 8.3 Slope graphs\nWhen there are several groups and several time points, a slope graph can be helpful. Let’s plot life expectancy for six Central American countries in 1992, 1997, 2002, and 2007. Again we’ll use the gapminder data.\nTo create a slope graph, we’ll use the newggslopegraph function from the CGPfunctions package.\nThe newggslopegraph function parameters are (in order)\ndata frame\ntime variable (which must be a factor)\nnumeric variable to be plotted\nand grouping variable (creating one line per group).\nlibrary(CGPfunctions)\n\n\nSelect Central American countries data\n\n\nfor 1992, 1997, 2002, and 2007\ndf &lt;- gapminder %&gt;% filter(year %in% c(1992, 1997, 2002, 2007) & country %in% c(“Panama”, “Costa Rica”, “Nicaragua”, “Honduras”, “El Salvador”, “Guatemala”, “Belize”)) %&gt;% mutate(year = factor(year), lifeExp = round(lifeExp))\n\n\ncreate slope graph\nnewggslopegraph(df, year, lifeExp, country) + labs(title=“Life Expectancy by Country”, subtitle=“Central America”, caption=“source: gapminder”)\nSlope graph\nFigure 8.6: Slope graph\nIn the graph above, Costa Rica has the highest life expectancy across the range of years studied. Guatemala has the lowest, and caught up with Honduras (also low at 69) in 2002. 8.4 Area Charts\nA simple area chart is basically a line graph, with a fill from the line to the x-axis.\n\n\nbasic area chart\nggplot(economics, aes(x = date, y = psavert)) + geom_area(fill=“lightblue”, color=“black”) + labs(title = “Personal Savings Rate”, x = “Date”, y = “Personal Savings Rate”)\nBasic area chart\nFigure 8.7: Basic area chart\nA stacked area chart can be used to show differences between groups over time. Consider the uspopage dataset from the gcookbook package. The dataset describes the age distribution of the US population from 1900 to 2002. The variables are year, age group (AgeGroup), and number of people in thousands (Thousands). Let’s plot the population of each age group over time.\n\n\nstacked area chart\ndata(uspopage, package = “gcookbook”) ggplot(uspopage, aes(x = Year, y = Thousands, fill = AgeGroup)) + geom_area() + labs(title = “US Population by age”, x = “Year”, y = “Population in Thousands”)\nStacked area chart\nFigure 8.8: Stacked area chart\nIt is best to avoid scientific notation in your graphs. How likely is it that the average reader will know that 3e+05 means 300,000,000? It is easy to change the scale in ggplot2. Simply divide the Thousands variable by 1000 and report it as Millions. While we are at it, let’s\ncreate black borders to highlight the difference between groups\nreverse the order the groups to match increasing age\nimprove labeling\nchoose a different color scheme\nchoose a simpler theme.\nThe levels of the AgeGroup variable can be reversed using the fct_rev function in the forcats package.\n\n\nstacked area chart\ndata(uspopage, package = “gcookbook”) ggplot(uspopage, aes(x = Year, y = Thousands/1000, fill = forcats::fct_rev(AgeGroup))) + geom_area(color = “black”) + labs(title = “US Population by age”, subtitle = “1900 to 2002”, caption = “source: U.S. Census Bureau, 2003, HS-3”, x = “Year”, y = “Population in Millions”, fill = “Age Group”) + scale_fill_brewer(palette = “Set2”) + theme_minimal()\nStacked area chart with simpler scale\nFigure 8.9: Stacked area chart with simpler scale\nApparently, the number of young children have not changed very much in the past 100 years.\nStacked area charts are most useful when interest is on both (1) group change over time and (2) overall change over time. Place the most important groups at the bottom. These are the easiest to interpret in this type of plot. 8.5 Stream graph\nStream graphs (Byron and Wattenberg 2008) are basically a variation on the stacked area chart. In a stream graph, the data is typically centered at each x-value around a mid-point and mirrored above and below that point. This is easiest to see in an example.\nLet’s plot the previous stacked area chart (Figure 8.9) as a stream graph.\n\n\nbasic stream graph\ndata(uspopage, package = “gcookbook”) library(ggstream) ggplot(uspopage, aes(x = Year, y = Thousands/1000, fill = forcats::fct_rev(AgeGroup))) + geom_stream() + labs(title = “US Population by age”, subtitle = “1900 to 2002”, caption = “source: U.S. Census Bureau, 2003, HS-3”, x = “Year”, y = ““, fill =”Age Group”) + scale_fill_brewer(palette = “Set2”) + theme_minimal() + theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank(), axis.text.y = element_blank())\nBasic stream graph\nFigure 8.10: Basic stream graph\nThe theme function is used to surpress the y-axis, whose values are not easily interpreted. To interpret this graph, look at each value on the x-axis and compare the relative vertical heights of each group. You can see, for example, that the relative proportion of older people has increased significantly.\nAn interesting variation is the proportional steam graph displays in Figure 8.11\n\n\nbasic stream graph\ndata(uspopage, package = “gcookbook”) library(ggstream) ggplot(uspopage, aes(x = Year, y = Thousands/1000, fill = forcats::fct_rev(AgeGroup))) + geom_stream(type=“proportional”) + labs(title = “US Population by age”, subtitle = “1900 to 2002”, caption = “source: U.S. Census Bureau, 2003, HS-3”, x = “Year”, y = “Proportion”, fill = “Age Group”) + scale_fill_brewer(palette = “Set2”) + theme_minimal()\nProportional stream graph\nFigure 8.11: Proportional stream graph\nThis is similar to the filled bar chart (Section 5.1.3) and makes it easier to see the relative change in values by group across time."
+  },
+  {
+    "objectID": "Data Visualisation/multivar.html",
+    "href": "Data Visualisation/multivar.html",
+    "title": "plot experience vs. salary",
+    "section": "",
+    "text": "Chapter 6 Multivariate Graphs\nIn the last two chapters, you looked at ways to display the distribution of a single variable, or the relationship between two variables. We are usually interested in understanding the relations among several variables. Multivariate graphs display the relationships among three or more variables. There are two common methods for accommodating multiple variables: grouping and faceting. 6.1 Grouping\nIn grouping, the values of the first two variables are mapped to the x and y axes. Then additional variables are mapped to other visual characteristics such as color, shape, size, line type, and transparency. Grouping allows you to plot the data for multiple groups in a single graph.\nUsing the Salaries dataset, let’s display the relationship between yrs.since.phd and salary.\nlibrary(ggplot2) data(Salaries, package=“carData”)\n\nplot experience vs. salary\nggplot(Salaries, aes(x = yrs.since.phd, y = salary)) + geom_point() + labs(title = “Academic salary by years since degree”)\nSimple scatterplot\nFigure 6.1: Simple scatterplot\nNext, let’s include the rank of the professor, using color.\n\n\nplot experience vs. salary (color represents rank)\nggplot(Salaries, aes(x = yrs.since.phd, y = salary, color=rank)) + geom_point() + labs(title = “Academic salary by rank and years since degree”)\nScatterplot with color mapping\nFigure 6.2: Scatterplot with color mapping\nFinally, let’s add the gender of professor, using shape of the points to indicate sex. We’ll increase the point size and transparency to make the individual points clearer.\n\n\nplot experience vs. salary\n\n\n(color represents rank, shape represents sex)\nggplot(Salaries, aes(x = yrs.since.phd, y = salary, color = rank, shape = sex)) + geom_point(size = 3, alpha = .6) + labs(title = “Academic salary by rank, sex, and years since degree”)\nScatterplot with color and shape mapping\nFigure 6.3: Scatterplot with color and shape mapping\nNotice the difference between specifying a constant value (such as size = 3) and a mapping of a variable to a visual characteristic (e.g., color = rank). Mappings are always placed within the aes function, while the assignment of a constant value always appear outside of the aes function.\nHere is another example. We’ll graph the relationship between years since Ph.D. and salary using the size of the points to indicate years of service. This is called a bubble plot.\nlibrary(ggplot2) data(Salaries, package=“carData”)\n\n\nplot experience vs. salary\n\n\n(color represents rank and size represents service)\nggplot(Salaries, aes(x = yrs.since.phd, y = salary, color = rank, size = yrs.service)) + geom_point(alpha = .6) + labs(title = paste0(“Academic salary by rank, years of service,”, “and years since degree”))\nScatterplot with size and color mapping\nFigure 6.4: Scatterplot with size and color mapping\nBubble plots are described in more detail in a later chapter.\nAs a final example, let’s look at the yrs.since.phd vs salary and add sex using color and quadratic best fit lines.\n\n\nplot experience vs. salary with\n\n\nfit lines (color represents sex)\nggplot(Salaries, aes(x = yrs.since.phd, y = salary, color = sex)) + geom_point(alpha = .4, size=3) + geom_smooth(se=FALSE, method=“lm”, formula=y~poly(x,2), size = 1.5) + labs(x = “Years Since Ph.D.”, title = “Academic Salary by Sex and Years Experience”, subtitle = “9-month salary for 2008-2009”, y = ““, color =”Sex”) + scale_y_continuous(label = scales::dollar) + scale_color_brewer(palette=“Set1”) + theme_minimal()\nScatterplot with color mapping and quadratic fit lines\nFigure 6.5: Scatterplot with color mapping and quadratic fit lines 6.2 Faceting\nGrouping allows you to plot multiple variables in a single graph, using visual characteristics such as color, shape, and size. In faceting, a graph consists of several separate plots or small multiples, one for each level of a third variable, or combination of two variables. It is easiest to understand this with an example.\n\n\nplot salary histograms by rank\nggplot(Salaries, aes(x = salary)) + geom_histogram() + facet_wrap(~rank, ncol = 1) + labs(title = “Salary histograms by rank”)\nSalary distribution by rank\nFigure 6.6: Salary distribution by rank\nThe facet_wrap function creates a separate graph for each level of rank. The ncol option controls the number of columns.\nIn the next example, two variables are used to define the facets.\n\n\nplot salary histograms by rank and sex\nggplot(Salaries, aes(x = salary/1000)) + geom_histogram() + facet_grid(sex ~ rank) + labs(title = “Salary histograms by sex and rank”, x = “Salary ($1000)”)\nSalary distribution by rank and sex\nFigure 6.7: Salary distribution by rank and sex\nHere, the facet_grid function defines the rows (sex) and columns (rank) that separate the data into 6 plots in one graph.\nWe can also combine grouping and faceting.\n\n\nplot salary by years of experience by sex and discipline\nggplot(Salaries, aes(x=yrs.since.phd, y = salary, color=sex)) + geom_point() + geom_smooth(method=“lm”, se=FALSE) + facet_wrap(~discipline, ncol = 1)\nSalary by experience, rank, and sex\nFigure 6.8: Salary by experience, rank, and sex\nLet’s make this last plot more attractive.\n\n\nplot salary by years of experience by sex and discipline\nggplot(Salaries, aes(x=yrs.since.phd, y = salary, color=sex)) + geom_point(size = 2, alpha=.5) + geom_smooth(method=“lm”, se=FALSE, size = 1.5) + facet_wrap(~factor(discipline, labels = c(“Theoretical”, “Applied”)), ncol = 1) + scale_y_continuous(labels = scales::dollar) + theme_minimal() + scale_color_brewer(palette=“Set1”) + labs(title = paste0(“Relationship of salary and years”, “since degree by sex and discipline”), subtitle = “9-month salary for 2008-2009”, color = “Gender”, x = “Years since Ph.D.”, y = “Academic Salary”)\nSalary by experience, rank, and sex (better labeled)\nFigure 6.9: Salary by experience, rank, and sex (better labeled)\nSee the Customizing section to learn more about customizing the appearance of a graph.\nAs a final example, we’ll shift to a new dataset and plot the change in life expectancy over time for countries in the “Americas”. The data comes from the gapminder dataset in the gapminder package. Each country appears in its own facet. The theme functions are used to simplify the background color, rotate the x-axis text, and make the font size smaller.\n\n\nplot life expectancy by year separately\n\n\nfor each country in the Americas\ndata(gapminder, package = “gapminder”)\n\n\nSelect the Americas data\nplotdata &lt;- dplyr::filter(gapminder, continent == “Americas”)\n\n\nplot life expectancy by year, for each country\nggplot(plotdata, aes(x=year, y = lifeExp)) + geom_line(color=“grey”) + geom_point(color=“blue”) + facet_wrap(~country) + theme_minimal(base_size = 9) + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + labs(title = “Changes in Life Expectancy”, x = “Year”, y = “Life Expectancy”)\nChanges in life expectancy by country\nFigure 6.10: Changes in life expectancy by country\nWe can see that life expectancy is increasing in each country, but that Haiti is lagging behind.\nCombining grouping and faceting with graphs for one (Chapter 4) or two (Chapter 5) variables allows you to create a wide range of visualizations for exploring data! You are limited only by your imagination and the over-riding goal of communicating information clearly."
+  },
+  {
+    "objectID": "Data Visualisation/introvisualisation.html",
+    "href": "Data Visualisation/introvisualisation.html",
+    "title": "Warwick Statistics Society R Course 2024-2025",
+    "section": "",
+    "text": "“The greatest value of a picture is when it forces us to notice what we never expected to see.” – John W. Tukey https://rkabacoff.github.io/datavis/index.html",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "introvisualisation.html"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html",
+    "href": "Data Visualisation/othergraphs.html",
+    "title": "Specialized Visualization Techniques",
+    "section": "",
+    "text": "This chapter covers specialized visualization techniques that don’t fit neatly into other categories but are incredibly useful for specific types of data and questions. Think of these as tools for your “advanced visualization toolkit”—you won’t use them every day, but when you need them, they’re perfect for the job.\nWe’ll explore: - Visualizing three-dimensional relationships - Displaying flows and transitions - Creating comparison matrices - Specialized chart types for specific purposes\nLet’s load our packages:\n\n\nWarning: package 'ggplot2' was built under R version 4.4.3\n\n\nWarning: package 'palmerpenguins' was built under R version 4.4.3\n\n\nWarning: package 'dplyr' was built under R version 4.4.3"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#a-tibble-6-4",
+    "href": "Data Visualisation/othergraphs.html#a-tibble-6-4",
+    "title": "basic 3-D scatterplot",
+    "section": "# A tibble: 6 × 4",
+    "text": "# A tibble: 6 × 4"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#groups-class-sex-survived-6",
+    "href": "Data Visualisation/othergraphs.html#groups-class-sex-survived-6",
+    "title": "basic 3-D scatterplot",
+    "section": "# Groups: Class, Sex, Survived [6]",
+    "text": "# Groups: Class, Sex, Survived [6]"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#class-sex-survived-n",
+    "href": "Data Visualisation/othergraphs.html#class-sex-survived-n",
+    "title": "basic 3-D scatterplot",
+    "section": "Class Sex Survived n",
+    "text": "Class Sex Survived n"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#st-female-no-4",
+    "href": "Data Visualisation/othergraphs.html#st-female-no-4",
+    "title": "basic 3-D scatterplot",
+    "section": "1 1st Female No 4",
+    "text": "1 1st Female No 4"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#st-female-yes-141",
+    "href": "Data Visualisation/othergraphs.html#st-female-yes-141",
+    "title": "basic 3-D scatterplot",
+    "section": "2 1st Female Yes 141",
+    "text": "2 1st Female Yes 141"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#st-male-no-118",
+    "href": "Data Visualisation/othergraphs.html#st-male-no-118",
+    "title": "basic 3-D scatterplot",
+    "section": "3 1st Male No 118",
+    "text": "3 1st Male No 118"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#st-male-yes-62",
+    "href": "Data Visualisation/othergraphs.html#st-male-yes-62",
+    "title": "basic 3-D scatterplot",
+    "section": "4 1st Male Yes 62",
+    "text": "4 1st Male Yes 62"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#nd-female-no-13",
+    "href": "Data Visualisation/othergraphs.html#nd-female-no-13",
+    "title": "basic 3-D scatterplot",
+    "section": "5 2nd Female No 13",
+    "text": "5 2nd Female No 13"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#nd-female-yes-93",
+    "href": "Data Visualisation/othergraphs.html#nd-female-yes-93",
+    "title": "basic 3-D scatterplot",
+    "section": "6 2nd Female Yes 93",
+    "text": "6 2nd Female Yes 93\nNext create an alluvial diagram in ggplot2 using the ggplot, geom_alluvium and geom_stratum functions. The categorical variables are mapped to axes and n to y. This will produce Figure 10.10\nlibrary(ggalluvial) ggplot(titanic_table, aes(axis1 = Class, axis2 = Sex, axis3 = Survived, y = n)) + geom_alluvium(aes(fill = Class)) + geom_stratum() + geom_text(stat = “stratum”, aes(label = after_stat(stratum)))\nBasic alluvial diagram\nFigure 10.10: Basic alluvial diagram\nTo interpret the graph, start with the variable on the left (Class) and follow the flow to the right. The height of the category level represent the proportion of observations in that level. For example the crew made up roughly 40% of the passengers. Roughly, 30% of passengers survived.\nThe height of the flow represents the proportion of observations contained in the two variable levels they connect. About 50% of first class passengers were females and all female first class passengers survived. The crew was overwhelmingly male and roughly 75% of this group perished.\nAs a second example, let’s look at the relationship between the number carburetors, cylinders, gears, and the transmission type (manual or automatic) for the 32 cars in the mtcars dataset. We’ll treat each variable as categorical.\nFirst, we need to prepare the data.\nlibrary(dplyr) data(mtcars) mtcars_table &lt;- mtcars %&gt;% mutate(am = factor(am, labels = c(“Auto”, “Man”)), cyl = factor(cyl), gear = factor(gear), carb = factor(carb)) %&gt;% group_by(cyl, gear, carb, am) %&gt;% count()\nhead(mtcars_table)"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#a-tibble-6-5",
+    "href": "Data Visualisation/othergraphs.html#a-tibble-6-5",
+    "title": "basic 3-D scatterplot",
+    "section": "# A tibble: 6 × 5",
+    "text": "# A tibble: 6 × 5"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#groups-cyl-gear-carb-am-6",
+    "href": "Data Visualisation/othergraphs.html#groups-cyl-gear-carb-am-6",
+    "title": "basic 3-D scatterplot",
+    "section": "# Groups: cyl, gear, carb, am [6]",
+    "text": "# Groups: cyl, gear, carb, am [6]"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#cyl-gear-carb-am-n",
+    "href": "Data Visualisation/othergraphs.html#cyl-gear-carb-am-n",
+    "title": "basic 3-D scatterplot",
+    "section": "cyl gear carb am n",
+    "text": "cyl gear carb am n"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#auto-1",
+    "href": "Data Visualisation/othergraphs.html#auto-1",
+    "title": "basic 3-D scatterplot",
+    "section": "1 4 3 1 Auto 1",
+    "text": "1 4 3 1 Auto 1"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#man-4",
+    "href": "Data Visualisation/othergraphs.html#man-4",
+    "title": "basic 3-D scatterplot",
+    "section": "2 4 4 1 Man 4",
+    "text": "2 4 4 1 Man 4"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#auto-2",
+    "href": "Data Visualisation/othergraphs.html#auto-2",
+    "title": "basic 3-D scatterplot",
+    "section": "3 4 4 2 Auto 2",
+    "text": "3 4 4 2 Auto 2"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#man-2",
+    "href": "Data Visualisation/othergraphs.html#man-2",
+    "title": "basic 3-D scatterplot",
+    "section": "4 4 4 2 Man 2",
+    "text": "4 4 4 2 Man 2"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#man-2-1",
+    "href": "Data Visualisation/othergraphs.html#man-2-1",
+    "title": "basic 3-D scatterplot",
+    "section": "5 4 5 2 Man 2",
+    "text": "5 4 5 2 Man 2"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#auto-2-1",
+    "href": "Data Visualisation/othergraphs.html#auto-2-1",
+    "title": "basic 3-D scatterplot",
+    "section": "6 6 3 1 Auto 2",
+    "text": "6 6 3 1 Auto 2\nNext create the graph. Several options and functions are added to enhance the results. Specifically,\nthe flow borders are set to black (geom_alluvium)\nthe strata are given transparency (geom_strata)\nthe strata are labeled and made wider (scale_x_discrete)\ntitles are added (labs)\nthe theme is simplified (theme_minimal)\nand the legend is suppressed (theme)\nggplot(mtcars_table, aes(axis1 = carb, axis2 = cyl, axis3 = gear, axis4 = am, y = n)) + geom_alluvium(aes(fill = carb), color=“black”) + geom_stratum(alpha=.8) + geom_text(stat = “stratum”, aes(label = after_stat(stratum))) + scale_x_discrete(limits = c(“Carburetors”, “Cylinders”, “Gears”, “Transmission”), expand = c(.1, .1)) + # scale_fill_brewer(palette=“Paired”) + labs(title = “Mtcars data”, subtitle = “stratified by carb, cyl, gear, and am”, y = “Frequency”) + theme_minimal() + theme(legend.position = “none”)\nBasic alluvial diagram for the mtcars dataset\nFigure 10.11: Basic alluvial diagram for the mtcars dataset\nI think that these changes make the graph easier to follow. For example, all 8 carburetor cars have 8 cylinders, 5 gears, and a manual transmission. Most 4 carburetor cars have 8 cylinders, 3 gears, and an automatic transmission.\nSee the ggalluvial website (https://github.com/corybrunson/ggalluvial) for additional details. 10.5 Heatmaps\nA heatmap displays a set of data using colored tiles for each variable value within each observation. There are many varieties of heatmaps. Although base R comes with a heatmap function, we’ll use the more powerful superheat package (I love these names).\nFirst, let’s create a heatmap for the mtcars dataset that come with base R. The mtcars dataset contains information on 32 cars measured on 11 variables."
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#a-tibble-3-6",
+    "href": "Data Visualisation/othergraphs.html#a-tibble-3-6",
+    "title": "basic 3-D scatterplot",
+    "section": "# A tibble: 3 × 6",
+    "text": "# A tibble: 3 × 6"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#group-sleep_total-sleep_rem-sleep_cycle-brainwt-bodywt",
+    "href": "Data Visualisation/othergraphs.html#group-sleep_total-sleep_rem-sleep_cycle-brainwt-bodywt",
+    "title": "basic 3-D scatterplot",
+    "section": "group sleep_total sleep_rem sleep_cycle brainwt bodywt",
+    "text": "group sleep_total sleep_rem sleep_cycle brainwt bodywt"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#cow-0-0-1-1-1",
+    "href": "Data Visualisation/othergraphs.html#cow-0-0-1-1-1",
+    "title": "basic 3-D scatterplot",
+    "section": "1 Cow 0 0 1 1 1",
+    "text": "1 Cow 0 0 1 1 1"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#dog-1-1-0-0-0",
+    "href": "Data Visualisation/othergraphs.html#dog-1-1-0-0-0",
+    "title": "basic 3-D scatterplot",
+    "section": "2 Dog 1 1 0 0 0",
+    "text": "2 Dog 1 1 0 0 0"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#pig-0.836-0.773-0.5-0.312-0.123",
+    "href": "Data Visualisation/othergraphs.html#pig-0.836-0.773-0.5-0.312-0.123",
+    "title": "basic 3-D scatterplot",
+    "section": "3 Pig 0.836 0.773 0.5 0.312 0.123",
+    "text": "3 Pig 0.836 0.773 0.5 0.312 0.123"
+  },
+  {
+    "objectID": "Data Visualisation/univariate.html",
+    "href": "Data Visualisation/univariate.html",
+    "title": "simple bar chart",
+    "section": "",
+    "text": "Chapter 4 Univariate Graphs\nThe first step in any comprehensive data analysis is to explore each import variable in turn. Univariate graphs plot the distribution of data from a single variable. The variable can be categorical (e.g., race, sex, political affiliation) or quantitative (e.g., age, weight, income).\nThe dataset Marriage contains the marriage records of 98 individuals in Mobile County, Alabama (see Appendix A.5). We’ll explore the distribution of three variables from this dataset - the age and race of the wedding participants, and the occupation of the wedding officials. 4.1 Categorical\nThe race of the participants and the occupation of the officials are both categorical variables.The distribution of a single categorical variable is typically plotted with a bar chart, a pie chart, or (less commonly) a tree map or waffle chart. 4.1.1 Bar chart\nIn Figure 4.1, a bar chart is used to display the distribution of wedding participants by race."
+  },
+  {
+    "objectID": "Data Visualisation/univariate.html#section",
+    "href": "Data Visualisation/univariate.html#section",
+    "title": "simple bar chart",
+    "section": "[1] 5.181946",
+    "text": "[1] 5.181946"
+  },
+  {
+    "objectID": "Mathematics to Code/Mathematics to Code Euclidean Example.html",
+    "href": "Mathematics to Code/Mathematics to Code Euclidean Example.html",
+    "title": "Euclidean Algorithm — Translating Math into Code",
+    "section": "",
+    "text": "Mathematical Intuition\nRecall from Sets and Numbers the Euclidean algorithm where we want to find the greatest common divisor (GCD) of two integers (a, b):\nThe algorithmic idea: repeatedly replace the pair (a, b) with (b, a modb) until the second number becomes 0. Let us now look at a simplified flowchart of what we want our computer program to do.\nQUESTION FOR THE READER: TRY TO DRAW THE FLOWCHART ON YOUR OWN!\n\n\n\nMath → Algorithm → Code Mapping\n\n\n\nMath operation\nR equivalent\nMeaning\n\n\n\n\n(a modb)\na %% b\nremainder\n\n\nrecursive call\ngcd(b, a %% b)\nrepeat step\n\n\nstop if (b = 0)\nif (b == 0)\nbase case\n\n\n\n\n\n\n\n\n\nflowchart TD\n  A([Start: a, b])\n  B{Is b equal to 0?}\n  C[Set a to b&lt;br/&gt;Set b to a mod b]\n  D([Return absolute value of a])\n\n  A --&gt; B\n  B -- No --&gt; C --&gt; B\n  B -- Yes --&gt; D\n\n\n\n\n\n\n\n\n\n\nImplementation in R\n\n\nCode\n```{r}\n# Define the GCD function\ngcd_iterative &lt;- function(a, b) {\n  a &lt;- abs(as.integer(a))\n  b &lt;- abs(as.integer(b))\n  while (b != 0) {\n    r &lt;- a %% b\n    a &lt;- b\n    b &lt;- r\n  }\n  return(a)\n}\n\n# Set up the recursive part of the function\ngcd_recursive &lt;- function(a, b) {\n  a &lt;- abs(as.integer(a))\n  b &lt;- abs(as.integer(b))\n  if (b == 0) return(a)\n  gcd_recursive(b, a %% b)\n}\n```\n\n\n\n\n\nExample usage\n\n\nCode\n```{r}\ngcd_iterative(1071, 462)\n```\n\n\n[1] 21\n\n\nIn this example, we can see how we can break down algebraic reasoning (these are the skills proofs of theorems and lemmas give you!) into their basic building blocks and then express them as a loop or recursive function as you would do on paper! We have successfully turned a symbolic rule into a computational process! Now it is your turn, try to implement any algorithm of your choosing and see if you can get it to work!",
+    "crumbs": [
+      "Home",
+      "Mathematics to R",
+      "Euclidean Algorithm — Translating Math into Code"
+    ]
+  },
+  {
+    "objectID": "Mathematics to Code/Mathematics to Code intuit.html",
+    "href": "Mathematics to Code/Mathematics to Code intuit.html",
+    "title": "Mathematical intuition behind coding",
+    "section": "",
+    "text": "Imagine you’re trying to explain a puzzle to a robot. Robots don’t guess or assume, they only understand exact instructions. That’s what programming is: explaining a math idea to a robot so it can follow it step by step. If your instructions are fuzzy, the robot gets confused, just like someone trying to make a cake with missing steps!",
+    "crumbs": [
+      "Home",
+      "Mathematics to R",
+      "Mathematical intuition behind coding"
+    ]
+  },
+  {
+    "objectID": "Mathematics to Code/Mathematics to Code intuit.html#why-mathematics-makes-you-a-better-programmer",
+    "href": "Mathematics to Code/Mathematics to Code intuit.html#why-mathematics-makes-you-a-better-programmer",
+    "title": "Mathematical intuition behind coding",
+    "section": "Why Mathematics Makes You a Better Programmer",
+    "text": "Why Mathematics Makes You a Better Programmer\nMathematics trains you to: Define problems precisely through rigourous proofs (NOTHING is assumed unless stated) - Work with abstract structures (ideas of groups, rings, fields in algebra) - Think algorithmically (the many algorithms you will come across e.g. Euclidean, Gram-Schmidt) - Break complex problems into parts (this is essentially what you do during a proof!) - Understand edge cases and generalization (this is also a skill gained in proofs!)\n\n\n\n\n\n\nMath to Code Mindset\n\n\n\nWhen approaching a coding task, ask yourself: - What is the input? - What transformation is required? - What is the output? - Can I represent it mathematically?\n\n\n\n\n\n\n\n\nImportant\n\n\n\nYour code is exectued by a machine. Machines do not guess or assume, they only understand exact instructions. Therefore, keep in mind to specify your code.\n\n\n\n\n\n\n\ngraph TD\n    A[Start with a Problem] --&gt; B[Translate into Math Language]\n    B --&gt; C[Define Inputs and Outputs]\n    C --&gt; D[Design Algorithm (Steps)]\n    D --&gt; E[Write Code]\n    E --&gt; F[Test and Validate]\n    F --&gt; G[Refactor or Extend]",
+    "crumbs": [
+      "Home",
+      "Mathematics to R",
+      "Mathematical intuition behind coding"
+    ]
+  },
+  {
+    "objectID": "Report Writing/structurereport.html",
+    "href": "Report Writing/structurereport.html",
+    "title": "Examples of Mathematics translated into code",
+    "section": "",
+    "text": "There are many ways to structure a report, some better than others. If you are new to report writing, especially in the field of statistics, I will provide a very basic, but versatile structure to help you in your first steps. The report is made up of several components, listed below in the order in which they should appear. Longer reports, such as the final assignments in both ST117 and ST231, are better split into sections, while shorter reports, like the ST231 assignments, to not really require as full a structure as suggested. In any case, you must avoid a narrative approach like: “First I did this, then that, etc.”. This makes the report difficult to follow; in this case, showing is much more effective than telling.\n\n\nEvery report needs a title, preferably on a separate title page, which should also include the author’s name and department or other affiliation, and the date. The title should be short and informative. In general, this much detail won’t be required and it is most likely that your lecturers will have a template with an appropriate title ready.\nA brief summary – the shorter the better, and certainly no more than half a page – should follow, to tell the reader what the report is about, in general terms, and why it may be worth reading. A good abstract is solely a skeleton outline of (a) the problem, (b) what you have done, (c) your conclusions. It should not, if possible, use numbers, symbols or technical terms. Again, this is not required to be as detailed, nut as you move higher up on the academic and corporate ladder, titles and abstracts will play a larger role in gauging interest in your work, so keep this in mind.\nHere is an example of a title and an abstract:\nTitle: Statistical methods for healthcare regulation: rating, screening and surveillance\nAuthor(s): David Spiegelhalter, Christopher Sherlaw-Johnson, Martin Bardsley, Ian Blunt, Christopher Wood, Olivia Grigg\nAffiliation: Medical Research Council Biostatistics Unit, Cambridge, and related institutions\nDate: First published 21 November 2011 Wiley Online Library\nAbstract (as published):\nCurrent demand for accountability and efficiency of healthcare organizations, combined with the greater availability of routine data on clinical care and outcomes, has led to an increased focus on statistical methods in healthcare regulation. We consider three different regulatory functions in which statistical analysis plays a vital role: rating organizations, deciding whom to inspect and continuous surveillance for arising problems. A common approach to data standardization based on (possibly overdispersed) Z-scores is proposed, although specific tools are used for assessing performance against a target, combining indicators when screening for inspection, and continuous monitoring using risk-adjusted sequential testing procedures. We pay particular attention to the problem of simultaneously monitoring over 200 000 indicators for excess mortality, both with respect to the statistical issues surrounding massive multiplicity, and the organizational aspects of dealing with such a complex but high-profile process.\nNotice that the authors: \n\nKeep under half a page.\n\nAvoid numbers or statistical symbols.\n\nDo not interpret results in depth here — just state the what, how, and conclusion.\n\n\n\n3.3 Introduction This should describe the general context and background, including a general description of what data are available, the manner in which and the purpose for which they were collected. It should also provide the aims of the investigation, together with some indication of the methods used. It may well be an expanded version of the summary, and in general should not exceed two pages in length. 3.4 Methods These should now be described in a fair amount of detail, including any theory that is necessary. How much detail is always difficult to decide. Aim to write as though for someone of comparable standing, e.g. a student in the same year as yourself, who does not know anything in detail about the subject of the re- port. The reader should be able to repeat the study on the basis of your report. Don’t be afraid of putting very detailed and long descriptions into one or more appendices. This component may well have to be split into sections, e.g. 3 1. a preliminary analysis, using graphical and simple descriptive methods, 2. a full-scale analysis. The second section may further have to be split into two subsections e.g. (a) a description, explanation or development of the methodology to be used, (b) the actual analysis. Subsection (a) will probably need to be quite technical, certainly more technical than the rest of the report. It should describe in detail the precise mathemat- ical/statistical tools and techniques to be used and reveal the manner in which they lead to the desired results. Do not shy away from using mathematical no- tation (get well familiar with the capabilities of your word-processor to produce mathematical expressions) but be careful to define every bit of the notation you use. A mathematical expression is totally meaningless if any of the symbols used in it is undefined. Similarly pages of mathematical development and explanations are rendered useless and total waste of space if any of the symbols involved in these explanations are not defined. I In the subsection containing the actual analysis it is important that you de- scribe your analysis sufficiently clearly and carefully to enable it to be reproduced by the reader. 3.5 Results, conclusions and recommendations Give the main results and conclusions. Subsidiary results and deductions can be left in this section if they do not detract from the flow of the presentation of the main results and conclusion; otherwise they may be gathered into a separate component, be combined with the description of methods, or be put into an appendix. Your conclusions should be expressed in a way that can be understood by a non-statistician and should make sense even if the reader of your report had omitted to read the middle section on detailed statistical analysis. Try to report your conclusion in the context of the experiment from which the data came. 3.6 General discussion It may be appropriate to give some account of previous investigation of the same or related problems, or to relate the present conclusion to others in a connected area. It is worth discussing how far the original aim was successfully achieved, if it was not, why not, and how you might have done things differently. Reserva- tions about the data also belong here. (In real life, data sets may well contain errors or have been obtained from a badly designed experiment). This general discussion can in fact appear not as a section in itself but can be subsumed in the Introduction. 4 3.7 References These should always be included if you refer to books or papers from journals. The simplest, and widely-used style, is to refer to authors in the text in the format “Surname (Year of Publication)”, and to give the full references in the References section as shown at the end of this article i.e. for a journal article reference give Author’s surname, author’s initials, title of paper including subtitle if there is one, journal name, year of publication, volume, first and last page numbers of article, in that order; for a book reference give, in the following order, the author’es surname, the author’s initials, (year of publication) Title of book (in italics), publishing company, city of publication. 3.8 Appendix Whatever does not fit naturally into the main body of the report and cannot reasonably be omitted should go into an appendix. However, you don’t want the report to suffer from appendicitis! A case of the appendix or appendices tail wagging the main text dog makes the report hard to read."
+  },
+  {
+    "objectID": "Report Writing/structurereport.html#titles-and-abstracts",
+    "href": "Report Writing/structurereport.html#titles-and-abstracts",
+    "title": "Examples of Mathematics translated into code",
+    "section": "",
+    "text": "Every report needs a title, preferably on a separate title page, which should also include the author’s name and department or other affiliation, and the date. The title should be short and informative. In general, this much detail won’t be required and it is most likely that your lecturers will have a template with an appropriate title ready.\nA brief summary – the shorter the better, and certainly no more than half a page – should follow, to tell the reader what the report is about, in general terms, and why it may be worth reading. A good abstract is solely a skeleton outline of (a) the problem, (b) what you have done, (c) your conclusions. It should not, if possible, use numbers, symbols or technical terms. Again, this is not required to be as detailed, nut as you move higher up on the academic and corporate ladder, titles and abstracts will play a larger role in gauging interest in your work, so keep this in mind.\nHere is an example of a title and an abstract:\nTitle: Statistical methods for healthcare regulation: rating, screening and surveillance\nAuthor(s): David Spiegelhalter, Christopher Sherlaw-Johnson, Martin Bardsley, Ian Blunt, Christopher Wood, Olivia Grigg\nAffiliation: Medical Research Council Biostatistics Unit, Cambridge, and related institutions\nDate: First published 21 November 2011 Wiley Online Library\nAbstract (as published):\nCurrent demand for accountability and efficiency of healthcare organizations, combined with the greater availability of routine data on clinical care and outcomes, has led to an increased focus on statistical methods in healthcare regulation. We consider three different regulatory functions in which statistical analysis plays a vital role: rating organizations, deciding whom to inspect and continuous surveillance for arising problems. A common approach to data standardization based on (possibly overdispersed) Z-scores is proposed, although specific tools are used for assessing performance against a target, combining indicators when screening for inspection, and continuous monitoring using risk-adjusted sequential testing procedures. We pay particular attention to the problem of simultaneously monitoring over 200 000 indicators for excess mortality, both with respect to the statistical issues surrounding massive multiplicity, and the organizational aspects of dealing with such a complex but high-profile process.\nNotice that the authors: \n\nKeep under half a page.\n\nAvoid numbers or statistical symbols.\n\nDo not interpret results in depth here — just state the what, how, and conclusion."
+  },
+  {
+    "objectID": "Report Writing/structurereport.html#to-include-or-not-to-include-that-is-the-question",
+    "href": "Report Writing/structurereport.html#to-include-or-not-to-include-that-is-the-question",
+    "title": "Examples of Mathematics translated into code",
+    "section": "",
+    "text": "3.3 Introduction This should describe the general context and background, including a general description of what data are available, the manner in which and the purpose for which they were collected. It should also provide the aims of the investigation, together with some indication of the methods used. It may well be an expanded version of the summary, and in general should not exceed two pages in length. 3.4 Methods These should now be described in a fair amount of detail, including any theory that is necessary. How much detail is always difficult to decide. Aim to write as though for someone of comparable standing, e.g. a student in the same year as yourself, who does not know anything in detail about the subject of the re- port. The reader should be able to repeat the study on the basis of your report. Don’t be afraid of putting very detailed and long descriptions into one or more appendices. This component may well have to be split into sections, e.g. 3 1. a preliminary analysis, using graphical and simple descriptive methods, 2. a full-scale analysis. The second section may further have to be split into two subsections e.g. (a) a description, explanation or development of the methodology to be used, (b) the actual analysis. Subsection (a) will probably need to be quite technical, certainly more technical than the rest of the report. It should describe in detail the precise mathemat- ical/statistical tools and techniques to be used and reveal the manner in which they lead to the desired results. Do not shy away from using mathematical no- tation (get well familiar with the capabilities of your word-processor to produce mathematical expressions) but be careful to define every bit of the notation you use. A mathematical expression is totally meaningless if any of the symbols used in it is undefined. Similarly pages of mathematical development and explanations are rendered useless and total waste of space if any of the symbols involved in these explanations are not defined. I In the subsection containing the actual analysis it is important that you de- scribe your analysis sufficiently clearly and carefully to enable it to be reproduced by the reader. 3.5 Results, conclusions and recommendations Give the main results and conclusions. Subsidiary results and deductions can be left in this section if they do not detract from the flow of the presentation of the main results and conclusion; otherwise they may be gathered into a separate component, be combined with the description of methods, or be put into an appendix. Your conclusions should be expressed in a way that can be understood by a non-statistician and should make sense even if the reader of your report had omitted to read the middle section on detailed statistical analysis. Try to report your conclusion in the context of the experiment from which the data came. 3.6 General discussion It may be appropriate to give some account of previous investigation of the same or related problems, or to relate the present conclusion to others in a connected area. It is worth discussing how far the original aim was successfully achieved, if it was not, why not, and how you might have done things differently. Reserva- tions about the data also belong here. (In real life, data sets may well contain errors or have been obtained from a badly designed experiment). This general discussion can in fact appear not as a section in itself but can be subsumed in the Introduction. 4 3.7 References These should always be included if you refer to books or papers from journals. The simplest, and widely-used style, is to refer to authors in the text in the format “Surname (Year of Publication)”, and to give the full references in the References section as shown at the end of this article i.e. for a journal article reference give Author’s surname, author’s initials, title of paper including subtitle if there is one, journal name, year of publication, volume, first and last page numbers of article, in that order; for a book reference give, in the following order, the author’es surname, the author’s initials, (year of publication) Title of book (in italics), publishing company, city of publication. 3.8 Appendix Whatever does not fit naturally into the main body of the report and cannot reasonably be omitted should go into an appendix. However, you don’t want the report to suffer from appendicitis! A case of the appendix or appendices tail wagging the main text dog makes the report hard to read."
+  },
+  {
+    "objectID": "Report Writing/useofaireport.html",
+    "href": "Report Writing/useofaireport.html",
+    "title": "Examples of Mathematics translated into code",
+    "section": "",
+    "text": "To start off, I want to make this clear: You should NOT be using AI to do your coursework for you! In no way is this section endorsing the use of LLMs like ChatGPT, Gemini, or other models to cut corners on assignments and coursework. This section will simply go through the healthy, and acceptable ways to use AI in your everyday studies.\n\n\nClarifying Concepts\n\n    Use AI to explain statistical ideas (e.g., Bayesian inference, p-values, regression assumptions) in simpler terms.\n\n    Great for quick refreshers before you start writing.\n\nCode Debugging & Optimisation\n\n    Paste your R / Python code and ask AI to find errors or suggest more efficient approaches.\n\n    Useful for spotting typos, missing parentheses, or inefficient loops.\n\nExploratory Data Analysis Help\n\n    Ask AI for ideas on which plots or summary stats to include.\n\n    Use it to remember ggplot2 or matplotlib syntax you’ve forgotten.\n\nReport Structure Guidance\n\n    Get sample outlines, section names, and suggestions for logical flow.\n\n    Ask for alternative ways to present your results (e.g., tables vs plots).\n\nFinding References & Resources\n\n    Ask for academic sources, journal article suggestions, or textbooks.\n\n    Always check the actual source before citing — AI can suggest leads but you must verify.\n\nPlain-Language Drafting\n\n    Use AI to rephrase technical findings for a non-statistical audience.\n\n    Helpful for the Abstract, Discussion, or Recommendations sections.\n\n\n\nCopy-Pasting AI Output as Your Work\n\n    Risks plagiarism and academic misconduct.\n\n    Even if AI generates correct text/code, rewrite in your own words and verify every number.\n\nTrusting Generated Code Blindly\n\n    AI can produce syntactically correct but statistically wrong methods (e.g., mis-specified models, wrong assumptions).\n\n    Always check the logic and outputs yourself.\n\nUsing AI for Fabricated Results\n\n    Never generate fake datasets, fake statistical outputs, or invented references.\n\n    Fabrication can be detected and is a serious offence.\n\nSkipping Understanding\n\n    If you let AI do all the work, you won’t be able to defend your answers if questioned.\n\n    Make sure you can explain every step in your own words.\n\nOverusing AI for Writing\n\n    Avoid making your whole report “AI-polished” to the point it loses your voice.\n\n    Many professors can spot a fully AI-written paper — and it may lack context-specific insight.\n\nIgnoring Data Privacy\n\n    Don’t paste sensitive or unpublished data into AI tools if your university or project has confidentiality requirements."
+  },
+  {
+    "objectID": "Report Writing/useofaireport.html#good-ways-to-use-ai-in-statistics-assignments",
+    "href": "Report Writing/useofaireport.html#good-ways-to-use-ai-in-statistics-assignments",
+    "title": "Examples of Mathematics translated into code",
+    "section": "",
+    "text": "Clarifying Concepts\n\n    Use AI to explain statistical ideas (e.g., Bayesian inference, p-values, regression assumptions) in simpler terms.\n\n    Great for quick refreshers before you start writing.\n\nCode Debugging & Optimisation\n\n    Paste your R / Python code and ask AI to find errors or suggest more efficient approaches.\n\n    Useful for spotting typos, missing parentheses, or inefficient loops.\n\nExploratory Data Analysis Help\n\n    Ask AI for ideas on which plots or summary stats to include.\n\n    Use it to remember ggplot2 or matplotlib syntax you’ve forgotten.\n\nReport Structure Guidance\n\n    Get sample outlines, section names, and suggestions for logical flow.\n\n    Ask for alternative ways to present your results (e.g., tables vs plots).\n\nFinding References & Resources\n\n    Ask for academic sources, journal article suggestions, or textbooks.\n\n    Always check the actual source before citing — AI can suggest leads but you must verify.\n\nPlain-Language Drafting\n\n    Use AI to rephrase technical findings for a non-statistical audience.\n\n    Helpful for the Abstract, Discussion, or Recommendations sections."
+  },
+  {
+    "objectID": "Report Writing/useofaireport.html#what-to-avoid-when-using-ai",
+    "href": "Report Writing/useofaireport.html#what-to-avoid-when-using-ai",
+    "title": "Examples of Mathematics translated into code",
+    "section": "",
+    "text": "Copy-Pasting AI Output as Your Work\n\n    Risks plagiarism and academic misconduct.\n\n    Even if AI generates correct text/code, rewrite in your own words and verify every number.\n\nTrusting Generated Code Blindly\n\n    AI can produce syntactically correct but statistically wrong methods (e.g., mis-specified models, wrong assumptions).\n\n    Always check the logic and outputs yourself.\n\nUsing AI for Fabricated Results\n\n    Never generate fake datasets, fake statistical outputs, or invented references.\n\n    Fabrication can be detected and is a serious offence.\n\nSkipping Understanding\n\n    If you let AI do all the work, you won’t be able to defend your answers if questioned.\n\n    Make sure you can explain every step in your own words.\n\nOverusing AI for Writing\n\n    Avoid making your whole report “AI-polished” to the point it loses your voice.\n\n    Many professors can spot a fully AI-written paper — and it may lack context-specific insight.\n\nIgnoring Data Privacy\n\n    Don’t paste sensitive or unpublished data into AI tools if your university or project has confidentiality requirements."
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html",
+    "href": "Data Visualisation/customising graphs.html",
+    "title": "Graph Customisation",
+    "section": "",
+    "text": "When you first create plots in R, the default settings work well for exploring your data. However, when you’re preparing visualizations for presentations, reports, or publications, you’ll want to polish them to make your message clearer and more visually appealing.\nIn this tutorial, we’ll learn how to customize various aspects of ggplot2 graphs including axes, colors, labels, legends, and themes. We’ll primarily use the palmerpenguins dataset, which contains measurements of three penguin species from islands in Antarctica.\nFirst, let’s load our packages and data:\n\n\nCode\n```{r}\n#| message: false\nlibrary(ggplot2)\n```\n\n\nWarning: package 'ggplot2' was built under R version 4.4.3\n\n\nCode\n```{r}\n#| message: false\nlibrary(palmerpenguins)\n```\n\n\nWarning: package 'palmerpenguins' was built under R version 4.4.3\n\n\nCode\n```{r}\n#| message: false\nlibrary(dplyr)\n```\n\n\nWarning: package 'dplyr' was built under R version 4.4.3\n\n\nCode\n```{r}\n#| message: false\n# View the first few rows\nhead(penguins)\n```\n\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Graph Customisation"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html#quantitative-axes",
+    "href": "Data Visualisation/customising graphs.html#quantitative-axes",
+    "title": "Graph Customisation",
+    "section": "Quantitative axes",
+    "text": "Quantitative axes\nQuantitative x- and y-axes can be modified using the scale_x_continuous and scale_y_continuous functions respectively\nOptions include\nbreaks - a numeric vector of positions\nlimits - a numeric vector with the min and max for the scale"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html",
+    "href": "Data Visualisation/bivariate.html",
+    "title": "Visualizing Bivariate Data",
+    "section": "",
+    "text": "One of the most fundamental questions in data analysis is: “How does variable A relate to variable B?”\nBivariate analysis allows us to investigate relationships, correlations, and differences between groups. The specific type of graph you choose depends entirely on the data types you are working with (Categorical or Quantitative)."
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#a-tibble-12-5",
+    "href": "Data Visualisation/bivariate.html#a-tibble-12-5",
+    "title": "Dealing with bivariate data",
+    "section": "# A tibble: 12 × 5",
+    "text": "# A tibble: 12 × 5"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#groups-class-7",
+    "href": "Data Visualisation/bivariate.html#groups-class-7",
+    "title": "Dealing with bivariate data",
+    "section": "# Groups: class [7]",
+    "text": "# Groups: class [7]"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#class-drv-n-pct-lbl",
+    "href": "Data Visualisation/bivariate.html#class-drv-n-pct-lbl",
+    "title": "Dealing with bivariate data",
+    "section": "class drv n pct lbl",
+    "text": "class drv n pct lbl"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#seater-r-5-1-100",
+    "href": "Data Visualisation/bivariate.html#seater-r-5-1-100",
+    "title": "Dealing with bivariate data",
+    "section": "1 2seater r 5 1 100%",
+    "text": "1 2seater r 5 1 100%"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#compact-4-12-0.255-26",
+    "href": "Data Visualisation/bivariate.html#compact-4-12-0.255-26",
+    "title": "Dealing with bivariate data",
+    "section": "2 compact 4 12 0.255 26%",
+    "text": "2 compact 4 12 0.255 26%"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#compact-f-35-0.745-74",
+    "href": "Data Visualisation/bivariate.html#compact-f-35-0.745-74",
+    "title": "Dealing with bivariate data",
+    "section": "3 compact f 35 0.745 74%",
+    "text": "3 compact f 35 0.745 74%"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#midsize-4-3-0.0732-7",
+    "href": "Data Visualisation/bivariate.html#midsize-4-3-0.0732-7",
+    "title": "Dealing with bivariate data",
+    "section": "4 midsize 4 3 0.0732 7%",
+    "text": "4 midsize 4 3 0.0732 7%"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#midsize-f-38-0.927-93",
+    "href": "Data Visualisation/bivariate.html#midsize-f-38-0.927-93",
+    "title": "Dealing with bivariate data",
+    "section": "5 midsize f 38 0.927 93%",
+    "text": "5 midsize f 38 0.927 93%"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#minivan-f-11-1-100",
+    "href": "Data Visualisation/bivariate.html#minivan-f-11-1-100",
+    "title": "Dealing with bivariate data",
+    "section": "6 minivan f 11 1 100%",
+    "text": "6 minivan f 11 1 100%"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#pickup-4-33-1-100",
+    "href": "Data Visualisation/bivariate.html#pickup-4-33-1-100",
+    "title": "Dealing with bivariate data",
+    "section": "7 pickup 4 33 1 100%",
+    "text": "7 pickup 4 33 1 100%"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#subcompact-4-4-0.114-11",
+    "href": "Data Visualisation/bivariate.html#subcompact-4-4-0.114-11",
+    "title": "Dealing with bivariate data",
+    "section": "8 subcompact 4 4 0.114 11%",
+    "text": "8 subcompact 4 4 0.114 11%"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#subcompact-f-22-0.629-63",
+    "href": "Data Visualisation/bivariate.html#subcompact-f-22-0.629-63",
+    "title": "Dealing with bivariate data",
+    "section": "9 subcompact f 22 0.629 63%",
+    "text": "9 subcompact f 22 0.629 63%"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#subcompact-r-9-0.257-26",
+    "href": "Data Visualisation/bivariate.html#subcompact-r-9-0.257-26",
+    "title": "Dealing with bivariate data",
+    "section": "10 subcompact r 9 0.257 26%",
+    "text": "10 subcompact r 9 0.257 26%"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#suv-4-51-0.823-82",
+    "href": "Data Visualisation/bivariate.html#suv-4-51-0.823-82",
+    "title": "Dealing with bivariate data",
+    "section": "11 suv 4 51 0.823 82%",
+    "text": "11 suv 4 51 0.823 82%"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#suv-r-11-0.177-18",
+    "href": "Data Visualisation/bivariate.html#suv-r-11-0.177-18",
+    "title": "Dealing with bivariate data",
+    "section": "12 suv r 11 0.177 18%",
+    "text": "12 suv r 11 0.177 18%\nNext, we’ll use this dataset and the geom_text function to add labels to each bar segment."
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#stacked-bar-charts",
+    "href": "Data Visualisation/bivariate.html#stacked-bar-charts",
+    "title": "Visualizing Bivariate Data",
+    "section": "1.1 Stacked Bar Charts",
+    "text": "1.1 Stacked Bar Charts\nThe default behavior of a bar chart in ggplot2 is to stack categories on top of one another. This gives you a sense of the total count while showing the breakdown of subgroups.\n\n\nCode\n```{r Data Penguins}\nlibrary(ggplot2)\n```\n\n\nWarning: package 'ggplot2' was built under R version 4.4.3\n\n\nCode\n```{r Data Penguins}\nlibrary(palmerpenguins)\n```\n\n\nWarning: package 'palmerpenguins' was built under R version 4.4.3\n\n\nCode\n```{r Data Penguins}\npenguins &lt;- palmerpenguins::penguins\npenguins &lt;- na.omit(penguins)\n\nhead(penguins)\n\n# Stacked bar chart\nggplot(penguins, aes(x = island, fill = species)) + \n  geom_bar(position = \"stack\") +\n  labs(title = \"Species Distribution by Island (Stacked)\")\n```\n\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           36.7          19.3               193        3450\n5 Adelie  Torgersen           39.3          20.6               190        3650\n6 Adelie  Torgersen           38.9          17.8               181        3625\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\n\n\n\n\n\n\n\nFrom this chart, we can quickly see that Biscoe island has the most penguins overall, and Torgersen island is exclusively inhabited by Adelie penguins."
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#grouped-bar-charts",
+    "href": "Data Visualisation/bivariate.html#grouped-bar-charts",
+    "title": "Visualizing Bivariate Data",
+    "section": "1.2 Grouped Bar Charts",
+    "text": "1.2 Grouped Bar Charts\nIf you want to compare the specific counts of species side-by-side, the “dodged” bar chart is preferred. It un-stacks the bars and places them next to each other.\n\n\nCode\n```{r Penguins 1}\n# Grouped bar chart\nggplot(penguins, aes(x = island, fill = species)) + \n  geom_bar(position = \"dodge\") +\n  labs(title = \"Species Distribution by Island (Grouped)\")\n```\n\n\n\n\n\n\n\n\n\nNote: By default, if a category has zero observations (like Chinstrap penguins on Biscoe), the bar is omitted, and the remaining bars expand to fill the space. If you want to preserve the width and show the gap, use position_dodge(preserve = \"single\")."
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#segmented-100-fill-bar-charts",
+    "href": "Data Visualisation/bivariate.html#segmented-100-fill-bar-charts",
+    "title": "Visualizing Bivariate Data",
+    "section": "1.3 Segmented (100% Fill) Bar Charts",
+    "text": "1.3 Segmented (100% Fill) Bar Charts\nSometimes, raw counts matter less than percentages. If we want to know “What proportion of penguins on Dream Island are Chinstraps?”, we use the “fill” position. This stretches every bar to 100%.\n\n\nCode\n```{r Penguins 2}\nlibrary(scales)\n```\n\n\nWarning: package 'scales' was built under R version 4.4.3\n\n\nCode\n```{r Penguins 2}\n# Segmented bar chart\nggplot(penguins, aes(x = island, fill = species)) + \n  geom_bar(position = \"fill\") + \n  scale_y_continuous(labels = percent) +\n  labs(y = \"Proportion\", title = \"Species Proportion by Island\") +\n  theme_minimal()\n```"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#adding-labels",
+    "href": "Data Visualisation/bivariate.html#adding-labels",
+    "title": "Visualizing Bivariate Data",
+    "section": "1.4 Adding Labels",
+    "text": "1.4 Adding Labels\nA segmented bar chart is most effective when the actual percentages are written on the plot. To do this, we must first calculate the percentages manually using dplyr, and then plot the summary data.\n\n\nCode\n```{r Penguins 3}\nlibrary(dplyr)\n```\n\n\nWarning: package 'dplyr' was built under R version 4.4.3\n\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nCode\n```{r Penguins 3}\n# 1. Create a summary table with labels\nplotdata &lt;- penguins %&gt;%\n  group_by(island, species) %&gt;%\n  summarize(n = n()) %&gt;% \n  mutate(pct = n / sum(n),\n         lbl = scales::percent(pct, accuracy = 1))\n```\n\n\n`summarise()` has grouped output by 'island'. You can override using the\n`.groups` argument.\n\n\nCode\n```{r Penguins 3}\n# 2. Plot using the summary data\nggplot(plotdata, aes(x = island, y = pct, fill = species)) + \n  # Use geom_col for pre-calculated data\n  geom_col(position = \"fill\") + \n  geom_text(aes(label = lbl), \n            position = position_fill(vjust = 0.5), \n            color = \"white\", fontface = \"bold\") +\n  scale_y_continuous(labels = percent) +\n  labs(y = \"Percent\", title = \"Species Composition by Island\") +\n  theme_minimal()\n```"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#scatterplots",
+    "href": "Data Visualisation/bivariate.html#scatterplots",
+    "title": "Visualizing Bivariate Data",
+    "section": "2.1 Scatterplots",
+    "text": "2.1 Scatterplots\nThe scatterplot is the standard for bivariate quantitative data. Let’s look at the relationship between Flipper Length and Body Mass.\n\n\nCode\n```{r Penguins 4}\n# Enhanced scatterplot\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + \n  geom_point(color = \"cornflowerblue\", size = 2, alpha = 0.6) + \n  labs(title = \"Flipper Length vs. Body Mass\",\n       x = \"Flipper Length (mm)\",\n       y = \"Body Mass (g)\") +\n  theme_minimal()\n```"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#adding-trend-lines",
+    "href": "Data Visualisation/bivariate.html#adding-trend-lines",
+    "title": "Visualizing Bivariate Data",
+    "section": "2.2 Adding Trend Lines",
+    "text": "2.2 Adding Trend Lines\nTo summarize the relationship, we can add a trend line using geom_smooth().\n\nLinear Fit\nThe most common approach is a straight linear regression line (method = \"lm\").\n\n\nCode\n```{r}\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + \n  geom_point(color = \"cornflowerblue\", alpha = 0.6) + \n  geom_smooth(method = \"lm\", color = \"black\", size = 1) +\n  labs(title = \"Linear Relationship\")\n```\n\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\nPolynomial and Loess Curves\nNot all data is linear. Sometimes relationships curve.\n\nPolynomial: Uses a formula (e.g., quadratic) to fit a curve.\nLoess: A non-parametric method that follows the data locally. This is the default in ggplot2 for smaller datasets.\n\nLet’s look at a different dataset, gapminder, to see a curved relationship between GDP per Capita and Life Expectancy.\n\n\nCode\n```{r}\nlibrary(gapminder)\n```\n\n\nWarning: package 'gapminder' was built under R version 4.4.3\n\n\nCode\n```{r}\n# Loess Curve (Standard Smoothing)\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) + \n  geom_point(alpha = 0.3, color = \"darkcyan\") + \n  geom_smooth(method = \"loess\", color = \"red\") + \n  scale_x_log10(labels = scales::dollar) + # Log scale helps visualize GDP\n  labs(title = \"GDP vs Life Expectancy (Loess Fit)\",\n       subtitle = \"Note the logarithmic X axis\")\n```\n\n\n`geom_smooth()` using formula = 'y ~ x'"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#time-series-line-plots",
+    "href": "Data Visualisation/bivariate.html#time-series-line-plots",
+    "title": "Visualizing Bivariate Data",
+    "section": "2.3 Time Series (Line Plots)",
+    "text": "2.3 Time Series (Line Plots)\nIf one of your quantitative variables is Time, a line plot is the standard choice. Below is the change in Life Expectancy in the United States over time.\n\n\nCode\n```{r}\n# Filter for US data\nus_data &lt;- filter(gapminder, country == \"United States\")\n\n# Line plot with points\nggplot(us_data, aes(x = year, y = lifeExp)) + \n  geom_line(size = 1.2, color = \"grey\") + \n  geom_point(size = 3, color = \"steelblue\") + \n  labs(title = \"US Life Expectancy (1952-2007)\",\n       y = \"Life Expectancy (years)\") +\n  theme_minimal()\n```"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#bar-charts-summary-statistics",
+    "href": "Data Visualisation/bivariate.html#bar-charts-summary-statistics",
+    "title": "Visualizing Bivariate Data",
+    "section": "3.1 Bar Charts (Summary Statistics)",
+    "text": "3.1 Bar Charts (Summary Statistics)\nWe can plot the Mean of a variable for each group. Here, we calculate the average body mass for each penguin species.\n\n\nCode\n```{r}\n# Calculate means\nmean_data &lt;- penguins %&gt;%\n  group_by(species) %&gt;%\n  summarize(mean_mass = mean(body_mass_g))\n\n# Plot means\nggplot(mean_data, aes(x = species, y = mean_mass)) + \n  geom_col(fill = \"steelblue\", width = 0.7) + \n  geom_text(aes(label = round(mean_mass, 0)), vjust = -0.5) +\n  scale_y_continuous(limits = c(0, 6000)) +\n  labs(title = \"Average Body Mass by Species\", y = \"Mass (g)\") +\n  theme_minimal()\n```\n\n\n\n\n\n\n\n\n\nWarning: Bar charts of means can be misleading because they hide the spread of the data. A species with highly variable weights looks the same as a species with consistent weights."
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#distributions-boxplots-and-violins",
+    "href": "Data Visualisation/bivariate.html#distributions-boxplots-and-violins",
+    "title": "Visualizing Bivariate Data",
+    "section": "3.2 Distributions: Boxplots and Violins",
+    "text": "3.2 Distributions: Boxplots and Violins\nTo see the spread, we use distribution plots.\n\nBoxplots\nBoxplots summarize the distribution using quartiles. They show the median, the IQR (Interquartile Range), and outliers.\n\n\nCode\n```{r}\nggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) + \n  geom_boxplot(alpha = 0.6) + \n  labs(title = \"Body Mass Distribution by Species\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")\n```\n\n\n\n\n\n\n\n\n\n\n\nViolin Plots\nViolin plots show the “density” of the data. The wider the violin, the more data points exist at that value.\n\n\nCode\n```{r}\nggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) + \n  geom_violin(trim = FALSE, alpha = 0.6) + \n  geom_boxplot(width = 0.1, fill = \"white\") + # Add boxplot inside for reference\n  labs(title = \"Violin Plot with Embedded Boxplot\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")\n```"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#ridgeline-plots",
+    "href": "Data Visualisation/bivariate.html#ridgeline-plots",
+    "title": "Visualizing Bivariate Data",
+    "section": "3.3 Ridgeline Plots",
+    "text": "3.3 Ridgeline Plots\nRidgeline plots (or “Joyplots”) are excellent when you have many categories. They display density curves stacked vertically.\n\n\nCode\n```{r}\nlibrary(ggridges)\n```\n\n\nWarning: package 'ggridges' was built under R version 4.4.3\n\n\nCode\n```{r}\nggplot(penguins, aes(x = body_mass_g, y = species, fill = species)) + \n  geom_density_ridges(alpha = 0.7) + \n  labs(title = \"Ridgeline Plot of Body Mass\") +\n  theme_ridges() + \n  theme(legend.position = \"none\")\n```\n\n\nPicking joint bandwidth of 153"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#mean-with-error-bars",
+    "href": "Data Visualisation/bivariate.html#mean-with-error-bars",
+    "title": "Visualizing Bivariate Data",
+    "section": "3.4 Mean with Error Bars",
+    "text": "3.4 Mean with Error Bars\nScientific publications often require plots showing the Mean +/- the Standard Error (SEM) or Confidence Interval.\n\n\nCode\n```{r}\n# Calculate stats\nsummary_stats &lt;- penguins %&gt;%\n  group_by(species, sex) %&gt;%\n  summarize(\n    n = n(),\n    mean = mean(body_mass_g),\n    sd = sd(body_mass_g),\n    se = sd / sqrt(n)\n  )\n```\n\n\n`summarise()` has grouped output by 'species'. You can override using the\n`.groups` argument.\n\n\nCode\n```{r}\n# Plot Mean +/- SE\npd &lt;- position_dodge(0.2) # To separate overlapping bars\n\nggplot(summary_stats, aes(x = species, y = mean, color = sex, group = sex)) + \n  geom_point(position = pd, size = 4) + \n  geom_errorbar(aes(ymin = mean - se, ymax = mean + se), width = 0.2, position = pd, size = 1) +\n  labs(title = \"Mean Body Mass by Species and Sex\",\n       subtitle = \"Error bars represent Standard Error\",\n       y = \"Body Mass (g)\") +\n  theme_minimal()\n```"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#jitter-and-strip-plots",
+    "href": "Data Visualisation/bivariate.html#jitter-and-strip-plots",
+    "title": "Visualizing Bivariate Data",
+    "section": "3.5 Jitter and Strip Plots",
+    "text": "3.5 Jitter and Strip Plots\nIf your dataset isn’t massive, the most honest way to show the data is to show all the points. To prevent points from overlapping, we “jitter” them (add random noise).\n\n\nCode\n```{r}\nggplot(penguins, aes(x = species, y = body_mass_g, color = species)) + \n  geom_jitter(width = 0.2, alpha = 0.6) + \n  stat_summary(fun = mean, geom = \"point\", shape = 95, size = 10, color = \"black\") + # Add mean bar\n  labs(title = \"Raw Data with Mean Indicator\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")\n```"
+  },
+  {
+    "objectID": "Data Visualisation/bivariate.html#cleveland-dot-plots-lollipop-charts",
+    "href": "Data Visualisation/bivariate.html#cleveland-dot-plots-lollipop-charts",
+    "title": "Visualizing Bivariate Data",
+    "section": "3.6 Cleveland Dot Plots (Lollipop Charts)",
+    "text": "3.6 Cleveland Dot Plots (Lollipop Charts)\nWhen comparing a numeric value across many categories (like countries), a bar chart becomes cluttered. A Cleveland dot plot (or lollipop chart) is a cleaner alternative.\nLet’s look at Life Expectancy in the Americas in 2007.\n\n\nCode\n```{r}\n# Prepare data\namericas &lt;- gapminder %&gt;% \n  filter(continent == \"Americas\" & year == 2007)\n\n# Lollipop Chart\nggplot(americas, aes(x = lifeExp, y = reorder(country, lifeExp))) + \n  geom_segment(aes(x = 60, xend = lifeExp, y = country, yend = country), color = \"grey\") +\n  geom_point(size = 3, color = \"darkcyan\") + \n  labs(title = \"Life Expectancy in the Americas (2007)\",\n       x = \"Life Expectancy (Years)\", y = \"\") +\n  theme_minimal() +\n  theme(panel.grid.major.y = element_blank()) # Remove horizontal grid lines for clarity\n```"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#basic-bubble-chart",
+    "href": "Data Visualisation/othergraphs.html#basic-bubble-chart",
+    "title": "Specialized Visualization Techniques",
+    "section": "Basic Bubble Chart",
+    "text": "Basic Bubble Chart\nLet’s explore the relationship between penguin flipper length, body mass, and bill length:"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#enhanced-bubble-chart",
+    "href": "Data Visualisation/othergraphs.html#enhanced-bubble-chart",
+    "title": "Specialized Visualization Techniques",
+    "section": "Enhanced Bubble Chart",
+    "text": "Enhanced Bubble Chart\nLet’s improve this with better styling and add a fourth variable (species) using color:\n\n\n\n\n\n\n\n\n\nThe scale_size_continuous(range = c(2, 12)) controls the minimum and maximum bubble sizes.\nNote: Bubble charts are controversial because humans are better at judging length than area. Use them when the approximate relationship is more important than exact values."
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#creating-a-correlation-matrix",
+    "href": "Data Visualisation/othergraphs.html#creating-a-correlation-matrix",
+    "title": "Specialized Visualization Techniques",
+    "section": "Creating a Correlation Matrix",
+    "text": "Creating a Correlation Matrix\nLet’s visualize correlations between penguin measurements:\n\n\n\n\n\n\n\n\n\nStrong positive correlations appear in red, negative correlations in blue, and weak correlations in white."
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#clustered-heatmap-for-groups",
+    "href": "Data Visualisation/othergraphs.html#clustered-heatmap-for-groups",
+    "title": "Specialized Visualization Techniques",
+    "section": "Clustered Heatmap for Groups",
+    "text": "Clustered Heatmap for Groups\nLet’s create a heatmap showing average measurements by species:"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#custom-scatterplot-matrix",
+    "href": "Data Visualisation/othergraphs.html#custom-scatterplot-matrix",
+    "title": "Specialized Visualization Techniques",
+    "section": "Custom Scatterplot Matrix",
+    "text": "Custom Scatterplot Matrix\nYou can customize the appearance with your own functions:"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#basic-alluvial-diagram",
+    "href": "Data Visualisation/othergraphs.html#basic-alluvial-diagram",
+    "title": "Specialized Visualization Techniques",
+    "section": "Basic Alluvial Diagram",
+    "text": "Basic Alluvial Diagram\nLet’s examine how penguins are distributed across species, islands, and sex:\n\n\n\n\n\n\n\n\n\nHow to read this: - Start on the left with species - Follow the flows to see how each species is distributed across islands - Continue following to see the sex distribution - Flow width represents the number of penguins"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#enhanced-alluvial-diagram",
+    "href": "Data Visualisation/othergraphs.html#enhanced-alluvial-diagram",
+    "title": "Specialized Visualization Techniques",
+    "section": "Enhanced Alluvial Diagram",
+    "text": "Enhanced Alluvial Diagram\nLet’s create a more detailed version with better styling:"
+  },
+  {
+    "objectID": "Data Visualisation/othergraphs.html#waterfall-chart-with-net-total",
+    "href": "Data Visualisation/othergraphs.html#waterfall-chart-with-net-total",
+    "title": "Specialized Visualization Techniques",
+    "section": "Waterfall Chart with Net Total",
+    "text": "Waterfall Chart with Net Total\nLet’s add a total column to show the final balance:\n\n\n\n\n\n\n\n\n\nThis shows clearly how the initial grant is allocated across different expenses."
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#csv-and-text-files",
+    "href": "Data Visualisation/importing data.html#csv-and-text-files",
+    "title": "Data Import and Preparation in R",
+    "section": "CSV and Text Files",
+    "text": "CSV and Text Files\nThe readr package provides efficient functions for importing text-based data:\nThese functions assume that: - The first row contains column names - Values are separated by commas (CSV) or tabs (TSV) - Missing data appears as blank cells\nHere’s what the first few lines of a CSV file look like:\nspecies,island,bill_length_mm,bill_depth_mm,flipper_length_mm,body_mass_g,sex\nAdelie,Torgersen,39.1,18.7,181,3750,male\nAdelie,Torgersen,39.5,17.4,186,3800,female\nAdelie,Torgersen,40.3,18.0,195,3250,female\nTip: For more options (like different delimiters or handling special cases), check the help documentation with ?read_csv.",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Data Import and Preparation in R"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#excel-files",
+    "href": "Data Visualisation/importing data.html#excel-files",
+    "title": "Data Import and Preparation in R",
+    "section": "Excel Files",
+    "text": "Excel Files\nThe readxl package handles Excel workbooks (both .xls and .xlsx):\nSince Excel files can have multiple worksheets, use the sheet option to specify which one you want. The default is the first sheet.",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Data Import and Preparation in R"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#files-from-other-statistical-software",
+    "href": "Data Visualisation/importing data.html#files-from-other-statistical-software",
+    "title": "Data Import and Preparation in R",
+    "section": "Files from Other Statistical Software",
+    "text": "Files from Other Statistical Software\nThe haven package lets you import data from other statistical programs without needing those programs installed:",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Data Import and Preparation in R"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#selecting-variables-columns",
+    "href": "Data Visualisation/importing data.html#selecting-variables-columns",
+    "title": "Data Import and Preparation in R",
+    "section": "Selecting Variables (Columns)",
+    "text": "Selecting Variables (Columns)\nUse select() to keep only the columns you need:\n\n\n# A tibble: 6 × 3\n  species island    body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;           &lt;int&gt;\n1 Adelie  Torgersen        3750\n2 Adelie  Torgersen        3800\n3 Adelie  Torgersen        3250\n4 Adelie  Torgersen          NA\n5 Adelie  Torgersen        3450\n6 Adelie  Torgersen        3650\n\n\n\n\n# A tibble: 6 × 5\n  species bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie            39.1          18.7               181        3750\n2 Adelie            39.5          17.4               186        3800\n3 Adelie            40.3          18                 195        3250\n4 Adelie            NA            NA                  NA          NA\n5 Adelie            36.7          19.3               193        3450\n6 Adelie            39.3          20.6               190        3650\n\n\n\n\n# A tibble: 6 × 6\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Data Import and Preparation in R"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#filtering-observations-rows",
+    "href": "Data Visualisation/importing data.html#filtering-observations-rows",
+    "title": "Data Import and Preparation in R",
+    "section": "Filtering Observations (Rows)",
+    "text": "Filtering Observations (Rows)\nUse filter() to keep only rows that meet certain conditions. You can combine conditions with & (AND) and | (OR):\n\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\n\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\n\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nCommon comparison operators: - == equals - != not equals - &gt; greater than - &lt; less than - &gt;= greater than or equal to - &lt;= less than or equal to",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Data Import and Preparation in R"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#creating-and-modifying-variables",
+    "href": "Data Visualisation/importing data.html#creating-and-modifying-variables",
+    "title": "Data Import and Preparation in R",
+    "section": "Creating and Modifying Variables",
+    "text": "Creating and Modifying Variables\nUse mutate() to create new columns or modify existing ones:\n\n\n# A tibble: 6 × 5\n  species body_mass_g body_mass_kg flipper_length_mm flipper_length_cm\n  &lt;fct&gt;         &lt;int&gt;        &lt;dbl&gt;             &lt;int&gt;             &lt;dbl&gt;\n1 Adelie         3750         3.75               181              18.1\n2 Adelie         3800         3.8                186              18.6\n3 Adelie         3250         3.25               195              19.5\n4 Adelie           NA        NA                   NA              NA  \n5 Adelie         3450         3.45               193              19.3\n6 Adelie         3650         3.65               190              19  \n\n\n\nRecoding with ifelse()\nThe ifelse() function helps you create categorical variables based on conditions:\n\n\n# A tibble: 6 × 3\n  species body_mass_g size \n  &lt;fct&gt;         &lt;int&gt; &lt;chr&gt;\n1 Adelie         3750 small\n2 Adelie         3800 small\n3 Adelie         3250 small\n4 Adelie           NA &lt;NA&gt; \n5 Adelie         3450 small\n6 Adelie         3650 small\n\n\n\n\n# A tibble: 6 × 2\n  island    island_short\n  &lt;fct&gt;     &lt;chr&gt;       \n1 Torgersen Other       \n2 Torgersen Other       \n3 Torgersen Other       \n4 Torgersen Other       \n5 Torgersen Other       \n6 Torgersen Other",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Data Import and Preparation in R"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#summarizing-data",
+    "href": "Data Visualisation/importing data.html#summarizing-data",
+    "title": "Data Import and Preparation in R",
+    "section": "Summarizing Data",
+    "text": "Summarizing Data\nUse summarize() to calculate summary statistics. Combine it with group_by() to get statistics for each group:\n\n\n# A tibble: 1 × 2\n  mean_flipper mean_mass\n         &lt;dbl&gt;     &lt;dbl&gt;\n1         201.     4202.\n\n\nNote: The na.rm = TRUE option tells R to ignore missing values when calculating means.\n\n\n# A tibble: 3 × 4\n  species   mean_flipper mean_mass count\n  &lt;fct&gt;            &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;\n1 Adelie            190.     3701.   152\n2 Chinstrap         196.     3733.    68\n3 Gentoo            217.     5076.   124\n\n\n\n\n# A tibble: 5 × 5\n  species   island    mean_bill_length sd_bill_length count\n  &lt;fct&gt;     &lt;fct&gt;                &lt;dbl&gt;          &lt;dbl&gt; &lt;int&gt;\n1 Adelie    Biscoe                39.0           2.48    44\n2 Adelie    Dream                 38.5           2.47    56\n3 Adelie    Torgersen             39.0           3.03    52\n4 Chinstrap Dream                 48.8           3.34    68\n5 Gentoo    Biscoe                47.5           3.08   124\n\n\nMany visualizations work best with summarized data rather than raw observations.",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Data Import and Preparation in R"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#using-the-pipe-operator",
+    "href": "Data Visualisation/importing data.html#using-the-pipe-operator",
+    "title": "Data Import and Preparation in R",
+    "section": "Using the Pipe Operator",
+    "text": "Using the Pipe Operator\nThe pipe operator %&gt;% (or |&gt; in newer R versions) lets you chain operations together, making your code cleaner and easier to read:\n\n\n# A tibble: 3 × 2\n  island    mean_mass\n  &lt;fct&gt;         &lt;dbl&gt;\n1 Biscoe        3710.\n2 Dream         3688.\n3 Torgersen     3706.\n\n\n\n\n# A tibble: 3 × 2\n  island    mean_mass\n  &lt;fct&gt;         &lt;dbl&gt;\n1 Biscoe        3710.\n2 Dream         3688.\n3 Torgersen     3706.\n\n\nThe pipe takes the output from the left side and passes it as the first argument to the function on the right side.",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Data Import and Preparation in R"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#working-with-dates",
+    "href": "Data Visualisation/importing data.html#working-with-dates",
+    "title": "Data Import and Preparation in R",
+    "section": "Working with Dates",
+    "text": "Working with Dates\nDates often come into R as text. The lubridate package makes it easy to convert them to proper date format:\n\n\nWarning: package 'lubridate' was built under R version 4.4.3\n\n\n\nAttaching package: 'lubridate'\n\n\nThe following objects are masked from 'package:base':\n\n    date, intersect, setdiff, union\n\n\n'data.frame':   3 obs. of  2 variables:\n $ person    : chr  \"Alice\" \"Bob\" \"Charlie\"\n $ birth_date: chr  \"03/15/1995\" \"Jul-22-98\" \"1:10:2000\"\n\n\n\n\n'data.frame':   3 obs. of  2 variables:\n $ person    : chr  \"Alice\" \"Bob\" \"Charlie\"\n $ birth_date: Date, format: \"1995-03-15\" \"1998-07-22\" ...\n\n\nCommon date conversion functions: - ymd() for year-month-day format (2024-01-15) - mdy() for month-day-year format (01/15/2024) - dmy() for day-month-year format (15-01-2024)\nOnce converted, you can do date arithmetic and extract components:\n\n\n   person birth_date      age\n1   Alice 1995-03-15 30.78879\n2     Bob 1998-07-22 27.43951\n3 Charlie 2000-01-10 25.97129",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Data Import and Preparation in R"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#reshaping-data-wide-vs.-long-format",
+    "href": "Data Visualisation/importing data.html#reshaping-data-wide-vs.-long-format",
+    "title": "Data Import and Preparation in R",
+    "section": "Reshaping Data: Wide vs. Long Format",
+    "text": "Reshaping Data: Wide vs. Long Format\nSome analyses require data in “wide” format, others need “long” format.\nWide format (each measurement type gets its own column):\n\n\n   id    name height_cm weight_kg\n1 P01   Alice       165        62\n2 P02     Bob       178        75\n3 P03 Charlie       172        70\n\n\nLong format (all measurements in one column):\n\n\nWarning: package 'tidyr' was built under R version 4.4.3\n\n\n# A tibble: 6 × 4\n  id    name    measurement value\n  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;\n1 P01   Alice   height_cm     165\n2 P01   Alice   weight_kg      62\n3 P02   Bob     height_cm     178\n4 P02   Bob     weight_kg      75\n5 P03   Charlie height_cm     172\n6 P03   Charlie weight_kg      70\n\n\nConverting back to wide:\n\n\n# A tibble: 3 × 4\n  id    name    height_cm weight_kg\n  &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;\n1 P01   Alice         165        62\n2 P02   Bob           178        75\n3 P03   Charlie       172        70\n\n\nLong format is often required for ggplot2, while wide format is easier for humans to read.",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Data Import and Preparation in R"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#checking-for-missing-values",
+    "href": "Data Visualisation/importing data.html#checking-for-missing-values",
+    "title": "Data Import and Preparation in R",
+    "section": "Checking for Missing Values",
+    "text": "Checking for Missing Values\nFirst, see how much data is missing:\n\n\n          species            island    bill_length_mm     bill_depth_mm \n                0                 0                 2                 2 \nflipper_length_mm       body_mass_g               sex              year \n                2                 2                11                 0 \n\n\n\n\n          species            island    bill_length_mm     bill_depth_mm \n              0.0               0.0               0.6               0.6 \nflipper_length_mm       body_mass_g               sex              year \n              0.6               0.6               3.2               0.0",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Data Import and Preparation in R"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#approach-1-remove-variables-with-too-many-missing-values",
+    "href": "Data Visualisation/importing data.html#approach-1-remove-variables-with-too-many-missing-values",
+    "title": "Data Import and Preparation in R",
+    "section": "Approach 1: Remove Variables with Too Many Missing Values",
+    "text": "Approach 1: Remove Variables with Too Many Missing Values\nIf a variable has too many missing values (say, &gt;50%), it might not be useful:\n\n\n[1] 8\n\n\n[1] 8",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Data Import and Preparation in R"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#approach-2-listwise-deletion",
+    "href": "Data Visualisation/importing data.html#approach-2-listwise-deletion",
+    "title": "Data Import and Preparation in R",
+    "section": "Approach 2: Listwise Deletion",
+    "text": "Approach 2: Listwise Deletion\nRemove any rows that contain missing values:\n\n\n[1] 344\n\n\n[1] 342\n\n\nWarning: This can remove a lot of data if missingness is spread across many rows!",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Data Import and Preparation in R"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#approach-3-imputation",
+    "href": "Data Visualisation/importing data.html#approach-3-imputation",
+    "title": "Data Import and Preparation in R",
+    "section": "Approach 3: Imputation",
+    "text": "Approach 3: Imputation\nImputation means replacing missing values with educated guesses. The VIM package offers sophisticated methods:\nThis method finds the 5 most similar complete cases and uses their median (for numeric variables) or most common value (for categorical variables) to fill in the missing data.\nImportant: Missing data can seriously bias your results. If you have substantial missing data, consult with a statistician before deciding how to handle it.",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Data Import and Preparation in R"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/importing data.html#best-practices-for-missing-data",
+    "href": "Data Visualisation/importing data.html#best-practices-for-missing-data",
+    "title": "Data Import and Preparation in R",
+    "section": "Best Practices for Missing Data",
+    "text": "Best Practices for Missing Data\n\nInvestigate why data is missing - Is it random or systematic?\nDocument your decisions - Always note how you handled missing values\nCompare methods - Try multiple approaches and see how results differ\nReport missingness - Tell readers how much data was missing",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Data Import and Preparation in R"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#geoms",
+    "href": "Data Visualisation/baseR and ggplot.html#geoms",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "2.1 Geoms",
+    "text": "2.1 Geoms\n“Geoms” (geometric objects) represent the actual marks on the plot—points, bars, lines, etc. We add these using functions starting with geom_. To create a scatterplot, we use geom_point().\nIn ggplot2, we chain these layers together using the + operator.\n\n\nCode\n```{r}\n# Add geometric points\nggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g)) + \n  geom_point()\n```\n\n\n\n\n\n\n\n\n\nThe plot above shows a strong positive correlation: as flipper length increases, body mass tends to increase.\nWe can customize the appearance of these geoms. Parameters like color, size, and alpha (transparency) can be set directly inside the geom function. Transparency is particularly useful when you have many points overlapping each other.\n\n\nCode\n```{r}\n# Make points blue, larger, and semi-transparent\nggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g)) + \n  geom_point(color = \"darkcyan\", alpha = 0.6, size = 3)\n```",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#smoothers-trend-lines",
+    "href": "Data Visualisation/baseR and ggplot.html#smoothers-trend-lines",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "2.2 Smoothers (Trend Lines)",
+    "text": "2.2 Smoothers (Trend Lines)\nTo visualize the trend more clearly, we can add a smoothing layer using geom_smooth(). We can control the method (linear vs. curved), the color, and whether to show the confidence interval. Here, we’ll use a linear model (method = \"lm\").\n\n\nCode\n```{r}\n# Add a line of best fit\nggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g)) + \n  geom_point(color = \"darkcyan\", alpha = 0.6, size = 3) + \n  geom_smooth(method = \"lm\")\n```\n\n\n`geom_smooth()` using formula = 'y ~ x'",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#grouping-with-aesthetics",
+    "href": "Data Visualisation/baseR and ggplot.html#grouping-with-aesthetics",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "2.3 Grouping with Aesthetics",
+    "text": "2.3 Grouping with Aesthetics\nWhile the plot above is informative, it treats all penguins as one homogeneous group. We know our dataset contains different Species.\nWe can map variables to visual characteristics like color or shape inside the aes() function. This allows us to superimpose groups on a single graph. Let’s map species to color.\n\n\nCode\n```{r}\n# Map species to color\nggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)) + \n  geom_point(alpha = 0.6, size = 3) + \n  geom_smooth(method = \"lm\", se = FALSE, size = 1.5)\n```\n\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nNotice the difference:\n\ncolor = species is inside aes() because it maps data to a visual.\nse = FALSE was added to geom_smooth to remove the shaded confidence intervals for a cleaner look.\n\nWe can now see that Gentoo penguins are generally larger than Adelie or Chinstrap penguins.",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#scales",
+    "href": "Data Visualisation/baseR and ggplot.html#scales",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "2.4 Scales",
+    "text": "2.4 Scales\n“Scales” control how the data values are translated into visual properties (like specific colors or axis ticks). Scale functions always start with scale_.\nLet’s modify the X-axis breaks and manually define the colors for our species to be more distinct.\n\n\nCode\n```{r}\n# Customize axes and color palette\nggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)) + \n  geom_point(alpha = 0.6, size = 3) + \n  geom_smooth(method = \"lm\", se = FALSE, size = 1.5) + \n  scale_x_continuous(breaks = seq(170, 230, 10)) + \n  scale_y_continuous(breaks = seq(2500, 6500, 1000)) +\n  scale_color_manual(values = c(\"darkorange\", \"purple\", \"cyan4\"))\n```\n\n\n`geom_smooth()` using formula = 'y ~ x'",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#facets",
+    "href": "Data Visualisation/baseR and ggplot.html#facets",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "2.5 Facets",
+    "text": "2.5 Facets\nSometimes a plot becomes too cluttered with multiple groups. Faceting solves this by splitting the plot into sub-plots (small multiples) based on a categorical variable.\nLet’s see if the relationship holds true across the different “Weight Classes” we defined earlier.\n\n\nCode\n```{r}\n# Split the plot by weight class\nggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)) + \n  geom_point(alpha = 0.6) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  scale_color_manual(values = c(\"darkorange\", \"purple\", \"cyan4\")) + \n  facet_wrap(~weight_class)\n```\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nFaceting allows us to simultaneously view the data cut by different dimensions without overlapping points obscuring the view.",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#labels",
+    "href": "Data Visualisation/baseR and ggplot.html#labels",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "2.6 Labels",
+    "text": "2.6 Labels\nGood data visualization requires clear communication. The labs() function allows you to customize the title, subtitle, captions, and axis labels so the viewer doesn’t have to guess what “flipper_length_mm” means.\n\n\nCode\n```{r}\n# Add professional labels\nggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)) + \n  geom_point(alpha = 0.6) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  scale_color_manual(values = c(\"darkorange\", \"purple\", \"cyan4\")) + \n  facet_wrap(~weight_class) + \n  labs(\n    title = \"Penguin Size Characteristics\",\n    subtitle = \"Comparison of Flipper Length vs Body Mass by Species\",\n    caption = \"Source: Palmer Station LTER / palmerpenguins package\",\n    x = \"Flipper Length (mm)\",\n    y = \"Body Mass (g)\",\n    color = \"Penguin Species\"\n  )\n```\n\n\n`geom_smooth()` using formula = 'y ~ x'",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#themes",
+    "href": "Data Visualisation/baseR and ggplot.html#themes",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "2.7 Themes",
+    "text": "2.7 Themes\nFinally, we can polish the overall look using Themes. Theme functions (starting with theme_) control non-data elements like background colors, fonts, and grid lines. theme_minimal() is a popular choice for a clean, modern look.\n\n\nCode\n```{r}\n# Apply a minimal theme\nggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)) + \n  geom_point(alpha = 0.6) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  scale_color_manual(values = c(\"darkorange\", \"purple\", \"cyan4\")) + \n  facet_wrap(~weight_class) + \n  labs(\n    title = \"Penguin Size Characteristics\",\n    subtitle = \"Comparison of Flipper Length vs Body Mass by Species\",\n    caption = \"Source: Palmer Station LTER\",\n    x = \"Flipper Length (mm)\",\n    y = \"Body Mass (g)\",\n    color = \"Penguin Species\"\n  ) + \n  theme_minimal()\n```\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nFrom this final plot, we can conclude:\n\nThere is a positive linear relationship between flipper length and body mass.\nGentoo penguins (cyan) are distinctively larger than the other two species.\nThe relationship between size and mass appears consistent across species (similar slopes).",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#global-vs-local-mapping",
+    "href": "Data Visualisation/baseR and ggplot.html#global-vs-local-mapping",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "3.1 Global vs Local Mapping",
+    "text": "3.1 Global vs Local Mapping\nIn the previous examples, we defined our mapping aes(...) inside the main ggplot() function. This is a Global mapping—it applies to every layer (both points and lines).\nHowever, you can also place mappings inside a specific Geom. This creates a Local mapping that applies only to that layer.\nObserve the difference when we move color = species into the geom_point() function only:\n\n\nCode\n```{r}\n# Mapping color LOCALLY in geom_point only\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + \n  geom_point(aes(color = species), alpha = 0.6, size = 3) + \n  geom_smooth(method = \"lm\", se = FALSE, color = \"black\")\n```\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nBecause the color mapping was only inside geom_point, the geom_smooth did not “know” about the species groups. Consequently, it drew a single black trend line for the entire dataset, rather than one line per species.",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#graphs-as-objects",
+    "href": "Data Visualisation/baseR and ggplot.html#graphs-as-objects",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "3.2 Graphs as Objects",
+    "text": "3.2 Graphs as Objects\nIn R, a graph is just an object. You can save it to a variable, modify it later, and print it when ready. This is excellent for keeping your code clean or generating multiple versions of a plot programmatically.\n\n\nCode\n```{r}\n# 1. Create the base plot object\nmy_plot &lt;- ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) + \n  geom_point(aes(color = species))\n\n# 2. Add a theme and labels to the object\nfinal_plot &lt;- my_plot + \n  theme_light() + \n  labs(title = \"Saved Graph Object\")\n\n# 3. Print the final result\nfinal_plot\n```",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#geoms-1",
+    "href": "Data Visualisation/baseR and ggplot.html#geoms-1",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "2.1 Geoms",
+    "text": "2.1 Geoms\n“Geoms” (geometric objects) represent the actual marks on the plot—points, bars, lines, etc. We add these using functions starting with geom_. To create a scatterplot, we use geom_point().\nIn ggplot2, we chain these layers together using the + operator.\nquarto-executable-code-5450563D\n# Add geometric points\nggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g)) + \n  geom_point()\nThe plot above shows a strong positive correlation: as flipper length increases, body mass tends to increase.\nWe can customize the appearance of these geoms. Parameters like color, size, and alpha (transparency) can be set directly inside the geom function. Transparency is particularly useful when you have many points overlapping each other.\nquarto-executable-code-5450563D\n# Make points blue, larger, and semi-transparent\nggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g)) + \n  geom_point(color = \"darkcyan\", alpha = 0.6, size = 3)",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#smoothers-trend-lines-1",
+    "href": "Data Visualisation/baseR and ggplot.html#smoothers-trend-lines-1",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "2.2 Smoothers (Trend Lines)",
+    "text": "2.2 Smoothers (Trend Lines)\nTo visualize the trend more clearly, we can add a smoothing layer using geom_smooth(). We can control the method (linear vs. curved), the color, and whether to show the confidence interval. Here, we’ll use a linear model (method = \"lm\").\nquarto-executable-code-5450563D\n# Add a line of best fit\nggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g)) + \n  geom_point(color = \"darkcyan\", alpha = 0.6, size = 3) + \n  geom_smooth(method = \"lm\")",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#grouping-with-aesthetics-1",
+    "href": "Data Visualisation/baseR and ggplot.html#grouping-with-aesthetics-1",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "2.3 Grouping with Aesthetics",
+    "text": "2.3 Grouping with Aesthetics\nWhile the plot above is informative, it treats all penguins as one homogeneous group. We know our dataset contains different Species.\nWe can map variables to visual characteristics like color or shape inside the aes() function. This allows us to superimpose groups on a single graph. Let’s map species to color.\nquarto-executable-code-5450563D\n# Map species to color\nggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)) + \n  geom_point(alpha = 0.6, size = 3) + \n  geom_smooth(method = \"lm\", se = FALSE, size = 1.5)\nNotice the difference:\n\ncolor = species is inside aes() because it maps data to a visual.\nse = FALSE was added to geom_smooth to remove the shaded confidence intervals for a cleaner look.\n\nWe can now see that Gentoo penguins are generally larger than Adelie or Chinstrap penguins.",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#scales-1",
+    "href": "Data Visualisation/baseR and ggplot.html#scales-1",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "2.4 Scales",
+    "text": "2.4 Scales\n“Scales” control how the data values are translated into visual properties (like specific colors or axis ticks). Scale functions always start with scale_.\nLet’s modify the X-axis breaks and manually define the colors for our species to be more distinct.\nquarto-executable-code-5450563D\n# Customize axes and color palette\nggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)) + \n  geom_point(alpha = 0.6, size = 3) + \n  geom_smooth(method = \"lm\", se = FALSE, size = 1.5) + \n  scale_x_continuous(breaks = seq(170, 230, 10)) + \n  scale_y_continuous(breaks = seq(2500, 6500, 1000)) +\n  scale_color_manual(values = c(\"darkorange\", \"purple\", \"cyan4\"))",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#facets-1",
+    "href": "Data Visualisation/baseR and ggplot.html#facets-1",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "2.5 Facets",
+    "text": "2.5 Facets\nSometimes a plot becomes too cluttered with multiple groups. Faceting solves this by splitting the plot into sub-plots (small multiples) based on a categorical variable.\nLet’s see if the relationship holds true across the different “Weight Classes” we defined earlier.\nquarto-executable-code-5450563D\n# Split the plot by weight class\nggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)) + \n  geom_point(alpha = 0.6) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  scale_color_manual(values = c(\"darkorange\", \"purple\", \"cyan4\")) + \n  facet_wrap(~weight_class)\nFaceting allows us to simultaneously view the data cut by different dimensions without overlapping points obscuring the view.",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#labels-1",
+    "href": "Data Visualisation/baseR and ggplot.html#labels-1",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "2.6 Labels",
+    "text": "2.6 Labels\nGood data visualization requires clear communication. The labs() function allows you to customize the title, subtitle, captions, and axis labels so the viewer doesn’t have to guess what “flipper_length_mm” means.\nquarto-executable-code-5450563D\n# Add professional labels\nggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)) + \n  geom_point(alpha = 0.6) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  scale_color_manual(values = c(\"darkorange\", \"purple\", \"cyan4\")) + \n  facet_wrap(~weight_class) + \n  labs(\n    title = \"Penguin Size Characteristics\",\n    subtitle = \"Comparison of Flipper Length vs Body Mass by Species\",\n    caption = \"Source: Palmer Station LTER / palmerpenguins package\",\n    x = \"Flipper Length (mm)\",\n    y = \"Body Mass (g)\",\n    color = \"Penguin Species\"\n  )",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#themes-1",
+    "href": "Data Visualisation/baseR and ggplot.html#themes-1",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "2.7 Themes",
+    "text": "2.7 Themes\nFinally, we can polish the overall look using Themes. Theme functions (starting with theme_) control non-data elements like background colors, fonts, and grid lines. theme_minimal() is a popular choice for a clean, modern look.\nquarto-executable-code-5450563D\n# Apply a minimal theme\nggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)) + \n  geom_point(alpha = 0.6) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  scale_color_manual(values = c(\"darkorange\", \"purple\", \"cyan4\")) + \n  facet_wrap(~weight_class) + \n  labs(\n    title = \"Penguin Size Characteristics\",\n    subtitle = \"Comparison of Flipper Length vs Body Mass by Species\",\n    caption = \"Source: Palmer Station LTER\",\n    x = \"Flipper Length (mm)\",\n    y = \"Body Mass (g)\",\n    color = \"Penguin Species\"\n  ) + \n  theme_minimal()\nFrom this final plot, we can conclude:\n\nThere is a positive linear relationship between flipper length and body mass.\nGentoo penguins (cyan) are distinctively larger than the other two species.\nThe relationship between size and mass appears consistent across species (similar slopes).",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#global-vs-local-mapping-1",
+    "href": "Data Visualisation/baseR and ggplot.html#global-vs-local-mapping-1",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "3.1 Global vs Local Mapping",
+    "text": "3.1 Global vs Local Mapping\nIn the previous examples, we defined our mapping aes(...) inside the main ggplot() function. This is a Global mapping—it applies to every layer (both points and lines).\nHowever, you can also place mappings inside a specific Geom. This creates a Local mapping that applies only to that layer.\nObserve the difference when we move color = species into the geom_point() function only:\nquarto-executable-code-5450563D\n# Mapping color LOCALLY in geom_point only\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + \n  geom_point(aes(color = species), alpha = 0.6, size = 3) + \n  geom_smooth(method = \"lm\", se = FALSE, color = \"black\")\nBecause the color mapping was only inside geom_point, the geom_smooth did not “know” about the species groups. Consequently, it drew a single black trend line for the entire dataset, rather than one line per species.",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/baseR and ggplot.html#graphs-as-objects-1",
+    "href": "Data Visualisation/baseR and ggplot.html#graphs-as-objects-1",
+    "title": "Introduction to ggplot2: The Grammar of Graphics",
+    "section": "3.2 Graphs as Objects",
+    "text": "3.2 Graphs as Objects\nIn R, a graph is just an object. You can save it to a variable, modify it later, and print it when ready. This is excellent for keeping your code clean or generating multiple versions of a plot programmatically.\nquarto-executable-code-5450563D\n# 1. Create the base plot object\nmy_plot &lt;- ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) + \n  geom_point(aes(color = species))\n\n# 2. Add a theme and labels to the object\nfinal_plot &lt;- my_plot + \n  theme_light() + \n  labs(title = \"Saved Graph Object\")\n\n# 3. Print the final result\nfinal_plot",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Introduction to ggplot2: The Grammar of Graphics"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html#numeric-axes",
+    "href": "Data Visualisation/customising graphs.html#numeric-axes",
+    "title": "Graph Customisation",
+    "section": "Numeric Axes",
+    "text": "Numeric Axes\nYou can control numeric axes using scale_x_continuous() and scale_y_continuous(). The most useful options are:\n\nbreaks: Where to place tick marks and labels\nlimits: The minimum and maximum values to display\n\n\n\nCode\n```{r}\n#| warning: false\n# Basic plot\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point() +\n  scale_x_continuous(breaks = seq(30, 60, by = 5),\n                     limits = c(30, 60)) +\n  scale_y_continuous(breaks = seq(13, 22, by = 2),\n                     limits = c(13, 22)) +\n  labs(title = \"Penguin Bill Dimensions\",\n       x = \"Bill Length (mm)\",\n       y = \"Bill Depth (mm)\")\n```\n\n\n\n\n\n\n\n\n\nTip: The seq() function creates a sequence of numbers. For example, seq(30, 60, by = 5) creates: 30, 35, 40, 45, 50, 55, 60.",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Graph Customisation"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html#formatting-numbers",
+    "href": "Data Visualisation/customising graphs.html#formatting-numbers",
+    "title": "Graph Customisation",
+    "section": "Formatting Numbers",
+    "text": "Formatting Numbers\nThe scales package provides helpful functions for formatting axis labels:\n\ncomma: Adds commas to large numbers (1000 becomes 1,000)\ndollar: Adds currency symbols\npercent: Converts decimals to percentages\n\n\n\nCode\n```{r}\n# Create sample data\nset.seed(42)\npopulation_data &lt;- data.frame(\n  city = paste(\"City\", 1:40),\n  population = rnorm(40, 250000, 80000),\n  employment_rate = runif(40, 0.55, 0.85),\n  median_income = rnorm(40, 65000, 15000)\n)\n\nggplot(population_data, aes(x = population, y = employment_rate)) +\n  geom_point(color = \"steelblue\", size = 3, alpha = 0.6) +\n  scale_x_continuous(labels = scales::comma) +\n  scale_y_continuous(labels = scales::percent) +\n  labs(title = \"Population vs Employment Rate\",\n       x = \"City Population\",\n       y = \"Employment Rate\")\n```",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Graph Customisation"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html#categorical-axes",
+    "href": "Data Visualisation/customising graphs.html#categorical-axes",
+    "title": "Graph Customisation",
+    "section": "Categorical Axes",
+    "text": "Categorical Axes\nFor categorical variables, use scale_x_discrete() or scale_y_discrete():\n\n\nCode\n```{r}\nggplot(penguins, aes(x = species)) +\n  geom_bar(fill = \"coral\") +\n  scale_x_discrete(labels = c(\"Adélie\\nPenguin\", \n                              \"Chinstrap\\nPenguin\", \n                              \"Gentoo\\nPenguin\")) +\n  labs(title = \"Number of Penguins by Species\",\n       x = \"Species\",\n       y = \"Count\")\n```\n\n\n\n\n\n\n\n\n\nNote: \\n creates a line break in text labels.",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Graph Customisation"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html#date-axes",
+    "href": "Data Visualisation/customising graphs.html#date-axes",
+    "title": "Graph Customisation",
+    "section": "Date Axes",
+    "text": "Date Axes\nWorking with dates requires scale_x_date() or scale_y_date():\n\n\nCode\n```{r}\n# Using the economics dataset\nggplot(economics, aes(x = date, y = unemploy / 1000)) +\n  geom_line(color = \"darkblue\", linewidth = 1) +\n  scale_x_date(date_breaks = \"10 years\",\n               date_labels = \"%Y\") +\n  labs(title = \"US Unemployment Over Time\",\n       x = \"Year\",\n       y = \"Unemployed (thousands)\")\n```\n\n\n\n\n\n\n\n\n\nCommon date format codes:\n\n\n\nCode\nMeaning\nExample\n\n\n\n\n%d\nDay of month\n01-31\n\n\n%m\nMonth number\n01-12\n\n\n%b\nAbbreviated month\nJan\n\n\n%B\nFull month\nJanuary\n\n\n%y\n2-digit year\n24\n\n\n%Y\n4-digit year\n2024",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Graph Customisation"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html#setting-colors-manually",
+    "href": "Data Visualisation/customising graphs.html#setting-colors-manually",
+    "title": "Graph Customisation",
+    "section": "Setting Colors Manually",
+    "text": "Setting Colors Manually\nUse color for points and lines, and fill for bars and areas:\n\n\nCode\n```{r}\n#| warning: false\n# Single color\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point(color = \"darkgreen\", size = 2) +\n  labs(title = \"Penguin Bill Measurements\")\n```\n\n\n\n\n\n\n\n\n\nTo assign specific colors to categories, use scale_color_manual() or scale_fill_manual():\n\n\nCode\n```{r}\n#| warning: false\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  scale_fill_manual(values = c(\"Adelie\" = \"darkorange\",\n                                \"Chinstrap\" = \"purple\",\n                                \"Gentoo\" = \"cyan4\")) +\n  labs(title = \"Penguin Species Count\",\n       x = \"Species\",\n       y = \"Count\",\n       fill = \"Species\")\n```",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Graph Customisation"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html#using-color-palettes",
+    "href": "Data Visualisation/customising graphs.html#using-color-palettes",
+    "title": "Graph Customisation",
+    "section": "Using Color Palettes",
+    "text": "Using Color Palettes\nPre-designed color palettes often look more professional than colors you pick yourself.\n\nColorBrewer Palettes\nColorBrewer provides carefully designed color schemes:\n\n\nCode\n```{r}\n#| warning: false\nggplot(penguins, aes(x = species, fill = island)) +\n  geom_bar() +\n  scale_fill_brewer(palette = \"Set2\") +\n  labs(title = \"Penguin Species by Island\",\n       x = \"Species\",\n       y = \"Count\",\n       fill = \"Island\")\n```\n\n\n\n\n\n\n\n\n\n\n\nViridis Palettes\nViridis palettes are colorblind-friendly and print well in grayscale:\n\n\nCode\n```{r}\n#| warning: false\nggplot(penguins, aes(x = species, fill = island)) +\n  geom_bar() +\n  scale_fill_viridis_d() +\n  labs(title = \"Penguin Species by Island\",\n       x = \"Species\",\n       y = \"Count\",\n       fill = \"Island\")\n```\n\n\n\n\n\n\n\n\n\nUse _c for continuous variables (numbers) and _d for discrete variables (categories).",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Graph Customisation"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html#point-shapes",
+    "href": "Data Visualisation/customising graphs.html#point-shapes",
+    "title": "Graph Customisation",
+    "section": "Point Shapes",
+    "text": "Point Shapes\nChange point shapes with the shape parameter:\n\n\nCode\n```{r}\n#| warning: false\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, \n                     shape = species)) +\n  geom_point(size = 3) +\n  labs(title = \"Bill Dimensions by Species\",\n       shape = \"Species\")\n```\n\n\n\n\n\n\n\n\n\nShapes 21-25 allow both fill and border colors:\n\n\nCode\n```{r}\n#| warning: false\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, \n                     fill = species)) +\n  geom_point(shape = 21, size = 3, color = \"black\") +\n  labs(title = \"Bill Dimensions by Species\")\n```",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Graph Customisation"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html#line-types",
+    "href": "Data Visualisation/customising graphs.html#line-types",
+    "title": "Graph Customisation",
+    "section": "Line Types",
+    "text": "Line Types\nModify line appearance with linetype:\n\n\nCode\n```{r}\nggplot(economics, aes(x = date)) +\n  geom_line(aes(y = unemploy), linetype = \"solid\", color = \"blue\") +\n  geom_line(aes(y = unemploy * 1.1), linetype = \"dashed\", color = \"red\") +\n  labs(title = \"Unemployment Trends\",\n       y = \"Number Unemployed\")\n```",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Graph Customisation"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html#adding-labels",
+    "href": "Data Visualisation/customising graphs.html#adding-labels",
+    "title": "Graph Customisation",
+    "section": "Adding Labels",
+    "text": "Adding Labels\nUse the labs() function to add or modify all text in your plot:\n\n\nCode\n```{r}\n#| warning: false\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, \n                     color = species)) +\n  geom_point(size = 2, alpha = 0.7) +\n  labs(\n    title = \"Penguin Body Mass vs Flipper Length\",\n    subtitle = \"Measurements from Palmer Station, Antarctica\",\n    caption = \"Data source: palmerpenguins package\",\n    x = \"Flipper Length (mm)\",\n    y = \"Body Mass (g)\",\n    color = \"Penguin Species\"\n  ) +\n  theme_minimal()\n```",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Graph Customisation"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html#legend-position",
+    "href": "Data Visualisation/customising graphs.html#legend-position",
+    "title": "Graph Customisation",
+    "section": "Legend Position",
+    "text": "Legend Position\nControl legend placement with theme():\n\n\nCode\n```{r}\n#| warning: false\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, \n                     color = species)) +\n  geom_point(size = 2) +\n  labs(title = \"Penguin Measurements\",\n       color = \"Species\") +\n  theme_minimal() +\n  theme(legend.position = \"top\")\n```\n\n\n\n\n\n\n\n\n\nOptions for legend.position: - \"top\", \"bottom\", \"left\", \"right\" - c(x, y) for exact placement (e.g., c(0.9, 0.2) for bottom-right inside plot) - \"none\" to remove the legend",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Graph Customisation"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html#text-annotations",
+    "href": "Data Visualisation/customising graphs.html#text-annotations",
+    "title": "Graph Customisation",
+    "section": "Text Annotations",
+    "text": "Text Annotations\nUse annotate() to add text anywhere on your plot:\n\n\nCode\n```{r}\n#| warning: false\npenguin_summary &lt;- penguins %&gt;%\n  group_by(species) %&gt;%\n  summarise(mean_mass = mean(body_mass_g, na.rm = TRUE))\n\nggplot(penguins, aes(x = species, y = body_mass_g)) +\n  geom_boxplot(fill = \"lightblue\") +\n  annotate(\"text\", x = 2, y = 6000, \n           label = \"Gentoo penguins are\\nthe heaviest species\",\n           color = \"darkred\", size = 4) +\n  labs(title = \"Body Mass Distribution by Species\",\n       x = \"Species\",\n       y = \"Body Mass (g)\")\n```",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Graph Customisation"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html#adding-reference-lines",
+    "href": "Data Visualisation/customising graphs.html#adding-reference-lines",
+    "title": "Graph Customisation",
+    "section": "Adding Reference Lines",
+    "text": "Adding Reference Lines\nUse geom_hline() and geom_vline() for horizontal and vertical lines:\n\n\nCode\n```{r}\n#| warning: false\nmean_mass &lt;- mean(penguins$body_mass_g, na.rm = TRUE)\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, \n                     color = species)) +\n  geom_point(alpha = 0.6) +\n  geom_hline(yintercept = mean_mass, \n             linetype = \"dashed\", color = \"darkred\") +\n  annotate(\"text\", x = 175, y = mean_mass + 200,\n           label = \"Overall Mean\", color = \"darkred\") +\n  labs(title = \"Penguin Measurements with Mean Body Mass\",\n       x = \"Flipper Length (mm)\",\n       y = \"Body Mass (g)\")\n```",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Graph Customisation"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html#highlighting-specific-groups",
+    "href": "Data Visualisation/customising graphs.html#highlighting-specific-groups",
+    "title": "Graph Customisation",
+    "section": "Highlighting Specific Groups",
+    "text": "Highlighting Specific Groups\nThe gghighlight package makes it easy to emphasize particular data:\n\n\nCode\n```{r}\n#| warning: false\nlibrary(gghighlight)\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point(size = 2, color = \"coral\") +\n  gghighlight(species == \"Gentoo\") +\n  labs(title = \"Highlighting Gentoo Penguins\",\n       x = \"Flipper Length (mm)\",\n       y = \"Body Mass (g)\")\n```",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Graph Customisation"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html#built-in-themes",
+    "href": "Data Visualisation/customising graphs.html#built-in-themes",
+    "title": "Graph Customisation",
+    "section": "Built-in Themes",
+    "text": "Built-in Themes\nggplot2 includes several pre-made themes:\n\n\nCode\n```{r}\n#| warning: false\np &lt;- ggplot(penguins, aes(x = species, fill = island)) +\n  geom_bar() +\n  labs(title = \"Penguins by Species and Island\")\n\n# Try different themes\np + theme_minimal()  # Clean and simple\n```\n\n\n\n\n\n\n\n\n\n\n\nCode\n```{r}\n#| warning: false\np + theme_classic()  # Traditional look\n```\n\n\n\n\n\n\n\n\n\n\n\nCode\n```{r}\n#| warning: false\np + theme_dark()  # Dark background\n```",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Graph Customisation"
+    ]
+  },
+  {
+    "objectID": "Data Visualisation/customising graphs.html#custom-themes-with-ggthemes",
+    "href": "Data Visualisation/customising graphs.html#custom-themes-with-ggthemes",
+    "title": "Graph Customisation",
+    "section": "Custom Themes with ggthemes",
+    "text": "Custom Themes with ggthemes\nThe ggthemes package offers many professional themes:\n\n\nCode\n```{r}\n#| warning: false\nlibrary(ggthemes)\n\nbase_plot &lt;- ggplot(penguins, aes(x = flipper_length_mm, \n                                   y = body_mass_g, \n                                   color = species)) +\n  geom_point(size = 2) +\n  labs(title = \"Penguin Physical Measurements\",\n       x = \"Flipper Length (mm)\",\n       y = \"Body Mass (g)\")\n\n# Economist style\nbase_plot + theme_economist() + scale_color_economist()\n```\n\n\n\n\n\n\n\n\n\n\n\nCode\n```{r}\n#| warning: false\n# FiveThirtyEight style\nbase_plot + theme_fivethirtyeight()\n```",
+    "crumbs": [
+      "Home",
+      "Data Visualisation",
+      "Graph Customisation"
+    ]
   }
 ]

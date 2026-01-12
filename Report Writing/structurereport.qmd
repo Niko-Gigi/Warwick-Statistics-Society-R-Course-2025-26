@@ -1,0 +1,51 @@
+---
+title: "Examples of Mathematics translated into code"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+engine: knitr
+editor: visual
+---
+
+# Structuring Your Report
+
+There are many ways to structure a report, some better than others. If you are new to report writing, especially in the field of statistics, I will provide a very basic, but versatile structure to help you in your first steps. The report is made up of several components, listed below in the order in which they should appear. Longer reports, such as the final assignments in both ST117 and ST231, are better split into sections, while shorter reports, like the ST231 assignments, to not really require as full a structure as suggested. In any case, you must avoid a narrative approach like: "First I did this, then that, etc.". This makes the report difficult to follow; in this case, showing is much more effective than telling.
+
+## Titles and Abstracts
+
+Every report needs a title, preferably on a separate title page, which should also include the author’s name and department or other affiliation, and the date. The title should be short and informative. In general, this much detail won't be required and it is most likely that your lecturers will have a template with an appropriate title ready.
+
+A brief summary – the shorter the better, and certainly no more than half a page – should follow, to tell the reader what the report is about, in general terms, and why it may be worth reading. A good abstract is solely a skeleton outline of *(a) the problem*, **(b) what you have done**, (c) your conclusions. It should not, if possible, use numbers, symbols or technical terms. Again, this is not required to be as detailed, nut as you move higher up on the academic and corporate ladder, titles and abstracts will play a larger role in gauging interest in your work, so keep this in mind.
+
+Here is an example of a title and an abstract:
+
+**Title:** *Statistical methods for healthcare regulation: rating, screening and surveillance*\
+**Author(s):** David Spiegelhalter, Christopher Sherlaw-Johnson, Martin Bardsley, Ian Blunt, Christopher Wood, Olivia Grigg\
+**Affiliation:** Medical Research Council Biostatistics Unit, Cambridge, and related institutions\
+**Date:** First published 21 November 2011 [[Wiley Online Library]{.underline}](https://rss.onlinelibrary.wiley.com/doi/10.1111/j.1467-985X.2011.01010.x?utm_source=chatgpt.com){alt="https://rss.onlinelibrary.wiley.com/doi/10.1111/j.1467-985X.2011.01010.x?utm_source=chatgpt.com"}
+
+**Abstract (as published):**\
+*Current demand for accountability and efficiency of healthcare organizations, combined with the greater availability of routine data on clinical care and outcomes, has led to an increased focus on statistical methods in healthcare regulation.* **We consider three different regulatory functions in which statistical analysis plays a vital role: rating organizations, deciding whom to inspect and continuous surveillance for arising problems. A common approach to data standardization based on (possibly overdispersed) Z-scores is proposed, although specific tools are used for assessing performance against a target, combining indicators when screening for inspection, and continuous monitoring using risk-adjusted sequential testing procedures.** We pay particular attention to the problem of simultaneously monitoring over 200 000 indicators for excess mortality, both with respect to the statistical issues surrounding massive multiplicity, and the organizational aspects of dealing with such a complex but high-profile process.
+
+```         
+Notice that the authors: 
+
+Keep under half a page.
+
+Avoid numbers or statistical symbols.
+
+Do not interpret results in depth here — just state the what, how, and conclusion.
+```
+
+## To include or not to include that is the question
+
+3.3 Introduction This should describe the general context and background, including a general description of what data are available, the manner in which and the purpose for which they were collected. It should also provide the aims of the investigation, together with some indication of the methods used. It may well be an expanded version of the summary, and in general should not exceed two pages in length. 3.4 Methods These should now be described in a fair amount of detail, including any theory that is necessary. How much detail is always difficult to decide. Aim to write as though for someone of comparable standing, e.g. a student in the same year as yourself, who does not know anything in detail about the subject of the re- port. The reader should be able to repeat the study on the basis of your report. Don’t be afraid of putting very detailed and long descriptions into one or more appendices. This component may well have to be split into sections, e.g. 3 1. a preliminary analysis, using graphical and simple descriptive methods, 2. a full-scale analysis. The second section may further have to be split into two subsections e.g. (a) a description, explanation or development of the methodology to be used, (b) the actual analysis. Subsection (a) will probably need to be quite technical, certainly more technical than the rest of the report. It should describe in detail the precise mathemat- ical/statistical tools and techniques to be used and reveal the manner in which they lead to the desired results. Do not shy away from using mathematical no- tation (get well familiar with the capabilities of your word-processor to produce mathematical expressions) but be careful to define every bit of the notation you use. A mathematical expression is totally meaningless if any of the symbols used in it is undefined. Similarly pages of mathematical development and explanations are rendered useless and total waste of space if any of the symbols involved in these explanations are not defined. I In the subsection containing the actual analysis it is important that you de- scribe your analysis sufficiently clearly and carefully to enable it to be reproduced by the reader. 3.5 Results, conclusions and recommendations Give the main results and conclusions. Subsidiary results and deductions can be left in this section if they do not detract from the flow of the presentation of the main results and conclusion; otherwise they may be gathered into a separate component, be combined with the description of methods, or be put into an appendix. Your conclusions should be expressed in a way that can be understood by a non-statistician and should make sense even if the reader of your report had omitted to read the middle section on detailed statistical analysis. Try to report your conclusion in the context of the experiment from which the data came. 3.6 General discussion It may be appropriate to give some account of previous investigation of the same or related problems, or to relate the present conclusion to others in a connected area. It is worth discussing how far the original aim was successfully achieved, if it was not, why not, and how you might have done things differently. Reserva- tions about the data also belong here. (In real life, data sets may well contain errors or have been obtained from a badly designed experiment). This general discussion can in fact appear not as a section in itself but can be subsumed in the Introduction. 4 3.7 References These should always be included if you refer to books or papers from journals. The simplest, and widely-used style, is to refer to authors in the text in the format “Surname (Year of Publication)”, and to give the full references in the References section as shown at the end of this article i.e. for a journal article reference give Author’s surname, author’s initials, title of paper including subtitle if there is one, journal name, year of publication, volume, first and last page numbers of article, in that order; for a book reference give, in the following order, the author’es surname, the author’s initials, (year of publication) Title of book (in italics), publishing company, city of publication. 3.8 Appendix Whatever does not fit naturally into the main body of the report and cannot reasonably be omitted should go into an appendix. However, you don’t want the report to suffer from appendicitis! A case of the appendix or appendices tail wagging the main text dog makes the report hard to read.

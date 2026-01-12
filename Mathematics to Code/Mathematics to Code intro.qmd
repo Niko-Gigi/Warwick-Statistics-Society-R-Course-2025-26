@@ -1,0 +1,34 @@
+---
+title: "Introduction"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+::: {.callout-quote title="Henri Poincaré"}
+*"Mathematicians do not deal in objects, but in relations between objects; thus, they are free to replace some objects by others so lone as the relations remain unchanged. Content to them is irrelevant; they are interested in form only."*
+:::
+
+This section goes through the process of transforming a mathematical problem into code. We will connect abstract ideas in mathematics to practical code, with focus on algorithmic thinking, problem decomposition, and structural clarity.
+
+Specifically, the pages cover the following:
+
+<div>
+
+-   Intuition
+    -   Abstracting a problem into mathematics
+    -   Re-writing a mathematics problem into code
+-   Euclidean Algorithm Example (Algebra Example)
+-   Newton-Raphson Method (Numerics and Analysis Example)
+-   Monte Carlo approximation of \pi (Probability and Simulation Example)
+
+</div>

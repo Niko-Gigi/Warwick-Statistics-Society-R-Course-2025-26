@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>timegraph – Warwick Statistics Society R Course 2024-2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-bce83624dd429190d13db9bf62533269.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Warwick Statistics Society R Course 2024-2025</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Using R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cheatsheets.html"> 
+<span class="menu-text">Cheatsheets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Data/Raw data.html"> 
+<span class="menu-text">Data</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/introduction to r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/data types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/data structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Operations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/control structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Custom functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/Random numbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Random numbers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/figures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Figures</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Linear modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Continuous data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fitting a model with continuous data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Categorical data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fitting a model with categorical data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Diagnostics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model diagnostics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check your understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cars dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/summary tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">dplyr: summary tables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#multivariate-time-series" id="toc-multivariate-time-series" class="nav-link active" data-scroll-target="#multivariate-time-series">multivariate time series</a></li>
+  <li><a href="#one-time-install" id="toc-one-time-install" class="nav-link" data-scroll-target="#one-time-install">one time install</a></li>
+  <li><a href="#install.packagesquantmod" id="toc-install.packagesquantmod" class="nav-link" data-scroll-target="#install.packagesquantmod">install.packages(“quantmod”)</a></li>
+  <li><a href="#get-apple-aapl-closing-prices" id="toc-get-apple-aapl-closing-prices" class="nav-link" data-scroll-target="#get-apple-aapl-closing-prices">get apple (AAPL) closing prices</a></li>
+  <li><a href="#get-meta-meta-closing-prices" id="toc-get-meta-meta-closing-prices" class="nav-link" data-scroll-target="#get-meta-meta-closing-prices">get Meta (META) closing prices</a></li>
+  <li><a href="#combine-data-for-both-companies" id="toc-combine-data-for-both-companies" class="nav-link" data-scroll-target="#combine-data-for-both-companies">combine data for both companies</a></li>
+  <li><a href="#plot-data" id="toc-plot-data" class="nav-link" data-scroll-target="#plot-data">plot data</a></li>
+  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data">load data</a></li>
+  <li><a href="#subset-data" id="toc-subset-data" class="nav-link" data-scroll-target="#subset-data">subset data</a></li>
+  <li><a href="#convert-data-to-wide-format" id="toc-convert-data-to-wide-format" class="nav-link" data-scroll-target="#convert-data-to-wide-format">convert data to wide format</a></li>
+  <li><a href="#create-dumbbell-plot" id="toc-create-dumbbell-plot" class="nav-link" data-scroll-target="#create-dumbbell-plot">create dumbbell plot</a></li>
+  <li><a href="#create-dumbbell-plot-1" id="toc-create-dumbbell-plot-1" class="nav-link" data-scroll-target="#create-dumbbell-plot-1">create dumbbell plot</a></li>
+  <li><a href="#select-central-american-countries-data" id="toc-select-central-american-countries-data" class="nav-link" data-scroll-target="#select-central-american-countries-data">Select Central American countries data</a></li>
+  <li><a href="#for-1992-1997-2002-and-2007" id="toc-for-1992-1997-2002-and-2007" class="nav-link" data-scroll-target="#for-1992-1997-2002-and-2007">for 1992, 1997, 2002, and 2007</a></li>
+  <li><a href="#create-slope-graph" id="toc-create-slope-graph" class="nav-link" data-scroll-target="#create-slope-graph">create slope graph</a></li>
+  <li><a href="#basic-area-chart" id="toc-basic-area-chart" class="nav-link" data-scroll-target="#basic-area-chart">basic area chart</a></li>
+  <li><a href="#stacked-area-chart" id="toc-stacked-area-chart" class="nav-link" data-scroll-target="#stacked-area-chart">stacked area chart</a></li>
+  <li><a href="#stacked-area-chart-1" id="toc-stacked-area-chart-1" class="nav-link" data-scroll-target="#stacked-area-chart-1">stacked area chart</a></li>
+  <li><a href="#basic-stream-graph" id="toc-basic-stream-graph" class="nav-link" data-scroll-target="#basic-stream-graph">basic stream graph</a></li>
+  <li><a href="#basic-stream-graph-1" id="toc-basic-stream-graph-1" class="nav-link" data-scroll-target="#basic-stream-graph-1">basic stream graph</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<p>Chapter 8 Time-dependent graphs</p>
+<p>A graph can be a powerful vehicle for displaying change over time. The most common time-dependent graph is the time series line graph. Other options include the dumbbell charts and the slope graph. 8.1 Time series</p>
+<p>A time series is a set of quantitative values obtained at successive time points. The intervals between time points (e.g., hours, days, weeks, months, or years) are usually equal.</p>
+<p>Consider the Economics time series that come with the ggplot2 package. It contains US monthly economic data collected from January 1967 thru January 2015. Let’s plot the personal savings rate (psavert) over time. We can do this with a simple line plot.</p>
+<p>library(ggplot2) ggplot(economics, aes(x = date, y = psavert)) + geom_line() + labs(title = “Personal Savings Rate”, x = “Date”, y = “Personal Savings Rate”)</p>
+<p>Simple time series</p>
+<p>Figure 8.1: Simple time series</p>
+<p>The scale_x_date function can be used to reformat dates (see Section 2.2.6). In the graph below, tick marks appear every 5 years and dates are presented in MMM-YY format. Additionally, the time series line is given an off-red color and made thicker, a nonparametric trend line (loess, Section 5.2.1.1) and titles are added, and the theme is simplified.</p>
+<p>library(ggplot2) library(scales) ggplot(economics, aes(x = date, y = psavert)) + geom_line(color = “indianred3”, size=1 ) + geom_smooth() + scale_x_date(date_breaks = ‘5 years’, labels = date_format(“%b-%y”)) + labs(title = “Personal Savings Rate”, subtitle = “1967 to 2015”, x = ““, y =”Personal Savings Rate”) + theme_minimal()</p>
+<p>Simple time series with modified date axis</p>
+<p>Figure 8.2: Simple time series with modified date axis</p>
+<p>When plotting time series, be sure that the date variable is class Date and not class character. See Section 2.2.6 for details.</p>
+<p>Let’s close this section with a multivariate time series (more than one series). We’ll compare closing prices for Apple and Meta from Jan 1, 2018 to July 31, 2023. The getSymbols function in the quantmod package is used to obtain the stock data from Yahoo Finance.</p>
+<section id="multivariate-time-series" class="level1">
+<h1>multivariate time series</h1>
+</section>
+<section id="one-time-install" class="level1">
+<h1>one time install</h1>
+</section>
+<section id="install.packagesquantmod" class="level1">
+<h1>install.packages(“quantmod”)</h1>
+<p>library(quantmod) library(dplyr)</p>
+</section>
+<section id="get-apple-aapl-closing-prices" class="level1">
+<h1>get apple (AAPL) closing prices</h1>
+<p>apple &lt;- getSymbols(“AAPL”, return.class = “data.frame”, from=“2023-01-01”)</p>
+<p>apple &lt;- AAPL %&gt;% mutate(Date = as.Date(row.names(.))) %&gt;% select(Date, AAPL.Close) %&gt;% rename(Close = AAPL.Close) %&gt;% mutate(Company = “Apple”)</p>
+</section>
+<section id="get-meta-meta-closing-prices" class="level1">
+<h1>get Meta (META) closing prices</h1>
+<p>meta &lt;- getSymbols(“META”, return.class = “data.frame”, from=“2023-01-01”)</p>
+<p>meta &lt;- META %&gt;% mutate(Date = as.Date(row.names(.))) %&gt;% select(Date, META.Close) %&gt;% rename(Close = META.Close) %&gt;% mutate(Company = “Meta”)</p>
+</section>
+<section id="combine-data-for-both-companies" class="level1">
+<h1>combine data for both companies</h1>
+<p>mseries &lt;- rbind(apple, meta)</p>
+</section>
+<section id="plot-data" class="level1">
+<h1>plot data</h1>
+<p>library(ggplot2) ggplot(mseries, aes(x=Date, y= Close, color=Company)) + geom_line(size=1) + scale_x_date(date_breaks = ‘1 month’, labels = scales::date_format(“%b”)) + scale_y_continuous(limits = c(120, 280), breaks = seq(120, 280, 20), labels = scales::dollar) + labs(title = “NASDAQ Closing Prices”, subtitle = “Jan - June 2023”, caption = “source: Yahoo Finance”, y = “Closing Price”) + theme_minimal() + scale_color_brewer(palette = “Dark2”)</p>
+<p>Multivariate time series</p>
+<p>Figure 8.3: Multivariate time series</p>
+<p>You can see the how the two stocks diverge after February. 8.2 Dummbbell charts</p>
+<p>Dumbbell charts are useful for displaying change between two time points for several groups or observations. The geom_dumbbell function from the ggalt package is used.</p>
+<p>Using the gapminder dataset let’s plot the change in life expectancy from 1952 to 2007 in the Americas. The dataset is in long format (Section 2.2.7). We will need to convert it to wide format in order to create the dumbbell plot</p>
+<p>library(ggalt) library(tidyr) library(dplyr)</p>
+</section>
+<section id="load-data" class="level1">
+<h1>load data</h1>
+<p>data(gapminder, package = “gapminder”)</p>
+</section>
+<section id="subset-data" class="level1">
+<h1>subset data</h1>
+<p>plotdata_long &lt;- filter(gapminder, continent == “Americas” &amp; year %in% c(1952, 2007)) %&gt;% select(country, year, lifeExp)</p>
+</section>
+<section id="convert-data-to-wide-format" class="level1">
+<h1>convert data to wide format</h1>
+<p>plotdata_wide &lt;- pivot_wider(plotdata_long, names_from = year, values_from = lifeExp) names(plotdata_wide) &lt;- c(“country”, “y1952”, “y2007”)</p>
+</section>
+<section id="create-dumbbell-plot" class="level1">
+<h1>create dumbbell plot</h1>
+<p>ggplot(plotdata_wide, aes(y = country, x = y1952, xend = y2007)) +<br>
+geom_dumbbell()</p>
+<p>Simple dumbbell chart</p>
+<p>Figure 8.4: Simple dumbbell chart</p>
+<p>The graph will be easier to read if the countries are sorted and the points are sized and colored. In the next graph, we’ll sort by 1952 life expectancy, and modify the line and point size, color the points, add titles and labels, and simplify the theme.</p>
+</section>
+<section id="create-dumbbell-plot-1" class="level1">
+<h1>create dumbbell plot</h1>
+<p>ggplot(plotdata_wide, aes(y = reorder(country, y1952), x = y1952, xend = y2007)) +<br>
+geom_dumbbell(size = 1.2, size_x = 3, size_xend = 3, colour = “grey”, colour_x = “red”, colour_xend = “blue”) + theme_minimal() + labs(title = “Change in Life Expectancy”, subtitle = “1952 to 2007”, x = “Life Expectancy (years)”, y = ““)</p>
+<p>Sorted, colored dumbbell chart</p>
+<p>Figure 8.5: Sorted, colored dumbbell chart</p>
+<p>It is easier to discern patterns here. For example Haiti started with the lowest life expectancy in 1952 and still has the lowest in 2007. Paraguay started relatively high by has made few gains. 8.3 Slope graphs</p>
+<p>When there are several groups and several time points, a slope graph can be helpful. Let’s plot life expectancy for six Central American countries in 1992, 1997, 2002, and 2007. Again we’ll use the gapminder data.</p>
+<p>To create a slope graph, we’ll use the newggslopegraph function from the CGPfunctions package.</p>
+<p>The newggslopegraph function parameters are (in order)</p>
+<pre><code>data frame
+time variable (which must be a factor)
+numeric variable to be plotted
+and grouping variable (creating one line per group).</code></pre>
+<p>library(CGPfunctions)</p>
+</section>
+<section id="select-central-american-countries-data" class="level1">
+<h1>Select Central American countries data</h1>
+</section>
+<section id="for-1992-1997-2002-and-2007" class="level1">
+<h1>for 1992, 1997, 2002, and 2007</h1>
+<p>df &lt;- gapminder %&gt;% filter(year %in% c(1992, 1997, 2002, 2007) &amp; country %in% c(“Panama”, “Costa Rica”, “Nicaragua”, “Honduras”, “El Salvador”, “Guatemala”, “Belize”)) %&gt;% mutate(year = factor(year), lifeExp = round(lifeExp))</p>
+</section>
+<section id="create-slope-graph" class="level1">
+<h1>create slope graph</h1>
+<p>newggslopegraph(df, year, lifeExp, country) + labs(title=“Life Expectancy by Country”, subtitle=“Central America”, caption=“source: gapminder”)</p>
+<p>Slope graph</p>
+<p>Figure 8.6: Slope graph</p>
+<p>In the graph above, Costa Rica has the highest life expectancy across the range of years studied. Guatemala has the lowest, and caught up with Honduras (also low at 69) in 2002. 8.4 Area Charts</p>
+<p>A simple area chart is basically a line graph, with a fill from the line to the x-axis.</p>
+</section>
+<section id="basic-area-chart" class="level1">
+<h1>basic area chart</h1>
+<p>ggplot(economics, aes(x = date, y = psavert)) + geom_area(fill=“lightblue”, color=“black”) + labs(title = “Personal Savings Rate”, x = “Date”, y = “Personal Savings Rate”)</p>
+<p>Basic area chart</p>
+<p>Figure 8.7: Basic area chart</p>
+<p>A stacked area chart can be used to show differences between groups over time. Consider the uspopage dataset from the gcookbook package. The dataset describes the age distribution of the US population from 1900 to 2002. The variables are year, age group (AgeGroup), and number of people in thousands (Thousands). Let’s plot the population of each age group over time.</p>
+</section>
+<section id="stacked-area-chart" class="level1">
+<h1>stacked area chart</h1>
+<p>data(uspopage, package = “gcookbook”) ggplot(uspopage, aes(x = Year, y = Thousands, fill = AgeGroup)) + geom_area() + labs(title = “US Population by age”, x = “Year”, y = “Population in Thousands”)</p>
+<p>Stacked area chart</p>
+<p>Figure 8.8: Stacked area chart</p>
+<p>It is best to avoid scientific notation in your graphs. How likely is it that the average reader will know that 3e+05 means 300,000,000? It is easy to change the scale in ggplot2. Simply divide the Thousands variable by 1000 and report it as Millions. While we are at it, let’s</p>
+<pre><code>create black borders to highlight the difference between groups
+reverse the order the groups to match increasing age
+improve labeling
+choose a different color scheme
+choose a simpler theme.</code></pre>
+<p>The levels of the AgeGroup variable can be reversed using the fct_rev function in the forcats package.</p>
+</section>
+<section id="stacked-area-chart-1" class="level1">
+<h1>stacked area chart</h1>
+<p>data(uspopage, package = “gcookbook”) ggplot(uspopage, aes(x = Year, y = Thousands/1000, fill = forcats::fct_rev(AgeGroup))) + geom_area(color = “black”) + labs(title = “US Population by age”, subtitle = “1900 to 2002”, caption = “source: U.S. Census Bureau, 2003, HS-3”, x = “Year”, y = “Population in Millions”, fill = “Age Group”) + scale_fill_brewer(palette = “Set2”) + theme_minimal()</p>
+<p>Stacked area chart with simpler scale</p>
+<p>Figure 8.9: Stacked area chart with simpler scale</p>
+<p>Apparently, the number of young children have not changed very much in the past 100 years.</p>
+<p>Stacked area charts are most useful when interest is on both (1) group change over time and (2) overall change over time. Place the most important groups at the bottom. These are the easiest to interpret in this type of plot. 8.5 Stream graph</p>
+<p>Stream graphs (Byron and Wattenberg 2008) are basically a variation on the stacked area chart. In a stream graph, the data is typically centered at each x-value around a mid-point and mirrored above and below that point. This is easiest to see in an example.</p>
+<p>Let’s plot the previous stacked area chart (Figure 8.9) as a stream graph.</p>
+</section>
+<section id="basic-stream-graph" class="level1">
+<h1>basic stream graph</h1>
+<p>data(uspopage, package = “gcookbook”) library(ggstream) ggplot(uspopage, aes(x = Year, y = Thousands/1000, fill = forcats::fct_rev(AgeGroup))) + geom_stream() + labs(title = “US Population by age”, subtitle = “1900 to 2002”, caption = “source: U.S. Census Bureau, 2003, HS-3”, x = “Year”, y = ““, fill =”Age Group”) + scale_fill_brewer(palette = “Set2”) + theme_minimal() + theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank(), axis.text.y = element_blank())</p>
+<p>Basic stream graph</p>
+<p>Figure 8.10: Basic stream graph</p>
+<p>The theme function is used to surpress the y-axis, whose values are not easily interpreted. To interpret this graph, look at each value on the x-axis and compare the relative vertical heights of each group. You can see, for example, that the relative proportion of older people has increased significantly.</p>
+<p>An interesting variation is the proportional steam graph displays in Figure 8.11</p>
+</section>
+<section id="basic-stream-graph-1" class="level1">
+<h1>basic stream graph</h1>
+<p>data(uspopage, package = “gcookbook”) library(ggstream) ggplot(uspopage, aes(x = Year, y = Thousands/1000, fill = forcats::fct_rev(AgeGroup))) + geom_stream(type=“proportional”) + labs(title = “US Population by age”, subtitle = “1900 to 2002”, caption = “source: U.S. Census Bureau, 2003, HS-3”, x = “Year”, y = “Proportion”, fill = “Age Group”) + scale_fill_brewer(palette = “Set2”) + theme_minimal()</p>
+<p>Proportional stream graph</p>
+<p>Figure 8.11: Proportional stream graph</p>
+<p>This is similar to the filled bar chart (Section 5.1.3) and makes it easier to see the relative change in values by group across time.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

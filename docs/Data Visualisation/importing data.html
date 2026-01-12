@@ -1,0 +1,1953 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Import and Preparation in R – Warwick Statistics Society R Course 2024-2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-89a4c75c28f39d544352a2d30bce53fa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Warwick Statistics Society R Course 2024-2025</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Using R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cheatsheets.html"> 
+<span class="menu-text">Cheatsheets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Data/Raw data.html"> 
+<span class="menu-text">Data</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data Visualisation/introvisualisation.html">Data Visualisation</a></li><li class="breadcrumb-item"><a href="../Data Visualisation/importing data.html">Data Import and Preparation in R</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/introduction to r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/data types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/data structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Operations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/control structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Custom functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/Random numbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Random numbers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/figures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Figures</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code intuit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mathematical intuition behind coding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code Euclidean Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Euclidean Algorithm — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MonteCarlo Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Monte Carlo Approximation of π — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code NewtonRaph Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Linear modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Continuous data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fitting a model with continuous data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Categorical data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fitting a model with categorical data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Diagnostics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model diagnostics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check your understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cars dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/summary tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">dplyr: summary tables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data Visualisation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">introvisualisation.html</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/importing data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Data Import and Preparation in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/baseR and ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to ggplot2: The Grammar of Graphics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/customising graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph Customisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/univariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">simple bar chart</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualizing Bivariate Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">multivariate time series</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualizing Multiple Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Specialized Visualization Techniques</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Best Practices</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Report Writing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Report Writing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/structurereport.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Examples of Mathematics translated into code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/stylereport.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">stylereport.html</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/useofaireport.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Examples of Mathematics translated into code</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#importing-data-into-r" id="toc-importing-data-into-r" class="nav-link" data-scroll-target="#importing-data-into-r">Importing Data into R</a>
+  <ul class="collapse">
+  <li><a href="#csv-and-text-files" id="toc-csv-and-text-files" class="nav-link" data-scroll-target="#csv-and-text-files">CSV and Text Files</a></li>
+  <li><a href="#excel-files" id="toc-excel-files" class="nav-link" data-scroll-target="#excel-files">Excel Files</a></li>
+  <li><a href="#files-from-other-statistical-software" id="toc-files-from-other-statistical-software" class="nav-link" data-scroll-target="#files-from-other-statistical-software">Files from Other Statistical Software</a></li>
+  </ul></li>
+  <li><a href="#cleaning-and-transforming-data" id="toc-cleaning-and-transforming-data" class="nav-link" data-scroll-target="#cleaning-and-transforming-data">Cleaning and Transforming Data</a>
+  <ul class="collapse">
+  <li><a href="#selecting-variables-columns" id="toc-selecting-variables-columns" class="nav-link" data-scroll-target="#selecting-variables-columns">Selecting Variables (Columns)</a></li>
+  <li><a href="#filtering-observations-rows" id="toc-filtering-observations-rows" class="nav-link" data-scroll-target="#filtering-observations-rows">Filtering Observations (Rows)</a></li>
+  <li><a href="#creating-and-modifying-variables" id="toc-creating-and-modifying-variables" class="nav-link" data-scroll-target="#creating-and-modifying-variables">Creating and Modifying Variables</a>
+  <ul class="collapse">
+  <li><a href="#recoding-with-ifelse" id="toc-recoding-with-ifelse" class="nav-link" data-scroll-target="#recoding-with-ifelse">Recoding with <code>ifelse()</code></a></li>
+  </ul></li>
+  <li><a href="#summarizing-data" id="toc-summarizing-data" class="nav-link" data-scroll-target="#summarizing-data">Summarizing Data</a></li>
+  <li><a href="#using-the-pipe-operator" id="toc-using-the-pipe-operator" class="nav-link" data-scroll-target="#using-the-pipe-operator">Using the Pipe Operator</a></li>
+  <li><a href="#working-with-dates" id="toc-working-with-dates" class="nav-link" data-scroll-target="#working-with-dates">Working with Dates</a></li>
+  <li><a href="#reshaping-data-wide-vs.-long-format" id="toc-reshaping-data-wide-vs.-long-format" class="nav-link" data-scroll-target="#reshaping-data-wide-vs.-long-format">Reshaping Data: Wide vs.&nbsp;Long Format</a></li>
+  </ul></li>
+  <li><a href="#handling-missing-data" id="toc-handling-missing-data" class="nav-link" data-scroll-target="#handling-missing-data">Handling Missing Data</a>
+  <ul class="collapse">
+  <li><a href="#checking-for-missing-values" id="toc-checking-for-missing-values" class="nav-link" data-scroll-target="#checking-for-missing-values">Checking for Missing Values</a></li>
+  <li><a href="#approach-1-remove-variables-with-too-many-missing-values" id="toc-approach-1-remove-variables-with-too-many-missing-values" class="nav-link" data-scroll-target="#approach-1-remove-variables-with-too-many-missing-values">Approach 1: Remove Variables with Too Many Missing Values</a></li>
+  <li><a href="#approach-2-listwise-deletion" id="toc-approach-2-listwise-deletion" class="nav-link" data-scroll-target="#approach-2-listwise-deletion">Approach 2: Listwise Deletion</a></li>
+  <li><a href="#approach-3-imputation" id="toc-approach-3-imputation" class="nav-link" data-scroll-target="#approach-3-imputation">Approach 3: Imputation</a></li>
+  <li><a href="#best-practices-for-missing-data" id="toc-best-practices-for-missing-data" class="nav-link" data-scroll-target="#best-practices-for-missing-data">Best Practices for Missing Data</a></li>
+  </ul></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together">Putting It All Together</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#practice-exercises" id="toc-practice-exercises" class="nav-link" data-scroll-target="#practice-exercises">Practice Exercises</a></li>
+  <li><a href="#further-resources" id="toc-further-resources" class="nav-link" data-scroll-target="#further-resources">Further Resources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data Visualisation/introvisualisation.html">Data Visualisation</a></li><li class="breadcrumb-item"><a href="../Data Visualisation/importing data.html">Data Import and Preparation in R</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Data Import and Preparation in R</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Before you can visualize or analyze data, you need to get it into R and prepare it properly. This step is crucial—even the most sophisticated analysis will fail if your data isn’t prepared correctly. Think of it like preparing ingredients before cooking: skipping or rushing this step will affect everything that follows.</p>
+<p>In this guide, we’ll learn how to import data from various file formats and clean it for analysis. We’ll use the <code>palmerpenguins</code> dataset for most examples, which contains measurements of penguins from Antarctica.</p>
+</section>
+<section id="importing-data-into-r" class="level1">
+<h1>Importing Data into R</h1>
+<p>R can read data from almost any file format: text files, CSV files, Excel spreadsheets, and even specialized statistical software formats.</p>
+<section id="csv-and-text-files" class="level2">
+<h2 class="anchored" data-anchor-id="csv-and-text-files">CSV and Text Files</h2>
+<p>The <code>readr</code> package provides efficient functions for importing text-based data:</p>
+<p>These functions assume that: - The first row contains column names - Values are separated by commas (CSV) or tabs (TSV) - Missing data appears as blank cells</p>
+<p>Here’s what the first few lines of a CSV file look like:</p>
+<pre><code>species,island,bill_length_mm,bill_depth_mm,flipper_length_mm,body_mass_g,sex
+Adelie,Torgersen,39.1,18.7,181,3750,male
+Adelie,Torgersen,39.5,17.4,186,3800,female
+Adelie,Torgersen,40.3,18.0,195,3250,female</code></pre>
+<p><strong>Tip</strong>: For more options (like different delimiters or handling special cases), check the help documentation with <code>?read_csv</code>.</p>
+</section>
+<section id="excel-files" class="level2">
+<h2 class="anchored" data-anchor-id="excel-files">Excel Files</h2>
+<p>The <code>readxl</code> package handles Excel workbooks (both .xls and .xlsx):</p>
+<p>Since Excel files can have multiple worksheets, use the <code>sheet</code> option to specify which one you want. The default is the first sheet.</p>
+</section>
+<section id="files-from-other-statistical-software" class="level2">
+<h2 class="anchored" data-anchor-id="files-from-other-statistical-software">Files from Other Statistical Software</h2>
+<p>The <code>haven</code> package lets you import data from other statistical programs without needing those programs installed:</p>
+</section>
+</section>
+<section id="cleaning-and-transforming-data" class="level1">
+<h1>Cleaning and Transforming Data</h1>
+<p>Once your data is in R, you’ll usually need to clean and reshape it. The <code>dplyr</code> and <code>tidyr</code> packages are your main tools for this task.</p>
+<p>Let’s load the penguins dataset for our examples:</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'palmerpenguins' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 344
+Columns: 8
+$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
+$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
+$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …
+$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …
+$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…
+$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
+$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
+$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
+</div>
+</div>
+<section id="selecting-variables-columns" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-variables-columns">Selecting Variables (Columns)</h2>
+<p>Use <code>select()</code> to keep only the columns you need:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  species island    body_mass_g
+  &lt;fct&gt;   &lt;fct&gt;           &lt;int&gt;
+1 Adelie  Torgersen        3750
+2 Adelie  Torgersen        3800
+3 Adelie  Torgersen        3250
+4 Adelie  Torgersen          NA
+5 Adelie  Torgersen        3450
+6 Adelie  Torgersen        3650</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  species bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Adelie            39.1          18.7               181        3750
+2 Adelie            39.5          17.4               186        3800
+3 Adelie            40.3          18                 195        3250
+4 Adelie            NA            NA                  NA          NA
+5 Adelie            36.7          19.3               193        3450
+6 Adelie            39.3          20.6               190        3650</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Adelie  Torgersen           39.1          18.7               181        3750
+2 Adelie  Torgersen           39.5          17.4               186        3800
+3 Adelie  Torgersen           40.3          18                 195        3250
+4 Adelie  Torgersen           NA            NA                  NA          NA
+5 Adelie  Torgersen           36.7          19.3               193        3450
+6 Adelie  Torgersen           39.3          20.6               190        3650</code></pre>
+</div>
+</div>
+</section>
+<section id="filtering-observations-rows" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-observations-rows">Filtering Observations (Rows)</h2>
+<p>Use <code>filter()</code> to keep only rows that meet certain conditions. You can combine conditions with <code>&amp;</code> (AND) and <code>|</code> (OR):</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Adelie  Torgersen           39.1          18.7               181        3750
+2 Adelie  Torgersen           39.5          17.4               186        3800
+3 Adelie  Torgersen           40.3          18                 195        3250
+4 Adelie  Torgersen           NA            NA                  NA          NA
+5 Adelie  Torgersen           36.7          19.3               193        3450
+6 Adelie  Torgersen           39.3          20.6               190        3650
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Adelie  Torgersen           39.1          18.7               181        3750
+2 Adelie  Torgersen           39.5          17.4               186        3800
+3 Adelie  Torgersen           40.3          18                 195        3250
+4 Adelie  Torgersen           NA            NA                  NA          NA
+5 Adelie  Torgersen           36.7          19.3               193        3450
+6 Adelie  Torgersen           39.3          20.6               190        3650
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Adelie  Torgersen           39.1          18.7               181        3750
+2 Adelie  Torgersen           39.5          17.4               186        3800
+3 Adelie  Torgersen           40.3          18                 195        3250
+4 Adelie  Torgersen           NA            NA                  NA          NA
+5 Adelie  Torgersen           36.7          19.3               193        3450
+6 Adelie  Torgersen           39.3          20.6               190        3650
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<p><strong>Common comparison operators:</strong> - <code>==</code> equals - <code>!=</code> not equals - <code>&gt;</code> greater than - <code>&lt;</code> less than - <code>&gt;=</code> greater than or equal to - <code>&lt;=</code> less than or equal to</p>
+</section>
+<section id="creating-and-modifying-variables" class="level2">
+<h2 class="anchored" data-anchor-id="creating-and-modifying-variables">Creating and Modifying Variables</h2>
+<p>Use <code>mutate()</code> to create new columns or modify existing ones:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  species body_mass_g body_mass_kg flipper_length_mm flipper_length_cm
+  &lt;fct&gt;         &lt;int&gt;        &lt;dbl&gt;             &lt;int&gt;             &lt;dbl&gt;
+1 Adelie         3750         3.75               181              18.1
+2 Adelie         3800         3.8                186              18.6
+3 Adelie         3250         3.25               195              19.5
+4 Adelie           NA        NA                   NA              NA  
+5 Adelie         3450         3.45               193              19.3
+6 Adelie         3650         3.65               190              19  </code></pre>
+</div>
+</div>
+<section id="recoding-with-ifelse" class="level3">
+<h3 class="anchored" data-anchor-id="recoding-with-ifelse">Recoding with <code>ifelse()</code></h3>
+<p>The <code>ifelse()</code> function helps you create categorical variables based on conditions:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  species body_mass_g size 
+  &lt;fct&gt;         &lt;int&gt; &lt;chr&gt;
+1 Adelie         3750 small
+2 Adelie         3800 small
+3 Adelie         3250 small
+4 Adelie           NA &lt;NA&gt; 
+5 Adelie         3450 small
+6 Adelie         3650 small</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  island    island_short
+  &lt;fct&gt;     &lt;chr&gt;       
+1 Torgersen Other       
+2 Torgersen Other       
+3 Torgersen Other       
+4 Torgersen Other       
+5 Torgersen Other       
+6 Torgersen Other       </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="summarizing-data" class="level2">
+<h2 class="anchored" data-anchor-id="summarizing-data">Summarizing Data</h2>
+<p>Use <code>summarize()</code> to calculate summary statistics. Combine it with <code>group_by()</code> to get statistics for each group:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  mean_flipper mean_mass
+         &lt;dbl&gt;     &lt;dbl&gt;
+1         201.     4202.</code></pre>
+</div>
+</div>
+<p><strong>Note</strong>: The <code>na.rm = TRUE</code> option tells R to ignore missing values when calculating means.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  species   mean_flipper mean_mass count
+  &lt;fct&gt;            &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;
+1 Adelie            190.     3701.   152
+2 Chinstrap         196.     3733.    68
+3 Gentoo            217.     5076.   124</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  species   island    mean_bill_length sd_bill_length count
+  &lt;fct&gt;     &lt;fct&gt;                &lt;dbl&gt;          &lt;dbl&gt; &lt;int&gt;
+1 Adelie    Biscoe                39.0           2.48    44
+2 Adelie    Dream                 38.5           2.47    56
+3 Adelie    Torgersen             39.0           3.03    52
+4 Chinstrap Dream                 48.8           3.34    68
+5 Gentoo    Biscoe                47.5           3.08   124</code></pre>
+</div>
+</div>
+<p>Many visualizations work best with summarized data rather than raw observations.</p>
+</section>
+<section id="using-the-pipe-operator" class="level2">
+<h2 class="anchored" data-anchor-id="using-the-pipe-operator">Using the Pipe Operator</h2>
+<p>The pipe operator <code>%&gt;%</code> (or <code>|&gt;</code> in newer R versions) lets you chain operations together, making your code cleaner and easier to read:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  island    mean_mass
+  &lt;fct&gt;         &lt;dbl&gt;
+1 Biscoe        3710.
+2 Dream         3688.
+3 Torgersen     3706.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  island    mean_mass
+  &lt;fct&gt;         &lt;dbl&gt;
+1 Biscoe        3710.
+2 Dream         3688.
+3 Torgersen     3706.</code></pre>
+</div>
+</div>
+<p>The pipe takes the output from the left side and passes it as the first argument to the function on the right side.</p>
+</section>
+<section id="working-with-dates" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-dates">Working with Dates</h2>
+<p>Dates often come into R as text. The <code>lubridate</code> package makes it easy to convert them to proper date format:</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'lubridate' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'lubridate'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   3 obs. of  2 variables:
+ $ person    : chr  "Alice" "Bob" "Charlie"
+ $ birth_date: chr  "03/15/1995" "Jul-22-98" "1:10:2000"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   3 obs. of  2 variables:
+ $ person    : chr  "Alice" "Bob" "Charlie"
+ $ birth_date: Date, format: "1995-03-15" "1998-07-22" ...</code></pre>
+</div>
+</div>
+<p>Common date conversion functions: - <code>ymd()</code> for year-month-day format (2024-01-15) - <code>mdy()</code> for month-day-year format (01/15/2024) - <code>dmy()</code> for day-month-year format (15-01-2024)</p>
+<p>Once converted, you can do date arithmetic and extract components:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   person birth_date      age
+1   Alice 1995-03-15 30.78879
+2     Bob 1998-07-22 27.43951
+3 Charlie 2000-01-10 25.97129</code></pre>
+</div>
+</div>
+</section>
+<section id="reshaping-data-wide-vs.-long-format" class="level2">
+<h2 class="anchored" data-anchor-id="reshaping-data-wide-vs.-long-format">Reshaping Data: Wide vs.&nbsp;Long Format</h2>
+<p>Some analyses require data in “wide” format, others need “long” format.</p>
+<p><strong>Wide format</strong> (each measurement type gets its own column):</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   id    name height_cm weight_kg
+1 P01   Alice       165        62
+2 P02     Bob       178        75
+3 P03 Charlie       172        70</code></pre>
+</div>
+</div>
+<p><strong>Long format</strong> (all measurements in one column):</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyr' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  id    name    measurement value
+  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
+1 P01   Alice   height_cm     165
+2 P01   Alice   weight_kg      62
+3 P02   Bob     height_cm     178
+4 P02   Bob     weight_kg      75
+5 P03   Charlie height_cm     172
+6 P03   Charlie weight_kg      70</code></pre>
+</div>
+</div>
+<p><strong>Converting back to wide:</strong></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  id    name    height_cm weight_kg
+  &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+1 P01   Alice         165        62
+2 P02   Bob           178        75
+3 P03   Charlie       172        70</code></pre>
+</div>
+</div>
+<p>Long format is often required for ggplot2, while wide format is easier for humans to read.</p>
+</section>
+</section>
+<section id="handling-missing-data" class="level1">
+<h1>Handling Missing Data</h1>
+<p>Real-world data usually contains missing values. There are three main approaches to dealing with them:</p>
+<section id="checking-for-missing-values" class="level2">
+<h2 class="anchored" data-anchor-id="checking-for-missing-values">Checking for Missing Values</h2>
+<p>First, see how much data is missing:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>          species            island    bill_length_mm     bill_depth_mm 
+                0                 0                 2                 2 
+flipper_length_mm       body_mass_g               sex              year 
+                2                 2                11                 0 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>          species            island    bill_length_mm     bill_depth_mm 
+              0.0               0.0               0.6               0.6 
+flipper_length_mm       body_mass_g               sex              year 
+              0.6               0.6               3.2               0.0 </code></pre>
+</div>
+</div>
+</section>
+<section id="approach-1-remove-variables-with-too-many-missing-values" class="level2">
+<h2 class="anchored" data-anchor-id="approach-1-remove-variables-with-too-many-missing-values">Approach 1: Remove Variables with Too Many Missing Values</h2>
+<p>If a variable has too many missing values (say, &gt;50%), it might not be useful:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+</section>
+<section id="approach-2-listwise-deletion" class="level2">
+<h2 class="anchored" data-anchor-id="approach-2-listwise-deletion">Approach 2: Listwise Deletion</h2>
+<p>Remove any rows that contain missing values:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 344</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 342</code></pre>
+</div>
+</div>
+<p><strong>Warning</strong>: This can remove a lot of data if missingness is spread across many rows!</p>
+</section>
+<section id="approach-3-imputation" class="level2">
+<h2 class="anchored" data-anchor-id="approach-3-imputation">Approach 3: Imputation</h2>
+<p>Imputation means replacing missing values with educated guesses. The <code>VIM</code> package offers sophisticated methods:</p>
+<p>This method finds the 5 most similar complete cases and uses their median (for numeric variables) or most common value (for categorical variables) to fill in the missing data.</p>
+<p><strong>Important</strong>: Missing data can seriously bias your results. If you have substantial missing data, consult with a statistician before deciding how to handle it.</p>
+</section>
+<section id="best-practices-for-missing-data" class="level2">
+<h2 class="anchored" data-anchor-id="best-practices-for-missing-data">Best Practices for Missing Data</h2>
+<ol type="1">
+<li><strong>Investigate why data is missing</strong> - Is it random or systematic?</li>
+<li><strong>Document your decisions</strong> - Always note how you handled missing values</li>
+<li><strong>Compare methods</strong> - Try multiple approaches and see how results differ</li>
+<li><strong>Report missingness</strong> - Tell readers how much data was missing</li>
+</ol>
+</section>
+</section>
+<section id="putting-it-all-together" class="level1">
+<h1>Putting It All Together</h1>
+<p>Here’s a complete workflow combining multiple operations:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  species size_category avg_flipper avg_mass count
+  &lt;fct&gt;   &lt;chr&gt;               &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
+1 Adelie  Large                194.    4675      7
+2 Adelie  Small                190.    3657.   139
+3 Gentoo  Large                218.    5213.   103
+4 Gentoo  Small                210.    4314.    16</code></pre>
+</div>
+</div>
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<p>You’ve learned how to:</p>
+<ul>
+<li>Import data from CSV, text, Excel, and statistical software files</li>
+<li>Select specific columns and filter rows</li>
+<li>Create and recode variables</li>
+<li>Summarize data by groups</li>
+<li>Use pipes to chain operations together</li>
+<li>Work with dates</li>
+<li>Reshape data between wide and long formats</li>
+<li>Handle missing values appropriately</li>
+</ul>
+<p>These data preparation skills form the foundation for all data analysis and visualization work in R.</p>
+</section>
+<section id="practice-exercises" class="level1">
+<h1>Practice Exercises</h1>
+<p>Try these exercises to reinforce your learning:</p>
+<ol type="1">
+<li>Load the <code>penguins</code> dataset and calculate the mean bill length for each species</li>
+<li>Create a new variable called <code>bill_size</code> that categorizes bills as “short” (&lt; 40mm) or “long” (≥ 40mm)</li>
+<li>Find which island has the heaviest penguins on average</li>
+<li>Remove all rows with missing sex values and count how many rows remain</li>
+<li>Create a summary showing the count of penguins by species and sex</li>
+</ol>
+</section>
+<section id="further-resources" class="level1">
+<h1>Further Resources</h1>
+<ul>
+<li><a href="https://r4ds.had.co.nz/">R for Data Science</a> - Comprehensive guide to data manipulation</li>
+<li><a href="https://dplyr.tidyverse.org/">dplyr documentation</a></li>
+<li><a href="https://tidyr.tidyverse.org/">tidyr documentation</a></li>
+<li><a href="https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf">Data Cleaning with R</a></li>
+</ul>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb36" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Data Import and Preparation in R"</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 10</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 5</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="co">    number_sections: true</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>Before you can visualize or analyze data, you need to get it into R and prepare it properly. This step is crucial—even the most sophisticated analysis will fail if your data isn't prepared correctly. Think of it like preparing ingredients before cooking: skipping or rushing this step will affect everything that follows.</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>In this guide, we'll learn how to import data from various file formats and clean it for analysis. We'll use the <span class="in">`palmerpenguins`</span> dataset for most examples, which contains measurements of penguins from Antarctica.</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a><span class="fu"># Importing Data into R</span></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>R can read data from almost any file format: text files, CSV files, Excel spreadsheets, and even specialized statistical software formats.</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## CSV and Text Files</span></span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>The <span class="in">`readr`</span> package provides efficient functions for importing text-based data:</span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Import from a CSV file (comma-separated values)</span></span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>penguins_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"penguins.csv"</span>)</span>
+<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Import from a tab-delimited text file</span></span>
+<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a>penguins_data <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"penguins.txt"</span>)</span>
+<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a>These functions assume that:</span>
+<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The first row contains column names</span>
+<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Values are separated by commas (CSV) or tabs (TSV)</span>
+<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Missing data appears as blank cells</span>
+<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a>Here's what the first few lines of a CSV file look like:</span>
+<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a><span class="in">species,island,bill_length_mm,bill_depth_mm,flipper_length_mm,body_mass_g,sex</span></span>
+<span id="cb36-50"><a href="#cb36-50" aria-hidden="true" tabindex="-1"></a><span class="in">Adelie,Torgersen,39.1,18.7,181,3750,male</span></span>
+<span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a><span class="in">Adelie,Torgersen,39.5,17.4,186,3800,female</span></span>
+<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a><span class="in">Adelie,Torgersen,40.3,18.0,195,3250,female</span></span>
+<span id="cb36-53"><a href="#cb36-53" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-54"><a href="#cb36-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a>**Tip**: For more options (like different delimiters or handling special cases), check the help documentation with <span class="in">`?read_csv`</span>.</span>
+<span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-57"><a href="#cb36-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## Excel Files</span></span>
+<span id="cb36-58"><a href="#cb36-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-59"><a href="#cb36-59" aria-hidden="true" tabindex="-1"></a>The <span class="in">`readxl`</span> package handles Excel workbooks (both .xls and .xlsx):</span>
+<span id="cb36-60"><a href="#cb36-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-63"><a href="#cb36-63" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-64"><a href="#cb36-64" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb36-65"><a href="#cb36-65" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb36-66"><a href="#cb36-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-67"><a href="#cb36-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Import from an Excel file</span></span>
+<span id="cb36-68"><a href="#cb36-68" aria-hidden="true" tabindex="-1"></a>penguins_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"penguins.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">1</span>)</span>
+<span id="cb36-69"><a href="#cb36-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-70"><a href="#cb36-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Import from a specific worksheet by name</span></span>
+<span id="cb36-71"><a href="#cb36-71" aria-hidden="true" tabindex="-1"></a>penguins_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"penguins.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Measurements"</span>)</span>
+<span id="cb36-72"><a href="#cb36-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-73"><a href="#cb36-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-74"><a href="#cb36-74" aria-hidden="true" tabindex="-1"></a>Since Excel files can have multiple worksheets, use the <span class="in">`sheet`</span> option to specify which one you want. The default is the first sheet.</span>
+<span id="cb36-75"><a href="#cb36-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-76"><a href="#cb36-76" aria-hidden="true" tabindex="-1"></a><span class="fu">## Files from Other Statistical Software</span></span>
+<span id="cb36-77"><a href="#cb36-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-78"><a href="#cb36-78" aria-hidden="true" tabindex="-1"></a>The <span class="in">`haven`</span> package lets you import data from other statistical programs without needing those programs installed:</span>
+<span id="cb36-79"><a href="#cb36-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-82"><a href="#cb36-82" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-83"><a href="#cb36-83" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb36-84"><a href="#cb36-84" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb36-85"><a href="#cb36-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-86"><a href="#cb36-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Import from Stata</span></span>
+<span id="cb36-87"><a href="#cb36-87" aria-hidden="true" tabindex="-1"></a>data_stata <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"data.dta"</span>)</span>
+<span id="cb36-88"><a href="#cb36-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-89"><a href="#cb36-89" aria-hidden="true" tabindex="-1"></a><span class="co"># Import from SPSS</span></span>
+<span id="cb36-90"><a href="#cb36-90" aria-hidden="true" tabindex="-1"></a>data_spss <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">"data.sav"</span>)</span>
+<span id="cb36-91"><a href="#cb36-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-92"><a href="#cb36-92" aria-hidden="true" tabindex="-1"></a><span class="co"># Import from SAS</span></span>
+<span id="cb36-93"><a href="#cb36-93" aria-hidden="true" tabindex="-1"></a>data_sas <span class="ot">&lt;-</span> <span class="fu">read_sas</span>(<span class="st">"data.sas7bdat"</span>)</span>
+<span id="cb36-94"><a href="#cb36-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-95"><a href="#cb36-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-96"><a href="#cb36-96" aria-hidden="true" tabindex="-1"></a><span class="fu"># Cleaning and Transforming Data</span></span>
+<span id="cb36-97"><a href="#cb36-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-98"><a href="#cb36-98" aria-hidden="true" tabindex="-1"></a>Once your data is in R, you'll usually need to clean and reshape it. The <span class="in">`dplyr`</span> and <span class="in">`tidyr`</span> packages are your main tools for this task.</span>
+<span id="cb36-99"><a href="#cb36-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-100"><a href="#cb36-100" aria-hidden="true" tabindex="-1"></a>Let's load the penguins dataset for our examples:</span>
+<span id="cb36-101"><a href="#cb36-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-104"><a href="#cb36-104" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-105"><a href="#cb36-105" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb36-106"><a href="#cb36-106" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb36-107"><a href="#cb36-107" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb36-108"><a href="#cb36-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-109"><a href="#cb36-109" aria-hidden="true" tabindex="-1"></a><span class="co"># View the structure of our data</span></span>
+<span id="cb36-110"><a href="#cb36-110" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span>
+<span id="cb36-111"><a href="#cb36-111" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-112"><a href="#cb36-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-113"><a href="#cb36-113" aria-hidden="true" tabindex="-1"></a><span class="fu">## Selecting Variables (Columns)</span></span>
+<span id="cb36-114"><a href="#cb36-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-115"><a href="#cb36-115" aria-hidden="true" tabindex="-1"></a>Use <span class="in">`select()`</span> to keep only the columns you need:</span>
+<span id="cb36-116"><a href="#cb36-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-119"><a href="#cb36-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-120"><a href="#cb36-120" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep just species, island, and body mass</span></span>
+<span id="cb36-121"><a href="#cb36-121" aria-hidden="true" tabindex="-1"></a>penguin_subset <span class="ot">&lt;-</span> <span class="fu">select</span>(penguins, species, island, body_mass_g)</span>
+<span id="cb36-122"><a href="#cb36-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-123"><a href="#cb36-123" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguin_subset)</span>
+<span id="cb36-124"><a href="#cb36-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-125"><a href="#cb36-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-128"><a href="#cb36-128" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-129"><a href="#cb36-129" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep species and all columns from bill_length_mm through body_mass_g</span></span>
+<span id="cb36-130"><a href="#cb36-130" aria-hidden="true" tabindex="-1"></a>penguin_subset <span class="ot">&lt;-</span> <span class="fu">select</span>(penguins, species, bill_length_mm<span class="sc">:</span>body_mass_g)</span>
+<span id="cb36-131"><a href="#cb36-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-132"><a href="#cb36-132" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguin_subset)</span>
+<span id="cb36-133"><a href="#cb36-133" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-134"><a href="#cb36-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-137"><a href="#cb36-137" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-138"><a href="#cb36-138" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep everything except year and sex</span></span>
+<span id="cb36-139"><a href="#cb36-139" aria-hidden="true" tabindex="-1"></a>penguin_subset <span class="ot">&lt;-</span> <span class="fu">select</span>(penguins, <span class="sc">-</span>year, <span class="sc">-</span>sex)</span>
+<span id="cb36-140"><a href="#cb36-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-141"><a href="#cb36-141" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguin_subset)</span>
+<span id="cb36-142"><a href="#cb36-142" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-143"><a href="#cb36-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-144"><a href="#cb36-144" aria-hidden="true" tabindex="-1"></a><span class="fu">## Filtering Observations (Rows)</span></span>
+<span id="cb36-145"><a href="#cb36-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-146"><a href="#cb36-146" aria-hidden="true" tabindex="-1"></a>Use <span class="in">`filter()`</span> to keep only rows that meet certain conditions. You can combine conditions with <span class="in">`&amp;`</span> (AND) and <span class="in">`|`</span> (OR):</span>
+<span id="cb36-147"><a href="#cb36-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-150"><a href="#cb36-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-151"><a href="#cb36-151" aria-hidden="true" tabindex="-1"></a><span class="co"># Select only Adelie penguins</span></span>
+<span id="cb36-152"><a href="#cb36-152" aria-hidden="true" tabindex="-1"></a>adelie_only <span class="ot">&lt;-</span> <span class="fu">filter</span>(penguins, species <span class="sc">==</span> <span class="st">"Adelie"</span>)</span>
+<span id="cb36-153"><a href="#cb36-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-154"><a href="#cb36-154" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(adelie_only)</span>
+<span id="cb36-155"><a href="#cb36-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-156"><a href="#cb36-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-159"><a href="#cb36-159" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-160"><a href="#cb36-160" aria-hidden="true" tabindex="-1"></a><span class="co"># Select Adelie penguins from Torgersen island</span></span>
+<span id="cb36-161"><a href="#cb36-161" aria-hidden="true" tabindex="-1"></a>adelie_torgersen <span class="ot">&lt;-</span> <span class="fu">filter</span>(penguins, </span>
+<span id="cb36-162"><a href="#cb36-162" aria-hidden="true" tabindex="-1"></a>                            species <span class="sc">==</span> <span class="st">"Adelie"</span> <span class="sc">&amp;</span> </span>
+<span id="cb36-163"><a href="#cb36-163" aria-hidden="true" tabindex="-1"></a>                            island <span class="sc">==</span> <span class="st">"Torgersen"</span>)</span>
+<span id="cb36-164"><a href="#cb36-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-165"><a href="#cb36-165" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(adelie_torgersen)</span>
+<span id="cb36-166"><a href="#cb36-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-167"><a href="#cb36-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-170"><a href="#cb36-170" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-171"><a href="#cb36-171" aria-hidden="true" tabindex="-1"></a><span class="co"># Select penguins from Biscoe, Dream, OR Torgersen islands</span></span>
+<span id="cb36-172"><a href="#cb36-172" aria-hidden="true" tabindex="-1"></a>three_islands <span class="ot">&lt;-</span> <span class="fu">filter</span>(penguins, </span>
+<span id="cb36-173"><a href="#cb36-173" aria-hidden="true" tabindex="-1"></a>                        island <span class="sc">==</span> <span class="st">"Biscoe"</span> <span class="sc">|</span> </span>
+<span id="cb36-174"><a href="#cb36-174" aria-hidden="true" tabindex="-1"></a>                        island <span class="sc">==</span> <span class="st">"Dream"</span> <span class="sc">|</span> </span>
+<span id="cb36-175"><a href="#cb36-175" aria-hidden="true" tabindex="-1"></a>                        island <span class="sc">==</span> <span class="st">"Torgersen"</span>)</span>
+<span id="cb36-176"><a href="#cb36-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-177"><a href="#cb36-177" aria-hidden="true" tabindex="-1"></a><span class="co"># A more concise way to write the same thing:</span></span>
+<span id="cb36-178"><a href="#cb36-178" aria-hidden="true" tabindex="-1"></a>three_islands <span class="ot">&lt;-</span> <span class="fu">filter</span>(penguins, </span>
+<span id="cb36-179"><a href="#cb36-179" aria-hidden="true" tabindex="-1"></a>                        island <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Biscoe"</span>, <span class="st">"Dream"</span>, <span class="st">"Torgersen"</span>))</span>
+<span id="cb36-180"><a href="#cb36-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-181"><a href="#cb36-181" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(three_islands)</span>
+<span id="cb36-182"><a href="#cb36-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-183"><a href="#cb36-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-184"><a href="#cb36-184" aria-hidden="true" tabindex="-1"></a>**Common comparison operators:**</span>
+<span id="cb36-185"><a href="#cb36-185" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`==`</span> equals</span>
+<span id="cb36-186"><a href="#cb36-186" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`!=`</span> not equals</span>
+<span id="cb36-187"><a href="#cb36-187" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`&gt;`</span> greater than</span>
+<span id="cb36-188"><a href="#cb36-188" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`&lt;`</span> less than</span>
+<span id="cb36-189"><a href="#cb36-189" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`&gt;=`</span> greater than or equal to</span>
+<span id="cb36-190"><a href="#cb36-190" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`&lt;=`</span> less than or equal to</span>
+<span id="cb36-191"><a href="#cb36-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-192"><a href="#cb36-192" aria-hidden="true" tabindex="-1"></a><span class="fu">## Creating and Modifying Variables</span></span>
+<span id="cb36-193"><a href="#cb36-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-194"><a href="#cb36-194" aria-hidden="true" tabindex="-1"></a>Use <span class="in">`mutate()`</span> to create new columns or modify existing ones:</span>
+<span id="cb36-195"><a href="#cb36-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-198"><a href="#cb36-198" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-199"><a href="#cb36-199" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert body mass from grams to kilograms</span></span>
+<span id="cb36-200"><a href="#cb36-200" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert flipper length from mm to cm</span></span>
+<span id="cb36-201"><a href="#cb36-201" aria-hidden="true" tabindex="-1"></a>penguins_converted <span class="ot">&lt;-</span> <span class="fu">mutate</span>(penguins,</span>
+<span id="cb36-202"><a href="#cb36-202" aria-hidden="true" tabindex="-1"></a>                              <span class="at">body_mass_kg =</span> body_mass_g <span class="sc">/</span> <span class="dv">1000</span>,</span>
+<span id="cb36-203"><a href="#cb36-203" aria-hidden="true" tabindex="-1"></a>                              <span class="at">flipper_length_cm =</span> flipper_length_mm <span class="sc">/</span> <span class="dv">10</span>)</span>
+<span id="cb36-204"><a href="#cb36-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-205"><a href="#cb36-205" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(penguins_converted, species, body_mass_g, body_mass_kg, </span>
+<span id="cb36-206"><a href="#cb36-206" aria-hidden="true" tabindex="-1"></a>       flipper_length_mm, flipper_length_cm) <span class="sc">%&gt;%</span></span>
+<span id="cb36-207"><a href="#cb36-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb36-208"><a href="#cb36-208" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-209"><a href="#cb36-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-210"><a href="#cb36-210" aria-hidden="true" tabindex="-1"></a><span class="fu">### Recoding with `ifelse()`</span></span>
+<span id="cb36-211"><a href="#cb36-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-212"><a href="#cb36-212" aria-hidden="true" tabindex="-1"></a>The <span class="in">`ifelse()`</span> function helps you create categorical variables based on conditions:</span>
+<span id="cb36-213"><a href="#cb36-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-216"><a href="#cb36-216" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-217"><a href="#cb36-217" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a size category based on body mass</span></span>
+<span id="cb36-218"><a href="#cb36-218" aria-hidden="true" tabindex="-1"></a>penguins_sized <span class="ot">&lt;-</span> <span class="fu">mutate</span>(penguins,</span>
+<span id="cb36-219"><a href="#cb36-219" aria-hidden="true" tabindex="-1"></a>                         <span class="at">size =</span> <span class="fu">ifelse</span>(body_mass_g <span class="sc">&gt;</span> <span class="dv">4500</span>,</span>
+<span id="cb36-220"><a href="#cb36-220" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"large"</span>,</span>
+<span id="cb36-221"><a href="#cb36-221" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"small"</span>))</span>
+<span id="cb36-222"><a href="#cb36-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-223"><a href="#cb36-223" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(penguins_sized, species, body_mass_g, size) <span class="sc">%&gt;%</span></span>
+<span id="cb36-224"><a href="#cb36-224" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb36-225"><a href="#cb36-225" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-226"><a href="#cb36-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-229"><a href="#cb36-229" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-230"><a href="#cb36-230" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new island variable with simplified names</span></span>
+<span id="cb36-231"><a href="#cb36-231" aria-hidden="true" tabindex="-1"></a>penguins_recoded <span class="ot">&lt;-</span> <span class="fu">mutate</span>(penguins,</span>
+<span id="cb36-232"><a href="#cb36-232" aria-hidden="true" tabindex="-1"></a>                           <span class="at">island_short =</span> <span class="fu">ifelse</span>(island <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Biscoe"</span>, <span class="st">"Dream"</span>),</span>
+<span id="cb36-233"><a href="#cb36-233" aria-hidden="true" tabindex="-1"></a>                                                island,</span>
+<span id="cb36-234"><a href="#cb36-234" aria-hidden="true" tabindex="-1"></a>                                                <span class="st">"Other"</span>))</span>
+<span id="cb36-235"><a href="#cb36-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-236"><a href="#cb36-236" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(penguins_recoded, island, island_short) <span class="sc">%&gt;%</span></span>
+<span id="cb36-237"><a href="#cb36-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb36-238"><a href="#cb36-238" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-239"><a href="#cb36-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-242"><a href="#cb36-242" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-243"><a href="#cb36-243" aria-hidden="true" tabindex="-1"></a><span class="co"># Set extreme values to missing (NA)</span></span>
+<span id="cb36-244"><a href="#cb36-244" aria-hidden="true" tabindex="-1"></a>penguins_cleaned <span class="ot">&lt;-</span> <span class="fu">mutate</span>(penguins,</span>
+<span id="cb36-245"><a href="#cb36-245" aria-hidden="true" tabindex="-1"></a>                           <span class="at">bill_length_mm =</span> <span class="fu">ifelse</span>(bill_length_mm <span class="sc">&lt;</span> <span class="dv">30</span> <span class="sc">|</span> </span>
+<span id="cb36-246"><a href="#cb36-246" aria-hidden="true" tabindex="-1"></a>                                                   bill_length_mm <span class="sc">&gt;</span> <span class="dv">60</span>,</span>
+<span id="cb36-247"><a href="#cb36-247" aria-hidden="true" tabindex="-1"></a>                                                   <span class="cn">NA</span>,</span>
+<span id="cb36-248"><a href="#cb36-248" aria-hidden="true" tabindex="-1"></a>                                                   bill_length_mm))</span>
+<span id="cb36-249"><a href="#cb36-249" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-250"><a href="#cb36-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-251"><a href="#cb36-251" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summarizing Data</span></span>
+<span id="cb36-252"><a href="#cb36-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-253"><a href="#cb36-253" aria-hidden="true" tabindex="-1"></a>Use <span class="in">`summarize()`</span> to calculate summary statistics. Combine it with <span class="in">`group_by()`</span> to get statistics for each group:</span>
+<span id="cb36-254"><a href="#cb36-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-257"><a href="#cb36-257" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-258"><a href="#cb36-258" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate overall mean flipper length and body mass</span></span>
+<span id="cb36-259"><a href="#cb36-259" aria-hidden="true" tabindex="-1"></a>summary_stats <span class="ot">&lt;-</span> <span class="fu">summarize</span>(penguins,</span>
+<span id="cb36-260"><a href="#cb36-260" aria-hidden="true" tabindex="-1"></a>                          <span class="at">mean_flipper =</span> <span class="fu">mean</span>(flipper_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb36-261"><a href="#cb36-261" aria-hidden="true" tabindex="-1"></a>                          <span class="at">mean_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb36-262"><a href="#cb36-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-263"><a href="#cb36-263" aria-hidden="true" tabindex="-1"></a>summary_stats</span>
+<span id="cb36-264"><a href="#cb36-264" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-265"><a href="#cb36-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-266"><a href="#cb36-266" aria-hidden="true" tabindex="-1"></a>**Note**: The <span class="in">`na.rm = TRUE`</span> option tells R to ignore missing values when calculating means.</span>
+<span id="cb36-267"><a href="#cb36-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-270"><a href="#cb36-270" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-271"><a href="#cb36-271" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean flipper length and body mass by species</span></span>
+<span id="cb36-272"><a href="#cb36-272" aria-hidden="true" tabindex="-1"></a>species_summary <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb36-273"><a href="#cb36-273" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb36-274"><a href="#cb36-274" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_flipper =</span> <span class="fu">mean</span>(flipper_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb36-275"><a href="#cb36-275" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb36-276"><a href="#cb36-276" aria-hidden="true" tabindex="-1"></a>            <span class="at">count =</span> <span class="fu">n</span>())</span>
+<span id="cb36-277"><a href="#cb36-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-278"><a href="#cb36-278" aria-hidden="true" tabindex="-1"></a>species_summary</span>
+<span id="cb36-279"><a href="#cb36-279" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-280"><a href="#cb36-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-283"><a href="#cb36-283" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-284"><a href="#cb36-284" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate statistics by species AND island</span></span>
+<span id="cb36-285"><a href="#cb36-285" aria-hidden="true" tabindex="-1"></a>detailed_summary <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb36-286"><a href="#cb36-286" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, island) <span class="sc">%&gt;%</span></span>
+<span id="cb36-287"><a href="#cb36-287" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb36-288"><a href="#cb36-288" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_bill_length =</span> <span class="fu">sd</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb36-289"><a href="#cb36-289" aria-hidden="true" tabindex="-1"></a>            <span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb36-290"><a href="#cb36-290" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb36-291"><a href="#cb36-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-292"><a href="#cb36-292" aria-hidden="true" tabindex="-1"></a>detailed_summary</span>
+<span id="cb36-293"><a href="#cb36-293" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-294"><a href="#cb36-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-295"><a href="#cb36-295" aria-hidden="true" tabindex="-1"></a>Many visualizations work best with summarized data rather than raw observations.</span>
+<span id="cb36-296"><a href="#cb36-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-297"><a href="#cb36-297" aria-hidden="true" tabindex="-1"></a><span class="fu">## Using the Pipe Operator</span></span>
+<span id="cb36-298"><a href="#cb36-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-299"><a href="#cb36-299" aria-hidden="true" tabindex="-1"></a>The pipe operator <span class="in">`%&gt;%`</span> (or <span class="in">`|&gt;`</span> in newer R versions) lets you chain operations together, making your code cleaner and easier to read:</span>
+<span id="cb36-300"><a href="#cb36-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-303"><a href="#cb36-303" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-304"><a href="#cb36-304" aria-hidden="true" tabindex="-1"></a><span class="co"># Without pipes - harder to read</span></span>
+<span id="cb36-305"><a href="#cb36-305" aria-hidden="true" tabindex="-1"></a>temp1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(penguins, species <span class="sc">==</span> <span class="st">"Adelie"</span>)</span>
+<span id="cb36-306"><a href="#cb36-306" aria-hidden="true" tabindex="-1"></a>temp2 <span class="ot">&lt;-</span> <span class="fu">group_by</span>(temp1, island)</span>
+<span id="cb36-307"><a href="#cb36-307" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">summarize</span>(temp2, <span class="at">mean_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb36-308"><a href="#cb36-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-309"><a href="#cb36-309" aria-hidden="true" tabindex="-1"></a>result</span>
+<span id="cb36-310"><a href="#cb36-310" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-311"><a href="#cb36-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-314"><a href="#cb36-314" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-315"><a href="#cb36-315" aria-hidden="true" tabindex="-1"></a><span class="co"># With pipes - much clearer!</span></span>
+<span id="cb36-316"><a href="#cb36-316" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb36-317"><a href="#cb36-317" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb36-318"><a href="#cb36-318" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(island) <span class="sc">%&gt;%</span></span>
+<span id="cb36-319"><a href="#cb36-319" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb36-320"><a href="#cb36-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-321"><a href="#cb36-321" aria-hidden="true" tabindex="-1"></a>result</span>
+<span id="cb36-322"><a href="#cb36-322" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-323"><a href="#cb36-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-324"><a href="#cb36-324" aria-hidden="true" tabindex="-1"></a>The pipe takes the output from the left side and passes it as the first argument to the function on the right side.</span>
+<span id="cb36-325"><a href="#cb36-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-326"><a href="#cb36-326" aria-hidden="true" tabindex="-1"></a><span class="fu">## Working with Dates</span></span>
+<span id="cb36-327"><a href="#cb36-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-328"><a href="#cb36-328" aria-hidden="true" tabindex="-1"></a>Dates often come into R as text. The <span class="in">`lubridate`</span> package makes it easy to convert them to proper date format:</span>
+<span id="cb36-329"><a href="#cb36-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-332"><a href="#cb36-332" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-333"><a href="#cb36-333" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb36-334"><a href="#cb36-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-335"><a href="#cb36-335" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a sample dataset with dates in various formats</span></span>
+<span id="cb36-336"><a href="#cb36-336" aria-hidden="true" tabindex="-1"></a>sample_dates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb36-337"><a href="#cb36-337" aria-hidden="true" tabindex="-1"></a>  <span class="at">person =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>),</span>
+<span id="cb36-338"><a href="#cb36-338" aria-hidden="true" tabindex="-1"></a>  <span class="at">birth_date =</span> <span class="fu">c</span>(<span class="st">"03/15/1995"</span>, <span class="st">"Jul-22-98"</span>, <span class="st">"1:10:2000"</span>)</span>
+<span id="cb36-339"><a href="#cb36-339" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb36-340"><a href="#cb36-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-341"><a href="#cb36-341" aria-hidden="true" tabindex="-1"></a><span class="co"># View the structure - dates are currently characters</span></span>
+<span id="cb36-342"><a href="#cb36-342" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sample_dates)</span>
+<span id="cb36-343"><a href="#cb36-343" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-344"><a href="#cb36-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-347"><a href="#cb36-347" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-348"><a href="#cb36-348" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to proper date format</span></span>
+<span id="cb36-349"><a href="#cb36-349" aria-hidden="true" tabindex="-1"></a>sample_dates<span class="sc">$</span>birth_date <span class="ot">&lt;-</span> <span class="fu">mdy</span>(sample_dates<span class="sc">$</span>birth_date)</span>
+<span id="cb36-350"><a href="#cb36-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-351"><a href="#cb36-351" aria-hidden="true" tabindex="-1"></a><span class="co"># Now they're proper dates</span></span>
+<span id="cb36-352"><a href="#cb36-352" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sample_dates)</span>
+<span id="cb36-353"><a href="#cb36-353" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-354"><a href="#cb36-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-355"><a href="#cb36-355" aria-hidden="true" tabindex="-1"></a>Common date conversion functions:</span>
+<span id="cb36-356"><a href="#cb36-356" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`ymd()`</span> for year-month-day format (2024-01-15)</span>
+<span id="cb36-357"><a href="#cb36-357" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`mdy()`</span> for month-day-year format (01/15/2024)</span>
+<span id="cb36-358"><a href="#cb36-358" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`dmy()`</span> for day-month-year format (15-01-2024)</span>
+<span id="cb36-359"><a href="#cb36-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-360"><a href="#cb36-360" aria-hidden="true" tabindex="-1"></a>Once converted, you can do date arithmetic and extract components:</span>
+<span id="cb36-361"><a href="#cb36-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-364"><a href="#cb36-364" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-365"><a href="#cb36-365" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate age in years</span></span>
+<span id="cb36-366"><a href="#cb36-366" aria-hidden="true" tabindex="-1"></a>sample_dates<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">Sys.Date</span>(), </span>
+<span id="cb36-367"><a href="#cb36-367" aria-hidden="true" tabindex="-1"></a>                                        sample_dates<span class="sc">$</span>birth_date, </span>
+<span id="cb36-368"><a href="#cb36-368" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">units =</span> <span class="st">"weeks"</span>)) <span class="sc">/</span> <span class="fl">52.25</span></span>
+<span id="cb36-369"><a href="#cb36-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-370"><a href="#cb36-370" aria-hidden="true" tabindex="-1"></a>sample_dates</span>
+<span id="cb36-371"><a href="#cb36-371" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-372"><a href="#cb36-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-373"><a href="#cb36-373" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reshaping Data: Wide vs. Long Format</span></span>
+<span id="cb36-374"><a href="#cb36-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-375"><a href="#cb36-375" aria-hidden="true" tabindex="-1"></a>Some analyses require data in "wide" format, others need "long" format.</span>
+<span id="cb36-376"><a href="#cb36-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-377"><a href="#cb36-377" aria-hidden="true" tabindex="-1"></a>**Wide format** (each measurement type gets its own column):</span>
+<span id="cb36-378"><a href="#cb36-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-381"><a href="#cb36-381" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-382"><a href="#cb36-382" aria-hidden="true" tabindex="-1"></a><span class="co"># Create example wide data</span></span>
+<span id="cb36-383"><a href="#cb36-383" aria-hidden="true" tabindex="-1"></a>wide_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb36-384"><a href="#cb36-384" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">c</span>(<span class="st">"P01"</span>, <span class="st">"P02"</span>, <span class="st">"P03"</span>),</span>
+<span id="cb36-385"><a href="#cb36-385" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>),</span>
+<span id="cb36-386"><a href="#cb36-386" aria-hidden="true" tabindex="-1"></a>  <span class="at">height_cm =</span> <span class="fu">c</span>(<span class="dv">165</span>, <span class="dv">178</span>, <span class="dv">172</span>),</span>
+<span id="cb36-387"><a href="#cb36-387" aria-hidden="true" tabindex="-1"></a>  <span class="at">weight_kg =</span> <span class="fu">c</span>(<span class="dv">62</span>, <span class="dv">75</span>, <span class="dv">70</span>)</span>
+<span id="cb36-388"><a href="#cb36-388" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb36-389"><a href="#cb36-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-390"><a href="#cb36-390" aria-hidden="true" tabindex="-1"></a>wide_data</span>
+<span id="cb36-391"><a href="#cb36-391" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-392"><a href="#cb36-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-393"><a href="#cb36-393" aria-hidden="true" tabindex="-1"></a>**Long format** (all measurements in one column):</span>
+<span id="cb36-394"><a href="#cb36-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-397"><a href="#cb36-397" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-398"><a href="#cb36-398" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb36-399"><a href="#cb36-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-400"><a href="#cb36-400" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert wide to long</span></span>
+<span id="cb36-401"><a href="#cb36-401" aria-hidden="true" tabindex="-1"></a>long_data <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(wide_data,</span>
+<span id="cb36-402"><a href="#cb36-402" aria-hidden="true" tabindex="-1"></a>                          <span class="at">cols =</span> <span class="fu">c</span>(height_cm, weight_kg),</span>
+<span id="cb36-403"><a href="#cb36-403" aria-hidden="true" tabindex="-1"></a>                          <span class="at">names_to =</span> <span class="st">"measurement"</span>,</span>
+<span id="cb36-404"><a href="#cb36-404" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values_to =</span> <span class="st">"value"</span>)</span>
+<span id="cb36-405"><a href="#cb36-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-406"><a href="#cb36-406" aria-hidden="true" tabindex="-1"></a>long_data</span>
+<span id="cb36-407"><a href="#cb36-407" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-408"><a href="#cb36-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-409"><a href="#cb36-409" aria-hidden="true" tabindex="-1"></a>**Converting back to wide:**</span>
+<span id="cb36-410"><a href="#cb36-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-413"><a href="#cb36-413" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-414"><a href="#cb36-414" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert long to wide</span></span>
+<span id="cb36-415"><a href="#cb36-415" aria-hidden="true" tabindex="-1"></a>back_to_wide <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(long_data,</span>
+<span id="cb36-416"><a href="#cb36-416" aria-hidden="true" tabindex="-1"></a>                            <span class="at">names_from =</span> measurement,</span>
+<span id="cb36-417"><a href="#cb36-417" aria-hidden="true" tabindex="-1"></a>                            <span class="at">values_from =</span> value)</span>
+<span id="cb36-418"><a href="#cb36-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-419"><a href="#cb36-419" aria-hidden="true" tabindex="-1"></a>back_to_wide</span>
+<span id="cb36-420"><a href="#cb36-420" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-421"><a href="#cb36-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-422"><a href="#cb36-422" aria-hidden="true" tabindex="-1"></a>Long format is often required for ggplot2, while wide format is easier for humans to read.</span>
+<span id="cb36-423"><a href="#cb36-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-424"><a href="#cb36-424" aria-hidden="true" tabindex="-1"></a><span class="fu"># Handling Missing Data</span></span>
+<span id="cb36-425"><a href="#cb36-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-426"><a href="#cb36-426" aria-hidden="true" tabindex="-1"></a>Real-world data usually contains missing values. There are three main approaches to dealing with them:</span>
+<span id="cb36-427"><a href="#cb36-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-428"><a href="#cb36-428" aria-hidden="true" tabindex="-1"></a><span class="fu">## Checking for Missing Values</span></span>
+<span id="cb36-429"><a href="#cb36-429" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-430"><a href="#cb36-430" aria-hidden="true" tabindex="-1"></a>First, see how much data is missing:</span>
+<span id="cb36-431"><a href="#cb36-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-434"><a href="#cb36-434" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-435"><a href="#cb36-435" aria-hidden="true" tabindex="-1"></a><span class="co"># Count missing values in each column</span></span>
+<span id="cb36-436"><a href="#cb36-436" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(penguins))</span>
+<span id="cb36-437"><a href="#cb36-437" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-438"><a href="#cb36-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-441"><a href="#cb36-441" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-442"><a href="#cb36-442" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate percentage missing</span></span>
+<span id="cb36-443"><a href="#cb36-443" aria-hidden="true" tabindex="-1"></a>missing_pct <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(penguins)) <span class="sc">/</span> <span class="fu">nrow</span>(penguins) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb36-444"><a href="#cb36-444" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(missing_pct, <span class="dv">1</span>)</span>
+<span id="cb36-445"><a href="#cb36-445" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-446"><a href="#cb36-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-447"><a href="#cb36-447" aria-hidden="true" tabindex="-1"></a><span class="fu">## Approach 1: Remove Variables with Too Many Missing Values</span></span>
+<span id="cb36-448"><a href="#cb36-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-449"><a href="#cb36-449" aria-hidden="true" tabindex="-1"></a>If a variable has too many missing values (say, &gt;50%), it might not be useful:</span>
+<span id="cb36-450"><a href="#cb36-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-453"><a href="#cb36-453" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-454"><a href="#cb36-454" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove columns with more than 5% missing data</span></span>
+<span id="cb36-455"><a href="#cb36-455" aria-hidden="true" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb36-456"><a href="#cb36-456" aria-hidden="true" tabindex="-1"></a>missing_prop <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(penguins)) <span class="sc">/</span> <span class="fu">nrow</span>(penguins)</span>
+<span id="cb36-457"><a href="#cb36-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-458"><a href="#cb36-458" aria-hidden="true" tabindex="-1"></a>penguins_cleaned <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb36-459"><a href="#cb36-459" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(<span class="sc">~</span><span class="fu">mean</span>(<span class="fu">is.na</span>(.)) <span class="sc">&lt;</span> threshold))</span>
+<span id="cb36-460"><a href="#cb36-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-461"><a href="#cb36-461" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(penguins)  <span class="co"># original number of columns</span></span>
+<span id="cb36-462"><a href="#cb36-462" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(penguins_cleaned)  <span class="co"># after removal</span></span>
+<span id="cb36-463"><a href="#cb36-463" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-464"><a href="#cb36-464" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-465"><a href="#cb36-465" aria-hidden="true" tabindex="-1"></a><span class="fu">## Approach 2: Listwise Deletion</span></span>
+<span id="cb36-466"><a href="#cb36-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-467"><a href="#cb36-467" aria-hidden="true" tabindex="-1"></a>Remove any rows that contain missing values:</span>
+<span id="cb36-468"><a href="#cb36-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-471"><a href="#cb36-471" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-472"><a href="#cb36-472" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dataset with only complete cases</span></span>
+<span id="cb36-473"><a href="#cb36-473" aria-hidden="true" tabindex="-1"></a>penguins_complete <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb36-474"><a href="#cb36-474" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, bill_length_mm, bill_depth_mm, body_mass_g) <span class="sc">%&gt;%</span></span>
+<span id="cb36-475"><a href="#cb36-475" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb36-476"><a href="#cb36-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-477"><a href="#cb36-477" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(penguins)  <span class="co"># original rows</span></span>
+<span id="cb36-478"><a href="#cb36-478" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(penguins_complete)  <span class="co"># after deletion</span></span>
+<span id="cb36-479"><a href="#cb36-479" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-480"><a href="#cb36-480" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-481"><a href="#cb36-481" aria-hidden="true" tabindex="-1"></a>**Warning**: This can remove a lot of data if missingness is spread across many rows!</span>
+<span id="cb36-482"><a href="#cb36-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-483"><a href="#cb36-483" aria-hidden="true" tabindex="-1"></a><span class="fu">## Approach 3: Imputation</span></span>
+<span id="cb36-484"><a href="#cb36-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-485"><a href="#cb36-485" aria-hidden="true" tabindex="-1"></a>Imputation means replacing missing values with educated guesses. The <span class="in">`VIM`</span> package offers sophisticated methods:</span>
+<span id="cb36-486"><a href="#cb36-486" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-489"><a href="#cb36-489" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-490"><a href="#cb36-490" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb36-491"><a href="#cb36-491" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VIM)</span>
+<span id="cb36-492"><a href="#cb36-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-493"><a href="#cb36-493" aria-hidden="true" tabindex="-1"></a><span class="co"># Impute missing values using k-nearest neighbors</span></span>
+<span id="cb36-494"><a href="#cb36-494" aria-hidden="true" tabindex="-1"></a>penguins_imputed <span class="ot">&lt;-</span> <span class="fu">kNN</span>(penguins, <span class="at">k =</span> <span class="dv">5</span>)</span>
+<span id="cb36-495"><a href="#cb36-495" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-496"><a href="#cb36-496" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-497"><a href="#cb36-497" aria-hidden="true" tabindex="-1"></a>This method finds the 5 most similar complete cases and uses their median (for numeric variables) or most common value (for categorical variables) to fill in the missing data.</span>
+<span id="cb36-498"><a href="#cb36-498" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-499"><a href="#cb36-499" aria-hidden="true" tabindex="-1"></a>**Important**: Missing data can seriously bias your results. If you have substantial missing data, consult with a statistician before deciding how to handle it.</span>
+<span id="cb36-500"><a href="#cb36-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-501"><a href="#cb36-501" aria-hidden="true" tabindex="-1"></a><span class="fu">## Best Practices for Missing Data</span></span>
+<span id="cb36-502"><a href="#cb36-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-503"><a href="#cb36-503" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Investigate why data is missing** - Is it random or systematic?</span>
+<span id="cb36-504"><a href="#cb36-504" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Document your decisions** - Always note how you handled missing values</span>
+<span id="cb36-505"><a href="#cb36-505" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Compare methods** - Try multiple approaches and see how results differ</span>
+<span id="cb36-506"><a href="#cb36-506" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Report missingness** - Tell readers how much data was missing</span>
+<span id="cb36-507"><a href="#cb36-507" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-508"><a href="#cb36-508" aria-hidden="true" tabindex="-1"></a><span class="fu"># Putting It All Together</span></span>
+<span id="cb36-509"><a href="#cb36-509" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-510"><a href="#cb36-510" aria-hidden="true" tabindex="-1"></a>Here's a complete workflow combining multiple operations:</span>
+<span id="cb36-511"><a href="#cb36-511" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-514"><a href="#cb36-514" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-515"><a href="#cb36-515" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb36-516"><a href="#cb36-516" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb36-517"><a href="#cb36-517" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb36-518"><a href="#cb36-518" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-519"><a href="#cb36-519" aria-hidden="true" tabindex="-1"></a><span class="co"># Complete data preparation pipeline</span></span>
+<span id="cb36-520"><a href="#cb36-520" aria-hidden="true" tabindex="-1"></a>analysis_data <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb36-521"><a href="#cb36-521" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1. Remove year column</span></span>
+<span id="cb36-522"><a href="#cb36-522" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>year) <span class="sc">%&gt;%</span></span>
+<span id="cb36-523"><a href="#cb36-523" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 2. Keep only complete cases</span></span>
+<span id="cb36-524"><a href="#cb36-524" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb36-525"><a href="#cb36-525" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 3. Filter to just two species</span></span>
+<span id="cb36-526"><a href="#cb36-526" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb36-527"><a href="#cb36-527" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 4. Create new variables</span></span>
+<span id="cb36-528"><a href="#cb36-528" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb36-529"><a href="#cb36-529" aria-hidden="true" tabindex="-1"></a>    <span class="at">bill_ratio =</span> bill_length_mm <span class="sc">/</span> bill_depth_mm,</span>
+<span id="cb36-530"><a href="#cb36-530" aria-hidden="true" tabindex="-1"></a>    <span class="at">size_category =</span> <span class="fu">ifelse</span>(body_mass_g <span class="sc">&gt;</span> <span class="dv">4500</span>, <span class="st">"Large"</span>, <span class="st">"Small"</span>)</span>
+<span id="cb36-531"><a href="#cb36-531" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb36-532"><a href="#cb36-532" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 5. Group and summarize</span></span>
+<span id="cb36-533"><a href="#cb36-533" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, size_category) <span class="sc">%&gt;%</span></span>
+<span id="cb36-534"><a href="#cb36-534" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb36-535"><a href="#cb36-535" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_flipper =</span> <span class="fu">mean</span>(flipper_length_mm),</span>
+<span id="cb36-536"><a href="#cb36-536" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass_g),</span>
+<span id="cb36-537"><a href="#cb36-537" aria-hidden="true" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb36-538"><a href="#cb36-538" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb36-539"><a href="#cb36-539" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb36-540"><a href="#cb36-540" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-541"><a href="#cb36-541" aria-hidden="true" tabindex="-1"></a>analysis_data</span>
+<span id="cb36-542"><a href="#cb36-542" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-543"><a href="#cb36-543" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-544"><a href="#cb36-544" aria-hidden="true" tabindex="-1"></a><span class="fu"># Summary</span></span>
+<span id="cb36-545"><a href="#cb36-545" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-546"><a href="#cb36-546" aria-hidden="true" tabindex="-1"></a>You've learned how to:</span>
+<span id="cb36-547"><a href="#cb36-547" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-548"><a href="#cb36-548" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Import data from CSV, text, Excel, and statistical software files</span>
+<span id="cb36-549"><a href="#cb36-549" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Select specific columns and filter rows</span>
+<span id="cb36-550"><a href="#cb36-550" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create and recode variables</span>
+<span id="cb36-551"><a href="#cb36-551" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Summarize data by groups</span>
+<span id="cb36-552"><a href="#cb36-552" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use pipes to chain operations together</span>
+<span id="cb36-553"><a href="#cb36-553" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Work with dates</span>
+<span id="cb36-554"><a href="#cb36-554" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reshape data between wide and long formats</span>
+<span id="cb36-555"><a href="#cb36-555" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Handle missing values appropriately</span>
+<span id="cb36-556"><a href="#cb36-556" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-557"><a href="#cb36-557" aria-hidden="true" tabindex="-1"></a>These data preparation skills form the foundation for all data analysis and visualization work in R.</span>
+<span id="cb36-558"><a href="#cb36-558" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-559"><a href="#cb36-559" aria-hidden="true" tabindex="-1"></a><span class="fu"># Practice Exercises</span></span>
+<span id="cb36-560"><a href="#cb36-560" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-561"><a href="#cb36-561" aria-hidden="true" tabindex="-1"></a>Try these exercises to reinforce your learning:</span>
+<span id="cb36-562"><a href="#cb36-562" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-563"><a href="#cb36-563" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Load the <span class="in">`penguins`</span> dataset and calculate the mean bill length for each species</span>
+<span id="cb36-564"><a href="#cb36-564" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Create a new variable called <span class="in">`bill_size`</span> that categorizes bills as "short" (&lt; 40mm) or "long" (≥ 40mm)</span>
+<span id="cb36-565"><a href="#cb36-565" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Find which island has the heaviest penguins on average</span>
+<span id="cb36-566"><a href="#cb36-566" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Remove all rows with missing sex values and count how many rows remain</span>
+<span id="cb36-567"><a href="#cb36-567" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Create a summary showing the count of penguins by species and sex</span>
+<span id="cb36-568"><a href="#cb36-568" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-569"><a href="#cb36-569" aria-hidden="true" tabindex="-1"></a><span class="fu"># Further Resources</span></span>
+<span id="cb36-570"><a href="#cb36-570" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-571"><a href="#cb36-571" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">R for Data Science</span><span class="co">](https://r4ds.had.co.nz/)</span> - Comprehensive guide to data manipulation</span>
+<span id="cb36-572"><a href="#cb36-572" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">dplyr documentation</span><span class="co">](https://dplyr.tidyverse.org/)</span></span>
+<span id="cb36-573"><a href="#cb36-573" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">tidyr documentation</span><span class="co">](https://tidyr.tidyverse.org/)</span></span>
+<span id="cb36-574"><a href="#cb36-574" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Data Cleaning with R</span><span class="co">](https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf)</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

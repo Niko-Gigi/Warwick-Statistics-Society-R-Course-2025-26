@@ -1,0 +1,95 @@
+---
+title: "Euclidean Algorithm — Translating Math into Code"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+engine: knitr
+editor: visual
+---
+
+# Mathematical Intuition
+
+Recall from Sets and Numbers the Euclidean algorithm where we want to find the greatest common divisor (GCD) of two integers (a, b):
+
+```{=latex}
+\gcd(a,b) = \begin{cases}
+|a|, & \text{if } b = 0, \\
+\gcd(b, a \bmod b), & \text{otherwise.}
+\end{cases}
+```
+
+The algorithmic idea: repeatedly replace the pair (a, b) with (b, a modb) until the second number becomes 0. Let us now look at a simplified flowchart of what we want our computer program to do.
+
+**QUESTION FOR THE READER: TRY TO DRAW THE FLOWCHART ON YOUR OWN!**
+
+------------------------------------------------------------------------
+
+# Math → Algorithm → Code Mapping
+
+| Math operation  | R equivalent     | Meaning     |
+|-----------------|------------------|-------------|
+| (a modb)        | `a %% b`         | remainder   |
+| recursive call  | `gcd(b, a %% b)` | repeat step |
+| stop if (b = 0) | `if (b == 0)`    | base case   |
+
+------------------------------------------------------------------------
+
+```{mermaid}
+%%| echo: false
+
+flowchart TD
+  A([Start: a, b])
+  B{Is b equal to 0?}
+  C[Set a to b<br/>Set b to a mod b]
+  D([Return absolute value of a])
+
+  A --> B
+  B -- No --> C --> B
+  B -- Yes --> D
+
+```
+
+------------------------------------------------------------------------
+
+# Implementation in R
+
+```{r}
+# Define the GCD function
+gcd_iterative <- function(a, b) {
+  a <- abs(as.integer(a))
+  b <- abs(as.integer(b))
+  while (b != 0) {
+    r <- a %% b
+    a <- b
+    b <- r
+  }
+  return(a)
+}
+
+# Set up the recursive part of the function
+gcd_recursive <- function(a, b) {
+  a <- abs(as.integer(a))
+  b <- abs(as.integer(b))
+  if (b == 0) return(a)
+  gcd_recursive(b, a %% b)
+}
+```
+
+------------------------------------------------------------------------
+
+# Example usage
+
+```{r}
+gcd_iterative(1071, 462)
+```
+
+In this example, we can see how we can **break down** algebraic reasoning (these are the skills proofs of theorems and lemmas give you!) into their **basic building blocks** and then express them as a **loop** or **recursive function** as you would do on paper! We have successfully turned a symbolic rule into a computational process! Now it is your turn, try to implement any algorithm of your choosing and see if you can get it to work!

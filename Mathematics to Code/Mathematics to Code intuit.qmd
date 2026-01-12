@@ -1,0 +1,51 @@
+---
+title: "Mathematical intuition behind coding"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+Imagine you’re trying to **explain a puzzle to a robot**. Robots don’t guess or assume, they only understand *exact instructions*. That’s what programming is: **explaining a math idea to a robot** so it can follow it **step by step**. If your instructions are fuzzy, the robot gets confused, just like someone trying to make a cake with missing steps!
+
+## Why Mathematics Makes You a Better Programmer
+
+Mathematics trains you to:
+ **Define problems precisely** through rigourous proofs (NOTHING is assumed unless stated)
+- **Work with abstract structures** (ideas of groups, rings, fields in algebra)
+- **Think algorithmically** (the many algorithms you will come across e.g. Euclidean, Gram-Schmidt)
+- **Break complex problems into parts** (this is essentially what you do during a proof!)
+- **Understand edge cases and generalization** (this is also a skill gained in proofs!)
+
+::: {.callout-tip title="Math to Code Mindset"}
+When approaching a coding task, ask yourself:
+- What is the input?
+- What transformation is required?
+- What is the output?
+- Can I represent it mathematically?
+:::
+
+:::{.callout-important}
+Your code is exectued by a machine. Machines do not guess or assume, they only understand *exact* instructions. Therefore, keep in mind to specify your code.
+:::
+
+```{mermaid}
+%%| echo: false
+
+graph TD
+    A[Start with a Problem] --> B[Translate into Math Language]
+    B --> C[Define Inputs and Outputs]
+    C --> D[Design Algorithm (Steps)]
+    D --> E[Write Code]
+    E --> F[Test and Validate]
+    F --> G[Refactor or Extend]
+
+```

@@ -1,0 +1,89 @@
+---
+title: "Monte Carlo Approximation of π — Translating Math into Code"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+engine: knitr
+editor: visual
+---
+
+# Mathematical Intuition
+
+We throw random points ((x,y)) uniformly in the square (\[-1,1\]\^2).\
+The fraction inside the unit circle (x\^2 + y\^2 \le 1) equals (\pi/4):
+
+\[ \pi \approx 4 \times \frac{\text{points inside circle}}{\text{total points}}. \]
+
+------------------------------------------------------------------------
+
+# Math → Algorithm → Code Mapping
+
+| Math idea       | R translation      |
+|-----------------|--------------------|
+| sample (x, y)   | `runif(N, -1, 1)`  |
+| indicator (I_i) | `(x^2 + y^2 <= 1)` |
+| estimate        | `4 * mean(I)`      |
+
+------------------------------------------------------------------------
+
+```{mermaid}
+flowchart TD
+  A([Start: choose N])
+  B[Sample N points (x,y) in [-1,1]^2]
+  C{x^2 + y^2 <= 1?}
+  D[Count proportion inside]
+  E[pi_hat = 4 * proportion]
+  F([Return pi_hat])
+  A --> B --> C --> D --> E --> F
+```
+
+------------------------------------------------------------------------
+
+# Implementation in R
+
+```{r}
+set.seed(0)
+
+estimate_pi <- function(N) {
+  x <- runif(N, -1, 1)
+  y <- runif(N, -1, 1)
+  inside <- (x^2 + y^2) <= 1
+  4 * mean(inside)
+}
+
+estimate_pi(10000)
+```
+
+------------------------------------------------------------------------
+
+# Visualization
+
+```{r}
+set.seed(1)
+N <- 10000
+x <- runif(N, -1, 1)
+y <- runif(N, -1, 1)
+inside <- (x^2 + y^2) <= 1
+
+plot(x[inside], y[inside], col='skyblue', pch=16, cex=0.5,
+     xlab='x', ylab='y', asp=1,
+     main='Monte Carlo π Approximation',
+     xlim=c(-1,1), ylim=c(-1,1))
+points(x[!inside], y[!inside], col='gray', pch=16, cex=0.5)
+symbols(0, 0, circles=1, inches=FALSE, add=TRUE, lwd=2)
+```
+
+------------------------------------------------------------------------
+
+# Reflection
+
+Monte Carlo estimation translates a **probabilistic argument** into a **simulation-based computation**.

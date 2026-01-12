@@ -1,8 +1,8 @@
 ---
-title: "Warwick Statistics Society R Course 2024-2025"
+title: "Warwick Statistics Society R Course 2025-2026"
 author: 
-  name: Maria-Louiza Van den Bergh
-  email: maria-louiza.van-den-bergh@warwick.ac.uk
+  name: Nikoloz (Niko) Gigiberia
+  email: niko.gigiberia@warwick.ac.uk
 format: 
   html:
     fig-width: 12
@@ -19,13 +19,13 @@ format:
 
 # Welcome!
 
-R is a very popular coding language, primarily used by statisticians around the world. As such, it is important for new statisticians (or those who will require substantial statistics in their degrees/jobs) to get to grips with the language. This website and the attached [Github](https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025) aim to cover the key steps from first lines of code after you have installed R, to how to fit linear models and perform Explanatory Data Analysis (EDA).
+R is a very popular coding language, primarily used by statisticians around the world. As such, it is important for new statisticians (or those who will require substantial statistics in their degrees/jobs) to get to grips with the language. This website and the attached [Github](https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26) aim to cover the key steps from first lines of code after you have installed R, to how to fit linear models and perform Explanatory Data Analysis (EDA).
 
-This Github was created for the Warwick Statistics Society's R course. It  accompanies the 2 core Warwick R modules: ST117 Introduction to Statistical Modelling and ST221 Linear Statistical Modelling. While I (Maria-Louiza) have compiled this Github, it builds off of the work by previous R course coordinators: Neel Shah, Mia Carla Chapman, and Viresh Shah.
+This Github was created for the Warwick Statistics Society's R course. It accompanies the 2 core Warwick R modules: ST117 Introduction to Statistical Modelling and ST221 Linear Statistical Modelling. While I (Nikoloz) have revamped this R course, the foundational work was set by my predecessor, Maria-Louiza Van den Bergh, who originally compiled this Github. The course builds off of the work by previous R Course Coordinators: Neel Shah, Mia Carla Chapman, and Viresh Shah.
 
 If you find any corrections, or believe a section would benefit from more explanations, please do reach out and email me [^1].
 
-[^1]: My University of Warwick email is: maria-louiza.van-den-bergh@warwick.ac.uk. 
+[^1]: My University of Warwick email is: niko.gigiberia@warwick.ac.uk. 
 
 ![QR code for website](QR-website.png)
 
@@ -40,6 +40,9 @@ On the left, it is possible to jump to the relevant page. These are grouped by s
 * Introduction to R
 * Linear modelling
 * Exploratory data analysis (EDA)
+* Mathematics to Code
+* Data Visualisation
+* Report Writing and Mathematical Communication
 
 :::
 
@@ -90,8 +93,15 @@ There are several sections and pages to this website. The following is a general
 * **Exploratory data analysis** - This section covers a few different ways to get insights about a dataset. 
   + cars dataset - *A simple example covering investigating and cleaning the inbuilt `mtcars` dataset.*
   + dplyr: summary tables - *Examples of using the `dplyr` package's `summarise()` function on the `mtcars` dataset.*
+* **Mathematics to Code** - This section covers the intuition and algorithmic thinking with which one should approach programming.
+  + 
+* **Data Visualisation** - This section covers data visualisation techniques, conventions and good habits to develop throughout your degree.
+  + What makes a good visual?
+  + Conventions 
+  + Libraries and Modules
+* **Report Writing and Mathematical Communication** - This sections covers how to approach report writing for audiences both inside and outside of one's field.
 :::
 
-The necessary data for this website can be found in the `Datasets` folder ([link](https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025)). There is guidance in the relevant pages on how to load in data. 
+The necessary data for this website can be found in the `Datasets` folder ([link](https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26)). There is guidance in the relevant pages on how to load in data. 
 
-Please note that **future pages** aim to include: model selection; time series modelling; generalised linear modelling; exploratory data analysis; using the `ggplot2` package to produce figures; and using the `kableExtra` and `dplyr` packages to produce tables. Time permitting, these will be created for the 2024/25 R course and aim to go alongside ST404 Applied Statistical Modelling and provide additional support for ST346 Generalised Linear Models.
+Please note that **future pages** aim to include: model selection; time series modelling; generalised linear modelling; exploratory data analysis; using the `ggplot2` package to produce figures; and using the `kableExtra` and `dplyr` packages to produce tables. Time permitting, these will be created for the 2024/25 R course and aim to go alongside ST404 Applied Statistical Modelling and provide additional support for ST346 Generalised Linear Models. I, Niko will aim to implement these as well as the year 2025-26 rolls along. I also aim to add pages on Bayesian statistics and Markov Chain Monte Carlo using R and Python.
