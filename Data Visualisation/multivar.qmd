@@ -15,7 +15,7 @@ format:
 
 So far, you've learned to visualize single variables (like histograms) and relationships between two variables (like scatterplots). But real-world questions often involve multiple variables at once. For example: "How do penguin body characteristics vary by species, island, AND sex?"
 
-This chapter covers two powerful techniques for displaying multiple variables:
+This chapter covers two techniques for displaying multiple variables:
 
 1. **Grouping**: Using colors, shapes, and sizes to distinguish groups within a single plot
 2. **Faceting**: Creating separate mini-plots for different groups
@@ -23,7 +23,10 @@ This chapter covers two powerful techniques for displaying multiple variables:
 Let's get started with our packages and data:
 
 ```{r}
+#| echo: true 
 #| message: false
+#| warning: false
+
 library(ggplot2)
 library(palmerpenguins)
 library(dplyr)
@@ -41,7 +44,10 @@ Grouping lets you add more variables to a plot by mapping them to visual propert
 Let's begin with a basic relationship: flipper length vs. body mass.
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point() +
   labs(title = "Penguin Body Measurements",
@@ -54,7 +60,10 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 Now let's add species as a third variable using color:
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 ggplot(penguins, aes(x = flipper_length_mm, 
                      y = body_mass_g,
                      color = species)) +
@@ -72,7 +81,10 @@ Each species now has its own color, making patterns much clearer!
 We can add a fourth variable (sex) using different point shapes:
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 ggplot(penguins, aes(x = flipper_length_mm,
                      y = body_mass_g,
                      color = species,
@@ -85,16 +97,20 @@ ggplot(penguins, aes(x = flipper_length_mm,
        shape = "Sex")
 ```
 
-**Important distinction**: 
-- Mappings to variables go **inside** `aes()` (like `color = species`)
-- Fixed values go **outside** `aes()` (like `size = 3`)
+:::{.callout-important}
+* Mappings to variables go **inside** `aes()` (like `color = species`)
+* Fixed values go **outside** `aes()` (like `size = 3`)
+:::
 
 ## Creating Bubble Plots with Size
 
 You can map a continuous variable to point size, creating a "bubble plot":
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 ggplot(penguins, aes(x = flipper_length_mm,
                      y = body_mass_g,
                      color = species,
@@ -108,14 +124,17 @@ ggplot(penguins, aes(x = flipper_length_mm,
        size = "Bill Length (mm)")
 ```
 
-This plot shows FOUR variables at once! But be careful—too many variables can make plots hard to read.
+This plot shows FOUR variables at once! But be careful, too many variables can make plots hard to read.
 
 ## Adding Trend Lines by Group
 
 Let's explore the relationship between bill length and depth, with separate trend lines for each species:
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 ggplot(penguins, aes(x = bill_length_mm,
                      y = bill_depth_mm,
                      color = species)) +
@@ -135,7 +154,10 @@ The `geom_smooth()` automatically creates separate lines for each color group.
 Here's a well-formatted plot using multiple customization techniques:
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 ggplot(penguins, aes(x = flipper_length_mm,
                      y = body_mass_g,
                      color = sex)) +
@@ -163,7 +185,10 @@ Instead of cramming everything into one plot, faceting creates separate subplots
 Let's compare body mass distributions across species:
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 ggplot(penguins, aes(x = body_mass_g)) +
   geom_histogram(fill = "steelblue", bins = 20) +
   facet_wrap(~species, ncol = 1) +
@@ -179,7 +204,10 @@ The `~species` notation means "create separate plots for each species." The `nco
 Use `facet_grid()` to create a grid based on two variables:
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 ggplot(penguins, aes(x = body_mass_g / 1000)) +
   geom_histogram(fill = "coral", bins = 15) +
   facet_grid(sex ~ species) +
@@ -195,7 +223,10 @@ The formula `sex ~ species` means rows are sex and columns are species.
 You can use both techniques together for even more insight:
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 ggplot(penguins, aes(x = bill_length_mm,
                      y = bill_depth_mm,
                      color = sex)) +
@@ -215,7 +246,10 @@ Now we can see how the relationship between bill dimensions differs across speci
 Let's improve the previous plot with better formatting:
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 ggplot(penguins, aes(x = bill_length_mm,
                      y = bill_depth_mm,
                      color = sex)) +
@@ -238,6 +272,10 @@ ggplot(penguins, aes(x = bill_length_mm,
 Faceting works great for comparing trends over time. Let's use the `economics` dataset to compare different economic indicators:
 
 ```{r}
+#| echo: true 
+#| message: false
+#| warning: false
+
 # Prepare data for multiple time series
 econ_data <- economics %>%
   select(date, unemploy, psavert, pop) %>%
@@ -272,7 +310,10 @@ The `scales = "free_y"` option lets each facet have its own y-axis scale, which 
 When you have many groups, faceting creates a "small multiples" display. Here's an example with different islands:
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 # Compare trends across islands
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(aes(color = species), size = 2, alpha = 0.7) +
@@ -288,37 +329,39 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 # Choosing Between Grouping and Faceting
 
 **Use Grouping when:**
-- You want to compare groups directly on the same axes
-- You have 2-4 groups
-- The differences between groups are subtle
+* You want to compare groups directly on the same axes
+* You have 2-4 groups
+* The differences between groups are subtle
 
 **Use Faceting when:**
-- You have many groups (5+)
-- Comparisons are clearer with separate plots
-- Groups have very different ranges or patterns
-- You want to reduce visual clutter
+* You have many groups (5+)
+* Comparisons are clearer with separate plots
+* Groups have very different ranges or patterns
+* You want to reduce visual clutter
 
 **Use Both when:**
-- You need to show complex relationships
-- You have multiple categorical variables
-- Your story requires showing differences at multiple levels
+* You need to show complex relationships
+* You have multiple categorical variables
+* Your story requires showing differences at multiple levels
 
 # Common Mistakes to Avoid
 
 1. **Too many groups**: More than 5 colors becomes hard to distinguish
 2. **Unclear legends**: Always label your aesthetic mappings clearly
 3. **Overcrowding**: If your plot looks messy, try faceting instead
-4. **Inconsistent scales**: Be careful with `scales = "free"` in facets—it can mislead
+4. **Inconsistent scales**: Be careful with `scales = "free"` in facets, it can mislead
 5. **Missing context**: Always include informative titles and labels
 
 # Complete Example: Putting It All Together
 
-Here's a comprehensive example using multiple techniques:
+Here's an example using multiple techniques:
 
 ```{r}
-#| warning: false
+#| echo: true 
 #| message: false
-# Create a rich, multi-variable visualization
+#| warning: false
+
+# Create a multi-variable visualization
 ggplot(penguins, aes(x = flipper_length_mm, 
                      y = body_mass_g,
                      color = species,
@@ -353,23 +396,10 @@ Try creating these visualizations yourself:
 2. Make a histogram of body mass, faceted by both species and sex using `facet_grid()`
 3. Plot flipper length over time (year), with different colors for species
 4. Create a grouped boxplot showing body mass by species, with separate boxes for each sex (Hint: use `interaction()` or `facet_wrap()`)
-5. Challenge: Recreate the final "putting it all together" example with different variables
-
-# Summary
-
-You've learned to:
-
-- Add multiple variables using color, shape, size, and transparency
-- Create faceted plots with `facet_wrap()` and `facet_grid()`
-- Combine grouping and faceting for complex visualizations
-- Choose the right approach for your data and question
-- Avoid common pitfalls in multivariate visualization
-
-These techniques let you explore complex datasets and communicate sophisticated insights. The key is finding the right balance between showing enough detail and keeping your visualizations clear and interpretable.
+5. Challenge: Recreate the final "putting it all together" example with different variables (make it look nice and informative!).
 
 # Further Resources
 
 - [ggplot2 Book - Faceting](https://ggplot2-book.org/facet.html)
 - [R Graphics Cookbook - Multiple Groups](https://r-graphics.org/)
 - [Data Visualization: A Practical Introduction](https://socviz.co/)
-- [The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi) by Edward Tufte

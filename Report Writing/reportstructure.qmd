@@ -1,0 +1,160 @@
+---
+title: "Report Structure"
+format: 
+  html:
+    fig-width: 10
+    fig-height: 5
+    code-fold: show
+    code-tools: true
+    toc: true
+    code-copy: true
+    number_sections: true
+---
+
+## Structure
+
+There are several acceptable ways to structure a statistical report. The structure outlined below is an example of one that does well in terms of clarity, readability, and reproducibility, and closely follows conventions used in professional statistical writing. Though, feel free to diverge from this structure if you feel it necessary.
+
+The report is composed of a sequence of components, listed below in the order in which they should appear. Longer reports will usually benefit from being divided explicitly into sections, while very short reports may adopt a simplified version of this structure. Nevertheless, the **logical separation of components** should always be respected.
+
+A narrative approach should be avoided. Reports written as a chronological account of actions (for example, “First I did this, then I did that”) are difficult to follow and obscure the logical structure of the analysis. Statistical reports are not diaries of activity; they are structured arguments supported by data.
+
+## Title
+
+Every statistical report requires a title. In most cases, this should appear on a separate title page, which should also include:
+
+* the author’s name,
+* institutional affiliation (department or organisation),
+* the date of submission.
+
+However, for coursework your student ID number, Module code, and Assignment number should suffice.
+
+Now, back to professional reports. The title should be **short, specific, and informative**. Its purpose is to tell the reader what the report is about before they read a single paragraph. Vague titles such as *"The statistical analysis of two data sets"* fail to identify either the problem or the context.
+
+Effective titles typically indicate:
+
+* the subject or phenomenon under study,
+* the population or data source,
+* sometimes (but not always) the general type of analysis.
+
+For Example: 
+
+* *"A Hybrid Approach to Financial Markets: Integrating SPDEs and Bayesian Neural Networks"*
+* *"Lifetime earnings and the Vietnam era draft lottery: evidence from Social Security administrative records"*
+* *"Using empirical Bayes techniques in the law school validity studies"*
+
+## Summary / Abstract
+
+A brief summary or abstract should follow the title. You will most likely never need to submit this in any of your coursework, however it is convention in professional works. This section should be **concise**, ideally no longer than half a page, and is often the most widely read part of the report (turns out researchers are also lazy!).
+
+The abstract should provide a detailed overview of:
+
+* the problem being addressed,
+* what was done,
+* the main conclusions reached.
+
+The abstract should be written in **plain language**, avoiding symbols, equations, and numerical detail wherever possible. Technical terms should only be used if they are both unavoidable and widely understood by the intended audience. The purpose of the abstract is not to convince the reader of technical correctness, but to allow them to decide whether the report is relevant and worth reading.
+
+Here is an excellent example:
+
+*"The analysis of censored failure times is considered. It is assumed that on each individual are available values of one or more explanatory variables. The hazard function (age-specific failure rate) is taken to be a function of the explanatory variables and unknown regression coefficients multiplied by an arbitrary and unknown function of time. A conditional likelihood is obtained, leading to inferences about the unknown regression coefficients. Some generalizations are outlined."* - Cox D. R. 'Regression Models and Life-Tables.' Journal of the Royal Statistical Society. Series B (Methodological), vol. 34, no. 2, 1972.
+
+## Introduction
+
+The introduction places the analysis in context. It should describe the background to the problem and explain why the investigation is of interest.
+
+Typically, the introduction includes:
+
+* a description of the general setting,
+* an outline of the available data,
+* how and why the data were collected,
+* the aims and objectives of the investigation.
+
+The introduction may be viewed as an expanded version of the abstract, but with greater detail and motivation. It should also give a brief indication of the statistical methods employed, without entering into technical detail. As a general guideline, the introduction should not exceed two pages in length. Importantly, it should **not contain results or conclusions**, which belong in later sections.
+
+## Methods
+
+The methods section describes **how the analysis was carried out**, in sufficient detail for it to be replicated by a reader of comparable background (for example, a student at the same academic level).   This section should include:
+
+* a clear description of the analytical strategy,
+* any assumptions made,
+* the statistical models, tests, or procedures used,
+* any theoretical background necessary to understand the analysis.
+
+Deciding how much detail to include is often difficult. A useful guiding principle is reproducibility: the reader should be able to repeat the analysis using the information provided. Very detailed material (like derivations, extra plots, extra tables, etc.) may be placed in one or more appendices.
+
+### Structure of the Methods Section
+
+The methods section often benefits from being divided into subsections, for example:
+
+1. A **preliminary analysis** (a more formal version of EDA), using graphical methods and simple descriptive statistics.
+2. A **full-scale analysis**, employing more rigorous statistical techniques.
+
+The full-scale analysis may itself be divided into:
+
+* **(a) Methodology**: a description or development of the statistical tools to be used,
+* **(b) Implementation**: the application of these tools to the data.
+
+Subsection (a) is typically the most technical part of the report. Mathematical notation should be used where appropriate, but **every symbol must be explicitly defined**. An expression containing undefined symbols is meaningless, regardless of its mathematical sophistication. Similarly, pages of algebra or statistical derivation are of no value if the notation is unclear or inconsistent.
+
+In subsection (b), the analysis should be described clearly and systematically, so that a reader could reproduce the results step by step.
+
+## Results, Conclusions, and Recommendations
+
+This section presents the **main findings** of the analysis and the conclusions drawn from them. Primary results should be presented clearly and concisely. Subsidiary results may be included if they support the main conclusions and do not interrupt the flow of the presentation. Otherwise, they may be:
+
+* moved to an appendix,
+* integrated into the methods section,
+* or presented in a separate results subsection.
+
+Conclusions should be expressed in language accessible to a **non-statistician** and should make sense even if the reader has not read the detailed statistical analysis. Whenever possible, conclusions should be framed in the context of the original problem or experiment. 
+
+Recommendations, if appropriate, should follow naturally from the conclusions and be proportionate to the strength of the evidence.
+
+## General Discussion
+
+The general discussion places the results in a broader context.
+
+This may include:
+
+* comparison with previous studies or related work,
+* discussion of how successfully the original aims were achieved,
+* limitations of the data or methods,
+* reflections on alternative approaches.
+
+In applied work, it is particularly important to acknowledge potential problems with the data, such as measurement error or poor experimental design. In some reports, this discussion may be integrated into the introduction rather than appearing as a separate section. Nevertheless, both approaches allow for more honest scientific communication and allow others to validate your work.
+
+## References
+
+Any books, articles, or external sources referred to in the report must be cited. There are countably infinite (slight exaggeration) citation styles that exist and you must research what they are depending on who you are writing a report for. Despite this there are basic elements that all formats share.
+
+For journal articles, references should include:
+
+* author(s),
+* year of publication,
+* title of the article,
+* journal name,
+* volume number,
+* page range.
+
+For books, references should include:
+
+* author(s),
+* year of publication,
+* title (in italics),
+* publisher,
+* place of publication.
+
+Consistency of style is essential, so if you choose one style, stick with it!
+
+## Appendix
+
+Material that does not fit naturally into the main body of the report, but cannot reasonably be omitted, should be placed in an appendix. Typical appendix material includes:
+
+* lengthy derivations,
+* supplementary tables,
+* additional figures,
+* extended methodological details.
+
+However, excessive reliance on appendices should be avoided. If the appendices dominate the report, readability suffers. The main text should always remain the primary method for communication!!!
+

@@ -1,0 +1,283 @@
+---
+title: "How to Report Statistical Results"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+engine: knitr
+---
+
+## Presentation
+
+The presentation of a statistical report is not just cosmetic. Clear, well-organised presentation is important for communicating results accurately and efficiently. A well-presented report allows the reader to focus on the statistical content rather than expending effort deciphering layout, notation, or formatting.
+
+Reports should therefore be neat, clean, legible, and logically organised. RMarkdown makes it straightforward to produce professional-quality documents.
+
+## Reporting Numerical Values and Choosing Suitable Precision
+
+Numerical precision should reflect the **accuracy of the data and the purpose of the analysis**, not the computing power used to generate the results.
+
+As a general rule:
+* do not report more decimal places than are scientifically meaningful,
+* ensure consistency across tables and figures,
+* avoid implying spurious accuracy.
+
+For example:
+* reporting a mean as `12.347891` is almost never appropriate,
+* reporting `12.3` or `12.35` may be appropriate depending on context.
+
+As another example, P-values should typically be reported to two or three significant figures (e.g. `p = 0.032`), except when extremely small (e.g. `p < 0.001`).
+
+## Figures, Plots, and Diagrams
+
+Figures, plots, and diagrams should:
+
+* be numbered sequentially,
+* have clear titles and captions,
+* be referred to explicitly in the text,
+* be placed close to the point where they are discussed.
+
+Axes must be clearly labelled, units indicated, and scales chosen sensibly. Furhtermore, a statistical report should be easy to navigate. Section headings, numbering, and figure references act as **signposts** that guide the reader through the argument.
+
+For more details on data visualisation, refer to the pages dedicated to it through the navigation menu to the left of the webpage.
+
+## Tables
+
+Tables are often the most effective way to present numerical summaries, provided they are well constructed. Every table should:
+
+* have a table number,
+* have a clear title or caption,
+* include labelled rows and columns,
+* state units where relevant,
+* align numerical values correctly (typically on the decimal point).
+
+Tables should not duplicate information already presented clearly in figures. Each table should serve a distinct purpose.
+
+## Constructing Tables in R Using `dplyr`, `kable`, and `kableExtra`
+
+In modern statistical reporting, tables are generated directly from data using reproducible code. In R, this workflow typically combines:
+
+* `dplyr` for data manipulation,
+* `knitr::kable()` for table creation,
+* `kableExtra` for professional formatting.
+
+We illustrate this workflow using the `penguins` dataset from the `palmerpenguins` package.
+
+---
+
+### Preparing Data with `dplyr`
+
+The `penguins` dataset contains measurements on three penguin species collected in Antarctica. We begin by loading the data and performing basic preparation.
+
+```{r}
+#| echo: true 
+#| message: false
+#| warning: false
+
+library(dplyr)
+library(palmerpenguins)
+
+data(penguins)
+```
+
+As with most real datasets, `penguins` contains missing values. For descriptive tables, it is important to handle these explicitly rather than silently ignoring them.
+
+We construct a **Table 1–style summary**, stratified by species.
+
+```{r}
+#| echo: true 
+#| message: false
+#| warning: false
+
+summary_table <- penguins %>%
+  filter(!is.na(bill_length_mm),
+         !is.na(body_mass_g)) %>%
+  group_by(species) %>%
+  summarise(
+    n = n(),
+    mean_bill_length = mean(bill_length_mm),
+    sd_bill_length = sd(bill_length_mm),
+    mean_body_mass = mean(body_mass_g),
+    sd_body_mass = sd(body_mass_g)
+  )
+
+glimpse(summary_table)
+```
+
+This table contains only **descriptive statistics** and provides an overview of the dataset. No hypothesis tests or p-values are included.
+
+---
+
+### Basic Tables with `kable`
+
+The `kable()` function converts a data frame into a clean, professional table.
+
+```{r}
+#| echo: true 
+#| message: false
+#| warning: false
+
+library(knitr)
+
+kable(
+  summary_table,
+  caption = "Table 1: Descriptive statistics of penguin characteristics by species",
+  digits = 2,
+  col.names = c(
+    "Species",
+    "Sample size",
+    "Mean bill length (mm)",
+    "SD bill length (mm)",
+    "Mean body mass (g)",
+    "SD body mass (g)"
+  )
+)
+```
+
+This already satisfies many principles of good table design:
+
+* clear caption,
+* interpretable column headings,
+* consistent numerical precision,
+* units included directly in column labels.
+
+---
+
+### Enhancing Tables with `kableExtra`
+
+For more polished presentation, `kableExtra` provides tools for alignment, grouping, and emphasis.
+
+```{r}
+#| echo: true 
+#| message: false
+#| warning: false
+
+library(kableExtra)
+
+kable(
+  summary_table,
+  caption = "Table 1: Descriptive statistics of penguin characteristics by species",
+  digits = 2,
+  col.names = c(
+    "Species",
+    "Sample size",
+    "Mean bill length (mm)",
+    "SD bill length (mm)",
+    "Mean body mass (g)",
+    "SD body mass (g)"
+  )
+) %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = c("striped", "hover")
+  ) %>%
+  column_spec(1, bold = TRUE) %>%
+  add_header_above(
+    c(" " = 2,
+      "Bill length" = 2,
+      "Body mass" = 2)
+  )
+```
+
+This formatting:
+
+* visually groups related variables,
+* improves readability,
+* remains suitable for black-and-white printing.
+
+You can find more options to make your tables more interesting and imformative in the documentation of kableExtra.
+
+---
+
+### Common Enhancements and When to Use Them
+
+Some frequently used `kableExtra` features include:
+
+* **Row emphasis**
+  Useful for highlighting reference groups or totals.
+
+  ```r
+  row_spec(0, bold = TRUE)
+  ```
+
+* **Footnotes**
+  Great when clarifying missing data, transformations, or units.
+
+  ```r
+  footnote(
+    general = "Values are means with standard deviations in parentheses."
+  )
+  ```
+
+* **Controlled column width**
+  Helps prevent overly wide tables in HTML or PDF output.
+
+  ```r
+  column_spec(2:6, width = "3cm")
+  ```
+
+These tools should be used sparingly. Tables should remain clear without relying on heavy styling.
+
+### Referencing Tables in the Text
+
+Every table must be referenced explicitly. For example:
+
+> “Table 1 summarises key morphological characteristics of the penguins by species.”
+
+A table that is not discussed does not contribute to the report and should be removed.
+
+---
+
+## Computer Output
+
+Raw computer output is rarely suitable for direct inclusion in a report, unless asked for. Output should be:
+
+* edited,
+* selectively included,
+* formatted consistently with the rest of the document.
+
+The key idea is that relevant results should be extracted, summarised, and presented clearly in tables or figures.
+
+Unedited output dumps obscure key findings and signal a lack of engagement with the analysis.
+
+You can choose to place all of your code at the end of your RMarkdown report in an Appendix using the two following chunks:
+
+```{r}
+##| Place this one at the start of your RMarkdown, after the YAML block
+
+# knitr::opts_chunk$set(echo = FALSE,
+#                      message=FALSE,
+#                      out.width = "80%",
+#                      fig.align = "center")
+#library(tidyverse)
+#library(ggplot2)
+#library(knitr)
+#library(tinytex)
+#library(MASS)
+#...
+# Other Libraries
+```
+
+Now for a code chunk that will print all of the code in your RMD file into one continuous code block:
+
+```{r all-code, echo=TRUE, eval=FALSE}
+##| Place this one at the end of your RMarkdown and include the following in your chunk options for this R chunk:
+
+# ref.label=knitr::all_labels(),
+
+# I haven't included it since it would re-print all of the code above here.
+```
+
+While these two chunks will not explicitly create and appendix, they will place all of the code present in the respective RMarkdown (RMD) file at the end of the knitted output. You can then insert markdown text above the last block to create an appendix.
+
+
+

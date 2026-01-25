@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>univariate – Warwick Statistics Society R Course 2024-2025</title>
+<title>Univariate Data – Warwick Statistics Society R Course 2024-2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -39,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bce83624dd429190d13db9bf62533269.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-feb638320027fbf6a5811c1fd016ec02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -117,7 +152,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data Visualisation/introvisualisation.html">Data Visualisation</a></li><li class="breadcrumb-item"><a href="../Data Visualisation/univariate.html">Univariate Data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -211,12 +246,53 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Linear modelling</span></a>
+ <span class="menu-text">Mathematics to R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code intuit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mathematical intuition behind coding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code Euclidean Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Euclidean Algorithm — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MonteCarlo Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Monte Carlo Approximation of π — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code NewtonRaph Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Linear modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
@@ -257,13 +333,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Exploratory data analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
@@ -278,6 +354,112 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data Visualisation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/importing data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Import and Preparation in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/baseR and ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to ggplot2: The Grammar of Graphics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/customising graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph Customisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/univariate.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Univariate Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualizing Bivariate Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualizing Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualizing Multiple Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Specialized Visualization Techniques</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Best Practices</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Report Writing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Report Writing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/structurereport.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Examples of Mathematics translated into code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/stylereport.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">stylereport.html</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/useofaireport.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Examples of Mathematics translated into code</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -288,290 +470,841 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#simple-bar-chart" id="toc-simple-bar-chart" class="nav-link active" data-scroll-target="#simple-bar-chart">simple bar chart</a></li>
-  <li><a href="#plot-the-distribution-of-race" id="toc-plot-the-distribution-of-race" class="nav-link" data-scroll-target="#plot-the-distribution-of-race">plot the distribution of race</a></li>
-  <li><a href="#plot-the-distribution-of-race-with-modified-colors-and-labels" id="toc-plot-the-distribution-of-race-with-modified-colors-and-labels" class="nav-link" data-scroll-target="#plot-the-distribution-of-race-with-modified-colors-and-labels">plot the distribution of race with modified colors and labels</a></li>
-  <li><a href="#plot-the-distribution-as-percentages" id="toc-plot-the-distribution-as-percentages" class="nav-link" data-scroll-target="#plot-the-distribution-as-percentages">plot the distribution as percentages</a></li>
-  <li><a href="#calculate-number-of-participants-in-each-race-category" id="toc-calculate-number-of-participants-in-each-race-category" class="nav-link" data-scroll-target="#calculate-number-of-participants-in-each-race-category">calculate number of participants in each race category</a></li>
-  <li><a href="#plot-the-bars-in-ascending-order" id="toc-plot-the-bars-in-ascending-order" class="nav-link" data-scroll-target="#plot-the-bars-in-ascending-order">plot the bars in ascending order</a></li>
-  <li><a href="#plot-the-bars-with-numeric-labels" id="toc-plot-the-bars-with-numeric-labels" class="nav-link" data-scroll-target="#plot-the-bars-with-numeric-labels">plot the bars with numeric labels</a></li>
-  <li><a href="#plot-the-bars-as-percentages" id="toc-plot-the-bars-as-percentages" class="nav-link" data-scroll-target="#plot-the-bars-as-percentages">plot the bars as percentages,</a></li>
-  <li><a href="#in-decending-order-with-bar-labels" id="toc-in-decending-order-with-bar-labels" class="nav-link" data-scroll-target="#in-decending-order-with-bar-labels">in decending order with bar labels</a></li>
-  <li><a href="#basic-bar-chart-with-overlapping-labels" id="toc-basic-bar-chart-with-overlapping-labels" class="nav-link" data-scroll-target="#basic-bar-chart-with-overlapping-labels">basic bar chart with overlapping labels</a></li>
-  <li><a href="#horizontal-bar-chart" id="toc-horizontal-bar-chart" class="nav-link" data-scroll-target="#horizontal-bar-chart">horizontal bar chart</a></li>
-  <li><a href="#bar-chart-with-rotated-labels" id="toc-bar-chart-with-rotated-labels" class="nav-link" data-scroll-target="#bar-chart-with-rotated-labels">bar chart with rotated labels</a></li>
-  <li><a href="#bar-chart-with-staggered-labels" id="toc-bar-chart-with-staggered-labels" class="nav-link" data-scroll-target="#bar-chart-with-staggered-labels">bar chart with staggered labels</a></li>
-  <li><a href="#create-a-basic-ggplot2-pie-chart" id="toc-create-a-basic-ggplot2-pie-chart" class="nav-link" data-scroll-target="#create-a-basic-ggplot2-pie-chart">create a basic ggplot2 pie chart</a></li>
-  <li><a href="#create-a-pie-chart-with-slice-labels-within-figure" id="toc-create-a-pie-chart-with-slice-labels-within-figure" class="nav-link" data-scroll-target="#create-a-pie-chart-with-slice-labels-within-figure">create a pie chart with slice labels within figure</a></li>
-  <li><a href="#create-a-treemap-of-marriage-officials" id="toc-create-a-treemap-of-marriage-officials" class="nav-link" data-scroll-target="#create-a-treemap-of-marriage-officials">create a treemap of marriage officials</a></li>
-  <li><a href="#create-a-treemap-with-tile-labels" id="toc-create-a-treemap-with-tile-labels" class="nav-link" data-scroll-target="#create-a-treemap-with-tile-labels">create a treemap with tile labels</a></li>
-  <li><a href="#create-a-basic-waffle-chart" id="toc-create-a-basic-waffle-chart" class="nav-link" data-scroll-target="#create-a-basic-waffle-chart">create a basic waffle chart</a></li>
-  <li><a href="#create-a-customized-caption" id="toc-create-a-customized-caption" class="nav-link" data-scroll-target="#create-a-customized-caption">Create a customized caption</a></li>
-  <li><a href="#plot-the-age-distribution-using-a-histogram" id="toc-plot-the-age-distribution-using-a-histogram" class="nav-link" data-scroll-target="#plot-the-age-distribution-using-a-histogram">plot the age distribution using a histogram</a></li>
-  <li><a href="#plot-the-histogram-with-blue-bars-and-white-borders" id="toc-plot-the-histogram-with-blue-bars-and-white-borders" class="nav-link" data-scroll-target="#plot-the-histogram-with-blue-bars-and-white-borders">plot the histogram with blue bars and white borders</a></li>
-  <li><a href="#plot-the-histogram-with-20-bins" id="toc-plot-the-histogram-with-20-bins" class="nav-link" data-scroll-target="#plot-the-histogram-with-20-bins">plot the histogram with 20 bins</a></li>
-  <li><a href="#plot-the-histogram-with-a-binwidth-of-5" id="toc-plot-the-histogram-with-a-binwidth-of-5" class="nav-link" data-scroll-target="#plot-the-histogram-with-a-binwidth-of-5">plot the histogram with a binwidth of 5</a></li>
-  <li><a href="#plot-the-histogram-with-percentages-on-the-y-axis" id="toc-plot-the-histogram-with-percentages-on-the-y-axis" class="nav-link" data-scroll-target="#plot-the-histogram-with-percentages-on-the-y-axis">plot the histogram with percentages on the y-axis</a></li>
-  <li><a href="#create-a-kernel-density-plot-of-age" id="toc-create-a-kernel-density-plot-of-age" class="nav-link" data-scroll-target="#create-a-kernel-density-plot-of-age">Create a kernel density plot of age</a></li>
-  <li><a href="#create-a-kernel-density-plot-of-age-1" id="toc-create-a-kernel-density-plot-of-age-1" class="nav-link" data-scroll-target="#create-a-kernel-density-plot-of-age-1">Create a kernel density plot of age</a></li>
-  <li><a href="#default-bandwidth-for-the-age-variable" id="toc-default-bandwidth-for-the-age-variable" class="nav-link" data-scroll-target="#default-bandwidth-for-the-age-variable">default bandwidth for the age variable</a>
+  <li><a href="#categorical-variables" id="toc-categorical-variables" class="nav-link active" data-scroll-target="#categorical-variables">Categorical variables</a>
   <ul class="collapse">
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">[1] 5.181946</a></li>
+  <li><a href="#bar-charts" id="toc-bar-charts" class="nav-link" data-scroll-target="#bar-charts">Bar charts</a></li>
+  <li><a href="#pie-charts" id="toc-pie-charts" class="nav-link" data-scroll-target="#pie-charts">4.1.2 Pie charts</a></li>
+  <li><a href="#tree-maps" id="toc-tree-maps" class="nav-link" data-scroll-target="#tree-maps">4.1.3 Tree maps</a></li>
+  <li><a href="#waffle-charts" id="toc-waffle-charts" class="nav-link" data-scroll-target="#waffle-charts">4.1.4 Waffle charts</a></li>
   </ul></li>
-  <li><a href="#create-a-kernel-density-plot-of-age-2" id="toc-create-a-kernel-density-plot-of-age-2" class="nav-link" data-scroll-target="#create-a-kernel-density-plot-of-age-2">Create a kernel density plot of age</a></li>
-  <li><a href="#plot-the-age-distribution-using-a-dotplot" id="toc-plot-the-age-distribution-using-a-dotplot" class="nav-link" data-scroll-target="#plot-the-age-distribution-using-a-dotplot">plot the age distribution using a dotplot</a></li>
-  <li><a href="#plot-ages-as-a-dot-plot-using" id="toc-plot-ages-as-a-dot-plot-using" class="nav-link" data-scroll-target="#plot-ages-as-a-dot-plot-using">Plot ages as a dot plot using</a></li>
-  <li><a href="#gold-dots-with-black-borders" id="toc-gold-dots-with-black-borders" class="nav-link" data-scroll-target="#gold-dots-with-black-borders">gold dots with black borders</a></li>
+  <li><a href="#quantitative-variables" id="toc-quantitative-variables" class="nav-link" data-scroll-target="#quantitative-variables">4.2 Quantitative variables</a>
+  <ul class="collapse">
+  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms">4.2.1 Histograms</a></li>
+  <li><a href="#kernel-density-plots" id="toc-kernel-density-plots" class="nav-link" data-scroll-target="#kernel-density-plots">4.2.2 Kernel density plots</a></li>
+  <li><a href="#dot-plots" id="toc-dot-plots" class="nav-link" data-scroll-target="#dot-plots">4.2.3 Dot plots</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data Visualisation/introvisualisation.html">Data Visualisation</a></li><li class="breadcrumb-item"><a href="../Data Visualisation/univariate.html">Univariate Data</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Univariate Data</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<p>Chapter 4 Univariate Graphs</p>
-<p>The first step in any comprehensive data analysis is to explore each import variable in turn. Univariate graphs plot the distribution of data from a single variable. The variable can be categorical (e.g., race, sex, political affiliation) or quantitative (e.g., age, weight, income).</p>
-<p>The dataset Marriage contains the marriage records of 98 individuals in Mobile County, Alabama (see Appendix A.5). We’ll explore the distribution of three variables from this dataset - the age and race of the wedding participants, and the occupation of the wedding officials. 4.1 Categorical</p>
-<p>The race of the participants and the occupation of the officials are both categorical variables.The distribution of a single categorical variable is typically plotted with a bar chart, a pie chart, or (less commonly) a tree map or waffle chart. 4.1.1 Bar chart</p>
-<p>In Figure 4.1, a bar chart is used to display the distribution of wedding participants by race.</p>
-<section id="simple-bar-chart" class="level1">
-<h1>simple bar chart</h1>
-<p>library(ggplot2) data(Marriage, package = “mosaicData”)</p>
-</section>
-<section id="plot-the-distribution-of-race" class="level1">
-<h1>plot the distribution of race</h1>
-<p>ggplot(Marriage, aes(x = race)) + geom_bar()</p>
-<p>Simple barchart</p>
-<p>Figure 4.1: Simple barchart</p>
-<p>The majority of participants are white, followed by black, with very few Hispanics or American Indians.</p>
-<p>You can modify the bar fill and border colors, plot labels, and title by adding options to the geom_bar function. In ggplot2, the fill parameter is used to specify the color of areas such as bars, rectangles, and polygons. The color parameter specifies the color objects that technically do not have an area, such as points, lines, and borders.</p>
-</section>
-<section id="plot-the-distribution-of-race-with-modified-colors-and-labels" class="level1">
-<h1>plot the distribution of race with modified colors and labels</h1>
-<p>ggplot(Marriage, aes(x=race)) + geom_bar(fill = “cornflowerblue”, color=“black”) + labs(x = “Race”, y = “Frequency”, title = “Participants by race”)</p>
-<p>Barchart with modified colors, labels, and title</p>
-<p>Figure 4.2: Barchart with modified colors, labels, and title 4.1.1.1 Percents</p>
-<p>Bars can represent percents rather than counts. For bar charts, the code aes(x=race) is actually a shortcut for aes(x = race, y = after_stat(count)), where count is a special variable representing the frequency within each category. You can use this to calculate percentages, by specifying y variable explicitly.</p>
-</section>
-<section id="plot-the-distribution-as-percentages" class="level1">
-<h1>plot the distribution as percentages</h1>
-<p>ggplot(Marriage, aes(x = race, y = after_stat(count/sum(count)))) + geom_bar() + labs(x = “Race”, y = “Percent”, title = “Participants by race”) + scale_y_continuous(labels = scales::percent)</p>
-<p>Barchart with percentages</p>
-<p>Figure 4.3: Barchart with percentages</p>
-<p>In the code above, the scales package is used to add % symbols to the y-axis labels. 4.1.1.2 Sorting categories</p>
-<p>It is often helpful to sort the bars by frequency. In the code below, the frequencies are calculated explicitly. Then the reorder function is used to sort the categories by the frequency. The option stat=“identity” tells the plotting function not to calculate counts, because they are supplied directly.</p>
-</section>
-<section id="calculate-number-of-participants-in-each-race-category" class="level1">
-<h1>calculate number of participants in each race category</h1>
-<p>library(dplyr) plotdata &lt;- Marriage %&gt;% count(race)</p>
-<p>The resulting dataset is give below. Table 4.1: plotdata race n American Indian 1 Black 22 Hispanic 1 White 74</p>
-<p>This new dataset is then used to create the graph.</p>
-</section>
-<section id="plot-the-bars-in-ascending-order" class="level1">
-<h1>plot the bars in ascending order</h1>
-<p>ggplot(plotdata, aes(x = reorder(race, n), y = n)) + geom_bar(stat=“identity”) + labs(x = “Race”, y = “Frequency”, title = “Participants by race”)</p>
-<p>Sorted bar chart</p>
-<p>Figure 4.4: Sorted bar chart</p>
-<p>The graph bars are sorted in ascending order. Use reorder(race, -n) to sort in descending order. 4.1.1.3 Labeling bars</p>
-<p>Finally, you may want to label each bar with its numerical value.</p>
-</section>
-<section id="plot-the-bars-with-numeric-labels" class="level1">
-<h1>plot the bars with numeric labels</h1>
-<p>ggplot(plotdata, aes(x = race, y = n)) + geom_bar(stat=“identity”) + geom_text(aes(label = n), vjust=-0.5) + labs(x = “Race”, y = “Frequency”, title = “Participants by race”)</p>
-<p>Bar chart with numeric labels</p>
-<p>Figure 4.5: Bar chart with numeric labels</p>
-<p>Here geom_text adds the labels, and vjust controls vertical justification. See Annotations (Section 11.7) for more details.</p>
-<p>Putting these ideas together, you can create a graph like the one below. The minus sign in reorder(race, -pct) is used to order the bars in descending order.</p>
-<p>library(dplyr) library(scales) plotdata &lt;- Marriage %&gt;% count(race) %&gt;% mutate(pct = n / sum(n), pctlabel = paste0(round(pct*100), “%”))</p>
-</section>
-<section id="plot-the-bars-as-percentages" class="level1">
-<h1>plot the bars as percentages,</h1>
-</section>
-<section id="in-decending-order-with-bar-labels" class="level1">
-<h1>in decending order with bar labels</h1>
-<p>ggplot(plotdata, aes(x = reorder(race, -pct), y = pct)) + geom_bar(stat=“identity”, fill=“indianred3”, color=“black”) + geom_text(aes(label = pctlabel), vjust=-0.25) + scale_y_continuous(labels = percent) + labs(x = “Race”, y = “Percent”, title = “Participants by race”)</p>
-<p>Sorted bar chart with percent labels</p>
-<p>Figure 4.6: Sorted bar chart with percent labels 4.1.1.4 Overlapping labels</p>
-<p>Category labels may overlap if (1) there are many categories or (2) the labels are long. Consider the distribution of marriage officials.</p>
-</section>
-<section id="basic-bar-chart-with-overlapping-labels" class="level1">
-<h1>basic bar chart with overlapping labels</h1>
-<p>ggplot(Marriage, aes(x=officialTitle)) + geom_bar() + labs(x = “Officiate”, y = “Frequency”, title = “Marriages by officiate”)</p>
-<p>Barchart with problematic labels</p>
-<p>Figure 4.7: Barchart with problematic labels</p>
-<p>In this case, you can flip the x and y axes with the coord_flip function.</p>
-</section>
-<section id="horizontal-bar-chart" class="level1">
-<h1>horizontal bar chart</h1>
-<p>ggplot(Marriage, aes(x = officialTitle)) + geom_bar() + labs(x = ““, y =”Frequency”, title = “Marriages by officiate”) + coord_flip()</p>
-<p>Horizontal barchart</p>
-<p>Figure 4.8: Horizontal barchart</p>
-<p>Alternatively, you can rotate the axis labels.</p>
-</section>
-<section id="bar-chart-with-rotated-labels" class="level1">
-<h1>bar chart with rotated labels</h1>
-<p>ggplot(Marriage, aes(x=officialTitle)) + geom_bar() + labs(x = ““, y =”Frequency”, title = “Marriages by officiate”) + theme(axis.text.x = element_text(angle = 45, hjust = 1))</p>
-<p>Barchart with rotated labels</p>
-<p>Figure 4.9: Barchart with rotated labels</p>
-<p>Finally, you can try staggering the labels. The trick is to add a newline to every other label.</p>
-</section>
-<section id="bar-chart-with-staggered-labels" class="level1">
-<h1>bar chart with staggered labels</h1>
-<p>lbls &lt;- paste0(c(““,”“), levels(Marriage$officialTitle)) ggplot(Marriage, aes(x=factor(officialTitle, labels = lbls))) + geom_bar() + labs(x =”“, y =”Frequency”, title = “Marriages by officiate”)</p>
-<p>Barchart with staggered labels</p>
-<p>Figure 4.10: Barchart with staggered labels</p>
-<p>In general, I recommend trying not to rotate axis labels. It places a greater cognitive demand on the end user (i.e., it is harder to read!). 4.1.2 Pie chart</p>
-<p>Pie charts are controversial in statistics. If your goal is to compare the frequency of categories, you are better off with bar charts (humans are better at judging the length of bars than the volume of pie slices). If your goal is compare each category with the the whole (e.g., what portion of participants are Hispanic compared to all participants), and the number of categories is small, then pie charts may work for you.</p>
-<p>Pie charts are easily created with ggpie function in the ggpie package. The format is ggpie(data, variable), where data is a data frame, and variable is the categorical variable to be plotted.</p>
-</section>
-<section id="create-a-basic-ggplot2-pie-chart" class="level1">
-<h1>create a basic ggplot2 pie chart</h1>
-<p>library(ggpie) ggpie(Marriage, race)</p>
-<p>Basic pie chart with legend</p>
-<p>Figure 4.11: Basic pie chart with legend</p>
-<p>The ggpie function has many option, as described in package homepage (http://rkabacoff.github.io/ggpie). For example to place the labels within the pie, set legend = FALSE. A title can be added with the title option.</p>
-</section>
-<section id="create-a-pie-chart-with-slice-labels-within-figure" class="level1">
-<h1>create a pie chart with slice labels within figure</h1>
-<p>ggpie(Marriage, race, legend = FALSE, title = “Participants by race”)</p>
-<p>Pie chart with percent labels</p>
-<p>Figure 4.12: Pie chart with percent labels</p>
-<p>The pie chart makes it easy to compare each slice with the whole. For example, roughly a quarter of the total participants are Black. 4.1.3 Tree map</p>
-<p>An alternative to a pie chart is a tree map. Unlike pie charts, it can handle categorical variables that have many levels.</p>
-<p>library(treemapify)</p>
-</section>
-<section id="create-a-treemap-of-marriage-officials" class="level1">
-<h1>create a treemap of marriage officials</h1>
-<p>plotdata &lt;- Marriage %&gt;% count(officialTitle)</p>
-<p>ggplot(plotdata, aes(fill = officialTitle, area = n)) + geom_treemap() + labs(title = “Marriages by officiate”)</p>
-<p>Basic treemap</p>
-<p>Figure 4.13: Basic treemap</p>
-<p>Here is a more useful version with labels.</p>
-</section>
-<section id="create-a-treemap-with-tile-labels" class="level1">
-<h1>create a treemap with tile labels</h1>
-<p>ggplot(plotdata, aes(fill = officialTitle, area = n, label = officialTitle)) + geom_treemap() + geom_treemap_text(colour = “white”, place = “centre”) + labs(title = “Marriages by officiate”) + theme(legend.position = “none”)</p>
-<p>Treemap with labels</p>
-<p>Figure 4.14: Treemap with labels</p>
-<p>The treemapify package offers many options for customization. See https://wilkox.org/treemapify/ for details. 4.1.4 Waffle chart</p>
-<p>A waffle chart, also known as a gridplot or square pie chart, represents observations as squares in a rectangular grid, where each cell represents a percentage of the whole. You can create a ggplot2 waffle chart using the geom_waffle function in the waffle package.</p>
-<p>Let’s create a waffle chart for the professions of wedding officiates. As with tree maps, start by summarizing the data into groups and counts.</p>
-<p>library(dplyr) plotdata &lt;- Marriage %&gt;% count(officialTitle)</p>
-<p>Next create the ggplot2 graph. Set fill to the grouping variable and values to the counts. Don’t specify an x and y.</p>
-<pre><code>Note: The na.rm parameter in the geom_waffle function indicates whether missing values should be deleted. At time of this writing, there is a bug in the function. The default for the na.rm parameter is NA, but it actually must be either TRUE or FALSE. Specifying one or the other eliminates the error.</code></pre>
-<p>The following code produces the default waffle plot.</p>
-</section>
-<section id="create-a-basic-waffle-chart" class="level1">
-<h1>create a basic waffle chart</h1>
-<p>library(waffle) ggplot(plotdata, aes(fill = officialTitle, values=n)) + geom_waffle(na.rm=TRUE)</p>
-<p>Basic waffle chart</p>
-<p>Figure 4.15: Basic waffle chart</p>
-<p>Next, we’ll customize the graph by</p>
-<pre><code>specifying the number of rows and cell sizes and setting borders around the cells to “white” (geom_waffle)
-change the color scheme to “Spectral” (scale_fill_brewer)
-assure that the cells are squares and not rectangles (coord_equal)
-simplify the theme (the theme functions)
-modify the title and add a caption with the scale (labs)</code></pre>
-</section>
-<section id="create-a-customized-caption" class="level1">
-<h1>Create a customized caption</h1>
-<p>cap &lt;- paste0(“1 square =”, ceiling(sum(plotdata$n)/100), ” case(s).”) library(waffle) ggplot(plotdata, aes(fill = officialTitle, values=n)) + geom_waffle(na.rm=TRUE, n_rows = 10, size = .4, color = “white”) + scale_fill_brewer(palette = “Spectral”) + coord_equal() + theme_minimal() + theme_enhance_waffle() + theme(legend.title = element_blank()) + labs(title = “Proportion of Wedding Officials”, caption = cap)</p>
-<p>Customized waffle chart</p>
-<p>Figure 4.16: Customized waffle chart</p>
-<p>While new to R, waffle charts are becoming increasingly popular. 4.2 Quantitative</p>
-<p>In the Marriage dataset, age is quantitative variable. The distribution of a single quantitative variable is typically plotted with a histogram, kernel density plot, or dot plot. 4.2.1 Histogram</p>
-<p>Histograms are the most common approach to visualizing a quantitative variable. In a histogram, the values of a variable are typically divided up into adjacent, equal width ranges (called bins), and the number of observations in each bin is plotted with a vertical bar.</p>
-<p>library(ggplot2)</p>
-</section>
-<section id="plot-the-age-distribution-using-a-histogram" class="level1">
-<h1>plot the age distribution using a histogram</h1>
-<p>ggplot(Marriage, aes(x = age)) + geom_histogram() + labs(title = “Participants by age”, x = “Age”)</p>
-<p>Basic histogram</p>
-<p>Figure 4.17: Basic histogram</p>
-<p>Most participants appear to be in their early 20’s with another group in their 40’s, and a much smaller group in their late sixties and early seventies. This would be a multimodal distribution.</p>
-<p>Histogram colors can be modified using two options</p>
-<pre><code>fill - fill color for the bars
-color - border color around the bars</code></pre>
-</section>
-<section id="plot-the-histogram-with-blue-bars-and-white-borders" class="level1">
-<h1>plot the histogram with blue bars and white borders</h1>
-<p>ggplot(Marriage, aes(x = age)) + geom_histogram(fill = “cornflowerblue”, color = “white”) + labs(title=“Participants by age”, x = “Age”)</p>
-<p>Histogram with specified fill and border colors</p>
-<p>Figure 4.18: Histogram with specified fill and border colors 4.2.1.1 Bins and bandwidths</p>
-<p>One of the most important histogram options is bins, which controls the number of bins into which the numeric variable is divided (i.e., the number of bars in the plot). The default is 30, but it is helpful to try smaller and larger numbers to get a better impression of the shape of the distribution.</p>
-</section>
-<section id="plot-the-histogram-with-20-bins" class="level1">
-<h1>plot the histogram with 20 bins</h1>
-<p>ggplot(Marriage, aes(x = age)) + geom_histogram(fill = “cornflowerblue”, color = “white”, bins = 20) + labs(title=“Participants by age”, subtitle = “number of bins = 20”, x = “Age”)</p>
-<p>Histogram with a specified number of bins</p>
-<p>Figure 4.19: Histogram with a specified number of bins</p>
-<p>Alternatively, you can specify the binwidth, the width of the bins represented by the bars.</p>
-</section>
-<section id="plot-the-histogram-with-a-binwidth-of-5" class="level1">
-<h1>plot the histogram with a binwidth of 5</h1>
-<p>ggplot(Marriage, aes(x = age)) + geom_histogram(fill = “cornflowerblue”, color = “white”, binwidth = 5) + labs(title=“Participants by age”, subtitle = “binwidth = 5 years”, x = “Age”)</p>
-<p>Histogram with specified a bin width</p>
-<p>Figure 4.20: Histogram with specified a bin width</p>
-<p>As with bar charts, the y-axis can represent counts or percent of the total.</p>
-</section>
-<section id="plot-the-histogram-with-percentages-on-the-y-axis" class="level1">
-<h1>plot the histogram with percentages on the y-axis</h1>
-<p>library(scales) ggplot(Marriage, aes(x = age, y= after_stat(count/sum(count)))) + geom_histogram(fill = “cornflowerblue”, color = “white”, binwidth = 5) + labs(title=“Participants by age”, y = “Percent”, x = “Age”) + scale_y_continuous(labels = percent)</p>
-<p>Histogram with percentages on the y-axis</p>
-<p>Figure 4.21: Histogram with percentages on the y-axis 4.2.2 Kernel Density plot</p>
-<p>An alternative to a histogram is the kernel density plot. Technically, kernel density estimation is a nonparametric method for estimating the probability density function of a continuous random variable (what??). Basically, we are trying to draw a smoothed histogram, where the area under the curve equals one.</p>
-</section>
-<section id="create-a-kernel-density-plot-of-age" class="level1">
-<h1>Create a kernel density plot of age</h1>
-<p>ggplot(Marriage, aes(x = age)) + geom_density() + labs(title = “Participants by age”)</p>
-<p>Basic kernel density plot</p>
-<p>Figure 4.22: Basic kernel density plot</p>
-<p>The graph shows the distribution of scores. For example, the proportion of cases between 20 and 40 years old would be represented by the area under the curve between 20 and 40 on the x-axis.</p>
-<p>As with previous charts, we can use fill and color to specify the fill and border colors.</p>
-</section>
-<section id="create-a-kernel-density-plot-of-age-1" class="level1">
-<h1>Create a kernel density plot of age</h1>
-<p>ggplot(Marriage, aes(x = age)) + geom_density(fill = “indianred3”) + labs(title = “Participants by age”)</p>
-<p>Kernel density plot with fill</p>
-<p>Figure 4.23: Kernel density plot with fill 4.2.2.1 Smoothing parameter</p>
-<p>The degree of smoothness is controlled by the bandwidth parameter bw. To find the default value for a particular variable, use the bw.nrd0 function. Values that are larger will result in more smoothing, while values that are smaller will produce less smoothing.</p>
-</section>
-<section id="default-bandwidth-for-the-age-variable" class="level1">
-<h1>default bandwidth for the age variable</h1>
-<p>bw.nrd0(Marriage$age)</p>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section">[1] 5.181946</h2>
-</section>
-</section>
-<section id="create-a-kernel-density-plot-of-age-2" class="level1">
-<h1>Create a kernel density plot of age</h1>
-<p>ggplot(Marriage, aes(x = age)) + geom_density(fill = “deepskyblue”, bw = 1) + labs(title = “Participants by age”, subtitle = “bandwidth = 1”)</p>
-<p>Kernel density plot with a specified bandwidth</p>
-<p>Figure 4.24: Kernel density plot with a specified bandwidth</p>
-<p>In this example, the default bandwidth for age is 5.18. Choosing a value of 1 resulted in less smoothing and more detail.</p>
-<p>Kernel density plots allow you to easily see which scores are most frequent and which are relatively rare. However it can be difficult to explain the meaning of the y-axis means to a non-statistician. (But it will make you look really smart at parties!) 4.2.3 Dot Chart</p>
-<p>Another alternative to the histogram is the dot chart. Again, the quantitative variable is divided into bins, but rather than summary bars, each observation is represented by a dot. By default, the width of a dot corresponds to the bin width, and dots are stacked, with each dot representing one observation. This works best when the number of observations is small (say, less than 150).</p>
-</section>
-<section id="plot-the-age-distribution-using-a-dotplot" class="level1">
-<h1>plot the age distribution using a dotplot</h1>
-<p>ggplot(Marriage, aes(x = age)) + geom_dotplot() + labs(title = “Participants by age”, y = “Proportion”, x = “Age”)</p>
-<p>Basic dotplot</p>
-<p>Figure 4.25: Basic dotplot</p>
-<p>The fill and color options can be used to specify the fill and border color of each dot respectively.</p>
-</section>
-<section id="plot-ages-as-a-dot-plot-using" class="level1">
-<h1>Plot ages as a dot plot using</h1>
-</section>
-<section id="gold-dots-with-black-borders" class="level1">
-<h1>gold dots with black borders</h1>
-<p>ggplot(Marriage, aes(x = age)) + geom_dotplot(fill = “gold”, color=“black”) + labs(title = “Participants by age”, y = “Proportion”, x = “Age”)</p>
-<p>Dotplot with a specified color scheme</p>
-<p>Figure 4.26: Dotplot with a specified color scheme</p>
-<p>There are many more options available. See ?geom_dotplot for details and examples.</p>
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<p>A sensible starting point for any data analysis is to look at each important variable on its own. Univariate graphs do exactly this: they show the distribution of a single variable at a time. That variable might be <strong>categorical</strong> (for example diet, taxonomic order, or conservation status) or <strong>quantitative</strong> (such as sleep duration, body weight, or brain weight).</p>
+<p>Throughout this chapter we use the <code>msleep</code> dataset, which contains sleep times and weights for 83 different mammals. We focus on three variables: the diet (<code>vore</code>) and taxonomic order (<code>order</code>) of the animals, and the total amount of sleep they get (<code>sleep_total</code>).</p>
+<hr>
+<section id="categorical-variables" class="level2">
+<h2 class="anchored" data-anchor-id="categorical-variables">Categorical variables</h2>
+<p>Both the diet of the mammals and their taxonomic order are categorical variables. The distribution of a single categorical variable is most commonly shown using a bar chart. Other options include pie charts, and—less frequently—tree maps or waffle charts.</p>
+<section id="bar-charts" class="level3">
+<h3 class="anchored" data-anchor-id="bar-charts">Bar charts</h3>
+<p>Figure 4.1 uses a simple bar chart to display the distribution of mammals by diet (<code>vore</code>).</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># simple bar chart</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.4.3</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(msleep, <span class="at">package =</span> <span class="st">"ggplot2"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the distribution of diet (vore)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># We filter out NAs for a cleaner plot</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>msleep_clean <span class="ot">&lt;-</span> msleep <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(vore))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep_clean, <span class="fu">aes</span>(<span class="at">x =</span> vore)) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.1: Simple barchart</em></p>
+<p>From this plot we can immediately see that most mammals in this dataset are herbivores, followed closely by omnivores and carnivores, with insectivores being the smallest group.</p>
+<p>You can customise bar charts by changing colours, labels, and titles. In <strong>ggplot2</strong>, the <code>fill</code> argument controls the colour of areas such as bars, while <code>color</code> controls outlines and borders.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the distribution of diet with modified colors and labels</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep_clean, <span class="fu">aes</span>(<span class="at">x=</span>vore)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"cornflowerblue"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Diet"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Mammals by diet"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.2: Barchart with modified colours, labels, and title</em></p>
+<hr>
+<section id="percentages" class="level4">
+<h4 class="anchored" data-anchor-id="percentages">4.1.1.1 Percentages</h4>
+<p>Instead of showing raw counts, bars can also represent percentages. In a bar chart, <code>aes(x = vore)</code> is shorthand for <code>aes(x = vore, y = after_stat(count))</code>, where <code>count</code> is the frequency in each category. By working with this quantity explicitly, we can convert counts into percentages.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the distribution as percentages</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep_clean,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> vore, <span class="at">y =</span> <span class="fu">after_stat</span>(count<span class="sc">/</span><span class="fu">sum</span>(count)))) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Diet"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percent"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title  =</span> <span class="st">"Mammals by diet"</span>) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.3: Barchart with percentages</em></p>
+<p>Here, the <code>scales</code> package is used to format the y-axis labels as percentages.</p>
+<hr>
+</section>
+<section id="sorting-categories" class="level4">
+<h4 class="anchored" data-anchor-id="sorting-categories">4.1.1.2 Sorting categories</h4>
+<p>It is often helpful to order categories by their frequency. To do this, we first calculate the counts explicitly and then reorder the categories using <code>reorder()</code>. Setting <code>stat = "identity"</code> tells <code>ggplot2</code> not to compute counts internally.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate number of mammals in each diet category</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plotdata <span class="ot">&lt;-</span> msleep_clean <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(vore)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The resulting dataset is shown below.</p>
+<p><em>Table 4.1: Frequency of diet categories</em></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>vore</th>
+<th>n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>carni</td>
+<td>19</td>
+</tr>
+<tr class="even">
+<td>herbi</td>
+<td>32</td>
+</tr>
+<tr class="odd">
+<td>insecti</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>omni</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<p>We can now use this dataset to create a sorted bar chart.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the bars in ascending order</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(vore, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Diet"</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title  =</span> <span class="st">"Mammals by diet"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.4: Sorted bar chart</em></p>
+<p>The bars are ordered from smallest to largest frequency. Using <code>reorder(vore, -n)</code> would reverse this order.</p>
+<hr>
+</section>
+<section id="labelling-bars" class="level4">
+<h4 class="anchored" data-anchor-id="labelling-bars">4.1.1.3 Labelling bars</h4>
+<p>Sometimes it is useful to display the numerical values directly on the bars.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the bars with numeric labels</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> vore, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> n), <span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Diet"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title  =</span> <span class="st">"Mammals by diet"</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.5: Bar chart with numeric labels</em></p>
+<p>Here, <code>geom_text()</code> adds the labels, and <code>vjust</code> controls their vertical positioning.</p>
+<p>Putting these ideas together, we can create a bar chart showing percentages, ordered from most to least frequent, and labelled accordingly.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'scales' was built under R version 4.4.3</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plotdata <span class="ot">&lt;-</span> msleep_clean <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(vore) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">pctlabel =</span> <span class="fu">paste0</span>(<span class="fu">round</span>(pct<span class="sc">*</span><span class="dv">100</span>), <span class="st">"%"</span>))</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the bars as percentages,</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># in descending order with bar labels</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata,</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(vore, <span class="sc">-</span>pct), <span class="at">y =</span> pct)) <span class="sc">+</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">fill=</span><span class="st">"indianred3"</span>, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> pctlabel), <span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> percent) <span class="sc">+</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Diet"</span>,</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percent"</span>,</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">title  =</span> <span class="st">"Mammals by diet"</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.6: Sorted bar chart with percent labels</em></p>
+<hr>
+</section>
+<section id="overlapping-labels" class="level4">
+<h4 class="anchored" data-anchor-id="overlapping-labels">4.1.1.4 Overlapping labels</h4>
+<p>When there are many categories or when labels are long, axis labels can overlap. This is clear when plotting the taxonomic order of the mammals.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># basic bar chart with overlapping labels</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x=</span>order)) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Taxonomic Order"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Mammals by Order"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.7: Barchart with problematic labels</em></p>
+<p>One solution is to flip the axes.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># horizontal bar chart</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> order)) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Mammals by Order"</span>) <span class="sc">+</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.8: Horizontal barchart</em></p>
+<p>Alternatively, labels can be rotated.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># bar chart with rotated labels</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x=</span>order)) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Mammals by Order"</span>) <span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.9: Barchart with rotated labels</em></p>
+<p>A third option is to stagger the labels by inserting line breaks.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># bar chart with staggered labels</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>lbls <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">""</span>,<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>), <span class="fu">unique</span>(msleep<span class="sc">$</span>order))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: In real usage, ensure labels match factor levels order</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(order, <span class="at">labels =</span> lbls))) <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Mammals by Order"</span>)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.10: Barchart with staggered labels</em></p>
+<p>In practice, it is usually best to avoid rotated labels where possible, as they are harder to read and increase cognitive load for the reader.</p>
+<hr>
+</section>
+</section>
+<section id="pie-charts" class="level3">
+<h3 class="anchored" data-anchor-id="pie-charts">4.1.2 Pie charts</h3>
+<p>Pie charts are often debated in statistics. For comparing category frequencies, bar charts are generally superior because humans judge lengths more accurately than areas. However, if the goal is to show how each category relates to the whole, and there are only a few categories, pie charts can still be useful.</p>
+<p>A pie chart in <code>ggplot2</code> is essentially a bar chart plotted on a polar coordinate system.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data for pie chart</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>plotdata <span class="ot">&lt;-</span> msleep_clean <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(vore) <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(prop))</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create pie chart</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> prop, <span class="at">fill =</span> vore)) <span class="sc">+</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammals by diet"</span>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.11: Basic pie chart with legend</em></p>
+<p>We use <code>coord_polar("y")</code> to transform the bar chart into a circle. <code>theme_void()</code> is used to remove the background, axis grid, and labels that are not necessary for a pie chart.</p>
+<p>To place labels inside the slices, we can use <code>geom_text()</code> with <code>position_stack()</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create pie chart with labels</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> prop, <span class="at">fill =</span> vore)) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> label),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammals by diet"</span>) <span class="sc">+</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.12: Pie chart with percent labels</em></p>
+<p>This plot makes it clear, for example, that roughly 42% of the mammals in this dataset are herbivores.</p>
+<hr>
+</section>
+<section id="tree-maps" class="level3">
+<h3 class="anchored" data-anchor-id="tree-maps">4.1.3 Tree maps</h3>
+<p>Tree maps provide another alternative to pie charts and are particularly useful when there are many categories, such as the taxonomic orders in our dataset.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(treemapify)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'treemapify' was built under R version 4.4.3</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># create a treemap of mammal orders</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>plotdata <span class="ot">&lt;-</span> msleep <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(order)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">fill =</span> order, <span class="at">area =</span> n)) <span class="sc">+</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_treemap</span>() <span class="sc">+</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammals by Order"</span>)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.13: Basic treemap</em></p>
+<p>Adding labels makes the plot more informative.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># create a treemap with tile labels</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">fill =</span> order, <span class="at">area =</span> n, <span class="at">label =</span> order)) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_treemap</span>() <span class="sc">+</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_treemap_text</span>(<span class="at">colour =</span> <span class="st">"white"</span>, <span class="at">place =</span> <span class="st">"centre"</span>) <span class="sc">+</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammals by Order"</span>) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.14: Treemap with labels</em></p>
+<hr>
+</section>
+<section id="waffle-charts" class="level3">
+<h3 class="anchored" data-anchor-id="waffle-charts">4.1.4 Waffle charts</h3>
+<p>A waffle chart (also called a grid plot or square pie chart) represents proportions using a grid of squares. While dedicated packages exist, we can create a waffle chart in standard <code>ggplot2</code> by treating the data as a grid of tiles.</p>
+<p>We begin by sorting the data and assigning logical <code>x</code> and <code>y</code> coordinates to each mammal to create a 10-column grid.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data: Sort by diet to cluster colors</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>waffle_data <span class="ot">&lt;-</span> msleep_clean <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(vore) <span class="sc">%&gt;%</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create x and y coordinates for a 10-column grid</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> (<span class="fu">row_number</span>() <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">%%</span> <span class="dv">10</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> (<span class="fu">row_number</span>() <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">%/%</span> <span class="dv">10</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the chart using geom_tile</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(waffle_data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> vore)) <span class="sc">+</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span>  <span class="co"># white borders create the "grid" look</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span>               <span class="co"># ensures squares remain square</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span>                <span class="co"># removes axes and backgrounds</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammals by Diet"</span>,</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"1 square = 1 mammal"</span>)</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.15: Basic waffle chart using geom_tile</em></p>
+<p>This chart displays every individual mammal as a single square, making it easy to visualise the sample size alongside the proportions.</p>
+<hr>
+</section>
+</section>
+<section id="quantitative-variables" class="level2">
+<h2 class="anchored" data-anchor-id="quantitative-variables">4.2 Quantitative variables</h2>
+<p>In the <code>msleep</code> dataset, <code>sleep_total</code> (total sleep in hours) is a quantitative variable. Common ways to visualise the distribution of a single quantitative variable include histograms, kernel density plots, and dot plots.</p>
+<section id="histograms" class="level3">
+<h3 class="anchored" data-anchor-id="histograms">4.2.1 Histograms</h3>
+<p>Histograms are the most widely used tool for visualising quantitative data. The range of values is divided into adjacent bins of equal width, and the number of observations in each bin is shown as a bar.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the sleep distribution using a histogram</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> sleep_total)) <span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammal sleep distribution"</span>,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Total Sleep (hours)"</span>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.17: Basic histogram</em></p>
+<p>The distribution appears somewhat bimodal, with many mammals sleeping around 10 hours, but a significant number sleeping much less or much more.</p>
+<p>Colours can be customised using <code>fill</code> and <code>color</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the histogram with blue bars and white borders</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> sleep_total)) <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"cornflowerblue"</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mammal sleep distribution"</span>,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Total Sleep (hours)"</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.18: Histogram with specified fill and border colours</em></p>
+<hr>
+<section id="bins-and-bandwidths" class="level4">
+<h4 class="anchored" data-anchor-id="bins-and-bandwidths">4.2.1.1 Bins and bandwidths</h4>
+<p>The choice of the number of bins (or equivalently the bin width) has a large impact on the appearance of a histogram. The default is 30 bins, but it is often useful to experiment.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the histogram with 15 bins</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> sleep_total)) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"cornflowerblue"</span>,</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mammal sleep distribution"</span>,</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"number of bins = 15"</span>,</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Total Sleep (hours)"</span>)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.19: Histogram with a specified number of bins</em></p>
+<p>Alternatively, you can specify the bin width directly.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the histogram with a binwidth of 2 hours</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> sleep_total)) <span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"cornflowerblue"</span>,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">binwidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mammal sleep distribution"</span>,</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"binwidth = 2 hours"</span>,</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Total Sleep (hours)"</span>)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.20: Histogram with a specified bin width</em></p>
+<p>As before, the y-axis can show counts or percentages.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> sleep_total, <span class="at">y=</span> <span class="fu">after_stat</span>(count<span class="sc">/</span><span class="fu">sum</span>(count)))) <span class="sc">+</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"cornflowerblue"</span>,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">binwidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mammal sleep distribution"</span>,</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percent"</span>,</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Total Sleep (hours)"</span>) <span class="sc">+</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> percent)</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.21: Histogram with percentages on the y-axis</em></p>
+<hr>
+</section>
+</section>
+<section id="kernel-density-plots" class="level3">
+<h3 class="anchored" data-anchor-id="kernel-density-plots">4.2.2 Kernel density plots</h3>
+<p>A kernel density plot provides a smooth alternative to a histogram. The idea is to estimate the underlying probability density function of a continuous variable, producing a smooth curve whose total area equals one.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a kernel density plot of sleep</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> sleep_total)) <span class="sc">+</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammal sleep distribution"</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.22: Basic kernel density plot</em></p>
+<p>The area under the curve between two time points represents the proportion of mammals in that sleep range.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a kernel density plot of sleep</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> sleep_total)) <span class="sc">+</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"indianred3"</span>) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammal sleep distribution"</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.23: Kernel density plot with fill</em></p>
+<hr>
+<section id="smoothing-parameter" class="level4">
+<h4 class="anchored" data-anchor-id="smoothing-parameter">4.2.2.1 Smoothing parameter</h4>
+<p>The amount of smoothing is controlled by the bandwidth parameter <code>bw</code>. Larger values produce smoother curves, while smaller values reveal more detail.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># default bandwidth for the sleep variable</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bw.nrd0</span>(msleep<span class="sc">$</span>sleep_total)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.637473</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a kernel density plot of sleep</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> sleep_total)) <span class="sc">+</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"deepskyblue"</span>,</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">bw =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammal sleep distribution"</span>,</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"bandwidth = 1"</span>)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.24: Kernel density plot with a specified bandwidth</em></p>
+<p>Kernel density plots are useful for identifying where observations are concentrated, although the interpretation of the y-axis can be less intuitive for non-statisticians.</p>
+<hr>
+</section>
+</section>
+<section id="dot-plots" class="level3">
+<h3 class="anchored" data-anchor-id="dot-plots">4.2.3 Dot plots</h3>
+<p>A dot plot is another alternative to the histogram. The data are grouped into bins, but each individual observation is shown as a dot. This approach works best for relatively small datasets like <code>msleep</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the sleep distribution using a dotplot</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> sleep_total)) <span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dotplot</span>() <span class="sc">+</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammal sleep distribution"</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Proportion"</span>,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Total Sleep (hours)"</span>)</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Bin width defaults to 1/30 of the range of the data. Pick better value with
+`binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.25: Basic dotplot</em></p>
+<p>Colours can again be customised.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot sleep as a dot plot using</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># gold dots with black borders</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> sleep_total)) <span class="sc">+</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dotplot</span>(<span class="at">fill =</span> <span class="st">"gold"</span>,</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammal sleep distribution"</span>,</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Proportion"</span>,</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Total Sleep (hours)"</span>)</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Bin width defaults to 1/30 of the range of the data. Pick better value with
+`binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="univariate_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Figure 4.26: Dotplot with a specified colour scheme</em></p>
+<p>Many additional options are available; see <code>?geom_dotplot</code> for further details.</p>
+
+
+<!-- -->
+
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -644,6 +1377,57 @@ color - border color around the bars</code></pre>
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -973,7 +1757,485 @@ color - border color around the bars</code></pre>
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb44" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Univariate Data"</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 12</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 6</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: "#31BAE9"</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number_sections: true</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: fenced</span></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>A sensible starting point for any data analysis is to look at each important variable on its own. Univariate graphs do exactly this: they show the distribution of a single variable at a time. That variable might be **categorical** (for example diet, taxonomic order, or conservation status) or **quantitative** (such as sleep duration, body weight, or brain weight).</span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>Throughout this chapter we use the <span class="in">`msleep`</span> dataset, which contains sleep times and weights for 83 different mammals. We focus on three variables: the diet (<span class="in">`vore`</span>) and taxonomic order (<span class="in">`order`</span>) of the animals, and the total amount of sleep they get (<span class="in">`sleep_total`</span>).</span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Categorical variables</span></span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>Both the diet of the mammals and their taxonomic order are categorical variables. The distribution of a single categorical variable is most commonly shown using a bar chart. Other options include pie charts, and—less frequently—tree maps or waffle charts.</span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a><span class="fu">### Bar charts</span></span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a>Below, we plot a simple bar chart to display the distribution of mammals by diet (<span class="in">`vore`</span>).</span>
+<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-34"><a href="#cb44-34" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb44-35"><a href="#cb44-35" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb44-36"><a href="#cb44-36" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb44-37"><a href="#cb44-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-38"><a href="#cb44-38" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-39"><a href="#cb44-39" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(msleep, <span class="at">package =</span> <span class="st">"ggplot2"</span>)</span>
+<span id="cb44-40"><a href="#cb44-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-41"><a href="#cb44-41" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the distribution of diet (vore)</span></span>
+<span id="cb44-42"><a href="#cb44-42" aria-hidden="true" tabindex="-1"></a><span class="co"># We filter out NAs for a cleaner plot</span></span>
+<span id="cb44-43"><a href="#cb44-43" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb44-44"><a href="#cb44-44" aria-hidden="true" tabindex="-1"></a>msleep_clean <span class="ot">&lt;-</span> msleep <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(vore))</span>
+<span id="cb44-45"><a href="#cb44-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-46"><a href="#cb44-46" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep_clean, <span class="fu">aes</span>(<span class="at">x =</span> vore)) <span class="sc">+</span></span>
+<span id="cb44-47"><a href="#cb44-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
+<span id="cb44-48"><a href="#cb44-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-49"><a href="#cb44-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-50"><a href="#cb44-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-51"><a href="#cb44-51" aria-hidden="true" tabindex="-1"></a>From this plot we can immediately see that most mammals in this dataset are herbivores, followed closely by omnivores and carnivores, with insectivores being the smallest group.</span>
+<span id="cb44-52"><a href="#cb44-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-53"><a href="#cb44-53" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb44-54"><a href="#cb44-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-55"><a href="#cb44-55" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Percentages</span></span>
+<span id="cb44-56"><a href="#cb44-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-57"><a href="#cb44-57" aria-hidden="true" tabindex="-1"></a>Instead of showing raw counts, bars can also represent percentages. In a bar chart, <span class="in">`aes(x = vore)`</span> is shorthand for <span class="in">`aes(x = vore, y = after_stat(count))`</span>, where <span class="in">`count`</span> is the frequency in each category. By working with this quantity explicitly, we can convert counts into percentages.</span>
+<span id="cb44-58"><a href="#cb44-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-61"><a href="#cb44-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-62"><a href="#cb44-62" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the distribution as percentages</span></span>
+<span id="cb44-63"><a href="#cb44-63" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep_clean,</span>
+<span id="cb44-64"><a href="#cb44-64" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> vore, <span class="at">y =</span> <span class="fu">after_stat</span>(count<span class="sc">/</span><span class="fu">sum</span>(count)))) <span class="sc">+</span></span>
+<span id="cb44-65"><a href="#cb44-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb44-66"><a href="#cb44-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Diet"</span>,</span>
+<span id="cb44-67"><a href="#cb44-67" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percent"</span>,</span>
+<span id="cb44-68"><a href="#cb44-68" aria-hidden="true" tabindex="-1"></a>       <span class="at">title  =</span> <span class="st">"Mammals by diet"</span>) <span class="sc">+</span></span>
+<span id="cb44-69"><a href="#cb44-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span>
+<span id="cb44-70"><a href="#cb44-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-71"><a href="#cb44-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-72"><a href="#cb44-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-73"><a href="#cb44-73" aria-hidden="true" tabindex="-1"></a>Here, the <span class="in">`scales`</span> package is used to format the y-axis labels as percentages.</span>
+<span id="cb44-74"><a href="#cb44-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-75"><a href="#cb44-75" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb44-76"><a href="#cb44-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-77"><a href="#cb44-77" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Sorting categories</span></span>
+<span id="cb44-78"><a href="#cb44-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-79"><a href="#cb44-79" aria-hidden="true" tabindex="-1"></a>It is often helpful to order categories by their frequency. To do this, we first calculate the counts explicitly and then reorder the categories using <span class="in">`reorder()`</span>. Setting <span class="in">`stat = "identity"`</span> tells <span class="in">`ggplot2`</span> not to compute counts internally.</span>
+<span id="cb44-80"><a href="#cb44-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-83"><a href="#cb44-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-84"><a href="#cb44-84" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate number of mammals in each diet category</span></span>
+<span id="cb44-85"><a href="#cb44-85" aria-hidden="true" tabindex="-1"></a>plotdata <span class="ot">&lt;-</span> msleep_clean <span class="sc">%&gt;%</span></span>
+<span id="cb44-86"><a href="#cb44-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(vore)</span>
+<span id="cb44-87"><a href="#cb44-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-88"><a href="#cb44-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-89"><a href="#cb44-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-90"><a href="#cb44-90" aria-hidden="true" tabindex="-1"></a>The resulting dataset is shown below:</span>
+<span id="cb44-91"><a href="#cb44-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-92"><a href="#cb44-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> vore <span class="pp">|</span> n <span class="pp">|</span></span>
+<span id="cb44-93"><a href="#cb44-93" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb44-94"><a href="#cb44-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> carni <span class="pp">|</span> 19 <span class="pp">|</span></span>
+<span id="cb44-95"><a href="#cb44-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> herbi <span class="pp">|</span> 32 <span class="pp">|</span></span>
+<span id="cb44-96"><a href="#cb44-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> insecti <span class="pp">|</span> 5 <span class="pp">|</span></span>
+<span id="cb44-97"><a href="#cb44-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> omni <span class="pp">|</span> 20 <span class="pp">|</span></span>
+<span id="cb44-98"><a href="#cb44-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-99"><a href="#cb44-99" aria-hidden="true" tabindex="-1"></a>We can now use this dataset to create a sorted bar chart.</span>
+<span id="cb44-100"><a href="#cb44-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-103"><a href="#cb44-103" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-104"><a href="#cb44-104" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the bars in ascending order</span></span>
+<span id="cb44-105"><a href="#cb44-105" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata,</span>
+<span id="cb44-106"><a href="#cb44-106" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(vore, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb44-107"><a href="#cb44-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb44-108"><a href="#cb44-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Diet"</span>,</span>
+<span id="cb44-109"><a href="#cb44-109" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb44-110"><a href="#cb44-110" aria-hidden="true" tabindex="-1"></a>       <span class="at">title  =</span> <span class="st">"Mammals by diet"</span>)</span>
+<span id="cb44-111"><a href="#cb44-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-112"><a href="#cb44-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-113"><a href="#cb44-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-114"><a href="#cb44-114" aria-hidden="true" tabindex="-1"></a>The bars are ordered from smallest to largest frequency. Using <span class="in">`reorder(vore, -n)`</span> would reverse this order.</span>
+<span id="cb44-115"><a href="#cb44-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-116"><a href="#cb44-116" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb44-117"><a href="#cb44-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-118"><a href="#cb44-118" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Labelling bars</span></span>
+<span id="cb44-119"><a href="#cb44-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-120"><a href="#cb44-120" aria-hidden="true" tabindex="-1"></a>Sometimes it is useful to display the numerical values directly on the bars.</span>
+<span id="cb44-121"><a href="#cb44-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-124"><a href="#cb44-124" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-125"><a href="#cb44-125" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the bars with numeric labels</span></span>
+<span id="cb44-126"><a href="#cb44-126" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata,</span>
+<span id="cb44-127"><a href="#cb44-127" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> vore, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb44-128"><a href="#cb44-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb44-129"><a href="#cb44-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> n), <span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb44-130"><a href="#cb44-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Diet"</span>,</span>
+<span id="cb44-131"><a href="#cb44-131" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb44-132"><a href="#cb44-132" aria-hidden="true" tabindex="-1"></a>       <span class="at">title  =</span> <span class="st">"Mammals by diet"</span>)</span>
+<span id="cb44-133"><a href="#cb44-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-134"><a href="#cb44-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-135"><a href="#cb44-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-136"><a href="#cb44-136" aria-hidden="true" tabindex="-1"></a>Here, <span class="in">`geom_text()`</span> adds the labels, and <span class="in">`vjust`</span> controls their vertical positioning.</span>
+<span id="cb44-137"><a href="#cb44-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-138"><a href="#cb44-138" aria-hidden="true" tabindex="-1"></a>Putting these ideas together, we can create a bar chart showing percentages, ordered from most to least frequent, and labelled accordingly.</span>
+<span id="cb44-139"><a href="#cb44-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-142"><a href="#cb44-142" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-143"><a href="#cb44-143" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb44-144"><a href="#cb44-144" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb44-145"><a href="#cb44-145" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb44-146"><a href="#cb44-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-147"><a href="#cb44-147" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb44-148"><a href="#cb44-148" aria-hidden="true" tabindex="-1"></a>plotdata <span class="ot">&lt;-</span> msleep_clean <span class="sc">%&gt;%</span></span>
+<span id="cb44-149"><a href="#cb44-149" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(vore) <span class="sc">%&gt;%</span></span>
+<span id="cb44-150"><a href="#cb44-150" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n),</span>
+<span id="cb44-151"><a href="#cb44-151" aria-hidden="true" tabindex="-1"></a>         <span class="at">pctlabel =</span> <span class="fu">paste0</span>(<span class="fu">round</span>(pct<span class="sc">*</span><span class="dv">100</span>), <span class="st">"%"</span>))</span>
+<span id="cb44-152"><a href="#cb44-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-153"><a href="#cb44-153" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the bars as percentages,</span></span>
+<span id="cb44-154"><a href="#cb44-154" aria-hidden="true" tabindex="-1"></a><span class="co"># in descending order with bar labels</span></span>
+<span id="cb44-155"><a href="#cb44-155" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata,</span>
+<span id="cb44-156"><a href="#cb44-156" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(vore, <span class="sc">-</span>pct), <span class="at">y =</span> pct)) <span class="sc">+</span></span>
+<span id="cb44-157"><a href="#cb44-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">fill=</span><span class="st">"indianred3"</span>, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb44-158"><a href="#cb44-158" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> pctlabel), <span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb44-159"><a href="#cb44-159" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> percent) <span class="sc">+</span></span>
+<span id="cb44-160"><a href="#cb44-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Diet"</span>,</span>
+<span id="cb44-161"><a href="#cb44-161" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percent"</span>,</span>
+<span id="cb44-162"><a href="#cb44-162" aria-hidden="true" tabindex="-1"></a>       <span class="at">title  =</span> <span class="st">"Mammals by diet"</span>)</span>
+<span id="cb44-163"><a href="#cb44-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-164"><a href="#cb44-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-165"><a href="#cb44-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-166"><a href="#cb44-166" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb44-167"><a href="#cb44-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-168"><a href="#cb44-168" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Overlapping labels</span></span>
+<span id="cb44-169"><a href="#cb44-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-170"><a href="#cb44-170" aria-hidden="true" tabindex="-1"></a>When there are many categories or when labels are long, axis labels can overlap. This is clear when plotting the taxonomic order of the mammals.</span>
+<span id="cb44-171"><a href="#cb44-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-174"><a href="#cb44-174" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-175"><a href="#cb44-175" aria-hidden="true" tabindex="-1"></a><span class="co"># basic bar chart with overlapping labels</span></span>
+<span id="cb44-176"><a href="#cb44-176" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x=</span>order)) <span class="sc">+</span></span>
+<span id="cb44-177"><a href="#cb44-177" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb44-178"><a href="#cb44-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Taxonomic Order"</span>,</span>
+<span id="cb44-179"><a href="#cb44-179" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb44-180"><a href="#cb44-180" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Mammals by Order"</span>)</span>
+<span id="cb44-181"><a href="#cb44-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-182"><a href="#cb44-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-183"><a href="#cb44-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-184"><a href="#cb44-184" aria-hidden="true" tabindex="-1"></a>One solution is to flip the axes.</span>
+<span id="cb44-185"><a href="#cb44-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-188"><a href="#cb44-188" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-189"><a href="#cb44-189" aria-hidden="true" tabindex="-1"></a><span class="co"># horizontal bar chart</span></span>
+<span id="cb44-190"><a href="#cb44-190" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> order)) <span class="sc">+</span></span>
+<span id="cb44-191"><a href="#cb44-191" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb44-192"><a href="#cb44-192" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb44-193"><a href="#cb44-193" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb44-194"><a href="#cb44-194" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Mammals by Order"</span>) <span class="sc">+</span></span>
+<span id="cb44-195"><a href="#cb44-195" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb44-196"><a href="#cb44-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-197"><a href="#cb44-197" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-198"><a href="#cb44-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-199"><a href="#cb44-199" aria-hidden="true" tabindex="-1"></a>Alternatively, labels can be rotated.</span>
+<span id="cb44-200"><a href="#cb44-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-203"><a href="#cb44-203" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-204"><a href="#cb44-204" aria-hidden="true" tabindex="-1"></a><span class="co"># bar chart with rotated labels</span></span>
+<span id="cb44-205"><a href="#cb44-205" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x=</span>order)) <span class="sc">+</span></span>
+<span id="cb44-206"><a href="#cb44-206" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb44-207"><a href="#cb44-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb44-208"><a href="#cb44-208" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb44-209"><a href="#cb44-209" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Mammals by Order"</span>) <span class="sc">+</span></span>
+<span id="cb44-210"><a href="#cb44-210" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb44-211"><a href="#cb44-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-212"><a href="#cb44-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-213"><a href="#cb44-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-214"><a href="#cb44-214" aria-hidden="true" tabindex="-1"></a>A third option is to stagger the labels by inserting line breaks.</span>
+<span id="cb44-215"><a href="#cb44-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-218"><a href="#cb44-218" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-219"><a href="#cb44-219" aria-hidden="true" tabindex="-1"></a><span class="co"># bar chart with staggered labels</span></span>
+<span id="cb44-220"><a href="#cb44-220" aria-hidden="true" tabindex="-1"></a>lbls <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">""</span>,<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>), <span class="fu">unique</span>(msleep<span class="sc">$</span>order))</span>
+<span id="cb44-221"><a href="#cb44-221" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: In real usage, ensure labels match factor levels order</span></span>
+<span id="cb44-222"><a href="#cb44-222" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep,</span>
+<span id="cb44-223"><a href="#cb44-223" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(order, <span class="at">labels =</span> lbls))) <span class="sc">+</span></span>
+<span id="cb44-224"><a href="#cb44-224" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb44-225"><a href="#cb44-225" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb44-226"><a href="#cb44-226" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb44-227"><a href="#cb44-227" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Mammals by Order"</span>)</span>
+<span id="cb44-228"><a href="#cb44-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-229"><a href="#cb44-229" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-230"><a href="#cb44-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-231"><a href="#cb44-231" aria-hidden="true" tabindex="-1"></a>In practice, it is usually best to avoid rotated labels where possible, as they are harder to read and increase cognitive load for the reader.</span>
+<span id="cb44-232"><a href="#cb44-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-233"><a href="#cb44-233" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb44-234"><a href="#cb44-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-235"><a href="#cb44-235" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pie charts</span></span>
+<span id="cb44-236"><a href="#cb44-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-237"><a href="#cb44-237" aria-hidden="true" tabindex="-1"></a>Pie charts are often debated in statistics. For comparing category frequencies, bar charts are generally superior because humans judge lengths more accurately than areas. However, if the goal is to show how each category relates to the whole, and there are only a few categories, pie charts can still be useful.</span>
+<span id="cb44-238"><a href="#cb44-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-239"><a href="#cb44-239" aria-hidden="true" tabindex="-1"></a>A pie chart in <span class="in">`ggplot2`</span> is essentially a bar chart plotted on a polar coordinate system.</span>
+<span id="cb44-240"><a href="#cb44-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-243"><a href="#cb44-243" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-244"><a href="#cb44-244" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data for pie chart</span></span>
+<span id="cb44-245"><a href="#cb44-245" aria-hidden="true" tabindex="-1"></a>plotdata <span class="ot">&lt;-</span> msleep_clean <span class="sc">%&gt;%</span></span>
+<span id="cb44-246"><a href="#cb44-246" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(vore) <span class="sc">%&gt;%</span></span>
+<span id="cb44-247"><a href="#cb44-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-248"><a href="#cb44-248" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(prop))</span>
+<span id="cb44-249"><a href="#cb44-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-250"><a href="#cb44-250" aria-hidden="true" tabindex="-1"></a><span class="co"># Create pie chart</span></span>
+<span id="cb44-251"><a href="#cb44-251" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> prop, <span class="at">fill =</span> vore)) <span class="sc">+</span></span>
+<span id="cb44-252"><a href="#cb44-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb44-253"><a href="#cb44-253" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb44-254"><a href="#cb44-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb44-255"><a href="#cb44-255" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammals by diet"</span>)</span>
+<span id="cb44-256"><a href="#cb44-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-257"><a href="#cb44-257" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-258"><a href="#cb44-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-259"><a href="#cb44-259" aria-hidden="true" tabindex="-1"></a>We use <span class="in">`coord_polar("y")`</span> to transform the bar chart into a circle. <span class="in">`theme_void()`</span> is used to remove the background, axis grid, and labels that are not necessary for a pie chart.</span>
+<span id="cb44-260"><a href="#cb44-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-261"><a href="#cb44-261" aria-hidden="true" tabindex="-1"></a>To place labels inside the slices, we can use <span class="in">`geom_text()`</span> with <span class="in">`position_stack()`</span>.</span>
+<span id="cb44-262"><a href="#cb44-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-265"><a href="#cb44-265" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-266"><a href="#cb44-266" aria-hidden="true" tabindex="-1"></a><span class="co"># Create pie chart with labels</span></span>
+<span id="cb44-267"><a href="#cb44-267" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> prop, <span class="at">fill =</span> vore)) <span class="sc">+</span></span>
+<span id="cb44-268"><a href="#cb44-268" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb44-269"><a href="#cb44-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb44-270"><a href="#cb44-270" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> label),</span>
+<span id="cb44-271"><a href="#cb44-271" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb44-272"><a href="#cb44-272" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb44-273"><a href="#cb44-273" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb44-274"><a href="#cb44-274" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb44-275"><a href="#cb44-275" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammals by diet"</span>) <span class="sc">+</span></span>
+<span id="cb44-276"><a href="#cb44-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span>
+<span id="cb44-277"><a href="#cb44-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-278"><a href="#cb44-278" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-279"><a href="#cb44-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-280"><a href="#cb44-280" aria-hidden="true" tabindex="-1"></a>This plot makes it clear, for example, that roughly 42% of the mammals in this dataset are herbivores.</span>
+<span id="cb44-281"><a href="#cb44-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-282"><a href="#cb44-282" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb44-283"><a href="#cb44-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-284"><a href="#cb44-284" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tree maps</span></span>
+<span id="cb44-285"><a href="#cb44-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-286"><a href="#cb44-286" aria-hidden="true" tabindex="-1"></a>Tree maps provide another alternative to pie charts and are particularly useful when there are many categories, such as the taxonomic orders in our dataset.</span>
+<span id="cb44-287"><a href="#cb44-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-290"><a href="#cb44-290" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-291"><a href="#cb44-291" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb44-292"><a href="#cb44-292" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb44-293"><a href="#cb44-293" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb44-294"><a href="#cb44-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-295"><a href="#cb44-295" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(treemapify)</span>
+<span id="cb44-296"><a href="#cb44-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-297"><a href="#cb44-297" aria-hidden="true" tabindex="-1"></a><span class="co"># create a treemap of mammal orders</span></span>
+<span id="cb44-298"><a href="#cb44-298" aria-hidden="true" tabindex="-1"></a>plotdata <span class="ot">&lt;-</span> msleep <span class="sc">%&gt;%</span></span>
+<span id="cb44-299"><a href="#cb44-299" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(order)</span>
+<span id="cb44-300"><a href="#cb44-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-301"><a href="#cb44-301" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata,</span>
+<span id="cb44-302"><a href="#cb44-302" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">fill =</span> order, <span class="at">area =</span> n)) <span class="sc">+</span></span>
+<span id="cb44-303"><a href="#cb44-303" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_treemap</span>() <span class="sc">+</span></span>
+<span id="cb44-304"><a href="#cb44-304" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammals by Order"</span>)</span>
+<span id="cb44-305"><a href="#cb44-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-306"><a href="#cb44-306" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-307"><a href="#cb44-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-308"><a href="#cb44-308" aria-hidden="true" tabindex="-1"></a>Adding labels makes the plot more informative.</span>
+<span id="cb44-309"><a href="#cb44-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-312"><a href="#cb44-312" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-313"><a href="#cb44-313" aria-hidden="true" tabindex="-1"></a><span class="co"># create a treemap with tile labels</span></span>
+<span id="cb44-314"><a href="#cb44-314" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata,</span>
+<span id="cb44-315"><a href="#cb44-315" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">fill =</span> order, <span class="at">area =</span> n, <span class="at">label =</span> order)) <span class="sc">+</span></span>
+<span id="cb44-316"><a href="#cb44-316" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_treemap</span>() <span class="sc">+</span></span>
+<span id="cb44-317"><a href="#cb44-317" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_treemap_text</span>(<span class="at">colour =</span> <span class="st">"white"</span>, <span class="at">place =</span> <span class="st">"centre"</span>) <span class="sc">+</span></span>
+<span id="cb44-318"><a href="#cb44-318" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammals by Order"</span>) <span class="sc">+</span></span>
+<span id="cb44-319"><a href="#cb44-319" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb44-320"><a href="#cb44-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-321"><a href="#cb44-321" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-322"><a href="#cb44-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-323"><a href="#cb44-323" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb44-324"><a href="#cb44-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-325"><a href="#cb44-325" aria-hidden="true" tabindex="-1"></a><span class="fu">### Waffle charts</span></span>
+<span id="cb44-326"><a href="#cb44-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-327"><a href="#cb44-327" aria-hidden="true" tabindex="-1"></a>A waffle chart (also called a grid plot or square pie chart) represents proportions using a grid of squares. While dedicated packages exist, we can create a waffle chart in standard <span class="in">`ggplot2`</span> by treating the data as a grid of tiles (dedicated packages sometimes get removed so it's better to have a more sustainable way to make graphs that don't rely on external packages).</span>
+<span id="cb44-328"><a href="#cb44-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-329"><a href="#cb44-329" aria-hidden="true" tabindex="-1"></a>We begin by sorting the data and assigning logical <span class="in">`x`</span> and <span class="in">`y`</span> coordinates to each mammal to create a 10-column grid.</span>
+<span id="cb44-330"><a href="#cb44-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-333"><a href="#cb44-333" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-334"><a href="#cb44-334" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data: Sort by diet to cluster colors</span></span>
+<span id="cb44-335"><a href="#cb44-335" aria-hidden="true" tabindex="-1"></a>waffle_data <span class="ot">&lt;-</span> msleep_clean <span class="sc">%&gt;%</span></span>
+<span id="cb44-336"><a href="#cb44-336" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(vore) <span class="sc">%&gt;%</span></span>
+<span id="cb44-337"><a href="#cb44-337" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb44-338"><a href="#cb44-338" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create x and y coordinates for a 10-column grid</span></span>
+<span id="cb44-339"><a href="#cb44-339" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> (<span class="fu">row_number</span>() <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">%%</span> <span class="dv">10</span>,</span>
+<span id="cb44-340"><a href="#cb44-340" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> (<span class="fu">row_number</span>() <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">%/%</span> <span class="dv">10</span></span>
+<span id="cb44-341"><a href="#cb44-341" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb44-342"><a href="#cb44-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-343"><a href="#cb44-343" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the chart using geom_tile</span></span>
+<span id="cb44-344"><a href="#cb44-344" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(waffle_data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> vore)) <span class="sc">+</span></span>
+<span id="cb44-345"><a href="#cb44-345" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span>  <span class="co"># white borders create the "grid" look</span></span>
+<span id="cb44-346"><a href="#cb44-346" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span>               <span class="co"># ensures squares remain square</span></span>
+<span id="cb44-347"><a href="#cb44-347" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span>                <span class="co"># removes axes and backgrounds</span></span>
+<span id="cb44-348"><a href="#cb44-348" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammals by Diet"</span>,</span>
+<span id="cb44-349"><a href="#cb44-349" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"1 square = 1 mammal"</span>)</span>
+<span id="cb44-350"><a href="#cb44-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-351"><a href="#cb44-351" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-352"><a href="#cb44-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-353"><a href="#cb44-353" aria-hidden="true" tabindex="-1"></a>This chart displays every individual mammal as a single square, making it easy to visualise the sample size alongside the proportions.</span>
+<span id="cb44-354"><a href="#cb44-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-355"><a href="#cb44-355" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb44-356"><a href="#cb44-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-357"><a href="#cb44-357" aria-hidden="true" tabindex="-1"></a><span class="fu">## Quantitative variables</span></span>
+<span id="cb44-358"><a href="#cb44-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-359"><a href="#cb44-359" aria-hidden="true" tabindex="-1"></a>In the <span class="in">`msleep`</span> dataset, <span class="in">`sleep_total`</span> (total sleep in hours) is a quantitative variable. Common ways to visualise the distribution of a single quantitative variable include histograms, kernel density plots, and dot plots.</span>
+<span id="cb44-360"><a href="#cb44-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-361"><a href="#cb44-361" aria-hidden="true" tabindex="-1"></a><span class="fu">### Histograms</span></span>
+<span id="cb44-362"><a href="#cb44-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-363"><a href="#cb44-363" aria-hidden="true" tabindex="-1"></a>Histograms are the most widely used tool for visualising quantitative data. The range of values is divided into adjacent bins of equal width, and the number of observations in each bin is shown as a bar.</span>
+<span id="cb44-364"><a href="#cb44-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-367"><a href="#cb44-367" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-368"><a href="#cb44-368" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb44-369"><a href="#cb44-369" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb44-370"><a href="#cb44-370" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb44-371"><a href="#cb44-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-372"><a href="#cb44-372" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-373"><a href="#cb44-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-374"><a href="#cb44-374" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the sleep distribution using a histogram</span></span>
+<span id="cb44-375"><a href="#cb44-375" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> sleep_total)) <span class="sc">+</span></span>
+<span id="cb44-376"><a href="#cb44-376" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb44-377"><a href="#cb44-377" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammal sleep distribution"</span>,</span>
+<span id="cb44-378"><a href="#cb44-378" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Total Sleep (hours)"</span>)</span>
+<span id="cb44-379"><a href="#cb44-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-380"><a href="#cb44-380" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-381"><a href="#cb44-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-382"><a href="#cb44-382" aria-hidden="true" tabindex="-1"></a>The distribution appears somewhat bimodal, with many mammals sleeping around 10 hours, but a significant number sleeping much less or much more.</span>
+<span id="cb44-383"><a href="#cb44-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-384"><a href="#cb44-384" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb44-385"><a href="#cb44-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-386"><a href="#cb44-386" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Bins and bandwidths</span></span>
+<span id="cb44-387"><a href="#cb44-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-388"><a href="#cb44-388" aria-hidden="true" tabindex="-1"></a>The choice of the number of bins (or equivalently the bin width) has a large impact on the appearance of a histogram. The default is 30 bins, but it is often useful to experiment.</span>
+<span id="cb44-389"><a href="#cb44-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-392"><a href="#cb44-392" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-393"><a href="#cb44-393" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the histogram with 15 bins</span></span>
+<span id="cb44-394"><a href="#cb44-394" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> sleep_total)) <span class="sc">+</span></span>
+<span id="cb44-395"><a href="#cb44-395" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"cornflowerblue"</span>,</span>
+<span id="cb44-396"><a href="#cb44-396" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb44-397"><a href="#cb44-397" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb44-398"><a href="#cb44-398" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mammal sleep distribution"</span>,</span>
+<span id="cb44-399"><a href="#cb44-399" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"number of bins = 15"</span>,</span>
+<span id="cb44-400"><a href="#cb44-400" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Total Sleep (hours)"</span>)</span>
+<span id="cb44-401"><a href="#cb44-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-402"><a href="#cb44-402" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-403"><a href="#cb44-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-404"><a href="#cb44-404" aria-hidden="true" tabindex="-1"></a>Alternatively, you can specify the bin width directly.</span>
+<span id="cb44-405"><a href="#cb44-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-408"><a href="#cb44-408" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-409"><a href="#cb44-409" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the histogram with a binwidth of 2 hours</span></span>
+<span id="cb44-410"><a href="#cb44-410" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> sleep_total)) <span class="sc">+</span></span>
+<span id="cb44-411"><a href="#cb44-411" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"cornflowerblue"</span>,</span>
+<span id="cb44-412"><a href="#cb44-412" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb44-413"><a href="#cb44-413" aria-hidden="true" tabindex="-1"></a>                 <span class="at">binwidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb44-414"><a href="#cb44-414" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mammal sleep distribution"</span>,</span>
+<span id="cb44-415"><a href="#cb44-415" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"binwidth = 2 hours"</span>,</span>
+<span id="cb44-416"><a href="#cb44-416" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Total Sleep (hours)"</span>)</span>
+<span id="cb44-417"><a href="#cb44-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-418"><a href="#cb44-418" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-419"><a href="#cb44-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-420"><a href="#cb44-420" aria-hidden="true" tabindex="-1"></a>As before, the y-axis can show counts or percentages.</span>
+<span id="cb44-421"><a href="#cb44-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-424"><a href="#cb44-424" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-425"><a href="#cb44-425" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb44-426"><a href="#cb44-426" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep,</span>
+<span id="cb44-427"><a href="#cb44-427" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> sleep_total, <span class="at">y=</span> <span class="fu">after_stat</span>(count<span class="sc">/</span><span class="fu">sum</span>(count)))) <span class="sc">+</span></span>
+<span id="cb44-428"><a href="#cb44-428" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"cornflowerblue"</span>,</span>
+<span id="cb44-429"><a href="#cb44-429" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb44-430"><a href="#cb44-430" aria-hidden="true" tabindex="-1"></a>                 <span class="at">binwidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb44-431"><a href="#cb44-431" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mammal sleep distribution"</span>,</span>
+<span id="cb44-432"><a href="#cb44-432" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percent"</span>,</span>
+<span id="cb44-433"><a href="#cb44-433" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Total Sleep (hours)"</span>) <span class="sc">+</span></span>
+<span id="cb44-434"><a href="#cb44-434" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> percent)</span>
+<span id="cb44-435"><a href="#cb44-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-436"><a href="#cb44-436" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-437"><a href="#cb44-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-438"><a href="#cb44-438" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb44-439"><a href="#cb44-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-440"><a href="#cb44-440" aria-hidden="true" tabindex="-1"></a><span class="fu">### Kernel density plots</span></span>
+<span id="cb44-441"><a href="#cb44-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-442"><a href="#cb44-442" aria-hidden="true" tabindex="-1"></a>A kernel density plot provides a smooth alternative to a histogram. The idea is to estimate the underlying probability density function of a continuous variable, producing a smooth curve whose total area equals one.</span>
+<span id="cb44-443"><a href="#cb44-443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-446"><a href="#cb44-446" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-447"><a href="#cb44-447" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a kernel density plot of sleep</span></span>
+<span id="cb44-448"><a href="#cb44-448" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> sleep_total)) <span class="sc">+</span></span>
+<span id="cb44-449"><a href="#cb44-449" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb44-450"><a href="#cb44-450" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammal sleep distribution"</span>)</span>
+<span id="cb44-451"><a href="#cb44-451" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-452"><a href="#cb44-452" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-453"><a href="#cb44-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-454"><a href="#cb44-454" aria-hidden="true" tabindex="-1"></a>The area under the curve between two time points represents the proportion of mammals in that sleep range.</span>
+<span id="cb44-455"><a href="#cb44-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-458"><a href="#cb44-458" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-459"><a href="#cb44-459" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a kernel density plot of sleep</span></span>
+<span id="cb44-460"><a href="#cb44-460" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> sleep_total)) <span class="sc">+</span></span>
+<span id="cb44-461"><a href="#cb44-461" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"indianred3"</span>) <span class="sc">+</span></span>
+<span id="cb44-462"><a href="#cb44-462" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammal sleep distribution"</span>)</span>
+<span id="cb44-463"><a href="#cb44-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-464"><a href="#cb44-464" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-465"><a href="#cb44-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-466"><a href="#cb44-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-467"><a href="#cb44-467" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb44-468"><a href="#cb44-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-469"><a href="#cb44-469" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Smoothing parameter</span></span>
+<span id="cb44-470"><a href="#cb44-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-471"><a href="#cb44-471" aria-hidden="true" tabindex="-1"></a>The amount of smoothing is controlled by the bandwidth parameter <span class="in">`bw`</span>. Larger values produce smoother curves, while smaller values reveal more detail.</span>
+<span id="cb44-472"><a href="#cb44-472" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-475"><a href="#cb44-475" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-476"><a href="#cb44-476" aria-hidden="true" tabindex="-1"></a><span class="co"># default bandwidth for the sleep variable</span></span>
+<span id="cb44-477"><a href="#cb44-477" aria-hidden="true" tabindex="-1"></a><span class="fu">bw.nrd0</span>(msleep<span class="sc">$</span>sleep_total)</span>
+<span id="cb44-478"><a href="#cb44-478" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-479"><a href="#cb44-479" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-480"><a href="#cb44-480" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-483"><a href="#cb44-483" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-484"><a href="#cb44-484" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a kernel density plot of sleep</span></span>
+<span id="cb44-485"><a href="#cb44-485" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> sleep_total)) <span class="sc">+</span></span>
+<span id="cb44-486"><a href="#cb44-486" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"deepskyblue"</span>,</span>
+<span id="cb44-487"><a href="#cb44-487" aria-hidden="true" tabindex="-1"></a>               <span class="at">bw =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb44-488"><a href="#cb44-488" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammal sleep distribution"</span>,</span>
+<span id="cb44-489"><a href="#cb44-489" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"bandwidth = 1"</span>)</span>
+<span id="cb44-490"><a href="#cb44-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-491"><a href="#cb44-491" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-492"><a href="#cb44-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-493"><a href="#cb44-493" aria-hidden="true" tabindex="-1"></a>Kernel density plots are useful for identifying where observations are concentrated, although the interpretation of the y-axis can be less intuitive for non-statisticians, so do keep this in mind.</span>
+<span id="cb44-494"><a href="#cb44-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-495"><a href="#cb44-495" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb44-496"><a href="#cb44-496" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-497"><a href="#cb44-497" aria-hidden="true" tabindex="-1"></a><span class="fu">### Dot plots</span></span>
+<span id="cb44-498"><a href="#cb44-498" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-499"><a href="#cb44-499" aria-hidden="true" tabindex="-1"></a>A dot plot is another alternative to the histogram. The data are grouped into bins, but each individual observation is shown as a dot. This approach works best for relatively small datasets like <span class="in">`msleep`</span>.</span>
+<span id="cb44-500"><a href="#cb44-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-503"><a href="#cb44-503" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-504"><a href="#cb44-504" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb44-505"><a href="#cb44-505" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb44-506"><a href="#cb44-506" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb44-507"><a href="#cb44-507" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-508"><a href="#cb44-508" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the sleep distribution using a dotplot</span></span>
+<span id="cb44-509"><a href="#cb44-509" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep, <span class="fu">aes</span>(<span class="at">x =</span> sleep_total)) <span class="sc">+</span></span>
+<span id="cb44-510"><a href="#cb44-510" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dotplot</span>() <span class="sc">+</span></span>
+<span id="cb44-511"><a href="#cb44-511" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mammal sleep distribution"</span>,</span>
+<span id="cb44-512"><a href="#cb44-512" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Proportion"</span>,</span>
+<span id="cb44-513"><a href="#cb44-513" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Total Sleep (hours)"</span>)</span>
+<span id="cb44-514"><a href="#cb44-514" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-515"><a href="#cb44-515" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-516"><a href="#cb44-516" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-517"><a href="#cb44-517" aria-hidden="true" tabindex="-1"></a>Many additional options are available; see <span class="in">`?geom_dotplot`</span> for further details. </span>
+<span id="cb44-518"><a href="#cb44-518" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-519"><a href="#cb44-519" aria-hidden="true" tabindex="-1"></a>These are just a couple of ways you could visualise one variable, do explore to find more!</span>
+<span id="cb44-520"><a href="#cb44-520" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-521"><a href="#cb44-521" aria-hidden="true" tabindex="-1"></a><span class="fu"># Further Resources</span></span>
+<span id="cb44-522"><a href="#cb44-522" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-523"><a href="#cb44-523" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">R for Data Science</span><span class="co">](https://r4ds.had.co.nz/)</span> </span>
+<span id="cb44-524"><a href="#cb44-524" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">ggplot2 documentation</span><span class="co">](https://ggplot2.tidyverse.org/)</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 

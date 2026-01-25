@@ -1,4 +1,37 @@
+---
+title: "Introduction to Data Visualisation"
+author: 
+  name: Niko Gigiberia
+  email: Niko.gigiberia@warwick.ac.uk
+format: 
+  html:
+    fig-width: 10
+    fig-height: 5
+    code-fold: show
+    code-tools: true
+    toc: true
+    code-copy: true
+    number_sections: true
+---
 
+::: {.callout-quote title="John W Tukey"}
+*"The greatest value of a picture is when it forces us to notice what we never expected to see."* - John W. Tukey
+:::
 
-"The greatest value of a picture is when it forces us to notice what we never expected to see." – John W. Tukey
-https://rkabacoff.github.io/datavis/index.html
+The subsections here will cover a few data visualisation techniques using `ggplot2`. The ggplot library is extremely powerful for data visualisation for a number of reasons: it is trivial to add and remove features from graphs, it is one of a few R libraries that are always being worked on and updated, and many more reasons will will discover here. 
+
+This section covers: 
+
+:::{}
+
+* a review on data importing
+* how baseR and ggplot plot graphs,
+* how to approach univariate data,
+* how to approach bivariate data,
+* how to approach time-dependent data,
+* how to approach multivariate data,
+* miscellaneous graphs,
+* how to customise graphs,s
+* general advice on data visualisation
+
+:::

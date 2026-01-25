@@ -13,7 +13,7 @@ format:
 
 # Introduction
 
-Before you can visualize or analyze data, you need to get it into R and prepare it properly. This step is crucial—even the most sophisticated analysis will fail if your data isn't prepared correctly. Think of it like preparing ingredients before cooking: skipping or rushing this step will affect everything that follows.
+Before you can visualize or analyze data, you need to get it into R and prepare it properly. This step is crucial, even the most sophisticated analysis will fail if your data isn't prepared correctly. Think of it like preparing ingredients before cooking: skipping or rushing this step will affect everything that follows.
 
 In this guide, we'll learn how to import data from various file formats and clean it for analysis. We'll use the `palmerpenguins` dataset for most examples, which contains measurements of penguins from Antarctica.
 
@@ -27,6 +27,8 @@ The `readr` package provides efficient functions for importing text-based data:
 
 ```{r}
 #| eval: false
+#| echo: true
+
 library(readr)
 
 # Import from a CSV file (comma-separated values)
@@ -37,9 +39,14 @@ penguins_data <- read_tsv("penguins.txt")
 ```
 
 These functions assume that:
-- The first row contains column names
-- Values are separated by commas (CSV) or tabs (TSV)
-- Missing data appears as blank cells
+
+:::{}
+
+* The first row contains column names
+* Values are separated by commas (CSV) or tabs (TSV)
+* Missing data appears as blank cells
+
+:::
 
 Here's what the first few lines of a CSV file look like:
 
@@ -50,7 +57,9 @@ Adelie,Torgersen,39.5,17.4,186,3800,female
 Adelie,Torgersen,40.3,18.0,195,3250,female
 ```
 
-**Tip**: For more options (like different delimiters or handling special cases), check the help documentation with `?read_csv`.
+:::{.callout-tip} 
+For more options (like different delimiters or handling special cases), check the help documentation with `?read_csv`.
+:::
 
 ## Excel Files
 
@@ -58,6 +67,8 @@ The `readxl` package handles Excel workbooks (both .xls and .xlsx):
 
 ```{r}
 #| eval: false
+#| echo: true
+#| 
 library(readxl)
 
 # Import from an Excel file
@@ -75,6 +86,8 @@ The `haven` package lets you import data from other statistical programs without
 
 ```{r}
 #| eval: false
+#| echo: true
+
 library(haven)
 
 # Import from Stata
@@ -95,6 +108,9 @@ Let's load the penguins dataset for our examples:
 
 ```{r}
 #| message: false
+#| warning: false
+#| echo: true
+
 library(dplyr)
 library(palmerpenguins)
 
@@ -102,11 +118,14 @@ library(palmerpenguins)
 glimpse(penguins)
 ```
 
+As the `glimpse` function implies, you can get a glimpse into the data structure. This is vital for our next step: selecting what data we want to use.
+
 ## Selecting Variables (Columns)
 
 Use `select()` to keep only the columns you need:
 
 ```{r}
+#| echo: true
 # Keep just species, island, and body mass
 penguin_subset <- select(penguins, species, island, body_mass_g)
 
@@ -114,6 +133,7 @@ head(penguin_subset)
 ```
 
 ```{r}
+#| echo: true
 # Keep species and all columns from bill_length_mm through body_mass_g
 penguin_subset <- select(penguins, species, bill_length_mm:body_mass_g)
 
@@ -121,6 +141,7 @@ head(penguin_subset)
 ```
 
 ```{r}
+#| echo: true
 # Keep everything except year and sex
 penguin_subset <- select(penguins, -year, -sex)
 
@@ -132,6 +153,7 @@ head(penguin_subset)
 Use `filter()` to keep only rows that meet certain conditions. You can combine conditions with `&` (AND) and `|` (OR):
 
 ```{r}
+#| echo: true
 # Select only Adelie penguins
 adelie_only <- filter(penguins, species == "Adelie")
 
@@ -139,6 +161,7 @@ head(adelie_only)
 ```
 
 ```{r}
+#| echo: true
 # Select Adelie penguins from Torgersen island
 adelie_torgersen <- filter(penguins, 
                             species == "Adelie" & 
@@ -148,6 +171,7 @@ head(adelie_torgersen)
 ```
 
 ```{r}
+#| echo: true
 # Select penguins from Biscoe, Dream, OR Torgersen islands
 three_islands <- filter(penguins, 
                         island == "Biscoe" | 
@@ -162,18 +186,24 @@ head(three_islands)
 ```
 
 **Common comparison operators:**
-- `==` equals
-- `!=` not equals
-- `>` greater than
-- `<` less than
-- `>=` greater than or equal to
-- `<=` less than or equal to
+
+:::{}
+
+* `==` equals
+* `!=` not equals
+* `>` greater than
+* `<` less than
+* `>=` greater than or equal to
+* `<=` less than or equal to
+
+:::
 
 ## Creating and Modifying Variables
 
 Use `mutate()` to create new columns or modify existing ones:
 
 ```{r}
+#| echo: true
 # Convert body mass from grams to kilograms
 # Convert flipper length from mm to cm
 penguins_converted <- mutate(penguins,
@@ -190,6 +220,7 @@ select(penguins_converted, species, body_mass_g, body_mass_kg,
 The `ifelse()` function helps you create categorical variables based on conditions:
 
 ```{r}
+#| echo: true
 # Create a size category based on body mass
 penguins_sized <- mutate(penguins,
                          size = ifelse(body_mass_g > 4500,
@@ -201,6 +232,7 @@ select(penguins_sized, species, body_mass_g, size) %>%
 ```
 
 ```{r}
+#| echo: true
 # Create a new island variable with simplified names
 penguins_recoded <- mutate(penguins,
                            island_short = ifelse(island %in% c("Biscoe", "Dream"),
@@ -212,6 +244,7 @@ select(penguins_recoded, island, island_short) %>%
 ```
 
 ```{r}
+#| echo: true
 # Set extreme values to missing (NA)
 penguins_cleaned <- mutate(penguins,
                            bill_length_mm = ifelse(bill_length_mm < 30 | 
@@ -225,6 +258,7 @@ penguins_cleaned <- mutate(penguins,
 Use `summarize()` to calculate summary statistics. Combine it with `group_by()` to get statistics for each group:
 
 ```{r}
+#| echo: true
 # Calculate overall mean flipper length and body mass
 summary_stats <- summarize(penguins,
                           mean_flipper = mean(flipper_length_mm, na.rm = TRUE),
@@ -233,9 +267,14 @@ summary_stats <- summarize(penguins,
 summary_stats
 ```
 
-**Note**: The `na.rm = TRUE` option tells R to ignore missing values when calculating means.
+:::{.callout-note} 
+
+The `na.rm = TRUE` option tells R to ignore missing values when calculating means.
+
+:::
 
 ```{r}
+#| echo: true
 # Calculate mean flipper length and body mass by species
 species_summary <- penguins %>%
   group_by(species) %>%
@@ -247,6 +286,7 @@ species_summary
 ```
 
 ```{r}
+#| echo: true
 # Calculate statistics by species AND island
 detailed_summary <- penguins %>%
   group_by(species, island) %>%
@@ -265,6 +305,7 @@ Many visualizations work best with summarized data rather than raw observations.
 The pipe operator `%>%` (or `|>` in newer R versions) lets you chain operations together, making your code cleaner and easier to read:
 
 ```{r}
+#| echo: true
 # Without pipes - harder to read
 temp1 <- filter(penguins, species == "Adelie")
 temp2 <- group_by(temp1, island)
@@ -274,6 +315,7 @@ result
 ```
 
 ```{r}
+#| echo: true
 # With pipes - much clearer!
 result <- penguins %>%
   filter(species == "Adelie") %>%
@@ -290,6 +332,9 @@ The pipe takes the output from the left side and passes it as the first argument
 Dates often come into R as text. The `lubridate` package makes it easy to convert them to proper date format:
 
 ```{r}
+#| echo: true
+#| warning: false
+#| message: false
 library(lubridate)
 
 # Create a sample dataset with dates in various formats
@@ -303,6 +348,7 @@ str(sample_dates)
 ```
 
 ```{r}
+#| echo: true
 # Convert to proper date format
 sample_dates$birth_date <- mdy(sample_dates$birth_date)
 
@@ -311,13 +357,18 @@ str(sample_dates)
 ```
 
 Common date conversion functions:
-- `ymd()` for year-month-day format (2024-01-15)
-- `mdy()` for month-day-year format (01/15/2024)
-- `dmy()` for day-month-year format (15-01-2024)
+:::{}
+
+* `ymd()` for year-month-day format (2024-01-15)
+* `mdy()` for month-day-year format (01/15/2024)
+* `dmy()` for day-month-year format (15-01-2024)
+
+:::
 
 Once converted, you can do date arithmetic and extract components:
 
 ```{r}
+#| echo: true
 # Calculate age in years
 sample_dates$age <- as.numeric(difftime(Sys.Date(), 
                                         sample_dates$birth_date, 
@@ -333,6 +384,7 @@ Some analyses require data in "wide" format, others need "long" format.
 **Wide format** (each measurement type gets its own column):
 
 ```{r}
+#| echo: true
 # Create example wide data
 wide_data <- data.frame(
   id = c("P01", "P02", "P03"),
@@ -347,6 +399,8 @@ wide_data
 **Long format** (all measurements in one column):
 
 ```{r}
+#| echo: true
+#| warning: false
 library(tidyr)
 
 # Convert wide to long
@@ -361,6 +415,7 @@ long_data
 **Converting back to wide:**
 
 ```{r}
+#| echo: true
 # Convert long to wide
 back_to_wide <- pivot_wider(long_data,
                             names_from = measurement,
@@ -380,11 +435,13 @@ Real-world data usually contains missing values. There are three main approaches
 First, see how much data is missing:
 
 ```{r}
+#| echo: true
 # Count missing values in each column
 colSums(is.na(penguins))
 ```
 
 ```{r}
+#| echo: true
 # Calculate percentage missing
 missing_pct <- colSums(is.na(penguins)) / nrow(penguins) * 100
 round(missing_pct, 1)
@@ -392,11 +449,12 @@ round(missing_pct, 1)
 
 ## Approach 1: Remove Variables with Too Many Missing Values
 
-If a variable has too many missing values (say, >50%), it might not be useful:
+If a variable has too many missing values, it might not be useful. But in small quantities, it could be justified. Below is an example of how you can approach this in terms of percentage of NA values:
 
 ```{r}
-# Remove columns with more than 5% missing data
-threshold <- 0.05
+#| echo: true
+# Remove columns with more than 1% missing data
+threshold <- 0.01
 missing_prop <- colSums(is.na(penguins)) / nrow(penguins)
 
 penguins_cleaned <- penguins %>%
@@ -406,11 +464,14 @@ ncol(penguins)  # original number of columns
 ncol(penguins_cleaned)  # after removal
 ```
 
+As we can see, one column was removed as it had more NA values than the threshold of 1%. This threshold was arbitrarily selected by me for demonstrative purposes. In real analyses, you must justify this step and threshold you set.
+
 ## Approach 2: Listwise Deletion
 
 Remove any rows that contain missing values:
 
 ```{r}
+#| echo: true
 # Create dataset with only complete cases
 penguins_complete <- penguins %>%
   select(species, bill_length_mm, bill_depth_mm, body_mass_g) %>%
@@ -420,13 +481,16 @@ nrow(penguins)  # original rows
 nrow(penguins_complete)  # after deletion
 ```
 
-**Warning**: This can remove a lot of data if missingness is spread across many rows!
+:::{.callout-warning}
+This can remove a lot of data if missingness is spread across many rows!
+:::
 
 ## Approach 3: Imputation
 
 Imputation means replacing missing values with educated guesses. The `VIM` package offers sophisticated methods:
 
 ```{r}
+#| echo: true
 #| eval: false
 library(VIM)
 
@@ -436,7 +500,9 @@ penguins_imputed <- kNN(penguins, k = 5)
 
 This method finds the 5 most similar complete cases and uses their median (for numeric variables) or most common value (for categorical variables) to fill in the missing data.
 
-**Important**: Missing data can seriously bias your results. If you have substantial missing data, consult with a statistician before deciding how to handle it.
+:::{.callout-important}
+Missing data can seriously bias your results. If you have substantial missing data, consult with a statistician before deciding how to handle it.
+:::
 
 ## Best Practices for Missing Data
 
@@ -450,11 +516,13 @@ This method finds the 5 most similar complete cases and uses their median (for n
 Here's a complete workflow combining multiple operations:
 
 ```{r}
+#| echo: true 
 #| message: false
+#| warning: false
+
 library(dplyr)
 library(palmerpenguins)
 
-# Complete data preparation pipeline
 analysis_data <- penguins %>%
   # 1. Remove year column
   select(-year) %>%
@@ -479,20 +547,7 @@ analysis_data <- penguins %>%
 analysis_data
 ```
 
-# Summary
-
-You've learned how to:
-
-- Import data from CSV, text, Excel, and statistical software files
-- Select specific columns and filter rows
-- Create and recode variables
-- Summarize data by groups
-- Use pipes to chain operations together
-- Work with dates
-- Reshape data between wide and long formats
-- Handle missing values appropriately
-
-These data preparation skills form the foundation for all data analysis and visualization work in R.
+These data preparation skills form the foundation for all data analysis and visualization work in R, so keep them in mind for your projects!
 
 # Practice Exercises
 

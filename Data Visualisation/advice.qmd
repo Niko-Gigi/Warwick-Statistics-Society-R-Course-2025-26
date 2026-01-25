@@ -56,6 +56,10 @@ Let us now go through an example of chart junk.
 ### Graph with chart junk
 
 ```{r}
+#| echo: true 
+#| message: false
+#| warning: false
+
 # Import relevant libraries
 library(ggplot2)
 library(dplyr)
@@ -68,6 +72,10 @@ summarise(mean_mpg = mean(mpg))
 ```
 
 ```{r Graph with chart junk, fig.cap="Graph with chart junk from the mtcars dataset"}
+#| echo: true 
+#| message: false
+#| warning: false
+
 # LOTS of plotting elements from ggplot2, see the page about ggplot2 for more background on these
 ggplot(mpg_summary, aes(x = cyl, y = mean_mpg, fill = cyl)) +
 geom_col(color = "black", width = 0.8) +
@@ -87,12 +95,15 @@ plot.title = element_text(size = 16, face = "bold")
 ```
 
 If the goal is to compare the fuel efficiency of cars with different numbers of cylinders, much of this visualization is unnecessary and distracts from the task:
+:::
 
--   Colored background and thick border draw attention away from the bars
--   Heavy black grid lines dominate the data
--   Color fill adds a legend but **doesn’t encode new information**
--   Wordy title (“different”, “numbers of”) adds clutter
--   The reader must constantly look back and forth between the bars and y-axis
+* Colored background and thick border draw attention away from the bars
+* Heavy black grid lines dominate the data
+* Color fill adds a legend but **doesn’t encode new information**
+* Wordy title (“different”, “numbers of”) adds clutter
+* The reader must constantly look back and forth between the bars and y-axis
+
+:::
 
 **QUESTION FOR THE READER**
 
@@ -101,6 +112,10 @@ Let's now try to clean up. But before we do, how would **YOU** clean this up?
 ### Graph with chart junk removed
 
 ```{r Graph with chart junk removed, fig.cap="Graph with chart junk removed from the mtcars dataset"}
+#| echo: true 
+#| message: false
+#| warning: false
+
 # A better plot using ggplot2 again
 ggplot(mpg_summary, aes(x = cyl, y = mean_mpg)) +
 geom_col(fill = "grey70", width = 0.6) +
@@ -128,12 +143,12 @@ panel.grid.minor = element_blank()
 
 The chart junk has been removed. In addition:
 
--   X-axis label removed (cylinder categories are obvious)
--   Y-axis label made more informative
--   the title has been simplified
--   One bar (8 cylinders) highlighted to aid comparison
--   Values added directly to bars, reducing reliance on the axis
--   Grid lines softened or removed to avoid distraction
+* X-axis label removed (cylinder categories are obvious)
+* Y-axis label made more informative
+* the title has been simplified
+* One bar (8 cylinders) highlighted to aid comparison
+* Values added directly to bars, reducing reliance on the axis
+* Grid lines softened or removed to avoid distraction
 
 I may or may not have gone a bit far leaving out the x-axis label. It’s a fine line, knowing when to stop simplifying.
 
@@ -143,21 +158,28 @@ In general, you want to reduce chart junk to a minimum. In other words, more sig
 
 Color choice is about more than aesthetics. Choose colors that help convey the information contained in the plot.
 
-The article *How to Choose Colors for Data Visualizations* by Mike Yi\
-([link](https://chartio.com/learn/charts/how-to-choose-colors-data-visualization)) is a great place to start.
+The article *How to Choose Colors for Data Visualizations* by Mike Yi ([link](https://chartio.com/learn/charts/how-to-choose-colors-data-visualization)) is a great place to start.
 
 Basically, think about selecting among sequential, diverging, and qualitative color schemes:
 
--   **Sequential** — for plotting a quantitative variable that goes from low to high
--   **Diverging** — for contrasting the extremes (low, medium, and high) of a quantitative variable
--   **Qualitative** — for distinguishing among the levels of a categorical variable
+:::
+
+* **Sequential** — for plotting a quantitative variable that goes from low to high
+* **Diverging** — for contrasting the extremes (low, medium, and high) of a quantitative variable
+* **Qualitative** — for distinguishing among the levels of a categorical variable
+
+:::
 
 The article above can help you to choose among these schemes.
 
 Other things to keep in mind:
 
--   Make sure that text is legible — avoid dark text on dark backgrounds, light text on light backgrounds, and colors that clash in a discordant fashion (i.e., they hurt to look at!)
--   Avoid combinations of red and green — it can be difficult for a colorblind audience to distinguish these colors
+:::
+
+*  Make sure that text is legible — avoid dark text on dark backgrounds, light text on light backgrounds, and colors that clash in a discordant fashion (i.e., they hurt to look at!)
+*  Avoid combinations of red and green — it can be difficult for a colorblind audience to distinguish these colors
+
+:::
 
 ## y-Axis scaling
 
@@ -166,6 +188,10 @@ This is a big one. You can make an effect seem massive or insignificant dependin
 Consider the following example comparing the 9-month salaries of male and female assistant professors. The data come from the Academic Salaries dataset.
 
 ```{r load-salary-data, message=FALSE, warning=FALSE}
+#| echo: true 
+#| message: false
+#| warning: false
+
 # More library imports
 library(carData)
 library(scales)
@@ -191,6 +217,10 @@ df
 Now let us plot the data:
 
 ```{r}
+#| echo: true 
+#| message: false
+#| warning: false
+
 # Create a base plot
 p <- ggplot(df, aes(x = sex, y = mean, group = 1)) +
   geom_point(size = 4) +
@@ -214,6 +244,10 @@ p
 Great, now what if we plot the same data, but with the y-axis ranging from 77,000 to 82,000?
 
 ```{r plot-narrow-y, fig.cap="Plot with limited range of Y"}
+#| echo: true 
+#| message: false
+#| warning: false
+
 # Using ggplot2's feature of "adding" and "subtracting" features!
 p + scale_y_continuous(limits = c(77000, 82000))
 ```
@@ -221,6 +255,10 @@ p + scale_y_continuous(limits = c(77000, 82000))
 There now appears to be a very large gender difference! Now let us try to plot with the y-axis ranging from 0 to 125,000:
 
 ```{r plot-wide-y, fig.cap="Plot with wider range of Y"}
+#| echo: true 
+#| message: false
+#| warning: false
+
 # Same as the above code snippet!
 p + scale_y_continuous(limits = c(0, 125000))
 ```
@@ -232,6 +270,10 @@ There doesn’t appear to be any gender difference! The goal of ethical data vis
 Some data might look better if we plot them on a different y-axis scale! Let us look at the `airquality` dataset:
 
 ```{r}
+#| echo: true 
+#| message: false
+#| warning: false
+
 # Setup of the new dataset we will be using
 ozone_summary <- airquality |>
 filter(!is.na(Ozone)) |>
@@ -247,6 +289,10 @@ ci = qt(0.975, df = n - 1) * se
 ```
 
 ```{r, fig.cap="Plot showing the difference between the normal and log scale"}
+#| echo: true 
+#| message: false
+#| warning: false
+
 # Using ggplot for the linear and log scale plots
 p_linear <- ggplot(ozone_summary, aes(x = factor(Month), y = mean)) +
 geom_col(fill = "grey70", width = 0.6) +

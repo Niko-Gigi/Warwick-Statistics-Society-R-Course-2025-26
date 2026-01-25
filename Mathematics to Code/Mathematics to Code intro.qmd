@@ -15,7 +15,7 @@ format:
 ---
 
 ::: {.callout-quote title="Henri Poincaré"}
-*"Mathematicians do not deal in objects, but in relations between objects; thus, they are free to replace some objects by others so lone as the relations remain unchanged. Content to them is irrelevant; they are interested in form only."*
+*"Mathematicians do not deal in objects, but in relations between objects; thus, they are free to replace some objects by others so lone as the relations remain unchanged. Content to them is irrelevant; they are interested in form only."* - Henri Poincaré
 :::
 
 This section goes through the process of transforming a mathematical problem into code. We will connect abstract ideas in mathematics to practical code, with focus on algorithmic thinking, problem decomposition, and structural clarity.

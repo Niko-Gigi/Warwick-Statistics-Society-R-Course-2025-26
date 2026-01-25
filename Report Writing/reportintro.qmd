@@ -1,59 +1,34 @@
 ---
 title: "Introduction to Report Writing"
+author: 
+  name: Niko Gigiberia
+  email: Niko.gigiberia@warwick.ac.uk
 format: 
   html:
-    fig-width: 12
-    fig-height: 6
+    fig-width: 10
+    fig-height: 5
     code-fold: show
     code-tools: true
-    code-block-bg: true
-    code-block-border-left: "#31BAE9"
     toc: true
     code-copy: true
     number_sections: true
-    echo: fenced
-engine: knitr
-editor: visual
 ---
 
 ::: {.callout-quote title="Henri Poincaré"}
-*"We have the duty of formulating, of summarizing, and of communicating our conclusions, in intelligible form, in recognition of the right of other free minds to utilize them in making their own decisions."*
+*"We have the duty of formulating, of summarizing, and of communicating our conclusions, in intelligible form, in recognition of the right of other free minds to utilize them in making their own decisions."* — Henri Poincaré
 :::
 
-In this section, we will be going though report writing techniques and conventions that will help in you ST117 final project, and the entirety of ST231. Specifically, the pages cover the following:
+The subsections here will introduce core principles of **statistical report writing**, with a focus on clarity, structure, and effective communication. These conventions are directly relevant to the **ST117 final project**, **ST231**, and more broadly to academic and professional statistical writing.
 
--   Structuring your Report
+Good report writing is not about adding complexity, but about presenting results in a way that allows the reader to understand *what was done*, *why it was done*, and *what the results mean*, without ambiguity or unnecessary detail.
 
-    -   <div>
+This section covers:
 
-        Reporting descriptive statistics
+:::{}
 
-        </div>
+* structuring a statistical report,
+* reporting descriptive statistics clearly and appropriately, reporting numerical values and choosing suitable precision, presenting data using tables and graphs,
+* use of English in technical writing, stylistic conventions in statistics,
+* appropriate use of large language models and other generative AI tools.
 
-    -   <div>
-
-        Reporting numbers: how many decimal places?
-
-        </div>
-
-    -   <div>
-
-        Presenting your data: tables and graphs
-
-        </div>
-
--   Styling your Report
-
-    -   <div>
-
-        Use of English
-
-        </div>
-
--   Proper use of Large Language, and other generative AI models
-
-<div>
-
-Presenting the results of a statistical test 1 Summary 2 2 Introduction 2 3 Structure 2 3.1 Title . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3 3.2 Summary/Abstract . . . . . . . . . . . . . . . . . . . . . . . . . . 3 3.3 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3 3.4 Methods . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3 3.5 Results, conclusions and recommendations . . . . . . . . . . . . . 4 3.6 General discussion . . . . . . . . . . . . . . . . . . . . . . . . . . 4 3.7 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5 3.8 Appendix . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5 4 Content 5 5 Presentation 5 5.1 Figures, Plots, diagrams, etc. . . . . . . . . . . . . . . . . . . . . 5 5.2 Tables . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6 5.3 Computer output . . . . . . . . . . . . . . . . . . . . . . . . . . . 6 6 Use of English 6 7 Style 7 8 Detailed Preparation 8 9 Afterwards 8
-
-</div>
+:::

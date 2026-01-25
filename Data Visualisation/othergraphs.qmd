@@ -24,7 +24,10 @@ We'll explore:
 Let's load our packages:
 
 ```{r}
+#| echo: true 
 #| message: false
+#| warning: false
+
 library(ggplot2)
 library(palmerpenguins)
 library(dplyr)
@@ -39,7 +42,10 @@ When you want to show three continuous variables simultaneously, bubble charts a
 Let's explore the relationship between penguin flipper length, body mass, and bill length:
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 ggplot(penguins, aes(x = flipper_length_mm, 
                      y = body_mass_g,
                      size = bill_length_mm)) +
@@ -55,7 +61,10 @@ ggplot(penguins, aes(x = flipper_length_mm,
 Let's improve this with better styling and add a fourth variable (species) using color:
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 ggplot(penguins, aes(x = flipper_length_mm,
                      y = body_mass_g,
                      size = bill_length_mm,
@@ -74,7 +83,11 @@ ggplot(penguins, aes(x = flipper_length_mm,
 
 The `scale_size_continuous(range = c(2, 12))` controls the minimum and maximum bubble sizes.
 
-**Note**: Bubble charts are controversial because humans are better at judging length than area. Use them when the approximate relationship is more important than exact values.
+:::{.callout-note}
+
+ Bubble charts are controversial because humans are better at judging length than area. Use them when the approximate relationship is more important than exact values.
+
+ :::
 
 # Correlation Heatmaps
 
@@ -85,8 +98,10 @@ Heatmaps display data values as colored cells, making patterns immediately visib
 Let's visualize correlations between penguin measurements:
 
 ```{r}
-#| warning: false
+#| echo: true 
 #| message: false
+#| warning: false
+
 # Prepare data - select numeric columns only
 penguin_numeric <- penguins %>%
   select(bill_length_mm, bill_depth_mm, 
@@ -120,43 +135,15 @@ ggplot(cor_long, aes(x = var1, y = var2, fill = correlation)) +
 
 Strong positive correlations appear in red, negative correlations in blue, and weak correlations in white.
 
-## Clustered Heatmap for Groups
-
-Let's create a heatmap showing average measurements by species:
-
-```{r}
-#| warning: false
-# Calculate means by species
-species_means <- penguins %>%
-  group_by(species) %>%
-  summarise(
-    avg_bill_length = mean(bill_length_mm, na.rm = TRUE),
-    avg_bill_depth = mean(bill_depth_mm, na.rm = TRUE),
-    avg_flipper = mean(flipper_length_mm, na.rm = TRUE),
-    avg_mass = mean(body_mass_g, na.rm = TRUE)
-  ) %>%
-  pivot_longer(cols = -species, 
-               names_to = "measurement",
-               values_to = "value")
-
-# Create heatmap with scaled values
-ggplot(species_means, aes(x = measurement, y = species, fill = value)) +
-  geom_tile(color = "white", linewidth = 1) +
-  geom_text(aes(label = round(value, 0)), color = "white", size = 5) +
-  scale_fill_viridis_c(option = "plasma") +
-  labs(title = "Average Measurements by Penguin Species",
-       x = "", y = "", fill = "Value") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-```
-
 # Scatterplot Matrices
 
 A scatterplot matrix shows relationships between multiple variables in a grid format. It's like seeing all possible pairs of scatterplots at once.
 
 ```{r}
-#| warning: false
+#| echo: true 
 #| message: false
+#| warning: false
+
 library(GGally)
 
 # Select variables for the matrix
@@ -174,17 +161,23 @@ ggpairs(penguin_subset,
 ```
 
 **Reading the matrix**:
-- **Diagonal**: Distribution of each variable
-- **Lower triangle**: Scatterplots (row variable on y-axis, column variable on x-axis)
-- **Upper triangle**: Correlation coefficients
+:::
+
+* **Diagonal**: Distribution of each variable
+* **Lower triangle**: Scatterplots (row variable on y-axis, column variable on x-axis)
+* **Upper triangle**: Correlation coefficients
+
+:::
 
 ## Custom Scatterplot Matrix
 
 You can customize the appearance with your own functions:
 
 ```{r}
-#| warning: false
+#| echo: true 
 #| message: false
+#| warning: false
+
 # Custom function for density plots
 my_density <- function(data, mapping, ...) {
   ggplot(data = data, mapping = mapping) + 
@@ -220,8 +213,10 @@ Alluvial diagrams (also called Sankey diagrams) show how categorical variables r
 Let's examine how penguins are distributed across species, islands, and sex:
 
 ```{r}
-#| warning: false
+#| echo: true 
 #| message: false
+#| warning: false
+
 library(ggalluvial)
 
 # Prepare data
@@ -249,17 +244,25 @@ ggplot(penguin_flows,
 ```
 
 **How to read this**:
-- Start on the left with species
-- Follow the flows to see how each species is distributed across islands
-- Continue following to see the sex distribution
-- Flow width represents the number of penguins
+
+:::
+
+* Start on the left with species
+* Follow the flows to see how each species is distributed across islands
+* Continue following to see the sex distribution
+* Flow width represents the number of penguins
+
+:::
 
 ## Enhanced Alluvial Diagram
 
 Let's create a more detailed version with better styling:
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 ggplot(penguin_flows,
        aes(axis1 = species,
            axis2 = island,
@@ -289,7 +292,10 @@ ggplot(penguin_flows,
 Waterfall charts illustrate the cumulative effect of sequential positive and negative values. They're commonly used in finance but work for any cumulative process.
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 library(waterfalls)
 
 # Create sample budget data
@@ -311,7 +317,10 @@ waterfall(budget) +
 Let's add a total column to show the final balance:
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 waterfall(budget,
           calc_total = TRUE,
           total_axis_text = "Remaining",
@@ -328,10 +337,13 @@ This shows clearly how the initial grant is allocated across different expenses.
 
 # Advanced Heatmap: Time Series
 
-Heatmaps are excellent for visualizing changes over time. Let's create one using economic data:
+Heatmaps can be good for visualizing changes over time. Let's create one using economic data:
 
 ```{r}
+#| echo: true 
+#| message: false
 #| warning: false
+
 # Prepare time series data
 econ_monthly <- economics %>%
   mutate(year = lubridate::year(date),
@@ -371,21 +383,10 @@ This reveals seasonal patterns and trends across years.
 1. **Overcomplicating**: Don't use specialized charts when simple ones work better
 2. **Too many variables**: Even specialized charts have limits (typically 4-8 variables)
 3. **Poor scaling**: Always consider rescaling variables for fair comparisons
-4. **Missing context**: These charts often need extra explanation—add subtitles and annotations
+4. **Missing context**: These charts often need extra explanation, so do add subtitles and annotations
 5. **Wrong tool**: Make sure your chart type matches your data structure
 
-# Practical Applications
-
-**Bubble Charts**: Comparing countries on GDP, population, and life expectancy
-
-**Heatmaps**: Showing gene expression levels, website traffic patterns, correlation matrices
-
-**Scatterplot Matrices**: Initial data exploration in multivariate analysis
-
-**Alluvial Diagrams**: Customer journey maps, migration patterns, survey flow analysis
-
-**Waterfall Charts**: Budget tracking, profit/loss statements, inventory changes
-
+The key is knowing when to use each technique. Start simple, and only use these specialized charts when they truly add insight that simpler visualizations can't provide.
 
 # Practice Exercises
 
@@ -395,23 +396,8 @@ This reveals seasonal patterns and trends across years.
 4. Create a scatterplot matrix colored by penguin sex
 5. Make a waterfall chart showing hypothetical monthly savings (mix of income and expenses)
 
-# Summary
-
-Specialized visualizations extend your analytical toolkit beyond basic charts. You've learned:
-
-- How to display three or more variables using bubble charts
-- Creating heatmaps for patterns and correlations
-- Building scatterplot matrices for comprehensive exploration
-- Using alluvial diagrams for categorical flows
-- Making waterfall charts for cumulative effects
-- Creating radar charts for multi-dimensional comparisons
-
-The key is knowing when to use each technique. Start simple, and only use these specialized charts when they truly add insight that simpler visualizations can't provide.
-
 # Further Resources
 
 - [ggplot2 Extensions Gallery](https://exts.ggplot2.tidyverse.org/)
 - [R Graph Gallery](https://r-graph-gallery.com/)
-- [Data Visualization with R](https://rkabacoff.github.io/datavis/)
-- [The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi) by Edward Tufte
 - [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/) by Claus Wilke

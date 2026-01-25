@@ -20,24 +20,26 @@ Bivariate analysis allows us to investigate relationships, correlations, and dif
 
 
 
-# 1. Categorical vs. Categorical
+# Categorical vs. Categorical
 
 When both variables are categorical (e.g., "Species" and "Island"), we are essentially comparing counts or proportions. The most effective tools here are variants of the bar chart.
 
 For this section, we will use the `penguins` dataset to explore the relationship between **Island** and **Species**.
 
-## 1.1 Stacked Bar Charts
+## Stacked Bar Charts
 
 The default behavior of a bar chart in `ggplot2` is to stack categories on top of one another. This gives you a sense of the total count while showing the breakdown of subgroups.
 
 ```{r Data Penguins}
+#| echo: true 
+#| message: false
+#| warning: false
+
 library(ggplot2)
 library(palmerpenguins)
 
 penguins <- palmerpenguins::penguins
 penguins <- na.omit(penguins)
-
-head(penguins)
 
 # Stacked bar chart
 ggplot(penguins, aes(x = island, fill = species)) + 
@@ -48,11 +50,15 @@ ggplot(penguins, aes(x = island, fill = species)) +
 
 From this chart, we can quickly see that Biscoe island has the most penguins overall, and Torgersen island is exclusively inhabited by Adelie penguins.
 
-## 1.2 Grouped Bar Charts
+## Grouped Bar Charts
 
-If you want to compare the specific counts of species side-by-side, the "dodged" bar chart is preferred. It un-stacks the bars and places them next to each other.
+If you want to compare the specific counts of species side-by-side, the "grouped bar chart is preferred. It un-stacks the bars and places them next to each other.
 
 ```{r Penguins 1}
+#| echo: true 
+#| message: false
+#| warning: false
+
 # Grouped bar chart
 ggplot(penguins, aes(x = island, fill = species)) + 
   geom_bar(position = "dodge") +
@@ -60,13 +66,21 @@ ggplot(penguins, aes(x = island, fill = species)) +
 
 ```
 
-**Note:** By default, if a category has zero observations (like Chinstrap penguins on Biscoe), the bar is omitted, and the remaining bars expand to fill the space. If you want to preserve the width and show the gap, use `position_dodge(preserve = "single")`.
+:::{.callout-note}
 
-## 1.3 Segmented (100% Fill) Bar Charts
+By default, if a category has zero observations (like Chinstrap penguins on Biscoe), the bar is omitted, and the remaining bars expand to fill the space. If you want to preserve the width and show the gap, use `position_dodge(preserve = "single")`.
+
+:::
+
+## Segmented (100% Fill) Bar Charts
 
 Sometimes, raw counts matter less than percentages. If we want to know "What proportion of penguins on Dream Island are Chinstraps?", we use the "fill" position. This stretches every bar to 100%.
 
 ```{r Penguins 2}
+#| echo: true 
+#| message: false
+#| warning: false
+
 library(scales)
 
 # Segmented bar chart
@@ -78,11 +92,15 @@ ggplot(penguins, aes(x = island, fill = species)) +
 
 ```
 
-## 1.4 Adding Labels
+## Adding Labels
 
 A segmented bar chart is most effective when the actual percentages are written on the plot. To do this, we must first calculate the percentages manually using `dplyr`, and then plot the summary data.
 
 ```{r Penguins 3}
+#| echo: true 
+#| message: false
+#| warning: false
+
 library(dplyr)
 
 # 1. Create a summary table with labels
@@ -104,16 +122,20 @@ ggplot(plotdata, aes(x = island, y = pct, fill = species)) +
   theme_minimal()
 ```
 
-# 2. Quantitative vs. Quantitative
+# Quantitative vs. Quantitative
 
 When both variables are numeric (e.g., Flipper Length vs. Body Mass), we are looking for correlations or trends.
 
-## 2.1 Scatterplots
+## Scatterplots
 
 The scatterplot is the standard for bivariate quantitative data. Let's look at the relationship between **Flipper Length** and **Body Mass**.
 
 ```{r Penguins 4}
-# Enhanced scatterplot
+#| echo: true 
+#| message: false
+#| warning: false
+
+# Scatterplot
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + 
   geom_point(color = "cornflowerblue", size = 2, alpha = 0.6) + 
   labs(title = "Flipper Length vs. Body Mass",
@@ -123,49 +145,17 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 
 ```
 
-## 2.2 Adding Trend Lines
 
-To summarize the relationship, we can add a trend line using `geom_smooth()`.
-
-### Linear Fit
-
-The most common approach is a straight linear regression line (`method = "lm"`).
-
-```{r}
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + 
-  geom_point(color = "cornflowerblue", alpha = 0.6) + 
-  geom_smooth(method = "lm", color = "black", size = 1) +
-  labs(title = "Linear Relationship")
-
-```
-
-### Polynomial and Loess Curves
-
-Not all data is linear. Sometimes relationships curve.
-
-* **Polynomial:** Uses a formula (e.g., quadratic) to fit a curve.
-* **Loess:** A non-parametric method that follows the data locally. This is the default in `ggplot2` for smaller datasets.
-
-Let's look at a different dataset, `gapminder`, to see a curved relationship between **GDP per Capita** and **Life Expectancy**.
-
-```{r}
-library(gapminder)
-
-# Loess Curve (Standard Smoothing)
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) + 
-  geom_point(alpha = 0.3, color = "darkcyan") + 
-  geom_smooth(method = "loess", color = "red") + 
-  scale_x_log10(labels = scales::dollar) + # Log scale helps visualize GDP
-  labs(title = "GDP vs Life Expectancy (Loess Fit)",
-       subtitle = "Note the logarithmic X axis")
-
-```
-
-## 2.3 Time Series (Line Plots)
+## Time Series (Line Plots)
 
 If one of your quantitative variables is **Time**, a line plot is the standard choice. Below is the change in Life Expectancy in the United States over time.
 
 ```{r}
+#| echo: true 
+#| message: false
+#| warning: false
+
+library(gapminder)
 # Filter for US data
 us_data <- filter(gapminder, country == "United States")
 
@@ -179,15 +169,21 @@ ggplot(us_data, aes(x = year, y = lifeExp)) +
 
 ```
 
-# 3. Categorical vs. Quantitative
+Times series are discussed in greater detail on the time series page.
+
+# Categorical vs. Quantitative
 
 This is perhaps the most common analysis type: comparing a numerical value across different groups.
 
-## 3.1 Bar Charts (Summary Statistics)
+## Bar Charts
 
 We can plot the **Mean** of a variable for each group. Here, we calculate the average body mass for each penguin species.
 
 ```{r}
+#| echo: true 
+#| message: false
+#| warning: false
+
 # Calculate means
 mean_data <- penguins %>%
   group_by(species) %>%
@@ -203,9 +199,14 @@ ggplot(mean_data, aes(x = species, y = mean_mass)) +
 
 ```
 
-**Warning:** Bar charts of means can be misleading because they hide the spread of the data. A species with highly variable weights looks the same as a species with consistent weights.
+:::{.callout-caution}
 
-## 3.2 Distributions: Boxplots and Violins
+Bar charts of means can be misleading because they hide the spread of the data. A species with highly variable weights looks the same as a species with consistent weights.
+
+:::
+
+
+## Distributions: Boxplots and Violins
 
 To see the spread, we use distribution plots.
 
@@ -214,6 +215,10 @@ To see the spread, we use distribution plots.
 Boxplots summarize the distribution using quartiles. They show the median, the IQR (Interquartile Range), and outliers.
 
 ```{r}
+#| echo: true 
+#| message: false
+#| warning: false
+
 ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) + 
   geom_boxplot(alpha = 0.6) + 
   labs(title = "Body Mass Distribution by Species") +
@@ -227,6 +232,10 @@ ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
 Violin plots show the "density" of the data. The wider the violin, the more data points exist at that value.
 
 ```{r}
+#| echo: true 
+#| message: false
+#| warning: false
+
 ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) + 
   geom_violin(trim = FALSE, alpha = 0.6) + 
   geom_boxplot(width = 0.1, fill = "white") + # Add boxplot inside for reference
@@ -236,11 +245,15 @@ ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
 
 ```
 
-## 3.3 Ridgeline Plots
+## Ridgeline Plots
 
 Ridgeline plots (or "Joyplots") are excellent when you have many categories. They display density curves stacked vertically.
 
 ```{r}
+#| echo: true 
+#| message: false
+#| warning: false
+
 library(ggridges)
 
 ggplot(penguins, aes(x = body_mass_g, y = species, fill = species)) + 
@@ -251,11 +264,15 @@ ggplot(penguins, aes(x = body_mass_g, y = species, fill = species)) +
 
 ```
 
-## 3.4 Mean with Error Bars
+## Mean with Error Bars
 
 Scientific publications often require plots showing the Mean +/- the Standard Error (SEM) or Confidence Interval.
 
 ```{r}
+#| echo: true 
+#| message: false
+#| warning: false
+
 # Calculate stats
 summary_stats <- penguins %>%
   group_by(species, sex) %>%
@@ -279,11 +296,15 @@ ggplot(summary_stats, aes(x = species, y = mean, color = sex, group = sex)) +
 
 ```
 
-## 3.5 Jitter and Strip Plots
+## Jitter and Strip Plots
 
 If your dataset isn't massive, the most honest way to show the data is to show **all** the points. To prevent points from overlapping, we "jitter" them (add random noise).
 
 ```{r}
+#| echo: true 
+#| message: false
+#| warning: false
+
 ggplot(penguins, aes(x = species, y = body_mass_g, color = species)) + 
   geom_jitter(width = 0.2, alpha = 0.6) + 
   stat_summary(fun = mean, geom = "point", shape = 95, size = 10, color = "black") + # Add mean bar
@@ -293,13 +314,17 @@ ggplot(penguins, aes(x = species, y = body_mass_g, color = species)) +
 
 ```
 
-## 3.6 Cleveland Dot Plots (Lollipop Charts)
+## Cleveland Dot Plots (Lollipop Charts)
 
 When comparing a numeric value across many categories (like countries), a bar chart becomes cluttered. A Cleveland dot plot (or lollipop chart) is a cleaner alternative.
 
 Let's look at Life Expectancy in the Americas in 2007.
 
 ```{r}
+#| echo: true 
+#| message: false
+#| warning: false
+
 # Prepare data
 americas <- gapminder %>% 
   filter(continent == "Americas" & year == 2007)

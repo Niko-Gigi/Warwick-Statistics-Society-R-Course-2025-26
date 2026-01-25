@@ -12,22 +12,21 @@ format:
     code-copy: true
     number_sections: true
     echo: fenced
+    mathjax: true
 engine: knitr
-editor: visual
 ---
 
 # Mathematical Intuition
 
-Recall from Sets and Numbers the Euclidean algorithm where we want to find the greatest common divisor (GCD) of two integers (a, b):
-
-```{=latex}
-\gcd(a,b) = \begin{cases}
+Recall from Sets and Numbers the Euclidean algorithm where we want to find the greatest common divisor (GCD) of two integers $(a, b)$: $$
+\gcd(a,b) =
+\begin{cases}
 |a|, & \text{if } b = 0, \\
 \gcd(b, a \bmod b), & \text{otherwise.}
 \end{cases}
-```
+$$
 
-The algorithmic idea: repeatedly replace the pair (a, b) with (b, a modb) until the second number becomes 0. Let us now look at a simplified flowchart of what we want our computer program to do.
+The algorithmic idea: repeatedly replace the pair $(a, b)$ with $(b, a \mod b)$ until the second number becomes $0$. Let us now look at a simplified flowchart of what we want our computer program to do.
 
 **QUESTION FOR THE READER: TRY TO DRAW THE FLOWCHART ON YOUR OWN!**
 
@@ -35,16 +34,17 @@ The algorithmic idea: repeatedly replace the pair (a, b) with (b, a modb) until 
 
 # Math → Algorithm → Code Mapping
 
-| Math operation  | R equivalent     | Meaning     |
-|-----------------|------------------|-------------|
-| (a modb)        | `a %% b`         | remainder   |
-| recursive call  | `gcd(b, a %% b)` | repeat step |
-| stop if (b = 0) | `if (b == 0)`    | base case   |
+| Math operation    | R equivalent     | Meaning     |
+|-------------------|------------------|-------------|
+| $(a \mod b)$      | `a %% b`         | remainder   |
+| recursive call    | `gcd(b, a %% b)` | repeat step |
+| stop if ($b = 0$) | `if (b == 0)`    | base case   |
 
 ------------------------------------------------------------------------
 
 ```{mermaid}
 %%| echo: false
+%%| fig-align: center
 
 flowchart TD
   A([Start: a, b])
@@ -87,6 +87,10 @@ gcd_recursive <- function(a, b) {
 ------------------------------------------------------------------------
 
 # Example usage
+
+```{r}
+gcd_iterative(384, 24)
+```
 
 ```{r}
 gcd_iterative(1071, 462)

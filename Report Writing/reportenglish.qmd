@@ -1,0 +1,45 @@
+---
+title: "English and Style"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+engine: knitr
+---
+
+
+## Use of English in Statistical Reports
+
+Clear and precise use of English is half of what makes up statistical writing. The primary purpose of writing, as with speaking, is communication. This becomes especially important when explaining abstract or technically demanding ideas, which is what the job of a statistician is. Well-written English is easy to read and understand; poorly written English quickly obscures meaning and can render an otherwise sound analysis unintelligible.
+
+A common and easily corrected weakness in project reports is the failure to construct proper sentences. Every sentence should contain a clear main verb, and a useful first check when proofreading is to ask whether this verb can be identified. A more subtle and frequent problem occurs when the writer unconsciously assumes that the reader is following an unstated line of reasoning. Readers are often presumed to know which variables are under discussion, what quantities are being held fixed, and what is allowed to vary, even though none of this has been explicitly stated. Sentences may appear correct on first reading but reveal their ambiguity or emptiness once one attempts to interpret their precise meaning.
+
+Improving writing quality is an acquired skill that requires sustained effort. As with learning to drive, some people may find it easier than others, but everyone can improve through practice. While many guides to good writing exist, one of the most effective ways to develop a clear style is to read widely and attentively, observing how skilled writers structure arguments and convey complex ideas.
+
+### Style Guidelines
+
+Several practical rules can greatly improve clarity and readability:
+
+1. **Be concise and precise.** Prefer shorter, simpler words where they convey the same meaning. Avoid unnecessary digressions: material that does not fit naturally under a section heading should be moved elsewhere or omitted entirely.
+
+2. **Avoid the personal pronoun “I”.** Scientific and statistical writing is usually impersonal. Passive constructions or neutral phrasing are generally preferable, for example: “A regression analysis was carried out” rather than “I carried out a regression analysis”.
+
+3. **Use tenses consistently.** Reports should generally be written in the present tense when describing results and conclusions (e.g. “The analysis shows that…”). The past tense should be reserved for events that genuinely occurred in the past, such as data collection.
+
+4. **Ensure correct spelling.** If uncertain about a word, consult a reliable dictionary or use a spell-checker. Persistent spelling errors distract the reader and undermine confidence in the work.
+
+5. **Use words accurately.** Similar-sounding terms may have distinct meanings; for example, “trend” and “tendency” are not interchangeable. The word “significant” should be used only in its statistical sense.
+
+6. **Write complete, grammatical sentences.** Telegraphic fragments such as “A standard analysis is possible. By regression.” are unacceptable. Mathematical and statistical writing follows the same grammatical rules as ordinary English.
+
+7. **Treat “data” as a plural noun.** The correct form is “data are…”, since “data” is the plural of “datum”.
+
+Developing a clear and readable style does not come naturally to many mathematicians and statisticians, but it is a worthwhile goal. Reading good prose, practising writing, and critically revising one’s own work are the most reliable ways to improve.

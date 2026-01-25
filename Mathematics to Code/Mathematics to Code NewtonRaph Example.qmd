@@ -12,18 +12,71 @@ format:
     code-copy: true
     number_sections: true
     echo: fenced
+    mathjax: true
 engine: knitr
-editor: visual
 ---
 
 # Mathematical Intuition
 
-We want to find a root of (f(x)=0).\
-We use the tangent line at (x_n) to estimate a better guess:
+We want to find a root of ($f(x)=0$).\
+We use the tangent line at ($x_n$) to estimate a better guess:
 
-\[ x\_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}. \]
+$x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$. 
 
-Repeat until ( \|x\_{n+1} - x_n\| ) is small.
+Repeat until ( $\|x_{n+1} - x_n\|$ ) is small.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+# Define function and derivative
+f  <- function(x) x^3 - 2*x - 5
+df <- function(x) 3*x^2 - 2
+
+# Newton–Raphson iterations
+newton <- function(x0, n) {
+  x <- numeric(n + 1)
+  x[1] <- x0
+  for (i in 1:n) {
+    x[i + 1] <- x[i] - f(x[i]) / df(x[i])
+  }
+  x
+}
+
+# Initial guess and iterations
+x0 <- 2
+iters <- newton(x0, 5)
+
+# Plot function
+curve(f, from = 1, to = 3, lwd = 2,
+      ylab = "f(x)", xlab = "x",
+      main = "Newton–Raphson Method")
+
+abline(h = 0, col = "gray")
+
+# Plot Newton steps
+for (i in 1:5) {
+  x_n <- iters[i]
+  y_n <- f(x_n)
+  slope <- df(x_n)
+  
+  # Tangent line
+  abline(a = y_n - slope * x_n, b = slope,
+         col = "steelblue", lty = 2)
+  
+  # Vertical drop to x-axis
+  segments(x_n, y_n, iters[i + 1], 0,
+           col = "firebrick")
+  
+  # Points
+  points(x_n, y_n, pch = 16)
+}
+
+# Final root estimate
+points(iters[6], 0, pch = 19, col = "firebrick")
+
+```
 
 ------------------------------------------------------------------------
 
@@ -38,12 +91,16 @@ Repeat until ( \|x\_{n+1} - x_n\| ) is small.
 ------------------------------------------------------------------------
 
 ```{mermaid}
+%%| echo: false
+%%| fig-align: center
+
 flowchart TD
   Start([Start: choose x0, tol, max_iter])
-  Compute["x_next = x - f(x)/f'(x)"]
-  Check{|x_next - x| < tol?|}
+  Compute["x_next with the algorithm"]
+  Check{Is the absolute difference between <br/> the next guess x_next and <br/> the true root x less than the tolerance}
   Accept([Return x_next])
   Update["x <- x_next"]
+
   Start --> Compute --> Check
   Check -- Yes --> Accept
   Check -- No --> Update --> Compute

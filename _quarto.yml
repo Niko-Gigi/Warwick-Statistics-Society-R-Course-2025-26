@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Warwick Statistics Society R Course 2024-2025"
+  title: "Warwick Statistics Society R Course 2025-2026"
   sidebar:
     style: "docked"
     search: true
@@ -56,9 +56,10 @@ website:
       - section: "Report Writing"
         contents:
           - Report Writing/reportintro.qmd
-          - Report Writing/structurereport.qmd
-          - Report Writing/stylereport.qmd
-          - Report Writing/useofaireport.qmd
+          - Report Writing/reportstructure.qmd
+          - Report Writing/reportreporting.qmd
+          - Report Writing/reportenglish.qmd
+          - Report Writing/reportai.qmd
 
   navbar:
       left:

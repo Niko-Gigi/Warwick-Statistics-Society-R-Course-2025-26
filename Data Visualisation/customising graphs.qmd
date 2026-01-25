@@ -23,13 +23,13 @@ In this tutorial, we'll learn how to customize various aspects of ggplot2 graphs
 First, let's load our packages and data:
 
 ```{r}
+#| echo: true
 #| message: false
+#| error: false
+
 library(ggplot2)
 library(palmerpenguins)
 library(dplyr)
-
-# View the first few rows
-head(penguins)
 ```
 
 # Customizing Axes
@@ -44,7 +44,10 @@ You can control numeric axes using `scale_x_continuous()` and `scale_y_continuou
 - `limits`: The minimum and maximum values to display
 
 ```{r}
+#| echo: true
 #| warning: false
+#| message: false
+
 # Basic plot
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point() +
@@ -57,7 +60,9 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
        y = "Bill Depth (mm)")
 ```
 
-**Tip**: The `seq()` function creates a sequence of numbers. For example, `seq(30, 60, by = 5)` creates: 30, 35, 40, 45, 50, 55, 60.
+:::{.callout-tip}
+The `seq()` function creates a sequence of numbers. For example, `seq(30, 60, by = 5)` creates: 30, 35, 40, 45, 50, 55, 60.
+:::
 
 ## Formatting Numbers
 
@@ -66,6 +71,8 @@ The `scales` package provides helpful functions for formatting axis labels:
 - `comma`: Adds commas to large numbers (1000 becomes 1,000)
 - `dollar`: Adds currency symbols
 - `percent`: Converts decimals to percentages
+
+In the code chunk below, we create a random dataset by sampling from normal and uniform distributions for demomstrative purposes. Don't worry, the penguins will come back in the next example!
 
 ```{r}
 # Create sample data
@@ -88,9 +95,10 @@ ggplot(population_data, aes(x = population, y = employment_rate)) +
 
 ## Categorical Axes
 
-For categorical variables, use `scale_x_discrete()` or `scale_y_discrete()`:
+For categorical variables, use `scale_x_discrete()` or `scale_y_discrete()`. Returning to our penguins dataset:
 
 ```{r}
+# Apply categorical variable scaling
 ggplot(penguins, aes(x = species)) +
   geom_bar(fill = "coral") +
   scale_x_discrete(labels = c("Adélie\nPenguin", 
@@ -101,11 +109,13 @@ ggplot(penguins, aes(x = species)) +
        y = "Count")
 ```
 
-**Note**: `\n` creates a line break in text labels.
+:::{.callout-note}
+`\n` creates a line break in text labels.
+:::
 
 ## Date Axes
 
-Working with dates requires `scale_x_date()` or `scale_y_date()`:
+Working with dates requires `scale_x_date()` or `scale_y_date()`. We use the economics dataset for this:
 
 ```{r}
 # Using the economics dataset
@@ -117,6 +127,10 @@ ggplot(economics, aes(x = date, y = unemploy / 1000)) +
        x = "Year",
        y = "Unemployed (thousands)")
 ```
+
+:::{.callout-note}
+We use `date_` for breaks and labels for dates.
+:::
 
 Common date format codes:
 
@@ -138,7 +152,10 @@ Colors can make your plots more engaging and help distinguish between groups.
 Use `color` for points and lines, and `fill` for bars and areas:
 
 ```{r}
+#| echo: true
 #| warning: false
+#| message: false
+
 # Single color
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(color = "darkgreen", size = 2) +
@@ -148,7 +165,10 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 To assign specific colors to categories, use `scale_color_manual()` or `scale_fill_manual()`:
 
 ```{r}
+#| echo: true
 #| warning: false
+#| message: false
+
 ggplot(penguins, aes(x = species, fill = species)) +
   geom_bar() +
   scale_fill_manual(values = c("Adelie" = "darkorange",
@@ -162,14 +182,17 @@ ggplot(penguins, aes(x = species, fill = species)) +
 
 ## Using Color Palettes
 
-Pre-designed color palettes often look more professional than colors you pick yourself.
+Pre-designed color palettes might be a starting point to inspire the final aesthetic you choose for your graph.
 
 ### ColorBrewer Palettes
 
 ColorBrewer provides carefully designed color schemes:
 
 ```{r}
+#| echo: true
 #| warning: false
+#| message: false
+
 ggplot(penguins, aes(x = species, fill = island)) +
   geom_bar() +
   scale_fill_brewer(palette = "Set2") +
@@ -181,10 +204,13 @@ ggplot(penguins, aes(x = species, fill = island)) +
 
 ### Viridis Palettes
 
-Viridis palettes are colorblind-friendly and print well in grayscale:
+Viridis palettes are *colorblind-friendly* and print well in grayscale:
 
 ```{r}
+#| echo: true
 #| warning: false
+#| message: false
+
 ggplot(penguins, aes(x = species, fill = island)) +
   geom_bar() +
   scale_fill_viridis_d() +
@@ -194,7 +220,9 @@ ggplot(penguins, aes(x = species, fill = island)) +
        fill = "Island")
 ```
 
+:::{.callout-note}
 Use `_c` for continuous variables (numbers) and `_d` for discrete variables (categories).
+:::
 
 # Customizing Points and Lines
 
@@ -203,7 +231,10 @@ Use `_c` for continuous variables (numbers) and `_d` for discrete variables (cat
 Change point shapes with the `shape` parameter:
 
 ```{r}
+#| echo: true
 #| warning: false
+#| message: false
+
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, 
                      shape = species)) +
   geom_point(size = 3) +
@@ -214,7 +245,10 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,
 Shapes 21-25 allow both fill and border colors:
 
 ```{r}
+#| echo: true
 #| warning: false
+#| message: false
+
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, 
                      fill = species)) +
   geom_point(shape = 21, size = 3, color = "black") +
@@ -223,7 +257,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,
 
 ## Line Types
 
-Modify line appearance with `linetype`:
+You can modiify line appearance with `linetype`:
 
 ```{r}
 ggplot(economics, aes(x = date)) +
@@ -233,58 +267,19 @@ ggplot(economics, aes(x = date)) +
        y = "Number Unemployed")
 ```
 
-# Labels and Legends
-
-## Adding Labels
-
-Use the `labs()` function to add or modify all text in your plot:
-
-```{r}
-#| warning: false
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, 
-                     color = species)) +
-  geom_point(size = 2, alpha = 0.7) +
-  labs(
-    title = "Penguin Body Mass vs Flipper Length",
-    subtitle = "Measurements from Palmer Station, Antarctica",
-    caption = "Data source: palmerpenguins package",
-    x = "Flipper Length (mm)",
-    y = "Body Mass (g)",
-    color = "Penguin Species"
-  ) +
-  theme_minimal()
-```
-
-## Legend Position
-
-Control legend placement with `theme()`:
-
-```{r}
-#| warning: false
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, 
-                     color = species)) +
-  geom_point(size = 2) +
-  labs(title = "Penguin Measurements",
-       color = "Species") +
-  theme_minimal() +
-  theme(legend.position = "top")
-```
-
-Options for `legend.position`:
-- `"top"`, `"bottom"`, `"left"`, `"right"`
-- `c(x, y)` for exact placement (e.g., `c(0.9, 0.2)` for bottom-right inside plot)
-- `"none"` to remove the legend
-
 # Adding Annotations
 
-Annotations highlight important features in your data.
+Annotations can highlight important features in your data.
 
 ## Text Annotations
 
 Use `annotate()` to add text anywhere on your plot:
 
 ```{r}
+#| echo: true
 #| warning: false
+#| message: false
+
 penguin_summary <- penguins %>%
   group_by(species) %>%
   summarise(mean_mass = mean(body_mass_g, na.rm = TRUE))
@@ -304,7 +299,10 @@ ggplot(penguins, aes(x = species, y = body_mass_g)) +
 Use `geom_hline()` and `geom_vline()` for horizontal and vertical lines:
 
 ```{r}
+#| echo: true
 #| warning: false
+#| message: false
+
 mean_mass <- mean(penguins$body_mass_g, na.rm = TRUE)
 
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, 
@@ -324,7 +322,10 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g,
 The `gghighlight` package makes it easy to emphasize particular data:
 
 ```{r}
+#| echo: true
 #| warning: false
+#| message: false
+
 library(gghighlight)
 
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
@@ -344,7 +345,10 @@ Themes control the overall appearance of your plot (backgrounds, gridlines, font
 ggplot2 includes several pre-made themes:
 
 ```{r}
+#| echo: true
 #| warning: false
+#| message: false
+
 p <- ggplot(penguins, aes(x = species, fill = island)) +
   geom_bar() +
   labs(title = "Penguins by Species and Island")
@@ -368,7 +372,10 @@ p + theme_dark()  # Dark background
 The `ggthemes` package offers many professional themes:
 
 ```{r}
+#| echo: true
 #| warning: false
+#| message: false
+
 library(ggthemes)
 
 base_plot <- ggplot(penguins, aes(x = flipper_length_mm, 
@@ -384,7 +391,10 @@ base_plot + theme_economist() + scale_color_economist()
 ```
 
 ```{r}
+#| echo: true
 #| warning: false
+#| message: false
+
 # FiveThirtyEight style
 base_plot + theme_fivethirtyeight()
 ```
@@ -394,8 +404,10 @@ base_plot + theme_fivethirtyeight()
 The `patchwork` package lets you arrange multiple plots together:
 
 ```{r}
+#| echo: true
 #| warning: false
 #| message: false
+
 library(patchwork)
 
 # Create three plots
@@ -434,30 +446,12 @@ p3 <- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g,
 The `&` operator applies settings to all plots:
 
 ```{r}
+#| echo: true
 #| warning: false
+#| message: false
+
 (p1 | p2) / p3 & theme_light()
 ```
-
-# Tips for Effective Visualizations
-
-1. **Keep it simple**: Don't add decorations that don't help tell your story
-2. **Label everything**: Make sure axes, legends, and titles are clear
-3. **Consider your audience**: Choose colors and styles appropriate for your readers
-4. **Test accessibility**: Ensure your plots work in grayscale and for colorblind readers
-5. **Be consistent**: Use the same style across all plots in a report or presentation
-
-# Summary
-
-You've learned how to:
-
-- Customize axes for numeric, categorical, and date data
-- Apply colors using manual specification and palettes
-- Modify point shapes and line types
-- Add labels, legends, and annotations
-- Apply and customize themes
-- Combine multiple plots into one figure
-
-These skills will help you create professional, publication-ready visualizations. Practice by customizing your own data visualizations!
 
 # Further Resources
 
