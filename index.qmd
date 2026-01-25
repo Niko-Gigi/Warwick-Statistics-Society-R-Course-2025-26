@@ -38,11 +38,11 @@ On the left, it is possible to jump to the relevant page. These are grouped by s
 :::{}
 * Welcome
 * Introduction to R
+* Mathematics to R
 * Linear modelling
 * Exploratory data analysis (EDA)
-* Mathematics to Code
 * Data Visualisation
-* Report Writing and Mathematical Communication
+* Report Writing
 
 :::
 
@@ -84,6 +84,12 @@ There are several sections and pages to this website. The following is a general
   + Custom functions - *How to create a custom function to reduce repetitive code.*
   + Random numbers - *Generate a random number in R and find the probability it was generated using a particular statistical distribution.*
   + Figures - *Use base R to plot scatter plots, box plots, histograms and line graphs. *
+* **Mathematics to Code** - This section covers the intuition and algorithmic thinking with which one should approach programming.
+  + Introduction - *How does the computer think and interpret your code?*
+  +  Mathematical intuition behind coding - *How do you go about translating mathematical logic into computer code?*
+  + Euclidean Algorithm - *An example implementation of the Euclidean Algorithm for finding GCDs with the logic and R code explained.*
+  + Monte Carlo Approximation - *An example implementation of Monte Carlo approximation of \pi with the logic and R code explained.*
+  + Newton-Raphson Method - *An example implementation of the Newton-Raphson method for finding roots of functions with the logic and R code explained.*
 * **Modelling** - This section covers how to plot a linear model and check diagnostic plots. 
   + What is a linear model? - *A linear model explains or predicts the relationship between variables. There are 4 key assumptions that must be met.*
   + Fitting a model with continuous data - *Examples of fitting a linear model with integer and real number data.*
@@ -93,12 +99,17 @@ There are several sections and pages to this website. The following is a general
 * **Exploratory data analysis** - This section covers a few different ways to get insights about a dataset. 
   + cars dataset - *A simple example covering investigating and cleaning the inbuilt `mtcars` dataset.*
   + dplyr: summary tables - *Examples of using the `dplyr` package's `summarise()` function on the `mtcars` dataset.*
-* **Mathematics to Code** - This section covers the intuition and algorithmic thinking with which one should approach programming.
-  + 
 * **Data Visualisation** - This section covers data visualisation techniques, conventions and good habits to develop throughout your degree.
-  + What makes a good visual?
-  + Conventions 
-  + Libraries and Modules
+  + Introduction to Data Visualisation
+  + Data Import and Preparation in R 
+  + Introduction to ggplot2
+  + Graph Customisation
+  + Univariate Data
+  + Visualising Bivariate Data
+  + Visualising Time
+  + Visualising Multiple Variables
+  + Specialised Visualization Techniques
+  + Best Practices
 * **Report Writing and Mathematical Communication** - This sections covers how to approach report writing for audiences both inside and outside of one's field.
 :::
 

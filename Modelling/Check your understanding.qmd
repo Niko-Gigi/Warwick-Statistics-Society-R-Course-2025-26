@@ -52,7 +52,7 @@ Download and load in the coursework.csv` file. This is a dataset of the coursewo
 
 ```{r}
 ###| Loading in file
-data <- read.csv("~/Documents/GitHub/Warwick Statistics Society R Course 2024-2025/Data/data.csv")
+data <- read.csv("../Data/data.csv")
 
 ###| Plot
 plot(data$x1, data$y, xlab = "x1", ylab = "y", 
@@ -89,7 +89,7 @@ If $x1 = 0$ and $x2= 0$, we expect $y=5.4$. Assuming $x2$ remains constant, if $
 
 ```{r}
 ###| Loading in file
-coursework.df <- read.csv("~/Documents/GitHub/Warwick Statistics Society R Course 2024-2025/Data/coursework.csv")
+coursework.df <- read.csv("../Data/coursework.csv")
 
 ###| Variable assigning
 coursework <- coursework.df$cw

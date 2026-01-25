@@ -94,14 +94,13 @@ plot.title = element_text(size = 16, face = "bold")
 )
 ```
 
-If the goal is to compare the fuel efficiency of cars with different numbers of cylinders, much of this visualization is unnecessary and distracts from the task:
-:::
+If the goal is to compare the fuel efficiency of cars with different numbers of cylinders, much of this visualization is unnecessary and distracts from the task: :::
 
-* Colored background and thick border draw attention away from the bars
-* Heavy black grid lines dominate the data
-* Color fill adds a legend but **doesn’t encode new information**
-* Wordy title (“different”, “numbers of”) adds clutter
-* The reader must constantly look back and forth between the bars and y-axis
+-   Colored background and thick border draw attention away from the bars
+-   Heavy black grid lines dominate the data
+-   Color fill adds a legend but **doesn’t encode new information**
+-   Wordy title (“different”, “numbers of”) adds clutter
+-   The reader must constantly look back and forth between the bars and y-axis
 
 :::
 
@@ -143,12 +142,12 @@ panel.grid.minor = element_blank()
 
 The chart junk has been removed. In addition:
 
-* X-axis label removed (cylinder categories are obvious)
-* Y-axis label made more informative
-* the title has been simplified
-* One bar (8 cylinders) highlighted to aid comparison
-* Values added directly to bars, reducing reliance on the axis
-* Grid lines softened or removed to avoid distraction
+-   X-axis label removed (cylinder categories are obvious)
+-   Y-axis label made more informative
+-   the title has been simplified
+-   One bar (8 cylinders) highlighted to aid comparison
+-   Values added directly to bars, reducing reliance on the axis
+-   Grid lines softened or removed to avoid distraction
 
 I may or may not have gone a bit far leaving out the x-axis label. It’s a fine line, knowing when to stop simplifying.
 
@@ -164,9 +163,9 @@ Basically, think about selecting among sequential, diverging, and qualitative co
 
 :::
 
-* **Sequential** — for plotting a quantitative variable that goes from low to high
-* **Diverging** — for contrasting the extremes (low, medium, and high) of a quantitative variable
-* **Qualitative** — for distinguishing among the levels of a categorical variable
+-   **Sequential** — for plotting a quantitative variable that goes from low to high
+-   **Diverging** — for contrasting the extremes (low, medium, and high) of a quantitative variable
+-   **Qualitative** — for distinguishing among the levels of a categorical variable
 
 :::
 
@@ -176,8 +175,8 @@ Other things to keep in mind:
 
 :::
 
-*  Make sure that text is legible — avoid dark text on dark backgrounds, light text on light backgrounds, and colors that clash in a discordant fashion (i.e., they hurt to look at!)
-*  Avoid combinations of red and green — it can be difficult for a colorblind audience to distinguish these colors
+-   Make sure that text is legible — avoid dark text on dark backgrounds, light text on light backgrounds, and colors that clash in a discordant fashion (i.e., they hurt to look at!)
+-   Avoid combinations of red and green — it can be difficult for a colorblind audience to distinguish these colors
 
 :::
 

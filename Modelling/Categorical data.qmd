@@ -22,7 +22,7 @@ To explore categorical data, let us look at the agriculture dataset.
 
 ```{r}
 ###| Load in the data
-agriculture <- read.csv("~/Documents/GitHub/Warwick Statistics Society R Course 2024-2025/Data/agriculture.csv")
+agriculture <- read.csv("../Data/agriculture.csv")
 
 ###| First 6 rows
 head(agriculture)

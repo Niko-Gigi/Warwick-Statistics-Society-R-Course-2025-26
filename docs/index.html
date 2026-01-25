@@ -471,14 +471,29 @@ window.Quarto = {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">Report Writing/structurereport.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./Report Writing/reportstructure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Report Structure</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Report Writing/stylereport.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./Report Writing/reportreporting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Report Statistical Results</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Report Writing/useofaireport.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">English and Style</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Use AI/LLMs for your studiesS</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -546,11 +561,11 @@ window.Quarto = {
 <ul>
 <li>Welcome</li>
 <li>Introduction to R</li>
+<li>Mathematics to R</li>
 <li>Linear modelling</li>
 <li>Exploratory data analysis (EDA)</li>
-<li>Mathematics to Code</li>
 <li>Data Visualisation</li>
-<li>Report Writing and Mathematical Communication</li>
+<li>Report Writing</li>
 </ul>
 </div>
 <p>On the right, there is a table of contents for each page. On the top, I have pulled out crucial tabs that cover downloading R, some quick references guides and the databases used.</p>
@@ -595,6 +610,14 @@ window.Quarto = {
 <li>Random numbers - <em>Generate a random number in R and find the probability it was generated using a particular statistical distribution.</em></li>
 <li>Figures - <em>Use base R to plot scatter plots, box plots, histograms and line graphs. </em></li>
 </ul></li>
+<li><strong>Mathematics to Code</strong> - This section covers the intuition and algorithmic thinking with which one should approach programming.
+<ul>
+<li>Introduction - <em>How does the computer think and interpret your code?</em></li>
+<li>Mathematical intuition behind coding - <em>How do you go about translating mathematical logic into computer code?</em></li>
+<li>Euclidean Algorithm - <em>An example implementation of the Euclidean Algorithm for finding GCDs with the logic and R code explained.</em></li>
+<li>Monte Carlo Approximation - <em>An example implementation of Monte Carlo approximation of with the logic and R code explained.</em></li>
+<li>Newton-Raphson Method - <em>An example implementation of the Newton-Raphson method for finding roots of functions with the logic and R code explained.</em></li>
+</ul></li>
 <li><strong>Modelling</strong> - This section covers how to plot a linear model and check diagnostic plots.
 <ul>
 <li>What is a linear model? - <em>A linear model explains or predicts the relationship between variables. There are 4 key assumptions that must be met.</em></li>
@@ -608,15 +631,18 @@ window.Quarto = {
 <li>cars dataset - <em>A simple example covering investigating and cleaning the inbuilt <code>mtcars</code> dataset.</em></li>
 <li>dplyr: summary tables - <em>Examples of using the <code>dplyr</code> package’s <code>summarise()</code> function on the <code>mtcars</code> dataset.</em></li>
 </ul></li>
-<li><strong>Mathematics to Code</strong> - This section covers the intuition and algorithmic thinking with which one should approach programming.
-<ul>
-<li></li>
-</ul></li>
 <li><strong>Data Visualisation</strong> - This section covers data visualisation techniques, conventions and good habits to develop throughout your degree.
 <ul>
-<li>What makes a good visual?</li>
-<li>Conventions</li>
-<li>Libraries and Modules</li>
+<li>Introduction to Data Visualisation</li>
+<li>Data Import and Preparation in R</li>
+<li>Introduction to ggplot2</li>
+<li>Graph Customisation</li>
+<li>Univariate Data</li>
+<li>Visualising Bivariate Data</li>
+<li>Visualising Time</li>
+<li>Visualising Multiple Variables</li>
+<li>Specialised Visualization Techniques</li>
+<li>Best Practices</li>
 </ul></li>
 <li><strong>Report Writing and Mathematical Communication</strong> - This sections covers how to approach report writing for audiences both inside and outside of one’s field.</li>
 </ul>
@@ -1126,11 +1152,11 @@ window.Quarto = {
 <span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>:::{}</span>
 <span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Welcome</span>
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Introduction to R</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Linear modelling</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Exploratory data analysis (EDA)</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Mathematics to Code</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Mathematics to R</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Linear modelling</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Exploratory data analysis (EDA)</span>
 <span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Data Visualisation</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Report Writing and Mathematical Communication</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Report Writing</span>
 <span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
@@ -1172,27 +1198,38 @@ window.Quarto = {
 <span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Custom functions - *How to create a custom function to reduce repetitive code.*</span>
 <span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Random numbers - *Generate a random number in R and find the probability it was generated using a particular statistical distribution.*</span>
 <span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Figures - *Use base R to plot scatter plots, box plots, histograms and line graphs. *</span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Modelling** - This section covers how to plot a linear model and check diagnostic plots. </span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>What is a linear model? - *A linear model explains or predicts the relationship between variables. There are 4 key assumptions that must be met.*</span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Fitting a model with continuous data - *Examples of fitting a linear model with integer and real number data.*</span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Fitting a model with categorical data - *Examples of fitting a linear model with categorical data on the agriculture dataset, with and without intercept terms.*</span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Model diagnostics - *Linear models must fit the 4 key assumptions. This is how we check they do.*</span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Check your understanding - *Fit linear models on two datasets.*</span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Exploratory data analysis** - This section covers a few different ways to get insights about a dataset. </span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>cars dataset - *A simple example covering investigating and cleaning the inbuilt `mtcars` dataset.*</span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>dplyr: summary tables - *Examples of using the `dplyr` package's `summarise()` function on the `mtcars` dataset.*</span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Mathematics to Code** - This section covers the intuition and algorithmic thinking with which one should approach programming.</span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span></span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Data Visualisation** - This section covers data visualisation techniques, conventions and good habits to develop throughout your degree.</span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>What makes a good visual?</span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Conventions </span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Libraries and Modules</span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Report Writing and Mathematical Communication** - This sections covers how to approach report writing for audiences both inside and outside of one's field.</span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>The necessary data for this website can be found in the <span class="in">`Datasets`</span> folder (<span class="co">[</span><span class="ot">link</span><span class="co">](https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26)</span>). There is guidance in the relevant pages on how to load in data. </span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>Please note that **future pages** aim to include: model selection; generalised linear modelling; exploratory data analysis; and using the <span class="in">`kableExtra`</span> and <span class="in">`dplyr`</span> packages to produce tables. Time permitting, these will be created for the 2025/256 R course and aim to go alongside ST404 Applied Statistical Modelling and provide additional support for ST346 Generalised Linear Models. I, Niko will aim to implement these as well as the year 2025-26 rolls along. I also aim to add pages on Bayesian statistics and Markov Chain Monte Carlo using R and Python.</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Mathematics to Code** - This section covers the intuition and algorithmic thinking with which one should approach programming.</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Introduction - *How does the computer think and interpret your code?*</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="ss">  +  </span>Mathematical intuition behind coding - *How do you go about translating mathematical logic into computer code?*</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Euclidean Algorithm - *An example implementation of the Euclidean Algorithm for finding GCDs with the logic and R code explained.*</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Monte Carlo Approximation - *An example implementation of Monte Carlo approximation of \pi with the logic and R code explained.*</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Newton-Raphson Method - *An example implementation of the Newton-Raphson method for finding roots of functions with the logic and R code explained.*</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Modelling** - This section covers how to plot a linear model and check diagnostic plots. </span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>What is a linear model? - *A linear model explains or predicts the relationship between variables. There are 4 key assumptions that must be met.*</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Fitting a model with continuous data - *Examples of fitting a linear model with integer and real number data.*</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Fitting a model with categorical data - *Examples of fitting a linear model with categorical data on the agriculture dataset, with and without intercept terms.*</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Model diagnostics - *Linear models must fit the 4 key assumptions. This is how we check they do.*</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Check your understanding - *Fit linear models on two datasets.*</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Exploratory data analysis** - This section covers a few different ways to get insights about a dataset. </span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>cars dataset - *A simple example covering investigating and cleaning the inbuilt `mtcars` dataset.*</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>dplyr: summary tables - *Examples of using the `dplyr` package's `summarise()` function on the `mtcars` dataset.*</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Data Visualisation** - This section covers data visualisation techniques, conventions and good habits to develop throughout your degree.</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Introduction to Data Visualisation</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Data Import and Preparation in R </span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Introduction to ggplot2</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Graph Customisation</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Univariate Data</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Visualising Bivariate Data</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Visualising Time</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Visualising Multiple Variables</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Specialised Visualization Techniques</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Best Practices</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Report Writing and Mathematical Communication** - This sections covers how to approach report writing for audiences both inside and outside of one's field.</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>The necessary data for this website can be found in the <span class="in">`Datasets`</span> folder (<span class="co">[</span><span class="ot">link</span><span class="co">](https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26)</span>). There is guidance in the relevant pages on how to load in data. </span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>Please note that **future pages** aim to include: model selection; generalised linear modelling; exploratory data analysis; and using the <span class="in">`kableExtra`</span> and <span class="in">`dplyr`</span> packages to produce tables. Time permitting, these will be created for the 2025/256 R course and aim to go alongside ST404 Applied Statistical Modelling and provide additional support for ST346 Generalised Linear Models. I, Niko will aim to implement these as well as the year 2025-26 rolls along. I also aim to add pages on Bayesian statistics and Markov Chain Monte Carlo using R and Python.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

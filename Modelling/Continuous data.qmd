@@ -34,7 +34,7 @@ You will need to change the location of the file path. You can find this by clic
 
 ```{r}
 ###| Loading in data
-leaf <- read.csv("~/Documents/GitHub/Warwick Statistics Society R Course 2024-2025/Data/leaf.csv")
+leaf <- read.csv("../Data/leaf.csv")
 
 ###| First 6 rows
 head(leaf)

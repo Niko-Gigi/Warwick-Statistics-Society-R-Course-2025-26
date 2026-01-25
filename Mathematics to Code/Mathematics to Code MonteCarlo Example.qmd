@@ -22,17 +22,17 @@ editor: visual
 We throw random points ($(x,y)$) uniformly in the square $([-1,1]^2)$.\
 The fraction inside the unit circle ($x^2 + y^2 \le 1$) equals $(\pi/4)$:
 
-$\pi \approx 4 \times \frac{\text{points inside circle}}{\text{total points}}$ .          
+$\pi \approx 4 \times \frac{\text{points inside circle}}{\text{total points}}$ .
 
 ------------------------------------------------------------------------
 
 # Math → Algorithm → Code Mapping
 
-| Math idea       | R translation      |
-|-----------------|--------------------|
+| Math idea         | R translation      |
+|-------------------|--------------------|
 | sample $(x, y)$   | `runif(N, -1, 1)`  |
 | indicator $(I_i)$ | `(x^2 + y^2 <= 1)` |
-| estimate        | `4 * mean(I)`      |
+| estimate          | `4 * mean(I)`      |
 
 ------------------------------------------------------------------------
 

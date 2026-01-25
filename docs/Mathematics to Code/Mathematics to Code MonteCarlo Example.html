@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Monte Carlo Approximation of π — Translating Math into Code – Warwick Statistics Society R Course 2024-2025</title>
+<title>Monte Carlo Approximation of π — Translating Math into Code – Warwick Statistics Society R Course 2025-2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Warwick Statistics Society R Course 2024-2025</span>
+    <span class="navbar-title">Warwick Statistics Society R Course 2025-2026</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -474,20 +474,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Report Writing/structurereport.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Examples of Mathematics translated into code</span></a>
+  <a href="../Report Writing/reportstructure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Report Structure</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Report Writing/stylereport.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">stylereport.html</span></a>
+  <a href="../Report Writing/reportreporting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Report Statistical Results</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Report Writing/useofaireport.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Examples of Mathematics translated into code</span></a>
+  <a href="../Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">English and Style</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Use AI/LLMs for your studiesS</span></a>
   </div>
 </li>
       </ul>
@@ -1130,17 +1136,17 @@ The fraction inside the unit circle (<span class="math inline">\(x^2 + y^2 \le 1
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>We throw random points ($(x,y)$) uniformly in the square $(<span class="co">[</span><span class="ot">-1,1</span><span class="co">]</span>^2)$.\</span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>The fraction inside the unit circle ($x^2 + y^2 \le 1$) equals $(\pi/4)$:</span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>$\pi \approx 4 \times \frac{\text{points inside circle}}{\text{total points}}$ .          </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>$\pi \approx 4 \times \frac{\text{points inside circle}}{\text{total points}}$ .</span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="fu"># Math → Algorithm → Code Mapping</span></span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Math idea       <span class="pp">|</span> R translation      <span class="pp">|</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----------------|--------------------|</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Math idea         <span class="pp">|</span> R translation      <span class="pp">|</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------------------|--------------------|</span></span>
 <span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> sample $(x, y)$   <span class="pp">|</span> <span class="in">`runif(N, -1, 1)`</span>  <span class="pp">|</span></span>
 <span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> indicator $(I_i)$ <span class="pp">|</span> <span class="in">`(x^2 + y^2 &lt;= 1)`</span> <span class="pp">|</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> estimate        <span class="pp">|</span> <span class="in">`4 * mean(I)`</span>      <span class="pp">|</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> estimate          <span class="pp">|</span> <span class="in">`4 * mean(I)`</span>      <span class="pp">|</span></span>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
